@@ -141,9 +141,9 @@ namespace PhieuKiemDinh.MyUserControl
             txt_TruongSo14.Text = data.TruongSo14;
             txt_FlagError.Text = data.FlagError;
         }
-        public void LoadDataChecker(tbl_DeSo data)
+        public void LoadDataChecker(tbl_DeSo data, string nameCheck)
         {
-            lb_Ussername.Text = data.UserName;
+            lb_Ussername.Text = nameCheck;
             txt_TruongSo01.Text = data.TruongSo01;
             txt_TruongSo03.Text = data.TruongSo03;
             txt_TruongSo04.Text = data.TruongSo04;

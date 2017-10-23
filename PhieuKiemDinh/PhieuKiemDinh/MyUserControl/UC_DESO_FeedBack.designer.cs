@@ -322,6 +322,7 @@
             this.txt_FlagError.Properties.MaxLength = 1;
             this.txt_FlagError.Size = new System.Drawing.Size(136, 22);
             this.txt_FlagError.TabIndex = 16;
+            this.txt_FlagError.Visible = false;
             // 
             // label15
             // 
@@ -331,6 +332,7 @@
             this.label15.Size = new System.Drawing.Size(27, 13);
             this.label15.TabIndex = 17;
             this.label15.Text = "Flag";
+            this.label15.Visible = false;
             // 
             // UC_DESO_FeedBack
             // 
