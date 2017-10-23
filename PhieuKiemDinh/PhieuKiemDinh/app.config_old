@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+    <configSections>
+        <sectionGroup name="userSettings" type="System.Configuration.UserSettingsGroup, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" >
+            <section name="PhieuKiemDinh.Properties.Settings" type="System.Configuration.ClientSettingsSection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" allowExeDefinition="MachineToLocalUser" requirePermission="false" />
+        </sectionGroup>
+    </configSections>
+    <connectionStrings>
+        <add name="PhieuKiemDinh.Properties.Settings.DatabaseDataEntryBPOConnectionString"
+            connectionString="Data Source=10.10.10.254\BPOSERVER;Initial Catalog=DatabaseDataEntryBPO;Persist Security Info=True;User ID=sa;Password=BPO@DN#2013"
+            providerName="System.Data.SqlClient" />
+        <add name="PhieuKiemDinh.Properties.Settings.PhieuKiemDinhConnectionString"
+            connectionString="Data Source=10.10.10.254\BPOSERVER;Initial Catalog=PhieuKiemDinh;Persist Security Info=True;User ID=sa;Password=BPO@DN#2013"
+            providerName="System.Data.SqlClient" />
+    </connectionStrings>
+    <userSettings>
+        <PhieuKiemDinh.Properties.Settings>
+            <setting name="username" serializeAs="String">
+                <value />
+            </setting>
+            <setting name="password" serializeAs="String">
+                <value />
+            </setting>
+            <setting name="check_luu" serializeAs="Bool">
+                <value>False</value>
+            </setting>
+            <setting name="TrackbarValues" serializeAs="String">
+                <value>40</value>
+            </setting>
+        </PhieuKiemDinh.Properties.Settings>
+    </userSettings>
+</configuration>
