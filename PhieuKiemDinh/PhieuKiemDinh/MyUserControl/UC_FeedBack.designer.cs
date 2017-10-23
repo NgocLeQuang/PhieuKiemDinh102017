@@ -73,7 +73,7 @@
             this.uc_PictureBox1.AutoSize = true;
             this.uc_PictureBox1.Location = new System.Drawing.Point(37, 4);
             this.uc_PictureBox1.Name = "uc_PictureBox1";
-            this.uc_PictureBox1.Size = new System.Drawing.Size(839, 429);
+            this.uc_PictureBox1.Size = new System.Drawing.Size(839, 431);
             this.uc_PictureBox1.TabIndex = 0;
             // 
             // textbox1
