@@ -73,6 +73,26 @@ namespace PhieuKiemDinh.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        public static byte[] FeedBack {
+            get {
+                object obj = ResourceManager.GetObject("FeedBack", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        public static byte[] Feedback_User {
+            get {
+                object obj = ResourceManager.GetObject("Feedback_User", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         public static byte[] Productivity {
             get {
                 object obj = ResourceManager.GetObject("Productivity", resourceCulture);

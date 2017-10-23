@@ -5,7 +5,9 @@ using System.Linq;
 using System.IO;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.Windows.Forms.Design;
 using DevExpress.XtraEditors;
+using Microsoft.Office.Core;
 using PhieuKiemDinh.MyUserControl;
 
 namespace PhieuKiemDinh.MyForm
@@ -36,8 +38,7 @@ namespace PhieuKiemDinh.MyForm
         private void GetImageDeso(int n)
         {
             idimage.Clear();
-            string NameUserChecker = "Checker%";
-            idimage = (from w in (Global.Db.GetImageFail(NameUserChecker, cbb_batch.Text)) select w.IdImage).ToList();
+            idimage = (from w in (Global.Db.GetImageFail( cbb_batch.Text)) select w.IdImage).ToList();
             lb_soloi.Text = idimage.Count.ToString();
             if ((n + 30) < idimage.Count && n >= 0)
             {
@@ -46,8 +47,6 @@ namespace PhieuKiemDinh.MyForm
                 {
                     string id = idimage[j];
                     UC_FeedBack ucF = new UC_FeedBack();
-                    // ucF.uc_PictureBox1.FocusPicture += UcF_FocusPicture;
-                    //  ucF.uc_PictureBox1.FocusPictureLeave += UcPictureBox1_FocusPictureLeave;
                     string url = Global.Webservice + cbb_batch.Text + "/" + id;
                     ucF.LoadImage(cbb_batch.Text, url, id);
                     Point p = new Point();
@@ -68,11 +67,8 @@ namespace PhieuKiemDinh.MyForm
                 {
                     string id = idimage[j];
                     UC_FeedBack ucF = new UC_FeedBack();
-                    //ucF.ucPictureBox1.FocusPicture += UcF_FocusPicture;
-                    // ucF.ucPictureBox1.FocusPictureLeave += UcPictureBox1_FocusPictureLeave;
                     string url = Global.Webservice + cbb_batch.Text + "/" + id;
                     ucF.LoadImage(cbb_batch.Text, url, id);
-
                     Point p = new Point();
                     foreach (Control ct in pnl_Mainfeedback1.Controls)
                     {
@@ -81,7 +77,7 @@ namespace PhieuKiemDinh.MyForm
                     }
                     ucF.Location = p;
                     ucF.textbox1.Text = (j + 1).ToString();
-                    pnl_Mainfeedback1.Controls.Add(ucF);
+                    pnl_Mainfeedback1.Controls.Add(ucF);  
                 }
             }
         }
@@ -99,7 +95,6 @@ namespace PhieuKiemDinh.MyForm
                 {
                     string id = idimage[j];
                     UC_FeedBack ucF = new UC_FeedBack();
-                    //      ucF.ucPictureBox1.FocusPicture += UcF_FocusPicture;ucF.ucPictureBox1.FocusPictureLeave += UcPictureBox1_FocusPictureLeave;
                     string url = Global.Webservice + cbb_batch.Text + "/" + id;
                     ucF.LoadImageUser(cbb_username.Text, cbb_batch.Text, url, id);
                     Point p = new Point();
@@ -121,8 +116,6 @@ namespace PhieuKiemDinh.MyForm
                 {
                     string id = idimage[j];
                     UC_FeedBack ucF = new UC_FeedBack();
-                    //ucF.ucPictureBox1.FocusPicture += UcF_FocusPicture;
-                    // ucF.ucPictureBox1.FocusPictureLeave += UcPictureBox1_FocusPictureLeave;
                     string url = Global.Webservice + cbb_batch.Text + "/" + id;
                     ucF.LoadImageUser(cbb_username.Text, cbb_batch.Text, url, id);
 
@@ -139,7 +132,7 @@ namespace PhieuKiemDinh.MyForm
                 }
             }
         }
-
+#region
         private int _a;
         private bool _b = true;
         private void frmFeedback_Load(object sender, EventArgs e)
@@ -182,8 +175,8 @@ namespace PhieuKiemDinh.MyForm
         {
             try
             {
-                Num += 50;
-                if (Num < 50)
+                Num += 30;
+                if (Num < 30)
                 {
                     btn_back.Enabled = false;
                 }
@@ -210,8 +203,8 @@ namespace PhieuKiemDinh.MyForm
         {
             try
             {
-                Num -= 50;
-                if (Num < 50)
+                Num -= 30;
+                if (Num < 30)
                 {
                     btn_back.Enabled = false;
                 }
@@ -255,39 +248,113 @@ namespace PhieuKiemDinh.MyForm
             btn_back.Enabled = false;
             btn_next.Enabled = false;
         }
-
+#endregion
         Microsoft.Office.Interop.Excel.Application App = null;
         Microsoft.Office.Interop.Excel.Workbook book = null;
         Microsoft.Office.Interop.Excel.Worksheet wrksheet = null;
+
+        
         private void btn_ExportExcel_Click(object sender, EventArgs e)
         {
-            if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\ExportExcel.xlsx"))
+            idimage.Clear();
+            if (chb_User.Checked == true)
             {
-                File.Delete(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\ExportExcel.xlsx");
-                File.WriteAllBytes((Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/ExportExcel.xlsx"), Properties.Resources.ExportExcel);
+                idimage =(from w in (Global.Db.GetImageFailUserDeSo(cbb_username.Text, cbb_batch.Text)) select w.IdImage).ToList();
+                ExcelFeedBack_User(idimage);
+            }
+            else if (chb_User.Checked == false)
+            {
+                idimage =(from w in (Global.Db.GetImageFail( cbb_batch.Text)) select w.IdImage).ToList();
+                ExcelFeedBack(idimage);
+            }
+        }
+        #region ExportExcel
+        private void ExcelFeedBack(List<string> idimage ) {
+
+            if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\FeedBack.xlsx"))
+            {
+                File.Delete(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\FeedBack.xlsx");
+                File.WriteAllBytes(
+                    (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/FeedBack.xlsx"),
+                    Properties.Resources.FeedBack);
             }
             else
             {
-                File.WriteAllBytes((Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/ExportExcel.xlsx"), Properties.Resources.ExportExcel);
+                File.WriteAllBytes(
+                    (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/FeedBack.xlsx"),
+                    Properties.Resources.FeedBack);
             }
-
-            int h = 2;
+            int r = 1;
+            int distance = 15;
             App = new Microsoft.Office.Interop.Excel.Application();
-            book = App.Workbooks.Open(System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments) + "\\ExportExcel.xlsx", 0, true, 5, "", "", false, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "", true, false, 0, true, false, false);
+            book = App.Workbooks.Open(System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments)
+                + "\\FeedBack.xlsx", 0, true, 5, "", "", false, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "", true, false, 0, true, false, false);
             wrksheet = (Microsoft.Office.Interop.Excel.Worksheet)book.ActiveSheet;
             string pathServer = Global.StrPath +"/"+ cbb_batch.Text;
+            for (int i = 0; i < idimage.Count; i++)
+            {
+                string id = idimage[i];
+                Image oImage = Image.FromFile(pathServer + "/" + idimage[i]);
+                wrksheet.Shapes.AddPicture(pathServer + "/" + idimage[i], Microsoft.Office.Core.MsoTriState.msoFalse,Microsoft.Office.Core.MsoTriState.msoCTrue, 5, distance, 370, 270);
+                distance += 300;
+               var deso = Global.Db.FeedBackExcel(id, cbb_batch.Text).ToList();
+               int h = 9;
+                var nameCheck = (from w in Global.Db.GetNameCheck(id,cbb_batch.Text) select w.UserNameCheckDeSo).FirstOrDefault();
+                wrksheet.Cells[r + 1, 10] = nameCheck+@" ";
+                wrksheet.Cells[r + 1, h] = "UserName";
+                wrksheet.Cells[r + 2, h] = "Trường 1";
+                wrksheet.Cells[r + 3, h] = "Trường 3";
+                wrksheet.Cells[r + 4, h] = "Trường 4";
+                wrksheet.Cells[r + 5, h] = "Trường 5";
+                wrksheet.Cells[r + 6, h] = "Trường 6";
+                wrksheet.Cells[r + 7, h] = "Trường 7";
+                wrksheet.Cells[r + 8, h] = "Trường 8";
+                wrksheet.Cells[r + 9, h] = "Trường 9";
+                wrksheet.Cells[r + 10, h] = "Trường 10";
+                wrksheet.Cells[r + 11, h] = "Trường 11";
+                wrksheet.Cells[r + 12, h] = "Trường 12";
+                wrksheet.Cells[r + 13, h] = "Trường 13";
+                wrksheet.Cells[r + 14, h] = "TTrường 14";
+                wrksheet.Cells[r + 15, h] = "FlagError";
+                wrksheet.Cells[r+20 ,1] = id + "";
 
-            Microsoft.Office.Interop.Excel.Range oRange = (Microsoft.Office.Interop.Excel.Range)wrksheet.Cells[h, 1];
-            Image oImage = Image.FromFile(pathServer+"/"+ idimage[0]);
-            
-            wrksheet.Shapes.AddPicture(pathServer + "/" + idimage[0], Microsoft.Office.Core.MsoTriState.msoFalse,o Microsoft.Office.Core.MsoTriState.msoCTrue, 0, 0, 300, 300);
-            //System.Windows.Forms.Clipboard.SetDataObject(oImage, true);
-            //wrksheet.Paste(oRange, pathServer + "/" + idimage[0]);
+                for (int j = 0; j < deso.Count(); j++)
+                {
+                    h++;
+                    if (j != 0)
+                    {
+                        wrksheet.Cells[r + 1, h] = deso[j].UserName + "";
+                    }
+                    wrksheet.Cells[r + 2, h] = deso[j].TruongSo01 + "";
+                   wrksheet.Cells[r + 3, h] = deso[j].TruongSo03 + "";
+                    wrksheet.Cells[r + 4, h] = deso[j].TruongSo04 + "";
+                    wrksheet.Cells[r + 5, h] = deso[j].TruongSo05 + "";
+                    wrksheet.Cells[r + 6, h] = deso[j].TruongSo06 + "";
+                    wrksheet.Cells[r + 7, h] = deso[j].TruongSo07 + "";
+                    wrksheet.Cells[r + 8, h] = deso[j].TruongSo08 + "";
+                    wrksheet.Cells[r + 9, h] = deso[j].TruongSo09 + "";
+                    wrksheet.Cells[r + 10, h] = deso[j].TruongSo10 + "";
+                    wrksheet.Cells[r + 11, h] = deso[j].TruongSo11 + "";
+                    wrksheet.Cells[r + 12, h] = deso[j].TruongSo12 + "";
+                    wrksheet.Cells[r + 13, h] = deso[j].TruongSo13 + "";
+                    wrksheet.Cells[r + 14, h] = deso[j].TruongSo14 + "";
+                    wrksheet.Cells[r + 15, h] = deso[j].FlagError + "";
+                }
 
-
-            h++;
-            Microsoft.Office.Interop.Excel.Range rowHead = wrksheet.get_Range("A1", "N" + (h - 1));
-            rowHead.Borders.LineStyle = Microsoft.Office.Interop.Excel.Constants.xlSolid;
+                Microsoft.Office.Interop.Excel.Range cellImage1 = wrksheet.Cells[h - 11][r + 1];
+                Microsoft.Office.Interop.Excel.Range cellImage2 = wrksheet.Cells[h][r + 20];
+                Microsoft.Office.Interop.Excel.Range rangeImage = wrksheet.get_Range(cellImage1, cellImage2);
+                rangeImage.BorderAround(Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous,
+    Microsoft.Office.Interop.Excel.XlBorderWeight.xlThin,
+    Microsoft.Office.Interop.Excel.XlColorIndex.xlColorIndexAutomatic,1);
+                Microsoft.Office.Interop.Excel.Range cell1 = wrksheet.Cells[h - 3][r + 1];
+                Microsoft.Office.Interop.Excel.Range cell2 = wrksheet.Cells[h][r + 15];
+                Microsoft.Office.Interop.Excel.Range range = wrksheet.get_Range(cell1, cell2);
+                range.Borders.LineStyle = Microsoft.Office.Interop.Excel.Constants.xlSolid;
+                range.Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.MediumSpringGreen);
+                r += 21;
+                
+            }
             string savePath = "";
             saveFileDialog1.Title = "Save Excel Files";
             saveFileDialog1.Filter = "Excel files (*.xlsx)|*.xlsx";
@@ -307,5 +374,105 @@ namespace PhieuKiemDinh.MyForm
             }
             Process.Start(savePath);
         }
+    private void ExcelFeedBack_User(List<string> idimage)
+        {
+            if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Feedback_User.xlsx"))
+            {
+                File.Delete(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Feedback_User.xlsx");
+                File.WriteAllBytes((Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/Feedback_User.xlsx"),Properties.Resources.Feedback_User);
+            }
+            else
+            {
+                File.WriteAllBytes(
+                    (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/Feedback_User.xlsx"),Properties.Resources.Feedback_User);
+            }
+
+            int r = 1;
+        int distance = 15;
+        App = new Microsoft.Office.Interop.Excel.Application();
+        book = App.Workbooks.Open(System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments)+ "\\Feedback_User.xlsx", 0, true, 5, "", "", false, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "", true, false, 0, true, false, false);
+        wrksheet = (Microsoft.Office.Interop.Excel.Worksheet)book.ActiveSheet;
+        string pathServer = Global.StrPath + "/" + cbb_batch.Text;
+        for (int i = 0; i < idimage.Count; i++)
+        {
+            string id = idimage[i];
+            Image oImage = Image.FromFile(pathServer + "/" + idimage[i]);
+            wrksheet.Shapes.AddPicture(pathServer + "/" + idimage[i], Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, 5, distance, 370, 270);
+            distance += 300;
+            var deso = Global.Db.FeedBackExcel_User(id,cbb_username.Text, cbb_batch.Text).ToList();
+            int h = 9;
+            var nameCheck = (from w in Global.Db.GetNameCheck(id, cbb_batch.Text) select w.UserNameCheckDeSo).FirstOrDefault();
+            wrksheet.Cells[r + 1, 10] = nameCheck + @" ";
+            wrksheet.Cells[r + 1, h] = "UserName";
+            wrksheet.Cells[r + 2, h] = "Trường 1";
+            wrksheet.Cells[r + 3, h] = "Trường 3";
+            wrksheet.Cells[r + 4, h] = "Trường 4";
+            wrksheet.Cells[r + 5, h] = "Trường 5";
+            wrksheet.Cells[r + 6, h] = "Trường 6";
+            wrksheet.Cells[r + 7, h] = "Trường 7";
+            wrksheet.Cells[r + 8, h] = "Trường 8";
+            wrksheet.Cells[r + 9, h] = "Trường 9";
+            wrksheet.Cells[r + 10, h] = "Trường 10";
+            wrksheet.Cells[r + 11, h] = "Trường 11";
+            wrksheet.Cells[r + 12, h] = "Trường 12";
+            wrksheet.Cells[r + 13, h] = "Trường 13";
+            wrksheet.Cells[r + 14, h] = "TTrường 14";
+            wrksheet.Cells[r + 15, h] = "FlagError";
+            wrksheet.Cells[r+20 ,1] = id + "";
+            for (int j = 0; j < deso.Count(); j++)
+            {
+                h++; if (j != 0)
+                    {
+                        wrksheet.Cells[r + 1, h] = deso[j].UserName + "";
+                    }
+                wrksheet.Cells[r + 2, h] = deso[j].TruongSo01 + "";
+                wrksheet.Cells[r + 3, h] = deso[j].TruongSo03 + "";
+                wrksheet.Cells[r + 4, h] = deso[j].TruongSo04 + "";
+                wrksheet.Cells[r + 5, h] = deso[j].TruongSo05 + "";
+                wrksheet.Cells[r + 6, h] = deso[j].TruongSo06 + "";
+                wrksheet.Cells[r + 7, h] = deso[j].TruongSo07 + "";
+                wrksheet.Cells[r + 8, h] = deso[j].TruongSo08 + "";
+                wrksheet.Cells[r + 9, h] = deso[j].TruongSo09 + "";
+                wrksheet.Cells[r + 10, h] = deso[j].TruongSo10 + "";
+                wrksheet.Cells[r + 11, h] = deso[j].TruongSo11 + "";
+                wrksheet.Cells[r + 12, h] = deso[j].TruongSo12 + "";
+                wrksheet.Cells[r + 13, h] = deso[j].TruongSo13 + "";
+                wrksheet.Cells[r + 14, h] = deso[j].TruongSo14 + "";
+                wrksheet.Cells[r + 15, h] = deso[j].FlagError + "";
+            }
+               
+            Microsoft.Office.Interop.Excel.Range cellImage1 = wrksheet.Cells[h - 10][r + 1];
+            Microsoft.Office.Interop.Excel.Range cellImage2 = wrksheet.Cells[h][r + 20];
+            Microsoft.Office.Interop.Excel.Range rangeImage = wrksheet.get_Range(cellImage1, cellImage2);
+            rangeImage.BorderAround(Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous,Microsoft.Office.Interop.Excel.XlBorderWeight.xlThin,Microsoft.Office.Interop.Excel.XlColorIndex.xlColorIndexAutomatic, 1);
+            Microsoft.Office.Interop.Excel.Range cell1 = wrksheet.Cells[h - 2][r + 1];
+            Microsoft.Office.Interop.Excel.Range cell2 = wrksheet.Cells[h][r + 15];
+            Microsoft.Office.Interop.Excel.Range range = wrksheet.get_Range(cell1, cell2);
+            range.Borders.LineStyle = Microsoft.Office.Interop.Excel.Constants.xlSolid;
+            range.Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.LightGreen);
+            r += 21;
+
+        }
+        string savePath = "";
+        saveFileDialog1.Title = "Save Excel Files";
+        saveFileDialog1.Filter = "Excel files (*.xlsx)|*.xlsx";
+        saveFileDialog1.FileName = "Feedback_" + cbb_batch.Text+"_"+cbb_username.Text;
+        saveFileDialog1.RestoreDirectory = true;
+        if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+        {
+            book.SaveCopyAs(saveFileDialog1.FileName);
+            book.Saved = true;
+            savePath = Path.GetDirectoryName(saveFileDialog1.FileName);
+            App.Quit();
+        }
+        else
+        {
+            MessageBox.Show(@"Error exporting excel!");
+            return;
+        }
+        Process.Start(savePath);
+    }
+
+        #endregion
     }
 }

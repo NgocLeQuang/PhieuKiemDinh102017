@@ -345,6 +345,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ExportExcel.xlsx" />
+    <None Include="Resources\FeedBack.xlsx" />
+    <None Include="Resources\Feedback_User.xlsx" />
     <None Include="Resources\Productivity.xlsx" />
     <None Include="Resources\svn_deleted.png" />
   </ItemGroup>

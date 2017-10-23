@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btn_ExportExcel = new DevExpress.XtraEditors.SimpleButton();
             this.btn_next = new DevExpress.XtraEditors.SimpleButton();
             this.btn_back = new DevExpress.XtraEditors.SimpleButton();
             this.lb_soloi = new System.Windows.Forms.Label();
@@ -39,7 +40,6 @@
             this.btn_hienthi = new DevExpress.XtraEditors.SimpleButton();
             this.label1 = new System.Windows.Forms.Label();
             this.pnl_Mainfeedback1 = new DevExpress.XtraEditors.XtraScrollableControl();
-            this.btn_ExportExcel = new DevExpress.XtraEditors.SimpleButton();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -63,6 +63,15 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1117, 37);
             this.panel1.TabIndex = 5;
+            // 
+            // btn_ExportExcel
+            // 
+            this.btn_ExportExcel.Location = new System.Drawing.Point(932, 6);
+            this.btn_ExportExcel.Name = "btn_ExportExcel";
+            this.btn_ExportExcel.Size = new System.Drawing.Size(75, 23);
+            this.btn_ExportExcel.TabIndex = 17;
+            this.btn_ExportExcel.Text = "Export Excel";
+            this.btn_ExportExcel.Click += new System.EventHandler(this.btn_ExportExcel_Click);
             // 
             // btn_next
             // 
@@ -156,20 +165,13 @@
             // 
             // pnl_Mainfeedback1
             // 
+            this.pnl_Mainfeedback1.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.pnl_Mainfeedback1.Appearance.Options.UseBackColor = true;
             this.pnl_Mainfeedback1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnl_Mainfeedback1.Location = new System.Drawing.Point(0, 37);
             this.pnl_Mainfeedback1.Name = "pnl_Mainfeedback1";
             this.pnl_Mainfeedback1.Size = new System.Drawing.Size(1117, 532);
             this.pnl_Mainfeedback1.TabIndex = 6;
-            // 
-            // btn_ExportExcel
-            // 
-            this.btn_ExportExcel.Location = new System.Drawing.Point(932, 6);
-            this.btn_ExportExcel.Name = "btn_ExportExcel";
-            this.btn_ExportExcel.Size = new System.Drawing.Size(75, 23);
-            this.btn_ExportExcel.TabIndex = 17;
-            this.btn_ExportExcel.Text = "Export Excel";
-            this.btn_ExportExcel.Click += new System.EventHandler(this.btn_ExportExcel_Click);
             // 
             // FrmFeedback
             // 
