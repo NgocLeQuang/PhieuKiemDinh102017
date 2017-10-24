@@ -169,11 +169,6 @@ namespace PhieuKiemDinh.MyForm
 
             if (txt_role.Text == "DESO")
             {
-                //DAL.Combobox_NotFinish_MissImageDESO(cbb_batchname, txt_username.Text);
-                //if (cbb_batchname.Items.Count < 1)
-                //{
-                //    DAL.Combobox_NotFinishDESO(cbb_batchname, txt_username.Text);
-                //}
                 if (ktUser == false)
                 {
                     cbb_batchname.DataSource = Global.Db.GetBatNotFinishDeSo_Good(txt_username.Text);
@@ -229,7 +224,7 @@ namespace PhieuKiemDinh.MyForm
             }
             else if (txt_role.Text == "CHECKERDESO")
             {
-                cbb_batchname.DataSource = (from w in Global.Db.GetBatNotFinishCheckerDeSo(txt_username.Text) select w.fbatchname).ToList();
+                cbb_batchname.DataSource =  Global.Db.GetBatNotFinishCheckerDeSo(txt_username.Text)/* select w.fbatchname).ToList()*/;
                 cbb_batchname.DisplayMember = "fbatchname";
                 cbb_batchname.ValueMember = "fbatchname";
             }
@@ -248,5 +243,7 @@ namespace PhieuKiemDinh.MyForm
                 e.Handled = true;
             }
         }
+
+       
     }
 }

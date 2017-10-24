@@ -46,16 +46,16 @@
             this.lb_fBatchName = new DevExpress.XtraEditors.LabelControl();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemPopupContainerEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit();
             this.popupContainerControl1 = new DevExpress.XtraEditors.PopupContainerControl();
             this.gridControl2 = new DevExpress.XtraGrid.GridControl();
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -255,6 +255,15 @@
             this.gridView1.OptionsView.ShowAutoFilterRow = true;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
+            // gridColumn6
+            // 
+            this.gridColumn6.Caption = "Batch";
+            this.gridColumn6.FieldName = "fBatchName";
+            this.gridColumn6.Name = "gridColumn6";
+            this.gridColumn6.Visible = true;
+            this.gridColumn6.VisibleIndex = 0;
+            this.gridColumn6.Width = 148;
+            // 
             // gridColumn1
             // 
             this.gridColumn1.Caption = "Tên hình";
@@ -311,6 +320,15 @@
             this.gridColumn4.Visible = true;
             this.gridColumn4.VisibleIndex = 0;
             // 
+            // gridColumn5
+            // 
+            this.gridColumn5.Caption = "Tên hình (Copy)";
+            this.gridColumn5.FieldName = "idimage";
+            this.gridColumn5.Name = "gridColumn5";
+            this.gridColumn5.Visible = true;
+            this.gridColumn5.VisibleIndex = 2;
+            this.gridColumn5.Width = 276;
+            // 
             // gridColumn2
             // 
             this.gridColumn2.Caption = "Checker";
@@ -328,24 +346,6 @@
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 4;
             this.gridColumn3.Width = 181;
-            // 
-            // gridColumn5
-            // 
-            this.gridColumn5.Caption = "Tên hình (Copy)";
-            this.gridColumn5.FieldName = "idimage";
-            this.gridColumn5.Name = "gridColumn5";
-            this.gridColumn5.Visible = true;
-            this.gridColumn5.VisibleIndex = 2;
-            this.gridColumn5.Width = 276;
-            // 
-            // gridColumn6
-            // 
-            this.gridColumn6.Caption = "Batch";
-            this.gridColumn6.FieldName = "fBatchName";
-            this.gridColumn6.Name = "gridColumn6";
-            this.gridColumn6.Visible = true;
-            this.gridColumn6.VisibleIndex = 0;
-            this.gridColumn6.Width = 148;
             // 
             // frm_ChiTietTienDo
             // 

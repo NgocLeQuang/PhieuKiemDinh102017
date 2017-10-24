@@ -57,5 +57,10 @@ namespace PhieuKiemDinh.MyForm
                 }
             }
         }
+
+        private void frm_ChangePassword_Load(object sender, EventArgs e)
+        {
+            lb_ThongBao.Text = "";
+        }
     }
 }

@@ -40,7 +40,7 @@ namespace PhieuKiemDinh.MyUserControl
         public void LoadChecker(string fbatchname, string idimage)
         {
             var deso = (from w in Global.Db.tbl_DeSos
-                        where w.fBatchName == fbatchname && w.IdImage == idimage
+                        where w.fBatchName == fbatchname && w.IdImage == idimage && w.True == 1
                         select w).ToList();
             var nameCheck = (from w in Global.Db.GetNameCheck(idimage, fbatchname) select w.UserNameCheckDeSo).FirstOrDefault();
             uC_DESO_FeedBack3.LoadDataChecker(deso[0],nameCheck+"" );

@@ -98,6 +98,7 @@
             this.txt_FlagError.Properties.MaxLength = 1;
             this.txt_FlagError.Size = new System.Drawing.Size(91, 22);
             this.txt_FlagError.TabIndex = 15;
+            this.txt_FlagError.Visible = false;
             this.txt_FlagError.EditValueChanged += new System.EventHandler(this.txt_Note_EditValueChanged);
             this.txt_FlagError.Leave += new System.EventHandler(this.txt_FlagError_Leave);
             // 
@@ -210,7 +211,7 @@
             this.txt_TruongSo10.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
             this.txt_TruongSo10.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_TruongSo10.Properties.Appearance.Options.UseFont = true;
-            this.txt_TruongSo10.Properties.Mask.EditMask = "[0-9?]+";
+            this.txt_TruongSo10.Properties.Mask.EditMask = "[0-9●]+";
             this.txt_TruongSo10.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
             this.txt_TruongSo10.Size = new System.Drawing.Size(120, 22);
             this.txt_TruongSo10.TabIndex = 10;
@@ -238,7 +239,7 @@
             this.txt_TruongSo12.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
             this.txt_TruongSo12.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_TruongSo12.Properties.Appearance.Options.UseFont = true;
-            this.txt_TruongSo12.Properties.Mask.EditMask = "[0-9?]+";
+            this.txt_TruongSo12.Properties.Mask.EditMask = "[0-9●]+";
             this.txt_TruongSo12.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
             this.txt_TruongSo12.Size = new System.Drawing.Size(35, 22);
             this.txt_TruongSo12.TabIndex = 12;
@@ -251,7 +252,7 @@
             this.txt_TruongSo13.Name = "txt_TruongSo13";
             this.txt_TruongSo13.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_TruongSo13.Properties.Appearance.Options.UseFont = true;
-            this.txt_TruongSo13.Properties.Mask.EditMask = "[0-9?]+";
+            this.txt_TruongSo13.Properties.Mask.EditMask = "[0-9?●]+";
             this.txt_TruongSo13.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
             this.txt_TruongSo13.Size = new System.Drawing.Size(317, 22);
             this.txt_TruongSo13.TabIndex = 13;
@@ -298,6 +299,7 @@
             this.labelControl3.Size = new System.Drawing.Size(68, 16);
             this.labelControl3.TabIndex = 0;
             this.labelControl3.Text = "2.Flag Error";
+            this.labelControl3.Visible = false;
             // 
             // labelControl4
             // 

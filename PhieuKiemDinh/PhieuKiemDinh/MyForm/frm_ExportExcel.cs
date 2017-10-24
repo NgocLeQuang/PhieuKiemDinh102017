@@ -85,8 +85,7 @@ namespace PhieuKiemDinh.MyForm
             dataGridView1.DataSource = Global.Db.ExportExcel_PhieuKiemDinh(cbb_Batch.Text);
             App = new Microsoft.Office.Interop.Excel.Application();
             book = App.Workbooks.Open(System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments) + "\\ExportExcel.xlsx", 0, true, 5, "", "", false, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "", true, false, 0, true, false, false);
-            wrksheet = (Microsoft.Office.Interop.Excel.Worksheet)book.ActiveSheet;
-            
+            wrksheet = (Microsoft.Office.Interop.Excel.Worksheet)book.ActiveSheet;            
             backgroundWorker1.RunWorkerAsync();
         }
         
@@ -102,26 +101,26 @@ namespace PhieuKiemDinh.MyForm
             {
                 string tempImageName = "";
                 wrksheet.Cells[h, 1] = tempImageName = dataGridView1[0, i].Value + "";  //Trường 01/ Tên hình
-                wrksheet.Cells[h, 2] = dataGridView1[1, i].Value + "";  //Trường Flag Error
-                wrksheet.Cells[h, 3] = dataGridView1[2, i].Value + "";  //Trường 03
+                //wrksheet.Cells[h, 2] = dataGridView1[1, i].Value + "";  //Trường Flag Error
+                wrksheet.Cells[h, 2] = dataGridView1[1, i].Value + "";  //Trường 03
+                wrksheet.Cells[h, 3] = dataGridView1[2, i].Value + "";
                 wrksheet.Cells[h, 4] = dataGridView1[3, i].Value + "";
                 wrksheet.Cells[h, 5] = dataGridView1[4, i].Value + "";
                 wrksheet.Cells[h, 6] = dataGridView1[5, i].Value + "";
                 wrksheet.Cells[h, 7] = dataGridView1[6, i].Value + "";
                 wrksheet.Cells[h, 8] = dataGridView1[7, i].Value + "";
-                wrksheet.Cells[h, 9] = dataGridView1[8, i].Value + "";
-                wrksheet.Cells[h, 10] = dataGridView1[9, i].Value + "";     //Trường 10
+                wrksheet.Cells[h, 9] = dataGridView1[8, i].Value + "";     //Trường 10
                 //Trường 11
                 string tempTruong11 = "";
-                tempTruong11 = dataGridView1[10, i].Value + "";
+                tempTruong11 = dataGridView1[9, i].Value + "";
                 if (tempTruong11 == "?")
                 {
-                    wrksheet.Cells[h, 11] = "?";
+                    wrksheet.Cells[h, 10] = "?";
                 }
                 else if (tempTruong11.Length == 6)
                 {
                     if (int.Parse(tempTruong11) < 291001)
-                        wrksheet.Cells[h, 11] = "1001";
+                        wrksheet.Cells[h, 10] = "1001";
                     else if (int.Parse(tempTruong11) > 291231)
                     {
                         tempImageName = tempImageName.Substring(0, 3);
@@ -129,24 +128,24 @@ namespace PhieuKiemDinh.MyForm
                         {
                             case "01_":
                             case "02_":
-                                wrksheet.Cells[h, 11] = "1031";
+                                wrksheet.Cells[h, 10] = "1031";
                                 break;
                             case "03_":
                             case "04_":
-                                wrksheet.Cells[h, 11] = "1130";
+                                wrksheet.Cells[h, 10] = "1130";
                                 break;
                             case "05_":
                             case "06_":
-                                wrksheet.Cells[h, 11] = "1231";
+                                wrksheet.Cells[h, 10] = "1231";
                                 break;
                             case "07_":
-                                wrksheet.Cells[h, 11] = "1231";
+                                wrksheet.Cells[h, 10] = "1231";
                                 break;
                         }
                     }
                     else
                     {
-                        wrksheet.Cells[h, 11] = tempTruong11;
+                        wrksheet.Cells[h, 10] = tempTruong11;
                     }
                 }
                 else if (tempTruong11.Length < 6)
@@ -156,33 +155,33 @@ namespace PhieuKiemDinh.MyForm
                     {
                         case "01_":
                         case "02_":
-                            wrksheet.Cells[h, 11] = "1031";
+                            wrksheet.Cells[h, 10] = "1031";
                             break;
                         case "03_":
                         case "04_":
-                            wrksheet.Cells[h, 11] = "1130";
+                            wrksheet.Cells[h, 10] = "1130";
                             break;
                         case "05_":
                         case "06_":
-                            wrksheet.Cells[h, 11] = "1231";
+                            wrksheet.Cells[h, 10] = "1231";
                             break;
                         case "07_":
-                            wrksheet.Cells[h, 11] = "1231";
+                            wrksheet.Cells[h, 10] = "1231";
                             break;
                     }
                 }
                 else if (tempTruong11.Length > 6)
                 {
-                    wrksheet.Cells[h, 11] = tempTruong11;
+                    wrksheet.Cells[h, 10] = tempTruong11;
                 }
-                wrksheet.Cells[h, 12] = dataGridView1[11, i].Value + "";    //Trường 12
-                wrksheet.Cells[h, 13] = dataGridView1[12, i].Value + "";    //Trường 13
-                wrksheet.Cells[h, 14] = dataGridView1[13, i].Value + "";    //Trường 14
+                wrksheet.Cells[h, 11] = dataGridView1[10, i].Value + "";    //Trường 12
+                wrksheet.Cells[h, 12] = dataGridView1[11, i].Value + "";    //Trường 13
+                wrksheet.Cells[h, 13] = dataGridView1[12, i].Value + "";    //Trường 14
                 lb_Complete.Text = (i + 1) + "/" + dataGridView1.RowCount;
                 progressBar1.PerformStep();
                 h++;
             }
-            Microsoft.Office.Interop.Excel.Range rowHead = wrksheet.get_Range("A1", "N" + (h - 1));
+            Microsoft.Office.Interop.Excel.Range rowHead = wrksheet.get_Range("A1", "M" + (h - 1));
             rowHead.Borders.LineStyle = Microsoft.Office.Interop.Excel.Constants.xlSolid;
         }
 

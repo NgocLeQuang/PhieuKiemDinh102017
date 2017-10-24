@@ -183,25 +183,6 @@
       <Column Name="UserTaoBatch" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="dbo.ExportExcel_PhieuKiemDinh" Method="ExportExcel_PhieuKiemDinh">
-    <Parameter Name="fbatchname" Type="System.String" DbType="NVarChar(255)" />
-    <ElementType Name="ExportExcel_PhieuKiemDinhResult">
-      <Column Name="TruongSo01" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="FlagError" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
-      <Column Name="TruongSo_03" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
-      <Column Name="Truống_04" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
-      <Column Name="TruongSo_05" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
-      <Column Name="TruongSo_06" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
-      <Column Name="TruongSo_07" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
-      <Column Name="TruongSo_08" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
-      <Column Name="TruongSo09" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="TruongSo10" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="TruongSo11" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="TruongSo12" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="TruongSo13" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="TruongSo14" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-    </ElementType>
-  </Function>
   <Function Name="dbo.GetBatch_ToaDo" Method="GetBatch_ToaDo">
     <ElementType Name="GetBatch_ToaDoResult">
       <Column Name="fBatchName" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
@@ -527,6 +508,24 @@
     <Parameter Name="Batch" Parameter="batch" Type="System.String" DbType="NVarChar(255)" />
     <ElementType Name="GetImageFailResult">
       <Column Name="IdImage" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ExportExcel_PhieuKiemDinh" Method="ExportExcel_PhieuKiemDinh">
+    <Parameter Name="fbatchname" Type="System.String" DbType="NVarChar(255)" />
+    <ElementType Name="ExportExcel_PhieuKiemDinhResult">
+      <Column Name="TruongSo01" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="TruongSo_03" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="TruongSo_04" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="TruongSo_05" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="TruongSo_06" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="TruongSo_07" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="TruongSo_08" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="TruongSo09" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="TruongSo10" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="TruongSo11" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="TruongSo12" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="TruongSo13" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="TruongSo14" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

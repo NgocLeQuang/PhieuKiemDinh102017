@@ -102,6 +102,12 @@
     <Compile Include="MyForm\FrmFeedback.designer.cs">
       <DependentUpon>FrmFeedback.cs</DependentUpon>
     </Compile>
+    <Compile Include="MyForm\frmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyForm\frmLogin.designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </Compile>
     <Compile Include="MyForm\FrmTienDo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -137,12 +143,6 @@
     </Compile>
     <Compile Include="MyForm\frm_Checker.Designer.cs">
       <DependentUpon>frm_Checker.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MyForm\frmLogin.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MyForm\frmLogin.Designer.cs">
-      <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
     <Compile Include="MyForm\frm_ChiTietTienDo.cs">
       <SubType>Form</SubType>
@@ -251,6 +251,9 @@
     <EmbeddedResource Include="MyForm\FrmFeedback.resx">
       <DependentUpon>FrmFeedback.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MyForm\frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MyForm\FrmTienDo.resx">
       <DependentUpon>FrmTienDo.cs</DependentUpon>
     </EmbeddedResource>
@@ -268,9 +271,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MyForm\frm_Checker.resx">
       <DependentUpon>frm_Checker.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MyForm\frmLogin.resx">
-      <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MyForm\frm_ChiTietTienDo.resx">
       <DependentUpon>frm_ChiTietTienDo.cs</DependentUpon>

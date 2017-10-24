@@ -44,14 +44,15 @@
             // 
             // lb_ThongBao
             // 
-            this.lb_ThongBao.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_ThongBao.Appearance.Font = new System.Drawing.Font("Times New Roman", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lb_ThongBao.Appearance.ForeColor = System.Drawing.Color.Red;
             this.lb_ThongBao.Appearance.Options.UseFont = true;
             this.lb_ThongBao.Appearance.Options.UseForeColor = true;
-            this.lb_ThongBao.Location = new System.Drawing.Point(6, 134);
+            this.lb_ThongBao.Location = new System.Drawing.Point(63, 134);
             this.lb_ThongBao.Name = "lb_ThongBao";
-            this.lb_ThongBao.Size = new System.Drawing.Size(0, 16);
+            this.lb_ThongBao.Size = new System.Drawing.Size(67, 16);
             this.lb_ThongBao.TabIndex = 17;
+            this.lb_ThongBao.Text = "Thông báo: ";
             // 
             // btn_ChangePass
             // 
@@ -134,7 +135,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(373, 139);
+            this.ClientSize = new System.Drawing.Size(373, 159);
             this.Controls.Add(this.lb_ThongBao);
             this.Controls.Add(this.btn_ChangePass);
             this.Controls.Add(this.txt_PassNhapLai);
@@ -149,6 +150,7 @@
             this.Name = "frm_ChangePassword";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Đổi Password";
+            this.Load += new System.EventHandler(this.frm_ChangePassword_Load);
             ((System.ComponentModel.ISupportInitialize)(this.txt_PassNhapLai.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_PassMoi.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_PassCu.Properties)).EndInit();

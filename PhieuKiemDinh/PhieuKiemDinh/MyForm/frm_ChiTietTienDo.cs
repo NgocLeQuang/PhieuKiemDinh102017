@@ -81,8 +81,7 @@ namespace PhieuKiemDinh.MyForm
                 gridView1.RowCellStyle += GridView1_RowCellStyle;
             }
             else { 
-            lb_TongSoHinh.Text =
-                    (from w in Global.Db.tbl_Images where w.fBatchName == lb_fBatchName.Text select w.IdImage)
+            lb_TongSoHinh.Text =(from w in Global.Db.tbl_Images where w.fBatchName == lb_fBatchName.Text select w.IdImage)
                     .Count().ToString();
                 lb_SoHinhChuaNhap.Text = (from w in Global.Db.tbl_Images
                     where w.fBatchName == lb_fBatchName.Text && w.TienDoDeSo == "Hình chưa nhập"
@@ -146,14 +145,10 @@ namespace PhieuKiemDinh.MyForm
         private void repositoryItemPopupContainerEdit1_Click(object sender, EventArgs e)
         {
             string idimage = gridView1.GetFocusedRowCellValue("idimage").ToString();
+            string fBatchName = gridView1.GetFocusedRowCellValue("fBatchName").ToString();
             gridControl2.DataSource = null;
-            //if (Loai == "DESO")//{
-            gridControl2.DataSource = Global.Db.ChiTietUserDeSo(lb_fBatchName.Text, idimage);
-            //}
-            //else
-            //{
-            //    gridControl2.DataSource = Global.DbKiemDinhXe.ChiTietUserDeJP(lb_fBatchName.Text, idimage);
-            //}
+           gridControl2.DataSource = Global.Db.ChiTietUserDeSo(fBatchName, idimage);
+           
         }
     }
 }
