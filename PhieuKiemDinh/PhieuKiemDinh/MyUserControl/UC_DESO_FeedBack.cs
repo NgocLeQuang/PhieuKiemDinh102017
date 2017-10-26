@@ -49,7 +49,7 @@ namespace PhieuKiemDinh.MyUserControl
             txt_TruongSo12.BackColor = Color.White;
             txt_TruongSo13.BackColor = Color.White;
             txt_TruongSo14.BackColor = Color.White;
-            txt_FlagError.BackColor = Color.White;
+            //txt_FlagError.BackColor = Color.White;
         }
 
         public bool IsEmply()
@@ -67,8 +67,8 @@ namespace PhieuKiemDinh.MyUserControl
                 string.IsNullOrEmpty(txt_TruongSo11.Text) &&
                 string.IsNullOrEmpty(txt_TruongSo12.Text) &&
                 string.IsNullOrEmpty(txt_TruongSo13.Text) &&
-                string.IsNullOrEmpty(txt_TruongSo14.Text) &&
-                string.IsNullOrEmpty(txt_FlagError.Text))
+                string.IsNullOrEmpty(txt_TruongSo14.Text) //&&string.IsNullOrEmpty(txt_FlagError.Text
+                )
                 return true;
             return false;
         }
@@ -89,7 +89,7 @@ namespace PhieuKiemDinh.MyUserControl
             txt_TruongSo12.Text = deso.TruongSo12;
             txt_TruongSo13.Text = deso.TruongSo13;
             txt_TruongSo14.Text = deso.TruongSo14;
-            txt_FlagError.Text = deso.FlagError;
+            //txt_FlagError.Text = deso.FlagError;
         }
 
         private void DoiMau(int soByteBe, int soBytelon, TextEdit textBox)
@@ -139,7 +139,7 @@ namespace PhieuKiemDinh.MyUserControl
             txt_TruongSo12.Text = data.TruongSo12;
             txt_TruongSo13.Text = data.TruongSo13;
             txt_TruongSo14.Text = data.TruongSo14;
-            txt_FlagError.Text = data.FlagError;
+           // txt_FlagError.Text = data.FlagError;
         }
         public void LoadDataChecker(tbl_DeSo data, string nameCheck)
         {
@@ -158,7 +158,7 @@ namespace PhieuKiemDinh.MyUserControl
             txt_TruongSo12.Text = data.TruongSo12;
             txt_TruongSo13.Text = data.TruongSo13;
             txt_TruongSo14.Text = data.TruongSo14;
-            txt_FlagError.Text = data.FlagError;
+           // txt_FlagError.Text = data.FlagError;
         }
     }
 }

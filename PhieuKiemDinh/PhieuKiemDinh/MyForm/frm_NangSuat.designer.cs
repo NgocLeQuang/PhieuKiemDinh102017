@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_NangSuat));
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.timeEnd = new DevExpress.XtraEditors.TimeEdit();
+            this.timeFisrt = new DevExpress.XtraEditors.TimeEdit();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.dtp_EndDay = new System.Windows.Forms.DateTimePicker();
             this.dtp_FirstDay = new System.Windows.Forms.DateTimePicker();
@@ -44,10 +46,12 @@
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.timeEnd.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.timeFisrt.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -56,6 +60,8 @@
             // 
             // panelControl1
             // 
+            this.panelControl1.Controls.Add(this.timeEnd);
+            this.panelControl1.Controls.Add(this.timeFisrt);
             this.panelControl1.Controls.Add(this.dataGridView1);
             this.panelControl1.Controls.Add(this.dtp_EndDay);
             this.panelControl1.Controls.Add(this.dtp_FirstDay);
@@ -68,11 +74,38 @@
             this.panelControl1.Size = new System.Drawing.Size(929, 88);
             this.panelControl1.TabIndex = 2;
             // 
+            // timeEnd
+            // 
+            this.timeEnd.EditValue = new System.DateTime(2017, 10, 25, 0, 0, 0, 0);
+            this.timeEnd.Location = new System.Drawing.Point(428, 48);
+            this.timeEnd.Name = "timeEnd";
+            this.timeEnd.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.timeEnd.Properties.DisplayFormat.FormatString = "HH:mm";
+            this.timeEnd.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.timeEnd.Properties.Mask.EditMask = "HH:mm";
+            this.timeEnd.Properties.Mask.UseMaskAsDisplayFormat = true;
+            this.timeEnd.Size = new System.Drawing.Size(75, 20);
+            this.timeEnd.TabIndex = 7;
+            this.timeEnd.EditValueChanged += new System.EventHandler(this.timeEnd_EditValueChanged);
+            // 
+            // timeFisrt
+            // 
+            this.timeFisrt.EditValue = new System.DateTime(2017, 10, 25, 0, 0, 0, 0);
+            this.timeFisrt.Location = new System.Drawing.Point(427, 19);
+            this.timeFisrt.Name = "timeFisrt";
+            this.timeFisrt.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.timeFisrt.Properties.Mask.EditMask = "HH:mm";
+            this.timeFisrt.Size = new System.Drawing.Size(76, 20);
+            this.timeFisrt.TabIndex = 6;
+            this.timeFisrt.EditValueChanged += new System.EventHandler(this.timeFisrt_EditValueChanged);
+            // 
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(600, 8);
+            this.dataGridView1.Location = new System.Drawing.Point(746, 9);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(56, 74);
             this.dataGridView1.TabIndex = 5;
@@ -104,7 +137,7 @@
             this.simpleButton1.Appearance.ForeColor = System.Drawing.Color.Red;
             this.simpleButton1.Appearance.Options.UseFont = true;
             this.simpleButton1.Appearance.Options.UseForeColor = true;
-            this.simpleButton1.Location = new System.Drawing.Point(439, 22);
+            this.simpleButton1.Location = new System.Drawing.Point(537, 23);
             this.simpleButton1.Name = "simpleButton1";
             this.simpleButton1.Size = new System.Drawing.Size(83, 45);
             this.simpleButton1.TabIndex = 3;
@@ -209,6 +242,14 @@
             this.gridColumn4.VisibleIndex = 4;
             this.gridColumn4.Width = 94;
             // 
+            // gridColumn7
+            // 
+            this.gridColumn7.Caption = "Thời gian";
+            this.gridColumn7.FieldName = "ThoiGian";
+            this.gridColumn7.Name = "gridColumn7";
+            this.gridColumn7.Visible = true;
+            this.gridColumn7.VisibleIndex = 5;
+            // 
             // gridColumn5
             // 
             this.gridColumn5.Caption = "Hiệu suất (%)";
@@ -217,14 +258,6 @@
             this.gridColumn5.Visible = true;
             this.gridColumn5.VisibleIndex = 6;
             this.gridColumn5.Width = 84;
-            // 
-            // gridColumn7
-            // 
-            this.gridColumn7.Caption = "Thời gian";
-            this.gridColumn7.FieldName = "ThoiGian";
-            this.gridColumn7.Name = "gridColumn7";
-            this.gridColumn7.Visible = true;
-            this.gridColumn7.VisibleIndex = 5;
             // 
             // frm_NangSuat
             // 
@@ -241,6 +274,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             this.panelControl1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.timeEnd.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.timeFisrt.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
@@ -267,5 +302,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
+        private DevExpress.XtraEditors.TimeEdit timeFisrt;
+        private DevExpress.XtraEditors.TimeEdit timeEnd;
     }
 }

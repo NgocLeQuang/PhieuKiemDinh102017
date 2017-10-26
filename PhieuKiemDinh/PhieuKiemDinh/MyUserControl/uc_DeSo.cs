@@ -111,7 +111,7 @@ namespace PhieuKiemDinh.MyUserControl
             txt_TruongSo12.Text = "";
             txt_TruongSo13.Text = "";
             txt_TruongSo14.Text = "";
-            txt_FlagError.Text = "";
+           // txt_FlagError.Text = "";
 
             txt_TruongSo01.BackColor = Color.White;
             txt_TruongSo03.BackColor = Color.White;
@@ -127,7 +127,7 @@ namespace PhieuKiemDinh.MyUserControl
             txt_TruongSo12.BackColor = Color.White;
             txt_TruongSo13.BackColor = Color.White;
             txt_TruongSo14.BackColor = Color.White;
-            txt_FlagError.BackColor = Color.White;
+            //txt_FlagError.BackColor = Color.White;
         }
 
         public bool IsEmpty()
@@ -167,7 +167,7 @@ namespace PhieuKiemDinh.MyUserControl
             txt_TruongSo12.Text = deso.TruongSo12;
             txt_TruongSo13.Text = deso.TruongSo13;
             txt_TruongSo14.Text = deso.TruongSo14;
-            txt_FlagError.Text = deso.FlagError;
+           // txt_FlagError.Text = deso.FlagError;
         }
         
         private void DoiMau(int soByteBe, int soBytelon, TextEdit textBox)
@@ -343,8 +343,8 @@ namespace PhieuKiemDinh.MyUserControl
 
         private void txt_TruongSo10_Leave(object sender, EventArgs e)
         {
-              if (txt_TruongSo10.Text.Length < 6 & !string.IsNullOrEmpty(txt_TruongSo10.Text))
-                  txt_TruongSo10.Text = "?";
+             // if (txt_TruongSo10.Text.Length < 6 & !string.IsNullOrEmpty(txt_TruongSo10.Text))
+               //   txt_TruongSo10.Text = "?";
 
               //Gọi change
               if (!string.IsNullOrEmpty(txt_TruongSo10.Text))
@@ -661,7 +661,7 @@ namespace PhieuKiemDinh.MyUserControl
             txt_TruongSo12.GotFocus += Txt_TruongSo03_GotFocus;
             txt_TruongSo13.GotFocus += Txt_TruongSo03_GotFocus;
             txt_TruongSo14.GotFocus += Txt_TruongSo03_GotFocus;
-            txt_FlagError.GotFocus += Txt_TruongSo03_GotFocus;
+           // txt_FlagError.GotFocus += Txt_TruongSo03_GotFocus;
 
         }
 

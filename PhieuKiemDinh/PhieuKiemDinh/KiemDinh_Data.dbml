@@ -222,27 +222,6 @@
       <Column Name="" Member="Column1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="dbo.Insert_DeSo" Method="Insert_DeSo">
-    <Parameter Name="IdImage" Parameter="idImage" Type="System.String" DbType="NVarChar(250)" />
-    <Parameter Name="fBatchName" Type="System.String" DbType="NVarChar(250)" />
-    <Parameter Name="UserName" Parameter="userName" Type="System.String" DbType="NVarChar(250)" />
-    <Parameter Name="TruongSo01" Parameter="truongSo01" Type="System.String" DbType="NVarChar(250)" />
-    <Parameter Name="TruongSo03" Parameter="truongSo03" Type="System.String" DbType="NVarChar(250)" />
-    <Parameter Name="TruongSo04" Parameter="truongSo04" Type="System.String" DbType="NVarChar(250)" />
-    <Parameter Name="TruongSo05" Parameter="truongSo05" Type="System.String" DbType="NVarChar(250)" />
-    <Parameter Name="TruongSo06" Parameter="truongSo06" Type="System.String" DbType="NVarChar(250)" />
-    <Parameter Name="TruongSo07" Parameter="truongSo07" Type="System.String" DbType="NVarChar(250)" />
-    <Parameter Name="TruongSo08_1" Parameter="truongSo08_1" Type="System.String" DbType="NVarChar(250)" />
-    <Parameter Name="TruongSo08_2" Parameter="truongSo08_2" Type="System.String" DbType="NVarChar(250)" />
-    <Parameter Name="TruongSo09" Parameter="truongSo09" Type="System.String" DbType="NVarChar(250)" />
-    <Parameter Name="TruongSo10" Parameter="truongSo10" Type="System.String" DbType="NVarChar(250)" />
-    <Parameter Name="TruongSo11" Parameter="truongSo11" Type="System.String" DbType="NVarChar(250)" />
-    <Parameter Name="TruongSo12" Parameter="truongSo12" Type="System.String" DbType="NVarChar(250)" />
-    <Parameter Name="TruongSo13" Parameter="truongSo13" Type="System.String" DbType="NVarChar(250)" />
-    <Parameter Name="TruongSo14" Parameter="truongSo14" Type="System.String" DbType="NVarChar(250)" />
-    <Parameter Name="FlagError" Parameter="flagError" Type="System.String" DbType="NVarChar(250)" />
-    <Return Type="System.Int32" />
-  </Function>
   <Function Name="dbo.LayHinhMoi_DeSo" Method="LayHinhMoi_DeSo">
     <Parameter Name="fbatchname" Type="System.String" DbType="NVarChar(255)" />
     <Parameter Name="username" Type="System.String" DbType="NVarChar(255)" />
@@ -279,29 +258,6 @@
       <Column Name="ThoiGian" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
       <Column Name="HieuSuat" Type="System.Double" DbType="Float" CanBeNull="true" />
     </ElementType>
-  </Function>
-  <Function Name="dbo.SuaVaLuu_tbl_DeSo" Method="SuaVaLuu_tbl_DeSo">
-    <Parameter Name="UserSaiIt" Parameter="userSaiIt" Type="System.String" DbType="NVarChar(255)" />
-    <Parameter Name="UserSaiNhieu" Parameter="userSaiNhieu" Type="System.String" DbType="NVarChar(255)" />
-    <Parameter Name="IdImage" Parameter="idImage" Type="System.String" DbType="NVarChar(255)" />
-    <Parameter Name="fBatchName" Type="System.String" DbType="NVarChar(255)" />
-    <Parameter Name="UserCheck" Parameter="userCheck" Type="System.String" DbType="NVarChar(255)" />
-    <Parameter Name="TruongSo01" Parameter="truongSo01" Type="System.String" DbType="NVarChar(255)" />
-    <Parameter Name="TruongSo03" Parameter="truongSo03" Type="System.String" DbType="NVarChar(255)" />
-    <Parameter Name="TruongSo04" Parameter="truongSo04" Type="System.String" DbType="NVarChar(255)" />
-    <Parameter Name="TruongSo05" Parameter="truongSo05" Type="System.String" DbType="NVarChar(255)" />
-    <Parameter Name="TruongSo06" Parameter="truongSo06" Type="System.String" DbType="NVarChar(255)" />
-    <Parameter Name="TruongSo07" Parameter="truongSo07" Type="System.String" DbType="NVarChar(255)" />
-    <Parameter Name="TruongSo08_1" Parameter="truongSo08_1" Type="System.String" DbType="NVarChar(255)" />
-    <Parameter Name="TruongSo08_2" Parameter="truongSo08_2" Type="System.String" DbType="NVarChar(255)" />
-    <Parameter Name="TruongSo09" Parameter="truongSo09" Type="System.String" DbType="NVarChar(255)" />
-    <Parameter Name="TruongSo10" Parameter="truongSo10" Type="System.String" DbType="NVarChar(255)" />
-    <Parameter Name="TruongSo11" Parameter="truongSo11" Type="System.String" DbType="NVarChar(255)" />
-    <Parameter Name="TruongSo12" Parameter="truongSo12" Type="System.String" DbType="NVarChar(255)" />
-    <Parameter Name="TruongSo13" Parameter="truongSo13" Type="System.String" DbType="NVarChar(255)" />
-    <Parameter Name="TruongSo14" Parameter="truongSo14" Type="System.String" DbType="NVarChar(255)" />
-    <Parameter Name="FlagError" Parameter="flagError" Type="System.String" DbType="NVarChar(255)" />
-    <Return Type="System.Int32" />
   </Function>
   <Function Name="dbo.ThongKeDeSo" Method="ThongKeDeSo">
     <ElementType Name="ThongKeDeSoResult">
@@ -527,5 +483,47 @@
       <Column Name="TruongSo13" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="TruongSo14" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
     </ElementType>
+  </Function>
+  <Function Name="dbo.Insert_DeSo" Method="Insert_DeSo">
+    <Parameter Name="IdImage" Parameter="idImage" Type="System.String" DbType="NVarChar(250)" />
+    <Parameter Name="fBatchName" Type="System.String" DbType="NVarChar(250)" />
+    <Parameter Name="UserName" Parameter="userName" Type="System.String" DbType="NVarChar(250)" />
+    <Parameter Name="TruongSo01" Parameter="truongSo01" Type="System.String" DbType="NVarChar(250)" />
+    <Parameter Name="TruongSo03" Parameter="truongSo03" Type="System.String" DbType="NVarChar(250)" />
+    <Parameter Name="TruongSo04" Parameter="truongSo04" Type="System.String" DbType="NVarChar(250)" />
+    <Parameter Name="TruongSo05" Parameter="truongSo05" Type="System.String" DbType="NVarChar(250)" />
+    <Parameter Name="TruongSo06" Parameter="truongSo06" Type="System.String" DbType="NVarChar(250)" />
+    <Parameter Name="TruongSo07" Parameter="truongSo07" Type="System.String" DbType="NVarChar(250)" />
+    <Parameter Name="TruongSo08_1" Parameter="truongSo08_1" Type="System.String" DbType="NVarChar(250)" />
+    <Parameter Name="TruongSo08_2" Parameter="truongSo08_2" Type="System.String" DbType="NVarChar(250)" />
+    <Parameter Name="TruongSo09" Parameter="truongSo09" Type="System.String" DbType="NVarChar(250)" />
+    <Parameter Name="TruongSo10" Parameter="truongSo10" Type="System.String" DbType="NVarChar(250)" />
+    <Parameter Name="TruongSo11" Parameter="truongSo11" Type="System.String" DbType="NVarChar(250)" />
+    <Parameter Name="TruongSo12" Parameter="truongSo12" Type="System.String" DbType="NVarChar(250)" />
+    <Parameter Name="TruongSo13" Parameter="truongSo13" Type="System.String" DbType="NVarChar(250)" />
+    <Parameter Name="TruongSo14" Parameter="truongSo14" Type="System.String" DbType="NVarChar(250)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SuaVaLuu_tbl_DeSo" Method="SuaVaLuu_tbl_DeSo">
+    <Parameter Name="UserSaiIt" Parameter="userSaiIt" Type="System.String" DbType="NVarChar(255)" />
+    <Parameter Name="UserSaiNhieu" Parameter="userSaiNhieu" Type="System.String" DbType="NVarChar(255)" />
+    <Parameter Name="IdImage" Parameter="idImage" Type="System.String" DbType="NVarChar(255)" />
+    <Parameter Name="fBatchName" Type="System.String" DbType="NVarChar(255)" />
+    <Parameter Name="UserCheck" Parameter="userCheck" Type="System.String" DbType="NVarChar(255)" />
+    <Parameter Name="TruongSo01" Parameter="truongSo01" Type="System.String" DbType="NVarChar(255)" />
+    <Parameter Name="TruongSo03" Parameter="truongSo03" Type="System.String" DbType="NVarChar(255)" />
+    <Parameter Name="TruongSo04" Parameter="truongSo04" Type="System.String" DbType="NVarChar(255)" />
+    <Parameter Name="TruongSo05" Parameter="truongSo05" Type="System.String" DbType="NVarChar(255)" />
+    <Parameter Name="TruongSo06" Parameter="truongSo06" Type="System.String" DbType="NVarChar(255)" />
+    <Parameter Name="TruongSo07" Parameter="truongSo07" Type="System.String" DbType="NVarChar(255)" />
+    <Parameter Name="TruongSo08_1" Parameter="truongSo08_1" Type="System.String" DbType="NVarChar(255)" />
+    <Parameter Name="TruongSo08_2" Parameter="truongSo08_2" Type="System.String" DbType="NVarChar(255)" />
+    <Parameter Name="TruongSo09" Parameter="truongSo09" Type="System.String" DbType="NVarChar(255)" />
+    <Parameter Name="TruongSo10" Parameter="truongSo10" Type="System.String" DbType="NVarChar(255)" />
+    <Parameter Name="TruongSo11" Parameter="truongSo11" Type="System.String" DbType="NVarChar(255)" />
+    <Parameter Name="TruongSo12" Parameter="truongSo12" Type="System.String" DbType="NVarChar(255)" />
+    <Parameter Name="TruongSo13" Parameter="truongSo13" Type="System.String" DbType="NVarChar(255)" />
+    <Parameter Name="TruongSo14" Parameter="truongSo14" Type="System.String" DbType="NVarChar(255)" />
+    <Return Type="System.Int32" />
   </Function>
 </Database>

@@ -232,31 +232,6 @@ namespace PhieuKiemDinh
 			return ((ISingleResult<ImageCheck_DeSoResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.Insert_DeSo")]
-		public int Insert_DeSo(
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdImage", DbType="NVarChar(250)")] string idImage, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(250)")] string fBatchName, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserName", DbType="NVarChar(250)")] string userName, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TruongSo01", DbType="NVarChar(250)")] string truongSo01, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TruongSo03", DbType="NVarChar(250)")] string truongSo03, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TruongSo04", DbType="NVarChar(250)")] string truongSo04, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TruongSo05", DbType="NVarChar(250)")] string truongSo05, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TruongSo06", DbType="NVarChar(250)")] string truongSo06, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TruongSo07", DbType="NVarChar(250)")] string truongSo07, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TruongSo08_1", DbType="NVarChar(250)")] string truongSo08_1, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TruongSo08_2", DbType="NVarChar(250)")] string truongSo08_2, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TruongSo09", DbType="NVarChar(250)")] string truongSo09, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TruongSo10", DbType="NVarChar(250)")] string truongSo10, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TruongSo11", DbType="NVarChar(250)")] string truongSo11, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TruongSo12", DbType="NVarChar(250)")] string truongSo12, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TruongSo13", DbType="NVarChar(250)")] string truongSo13, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TruongSo14", DbType="NVarChar(250)")] string truongSo14, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="FlagError", DbType="NVarChar(250)")] string flagError)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idImage, fBatchName, userName, truongSo01, truongSo03, truongSo04, truongSo05, truongSo06, truongSo07, truongSo08_1, truongSo08_2, truongSo09, truongSo10, truongSo11, truongSo12, truongSo13, truongSo14, flagError);
-			return ((int)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.LayHinhMoi_DeSo")]
 		public ISingleResult<LayHinhMoi_DeSoResult> LayHinhMoi_DeSo([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(255)")] string fbatchname, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(255)")] string username)
 		{
@@ -283,33 +258,6 @@ namespace PhieuKiemDinh
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), tuNgay, denNgay);
 			return ((ISingleResult<NangSuatPhieuKiemDinhResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SuaVaLuu_tbl_DeSo")]
-		public int SuaVaLuu_tbl_DeSo(
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserSaiIt", DbType="NVarChar(255)")] string userSaiIt, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserSaiNhieu", DbType="NVarChar(255)")] string userSaiNhieu, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdImage", DbType="NVarChar(255)")] string idImage, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(255)")] string fBatchName, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserCheck", DbType="NVarChar(255)")] string userCheck, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TruongSo01", DbType="NVarChar(255)")] string truongSo01, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TruongSo03", DbType="NVarChar(255)")] string truongSo03, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TruongSo04", DbType="NVarChar(255)")] string truongSo04, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TruongSo05", DbType="NVarChar(255)")] string truongSo05, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TruongSo06", DbType="NVarChar(255)")] string truongSo06, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TruongSo07", DbType="NVarChar(255)")] string truongSo07, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TruongSo08_1", DbType="NVarChar(255)")] string truongSo08_1, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TruongSo08_2", DbType="NVarChar(255)")] string truongSo08_2, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TruongSo09", DbType="NVarChar(255)")] string truongSo09, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TruongSo10", DbType="NVarChar(255)")] string truongSo10, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TruongSo11", DbType="NVarChar(255)")] string truongSo11, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TruongSo12", DbType="NVarChar(255)")] string truongSo12, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TruongSo13", DbType="NVarChar(255)")] string truongSo13, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TruongSo14", DbType="NVarChar(255)")] string truongSo14, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="FlagError", DbType="NVarChar(255)")] string flagError)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userSaiIt, userSaiNhieu, idImage, fBatchName, userCheck, truongSo01, truongSo03, truongSo04, truongSo05, truongSo06, truongSo07, truongSo08_1, truongSo08_2, truongSo09, truongSo10, truongSo11, truongSo12, truongSo13, truongSo14, flagError);
-			return ((int)(result.ReturnValue));
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ThongKeDeSo")]
@@ -506,6 +454,56 @@ namespace PhieuKiemDinh
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), fbatchname);
 			return ((ISingleResult<ExportExcel_PhieuKiemDinhResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.Insert_DeSo")]
+		public int Insert_DeSo(
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdImage", DbType="NVarChar(250)")] string idImage, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(250)")] string fBatchName, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserName", DbType="NVarChar(250)")] string userName, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TruongSo01", DbType="NVarChar(250)")] string truongSo01, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TruongSo03", DbType="NVarChar(250)")] string truongSo03, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TruongSo04", DbType="NVarChar(250)")] string truongSo04, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TruongSo05", DbType="NVarChar(250)")] string truongSo05, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TruongSo06", DbType="NVarChar(250)")] string truongSo06, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TruongSo07", DbType="NVarChar(250)")] string truongSo07, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TruongSo08_1", DbType="NVarChar(250)")] string truongSo08_1, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TruongSo08_2", DbType="NVarChar(250)")] string truongSo08_2, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TruongSo09", DbType="NVarChar(250)")] string truongSo09, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TruongSo10", DbType="NVarChar(250)")] string truongSo10, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TruongSo11", DbType="NVarChar(250)")] string truongSo11, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TruongSo12", DbType="NVarChar(250)")] string truongSo12, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TruongSo13", DbType="NVarChar(250)")] string truongSo13, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TruongSo14", DbType="NVarChar(250)")] string truongSo14)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idImage, fBatchName, userName, truongSo01, truongSo03, truongSo04, truongSo05, truongSo06, truongSo07, truongSo08_1, truongSo08_2, truongSo09, truongSo10, truongSo11, truongSo12, truongSo13, truongSo14);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SuaVaLuu_tbl_DeSo")]
+		public int SuaVaLuu_tbl_DeSo(
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserSaiIt", DbType="NVarChar(255)")] string userSaiIt, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserSaiNhieu", DbType="NVarChar(255)")] string userSaiNhieu, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdImage", DbType="NVarChar(255)")] string idImage, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(255)")] string fBatchName, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserCheck", DbType="NVarChar(255)")] string userCheck, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TruongSo01", DbType="NVarChar(255)")] string truongSo01, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TruongSo03", DbType="NVarChar(255)")] string truongSo03, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TruongSo04", DbType="NVarChar(255)")] string truongSo04, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TruongSo05", DbType="NVarChar(255)")] string truongSo05, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TruongSo06", DbType="NVarChar(255)")] string truongSo06, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TruongSo07", DbType="NVarChar(255)")] string truongSo07, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TruongSo08_1", DbType="NVarChar(255)")] string truongSo08_1, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TruongSo08_2", DbType="NVarChar(255)")] string truongSo08_2, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TruongSo09", DbType="NVarChar(255)")] string truongSo09, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TruongSo10", DbType="NVarChar(255)")] string truongSo10, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TruongSo11", DbType="NVarChar(255)")] string truongSo11, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TruongSo12", DbType="NVarChar(255)")] string truongSo12, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TruongSo13", DbType="NVarChar(255)")] string truongSo13, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TruongSo14", DbType="NVarChar(255)")] string truongSo14)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userSaiIt, userSaiNhieu, idImage, fBatchName, userCheck, truongSo01, truongSo03, truongSo04, truongSo05, truongSo06, truongSo07, truongSo08_1, truongSo08_2, truongSo09, truongSo10, truongSo11, truongSo12, truongSo13, truongSo14);
+			return ((int)(result.ReturnValue));
 		}
 	}
 	

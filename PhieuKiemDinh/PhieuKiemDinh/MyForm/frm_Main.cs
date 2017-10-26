@@ -154,7 +154,7 @@ namespace PhieuKiemDinh.MyForm
                                 Settings.Default.Truong12 = "";
                                 Settings.Default.Truong13 = "";
                                 Settings.Default.Truong14 = "";
-                                Settings.Default.FlagError = "";
+                                //Settings.Default.FlagError = "";
                                 Settings.Default.fBatchName = Global.StrBatch;
                                 Settings.Default.IdImage = lb_IdImage.Text;
                                 Settings.Default.UserInput = Global.StrUserName;
@@ -191,7 +191,7 @@ namespace PhieuKiemDinh.MyForm
                                 uC_DESO1.txt_TruongSo12.Text = Settings.Default.Truong12;
                                 uC_DESO1.txt_TruongSo13.Text = Settings.Default.Truong13;
                                 uC_DESO1.txt_TruongSo14.Text = Settings.Default.Truong14;
-                                uC_DESO1.txt_FlagError.Text = Settings.Default.FlagError;
+                                //uC_DESO1.txt_FlagError.Text = Settings.Default.FlagError;
                             }
                             else
                             {
@@ -211,7 +211,7 @@ namespace PhieuKiemDinh.MyForm
                                 Settings.Default.Truong12 = "";
                                 Settings.Default.Truong13 = "";
                                 Settings.Default.Truong14 = "";
-                                Settings.Default.FlagError = "";
+                               // Settings.Default.FlagError = "";
                                 Settings.Default.Save();
                             }
                         }
@@ -250,7 +250,7 @@ namespace PhieuKiemDinh.MyForm
                                 Settings.Default.Truong12 = "";
                                 Settings.Default.Truong13 = "";
                                 Settings.Default.Truong14 = "";
-                                Settings.Default.FlagError = "";
+                               // Settings.Default.FlagError = "";
                                 Settings.Default.fBatchName = Global.StrBatch;
                                 Settings.Default.IdImage = lb_IdImage.Text;
                                 Settings.Default.UserInput = Global.StrUserName;
@@ -287,7 +287,7 @@ namespace PhieuKiemDinh.MyForm
                                 uC_DESO1.txt_TruongSo12.Text = Settings.Default.Truong12;
                                 uC_DESO1.txt_TruongSo13.Text = Settings.Default.Truong13;
                                 uC_DESO1.txt_TruongSo14.Text = Settings.Default.Truong14;
-                                uC_DESO1.txt_FlagError.Text = Settings.Default.FlagError;
+                               // uC_DESO1.txt_FlagError.Text = Settings.Default.FlagError;
                             }
                             else
                             {
@@ -307,7 +307,7 @@ namespace PhieuKiemDinh.MyForm
                                 Settings.Default.Truong12 = "";
                                 Settings.Default.Truong13 = "";
                                 Settings.Default.Truong14 = "";
-                                Settings.Default.FlagError = "";
+                                //Settings.Default.FlagError = "";
                                 Settings.Default.Save();
                             }
                         }
@@ -347,7 +347,7 @@ namespace PhieuKiemDinh.MyForm
                             Settings.Default.Truong12 = "";
                             Settings.Default.Truong13 = "";
                             Settings.Default.Truong14 = "";
-                            Settings.Default.FlagError = "";
+                           // Settings.Default.FlagError = "";
                             Settings.Default.fBatchName = Global.StrBatch;
                             Settings.Default.IdImage = lb_IdImage.Text;
                             Settings.Default.UserInput = Global.StrUserName;
@@ -384,7 +384,7 @@ namespace PhieuKiemDinh.MyForm
                             uC_DESO1.txt_TruongSo12.Text = Settings.Default.Truong12;
                             uC_DESO1.txt_TruongSo13.Text = Settings.Default.Truong13;
                             uC_DESO1.txt_TruongSo14.Text = Settings.Default.Truong14;
-                            uC_DESO1.txt_FlagError.Text = Settings.Default.FlagError;
+                           // uC_DESO1.txt_FlagError.Text = Settings.Default.FlagError;
                         }
                         else
                         {
@@ -404,7 +404,7 @@ namespace PhieuKiemDinh.MyForm
                             Settings.Default.Truong12 = "";
                             Settings.Default.Truong13 = "";
                             Settings.Default.Truong14 = "";
-                            Settings.Default.FlagError = "";
+                           // Settings.Default.FlagError = "";
                             Settings.Default.Save();
                         }
                     }
@@ -542,8 +542,9 @@ namespace PhieuKiemDinh.MyForm
                        uC_DESO1.txt_TruongSo11.Text,
                        uC_DESO1.txt_TruongSo12.Text,
                        uC_DESO1.txt_TruongSo13.Text,
-                       uC_DESO1.txt_TruongSo14.Text,
-                       uC_DESO1.txt_FlagError.Text);
+                       uC_DESO1.txt_TruongSo14.Text//,
+                      // uC_DESO1.txt_FlagError.Text
+                      );
                     uC_DESO1.ResetData();
                     setValue();
                 }
@@ -665,8 +666,9 @@ namespace PhieuKiemDinh.MyForm
                        uC_DESO1.txt_TruongSo11.Text,
                        uC_DESO1.txt_TruongSo12.Text,
                        uC_DESO1.txt_TruongSo13.Text,
-                       uC_DESO1.txt_TruongSo14.Text,
-                       uC_DESO1.txt_FlagError.Text);
+                       uC_DESO1.txt_TruongSo14.Text//,
+                       //uC_DESO1.txt_FlagError.Text
+                       );
             }
             DialogResult=DialogResult.Yes;
         }

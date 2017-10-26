@@ -25,8 +25,8 @@ namespace PhieuKiemDinh.MyForm
 
         private void frm_NangSuat_Load(object sender, EventArgs e)
         {
-            string firstdate = dtp_FirstDay.Value.ToString("yyyy-MM-dd") + " 00:00:00";
-            string lastdate = dtp_EndDay.Value.ToString("yyyy-MM-dd") + " 23:59:59";
+            string firstdate = dtp_FirstDay.Value.ToString("yyyy-MM-dd ") + timeFisrt.Text+":00";//" 00:00:00";
+            string lastdate = dtp_EndDay.Value.ToString("yyyy-MM-dd ") + timeEnd.Text+":59";// " 23:59:59";
 
             firstDateTime = DateTime.Parse(firstdate);
             lastDateTime = DateTime.Parse(lastdate);
@@ -52,8 +52,8 @@ namespace PhieuKiemDinh.MyForm
         }
         private void dtp_FirstDay_ValueChanged(object sender, EventArgs e)
         {
-            string firstdate = dtp_FirstDay.Value.ToString("yyyy-MM-dd") + " 00:00:00";
-            string lastdate = dtp_EndDay.Value.ToString("yyyy-MM-dd") + " 23:59:59";
+            string firstdate = dtp_FirstDay.Value.ToString("yyyy-MM-dd ") + timeFisrt.Text+":00"; //" 00:00:00";
+            string lastdate = dtp_EndDay.Value.ToString("yyyy-MM-dd ") + timeEnd.Text+":59"; //" 23:59:59";
 
             firstDateTime = DateTime.Parse(firstdate);
             lastDateTime = DateTime.Parse(lastdate);
@@ -72,8 +72,8 @@ namespace PhieuKiemDinh.MyForm
 
         private void dtp_EndDay_ValueChanged(object sender, EventArgs e)
         {
-            string firstdate = dtp_FirstDay.Value.ToString("yyyy-MM-dd") + " 00:00:00";
-            string lastdate = dtp_EndDay.Value.ToString("yyyy-MM-dd") + " 23:59:59";
+            string firstdate = dtp_FirstDay.Value.ToString("yyyy-MM-dd ") + timeFisrt.Text+":00";// " 00:00:00";
+            string lastdate = dtp_EndDay.Value.ToString("yyyy-MM-dd ") + timeEnd.Text+":59";// " 23:59:59";
 
             firstDateTime = DateTime.Parse(firstdate);
             lastDateTime = DateTime.Parse(lastdate);
@@ -81,7 +81,7 @@ namespace PhieuKiemDinh.MyForm
             dataGridView1.DataSource = null;
             if (firstDateTime > lastDateTime)
             {
-                MessageBox.Show("Ngày kết thúc phải lớn hơn hoặc bằng ngày bắt đầu");}
+                MessageBox.Show("Ngày kết thúc phải lớn hơn hoặc bằng ngày  bắt đầu");}
             else
             {
                 LoadDataGrid(firstDateTime, lastDateTime);
@@ -145,6 +145,45 @@ namespace PhieuKiemDinh.MyForm
             {
                 MessageBox.Show(ex.Message);
                 return false;
+            }
+        }
+
+        private void timeFisrt_EditValueChanged(object sender, EventArgs e)
+        {
+            string firstdate = dtp_FirstDay.Value.ToString("yyyy-MM-dd ") + timeFisrt.Text +":00"; //" 00:00:00";
+            string lastdate = dtp_EndDay.Value.ToString("yyyy-MM-dd ") + timeEnd.Text+ ":59" ; //" 23:59:59";
+
+            firstDateTime = DateTime.Parse(firstdate);
+            lastDateTime = DateTime.Parse(lastdate);
+            gridControl1.DataSource = null;
+            dataGridView1.DataSource = null;
+            // gridControl2.DataSource = null;
+            if (firstDateTime >= lastDateTime)
+            {
+                MessageBox.Show("Giờ bắt đầu phải nhỏ hơn hoặc bằng giờ kết thúc");
+            }
+            else
+            {
+                LoadDataGrid(firstDateTime, lastDateTime);
+            }
+        }
+
+        private void timeEnd_EditValueChanged(object sender, EventArgs e)
+        {
+            string firstdate = dtp_FirstDay.Value.ToString("yyyy-MM-dd ") + timeFisrt.Text +":00";// " 00:00:00";
+            string lastdate = dtp_EndDay.Value.ToString("yyyy-MM-dd ") + timeEnd.Text+":59";// " 23:59:59";
+
+            firstDateTime = DateTime.Parse(firstdate);
+            lastDateTime = DateTime.Parse(lastdate);
+            gridControl1.DataSource = null;
+            dataGridView1.DataSource = null;
+            if (firstDateTime > lastDateTime)
+            {
+                MessageBox.Show("Giờ kết thúc phải lớn hơn hoặc bằng giờ bắt đầu");
+            }
+            else
+            {
+                LoadDataGrid(firstDateTime, lastDateTime);
             }
         }
     }

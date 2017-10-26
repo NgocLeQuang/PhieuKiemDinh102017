@@ -32,10 +32,11 @@ namespace PhieuKiemDinh.MyForm
                     Process.Start(@"\\10.10.10.254\DE_Viet\2017\PHIEU_KIEM_DINH\Tools");
                     Application.Exit();
                 }
-                var CountImageNotComplete = (from w in Global.Db.CheckInputComplete(Global.StrBatch) select w.IdImage).ToList();
+                //  var CountImageNotComplete = (from w in Global.Db.CheckInputComplete(Global.StrBatch) select w.IdImage).ToList();
+                var nhap = (from w in Global.Db.tbl_Images where w.fBatchName == Global.StrBatch && w.ReadImageDeSoNhap < 2 select w.IdImage).Count();
                 var check = (from w in Global.Db.tbl_MissImage_DeSos where w.fBatchName == Global.StrBatch && w.Submit == 0 select w.IdImage).Count();
-                
-                if (CountImageNotComplete.Count>0)
+                //if (CountImageNotComplete.Count>0)
+                if(nhap>0)
                 {
                     MessageBox.Show("Chưa nhập xong DeSo!");
                     return;
@@ -304,7 +305,7 @@ namespace PhieuKiemDinh.MyForm
             uC_DESO1.txt_TruongSo12.Text = deso[0].TruongSo12;
             uC_DESO1.txt_TruongSo13.Text = deso[0].TruongSo13;
             uC_DESO1.txt_TruongSo14.Text = deso[0].TruongSo14;
-            uC_DESO1.txt_FlagError.Text = deso[0].FlagError;
+          //  uC_DESO1.txt_FlagError.Text = deso[0].FlagError;
 
             uC_DESO2.txt_TruongSo01.Text = deso[1].TruongSo01;
             uC_DESO2.txt_TruongSo03.Text = deso[1].TruongSo03;
@@ -320,7 +321,7 @@ namespace PhieuKiemDinh.MyForm
             uC_DESO2.txt_TruongSo12.Text = deso[1].TruongSo12;
             uC_DESO2.txt_TruongSo13.Text = deso[1].TruongSo13;
             uC_DESO2.txt_TruongSo14.Text = deso[1].TruongSo14;
-            uC_DESO2.txt_FlagError.Text = deso[1].FlagError;
+          //  uC_DESO2.txt_FlagError.Text = deso[1].FlagError;
 
             Compare_TextBox(uC_DESO1.txt_TruongSo01, uC_DESO2.txt_TruongSo01);
             Compare_TextBox(uC_DESO1.txt_TruongSo03, uC_DESO2.txt_TruongSo03);
@@ -336,7 +337,7 @@ namespace PhieuKiemDinh.MyForm
             Compare_TextBox(uC_DESO1.txt_TruongSo12, uC_DESO2.txt_TruongSo12);
             Compare_TextBox(uC_DESO1.txt_TruongSo13, uC_DESO2.txt_TruongSo13);
             Compare_TextBox(uC_DESO1.txt_TruongSo14, uC_DESO2.txt_TruongSo14);
-            Compare_TextBox(uC_DESO1.txt_FlagError, uC_DESO2.txt_FlagError);
+           // Compare_TextBox(uC_DESO1.txt_FlagError, uC_DESO2.txt_FlagError);
             var soloi = ((from w in Global.Db.tbl_DeSos where w.fBatchName == Global.StrBatch && w.Dem == 1 select w.IdImage).Count() / 2).ToString();
             lb_Loi.Text = soloi + " Lỗi";
             timer1.Enabled = true;
@@ -534,8 +535,8 @@ namespace PhieuKiemDinh.MyForm
                                             uC_DESO1.txt_TruongSo11.Text,
                                             uC_DESO1.txt_TruongSo12.Text,
                                             uC_DESO1.txt_TruongSo13.Text,
-                                            uC_DESO1.txt_TruongSo14.Text,
-                                            uC_DESO1.txt_FlagError.Text);
+                                            uC_DESO1.txt_TruongSo14.Text//, uC_DESO1.txt_FlagError.Text
+                                            );
             else
                 Global.Db.SuaVaLuu_tbl_DeSo(lb_User1.Text, lb_User2.Text, lb_Image.Text, cbb_Batch_Check.Text, Global.StrUserName,
                                             uC_DESO1.txt_TruongSo01.Text,
@@ -551,8 +552,8 @@ namespace PhieuKiemDinh.MyForm
                                             uC_DESO1.txt_TruongSo11.Text,
                                             uC_DESO1.txt_TruongSo12.Text,
                                             uC_DESO1.txt_TruongSo13.Text,
-                                            uC_DESO1.txt_TruongSo14.Text,
-                                            uC_DESO1.txt_FlagError.Text);
+                                            uC_DESO1.txt_TruongSo14.Text//,uC_DESO1.txt_FlagError.Text
+                                            );
             fLagRefresh = false;
             fbatchRefresh = "";
             ResetData();
@@ -605,8 +606,8 @@ namespace PhieuKiemDinh.MyForm
                                             uC_DESO2.txt_TruongSo11.Text,
                                             uC_DESO2.txt_TruongSo12.Text,
                                             uC_DESO2.txt_TruongSo13.Text,
-                                            uC_DESO2.txt_TruongSo14.Text,
-                                            uC_DESO2.txt_FlagError.Text);
+                                            uC_DESO2.txt_TruongSo14.Text//, uC_DESO2.txt_FlagError.Text
+                                            );
             else
                 Global.Db.SuaVaLuu_tbl_DeSo(lb_User2.Text, lb_User1.Text, lb_Image.Text, cbb_Batch_Check.Text, Global.StrUserName,
                                             uC_DESO2.txt_TruongSo01.Text,
@@ -622,8 +623,8 @@ namespace PhieuKiemDinh.MyForm
                                             uC_DESO2.txt_TruongSo11.Text,
                                             uC_DESO2.txt_TruongSo12.Text,
                                             uC_DESO2.txt_TruongSo13.Text,
-                                            uC_DESO2.txt_TruongSo14.Text,
-                                            uC_DESO2.txt_FlagError.Text);
+                                            uC_DESO2.txt_TruongSo14.Text//,uC_DESO2.txt_FlagError.Text
+                                             );
             fLagRefresh = false;
             fbatchRefresh = "";
             ResetData();

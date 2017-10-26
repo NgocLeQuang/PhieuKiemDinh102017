@@ -64,7 +64,7 @@ namespace PhieuKiemDinh.MyUserControl
             changeColorUser(uC_DESO_FeedBack2.txt_TruongSo12, uC_DESO_FeedBack3.txt_TruongSo12);
             changeColorUser(uC_DESO_FeedBack2.txt_TruongSo13, uC_DESO_FeedBack3.txt_TruongSo13);
             changeColorUser(uC_DESO_FeedBack2.txt_TruongSo14, uC_DESO_FeedBack3.txt_TruongSo14);
-            changeColorUser(uC_DESO_FeedBack2.txt_FlagError, uC_DESO_FeedBack3.txt_FlagError);
+           // changeColorUser(uC_DESO_FeedBack2.txt_FlagError, uC_DESO_FeedBack3.txt_FlagError);
         }
 
         private void changeColorUser(TextEdit txt1, TextEdit txt2)
@@ -73,8 +73,8 @@ namespace PhieuKiemDinh.MyUserControl
             {
                 txt1.ForeColor = Color.White;
                 txt1.BackColor = Color.Red;
-                txt2.ForeColor = Color.White;
-                txt2.BackColor = Color.Red;
+                txt2.ForeColor = Color.White;txt2.BackColor = Color.Green;
+                //txt2.BackColor = Color.Red;
             }
             else
             {
@@ -100,7 +100,7 @@ namespace PhieuKiemDinh.MyUserControl
             SoSanhDoiMau(uC_DESO_FeedBack1.txt_TruongSo12, uC_DESO_FeedBack2.txt_TruongSo12, uC_DESO_FeedBack3.txt_TruongSo12);
             SoSanhDoiMau(uC_DESO_FeedBack1.txt_TruongSo13, uC_DESO_FeedBack2.txt_TruongSo13, uC_DESO_FeedBack3.txt_TruongSo13);
             SoSanhDoiMau(uC_DESO_FeedBack1.txt_TruongSo14, uC_DESO_FeedBack2.txt_TruongSo14, uC_DESO_FeedBack3.txt_TruongSo14);
-            SoSanhDoiMau(uC_DESO_FeedBack1.txt_FlagError, uC_DESO_FeedBack2.txt_FlagError, uC_DESO_FeedBack3.txt_FlagError);
+          //  SoSanhDoiMau(uC_DESO_FeedBack1.txt_FlagError, uC_DESO_FeedBack2.txt_FlagError, uC_DESO_FeedBack3.txt_FlagError);
         }
         
 
@@ -111,7 +111,7 @@ namespace PhieuKiemDinh.MyUserControl
             LoadText_User(user, fbatchname, idimage);
             LoadChecker(fbatchname, idimage);
             SoSanhTextBoxSingle();
-            SoSanhChecker_UserSingle();
+          //  SoSanhChecker_UserSingle();
         }
 
         public void LoadText_User(string user, string fbatchname, string idimage)
@@ -123,7 +123,7 @@ namespace PhieuKiemDinh.MyUserControl
             uC_DESO_FeedBack2.LoadData(deso[0]);
         }
 
-        private void SoSanhChecker_UserSingle()
+       /* private void SoSanhChecker_UserSingle()
         {
             changeColorChecker(uC_DESO_FeedBack2.txt_TruongSo01, uC_DESO_FeedBack3.txt_TruongSo01);
             changeColorChecker(uC_DESO_FeedBack2.txt_TruongSo14, uC_DESO_FeedBack3.txt_TruongSo14);
@@ -140,9 +140,9 @@ namespace PhieuKiemDinh.MyUserControl
             changeColorChecker(uC_DESO_FeedBack2.txt_TruongSo12, uC_DESO_FeedBack3.txt_TruongSo12);
             changeColorChecker(uC_DESO_FeedBack2.txt_TruongSo13, uC_DESO_FeedBack3.txt_TruongSo13);
             changeColorChecker(uC_DESO_FeedBack2.txt_TruongSo14, uC_DESO_FeedBack3.txt_TruongSo14);
-            changeColorChecker(uC_DESO_FeedBack2.txt_FlagError, uC_DESO_FeedBack3.txt_FlagError);
+           // changeColorChecker(uC_DESO_FeedBack2.txt_FlagError, uC_DESO_FeedBack3.txt_FlagError);
 
-        }
+        }*/
         private void SoSanhDoiMau(TextEdit txt1, TextEdit txt2, TextEdit txt3)
         {
             if ((txt1.Text!=txt3.Text)) {
@@ -169,7 +169,7 @@ namespace PhieuKiemDinh.MyUserControl
                 }
             }
         }
-        private void changeColorChecker(TextEdit txt1, TextEdit txt2)
+        /*private void changeColorChecker(TextEdit txt1, TextEdit txt2)
         {
             if (txt1.ForeColor == Color.White)
             {
@@ -186,6 +186,6 @@ namespace PhieuKiemDinh.MyUserControl
                 txt2.BackColor = Color.Green;
                 }
             }
-        }
+        }*/
     }
 }
