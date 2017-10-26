@@ -28,10 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_Checker));
             this.uc_PictureBox1 = new PhieuKiemDinh.MyUserControl.uc_PictureBox();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.timer1 = new System.Windows.Forms.Timer();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.xtraTabControl2 = new DevExpress.XtraTab.XtraTabControl();
             this.tp_DeSo2 = new DevExpress.XtraTab.XtraTabPage();
@@ -83,7 +82,7 @@
             this.uc_PictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uc_PictureBox1.Location = new System.Drawing.Point(0, 30);
             this.uc_PictureBox1.Name = "uc_PictureBox1";
-            this.uc_PictureBox1.Size = new System.Drawing.Size(941, 615);
+            this.uc_PictureBox1.Size = new System.Drawing.Size(946, 615);
             this.uc_PictureBox1.TabIndex = 25;
             this.uc_PictureBox1.Click += new System.EventHandler(this.btn_Start_Click);
             // 
@@ -276,7 +275,7 @@
             // btn_CheckLai
             // 
             this.btn_CheckLai.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_CheckLai.Location = new System.Drawing.Point(862, 611);
+            this.btn_CheckLai.Location = new System.Drawing.Point(867, 611);
             this.btn_CheckLai.Name = "btn_CheckLai";
             this.btn_CheckLai.Size = new System.Drawing.Size(57, 28);
             this.btn_CheckLai.TabIndex = 3;
@@ -298,7 +297,7 @@
             this.splitCheck.Panel1.Text = "Panel1";
             this.splitCheck.Panel2.Controls.Add(this.tableLayoutPanel1);
             this.splitCheck.Panel2.Text = "Panel2";
-            this.splitCheck.Size = new System.Drawing.Size(1379, 645);
+            this.splitCheck.Size = new System.Drawing.Size(1384, 645);
             this.splitCheck.SplitterPosition = 433;
             this.splitCheck.TabIndex = 28;
             this.splitCheck.Text = "splitContainerControl1";
@@ -307,7 +306,7 @@
             // btn_Start
             // 
             this.btn_Start.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_Start.Location = new System.Drawing.Point(775, 611);
+            this.btn_Start.Location = new System.Drawing.Point(780, 611);
             this.btn_Start.Name = "btn_Start";
             this.btn_Start.Size = new System.Drawing.Size(81, 29);
             this.btn_Start.TabIndex = 27;
@@ -325,7 +324,7 @@
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(941, 30);
+            this.panelControl1.Size = new System.Drawing.Size(946, 30);
             this.panelControl1.TabIndex = 26;
             // 
             // btn_ShowImageCheck
@@ -333,7 +332,7 @@
             this.btn_ShowImageCheck.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_ShowImageCheck.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_ShowImageCheck.Appearance.Options.UseFont = true;
-            this.btn_ShowImageCheck.Location = new System.Drawing.Point(835, 3);
+            this.btn_ShowImageCheck.Location = new System.Drawing.Point(840, 3);
             this.btn_ShowImageCheck.Name = "btn_ShowImageCheck";
             this.btn_ShowImageCheck.Size = new System.Drawing.Size(101, 23);
             this.btn_ShowImageCheck.TabIndex = 3;
@@ -391,7 +390,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1379, 645);
+            this.ClientSize = new System.Drawing.Size(1384, 645);
             this.Controls.Add(this.splitCheck);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frm_Checker";
