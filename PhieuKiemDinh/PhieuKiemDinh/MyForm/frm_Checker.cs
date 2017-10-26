@@ -791,5 +791,7 @@ namespace PhieuKiemDinh.MyForm
             fLagRefresh = true;
             btn_Start.Visible = false;
         }
+
+        
     }
 }
