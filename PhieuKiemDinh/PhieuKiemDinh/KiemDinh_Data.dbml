@@ -532,4 +532,16 @@
       <Column Name="ChiaUser" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.GetBatch_Full" Method="GetBatch_Full">
+    <ElementType Name="GetBatch_FullResult">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="fBatchName" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="UserTaoBatch" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="SoLuongHinh" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="NgayTaoBatch" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="fPathPicture" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ChiaUser" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="CongKhaiBatch" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

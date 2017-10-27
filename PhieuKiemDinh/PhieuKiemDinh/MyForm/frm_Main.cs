@@ -466,7 +466,7 @@ namespace PhieuKiemDinh.MyForm
                         var listResult = Global.Db.GetBatNotFinishDeSo_NotGood(Global.StrUserName).ToList();
                         if (listResult.Count > 0)
                         {
-                            if (MessageBox.Show(@"Batch tiếp theo: " + listResult[0].fbatchname + "\n Bạn muốn làm tiếp ??", "Thông báo!", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                            if (MessageBox.Show(@"Batch tiếp theo: " + listResult[0].fbatchname + "\nBạn muốn làm tiếp ??", "Thông báo!", MessageBoxButtons.YesNo,MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                             {
                                 if (Global.CheckOutSource(Global.StrRole) == true)
                                 {
@@ -505,7 +505,7 @@ namespace PhieuKiemDinh.MyForm
                         var listResult = Global.Db.GetBatNotFinishDeSo_Good(Global.StrUserName).ToList();
                         if (listResult.Count > 0)
                         {
-                            if (MessageBox.Show(@"Batch tiếp theo: " + listResult[0].fbatchname + "\n Bạn muốn làm tiếp ??", "Thông báo!", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                            if (MessageBox.Show(@"Batch tiếp theo: " + listResult[0].fbatchname + "\nBạn muốn làm tiếp ??", "Thông báo!", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                             {
                                 if (Global.CheckOutSource(Global.StrRole) == true)
                                 {
@@ -585,7 +585,7 @@ namespace PhieuKiemDinh.MyForm
                         var listResult = Global.Db.GetBatNotFinishDeSo_NotGood(Global.StrUserName).ToList();
                         if (listResult.Count > 0)
                         {
-                            if (MessageBox.Show(@"Batch tiếp theo: " + listResult[0].fbatchname + "\n Bạn muốn làm tiếp ??", "Thông báo!", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                            if (MessageBox.Show(@"Batch tiếp theo: " + listResult[0].fbatchname + "\nBạn muốn làm tiếp ??", "Thông báo!", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                             {
                                 if (Global.CheckOutSource(Global.StrRole) == true)
                                 {
@@ -624,7 +624,7 @@ namespace PhieuKiemDinh.MyForm
                         var listResult = Global.Db.GetBatNotFinishDeSo_Good(Global.StrUserName).ToList();
                         if (listResult.Count > 0)
                         {
-                            if (MessageBox.Show(@"Batch tiếp theo: " + listResult[0].fbatchname + "\n Bạn muốn làm tiếp ??", "Thông báo!", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                            if (MessageBox.Show(@"Batch tiếp theo: " + listResult[0].fbatchname + "\nBạn muốn làm tiếp ??", "Thông báo!", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                             {
                                 if (Global.CheckOutSource(Global.StrRole) == true)
                                 {

@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_ManagerBatch));
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             this.btn_Xoa = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -38,12 +38,12 @@
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.btn_TaoBatch = new DevExpress.XtraEditors.SimpleButton();
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.btn_xoabatch = new DevExpress.XtraEditors.SimpleButton();
+            this.btn_TaoBatch = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.btn_Xoa)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -54,8 +54,9 @@
             // btn_Xoa
             // 
             this.btn_Xoa.AutoHeight = false;
+            editorButtonImageOptions1.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions1.Image")));
             this.btn_Xoa.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("btn_Xoa.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(editorButtonImageOptions1, DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, null)});
             this.btn_Xoa.Name = "btn_Xoa";
             this.btn_Xoa.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.btn_Xoa.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btn_Xoa_ButtonClick);
@@ -86,8 +87,10 @@
             this.gridColumn7});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsSelection.InvertSelection = true;
             this.gridView1.OptionsSelection.MultiSelect = true;
             this.gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
+            this.gridView1.OptionsSelection.UseIndicatorForSelection = false;
             this.gridView1.OptionsView.EnableAppearanceEvenRow = true;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             this.gridView1.CellValueChanging += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridView1_CellValueChanging);
@@ -137,6 +140,24 @@
             this.gridColumn4.VisibleIndex = 5;
             this.gridColumn4.Width = 95;
             // 
+            // gridColumn6
+            // 
+            this.gridColumn6.Caption = "Chia User";
+            this.gridColumn6.FieldName = "ChiaUser";
+            this.gridColumn6.Name = "gridColumn6";
+            this.gridColumn6.Visible = true;
+            this.gridColumn6.VisibleIndex = 6;
+            this.gridColumn6.Width = 77;
+            // 
+            // gridColumn8
+            // 
+            this.gridColumn8.Caption = "Công khai batch";
+            this.gridColumn8.FieldName = "CongKhaiBatch";
+            this.gridColumn8.Name = "gridColumn8";
+            this.gridColumn8.Visible = true;
+            this.gridColumn8.VisibleIndex = 7;
+            this.gridColumn8.Width = 83;
+            // 
             // gridColumn7
             // 
             this.gridColumn7.Caption = "Xóa batch";
@@ -156,36 +177,6 @@
             this.panelControl1.Size = new System.Drawing.Size(947, 38);
             this.panelControl1.TabIndex = 2;
             // 
-            // btn_TaoBatch
-            // 
-            this.btn_TaoBatch.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btn_TaoBatch.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_TaoBatch.Appearance.Options.UseFont = true;
-            this.btn_TaoBatch.Location = new System.Drawing.Point(339, 6);
-            this.btn_TaoBatch.Name = "btn_TaoBatch";
-            this.btn_TaoBatch.Size = new System.Drawing.Size(118, 27);
-            this.btn_TaoBatch.TabIndex = 0;
-            this.btn_TaoBatch.Text = "Tạo Batch mới";
-            this.btn_TaoBatch.Click += new System.EventHandler(this.btn_TaoBatch_Click);
-            // 
-            // gridColumn6
-            // 
-            this.gridColumn6.Caption = "Chia User";
-            this.gridColumn6.FieldName = "ChiaUser";
-            this.gridColumn6.Name = "gridColumn6";
-            this.gridColumn6.Visible = true;
-            this.gridColumn6.VisibleIndex = 6;
-            this.gridColumn6.Width = 77;
-            // 
-            // gridColumn8
-            // 
-            this.gridColumn8.Caption = "Công khai batch";
-            this.gridColumn8.FieldName = "CongKhaiBatch";
-            this.gridColumn8.Name = "gridColumn8";
-            this.gridColumn8.Visible = true;
-            this.gridColumn8.VisibleIndex = 7;
-            this.gridColumn8.Width = 83;
-            // 
             // btn_xoabatch
             // 
             this.btn_xoabatch.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
@@ -197,6 +188,18 @@
             this.btn_xoabatch.TabIndex = 1;
             this.btn_xoabatch.Text = "Xóa batch (n)";
             this.btn_xoabatch.Click += new System.EventHandler(this.btn_xoabatch_Click);
+            // 
+            // btn_TaoBatch
+            // 
+            this.btn_TaoBatch.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btn_TaoBatch.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_TaoBatch.Appearance.Options.UseFont = true;
+            this.btn_TaoBatch.Location = new System.Drawing.Point(339, 6);
+            this.btn_TaoBatch.Name = "btn_TaoBatch";
+            this.btn_TaoBatch.Size = new System.Drawing.Size(118, 27);
+            this.btn_TaoBatch.TabIndex = 0;
+            this.btn_TaoBatch.Text = "Tạo Batch mới";
+            this.btn_TaoBatch.Click += new System.EventHandler(this.btn_TaoBatch_Click);
             // 
             // frm_ManagerBatch
             // 

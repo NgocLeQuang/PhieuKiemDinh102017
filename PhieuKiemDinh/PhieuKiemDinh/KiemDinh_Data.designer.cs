@@ -512,6 +512,13 @@ namespace PhieuKiemDinh
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), batch);
 			return ((ISingleResult<CheckBatchChiaUserResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetBatch_Full")]
+		public ISingleResult<GetBatch_FullResult> GetBatch_Full()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<GetBatch_FullResult>)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tbl_Batch")]
@@ -5892,6 +5899,158 @@ namespace PhieuKiemDinh
 				if ((this._ChiaUser != value))
 				{
 					this._ChiaUser = value;
+				}
+			}
+		}
+	}
+	
+	public partial class GetBatch_FullResult
+	{
+		
+		private int _id;
+		
+		private string _fBatchName;
+		
+		private string _UserTaoBatch;
+		
+		private string _SoLuongHinh;
+		
+		private System.Nullable<System.DateTime> _NgayTaoBatch;
+		
+		private string _fPathPicture;
+		
+		private System.Nullable<bool> _ChiaUser;
+		
+		private System.Nullable<bool> _CongKhaiBatch;
+		
+		public GetBatch_FullResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL")]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this._id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fBatchName", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string fBatchName
+		{
+			get
+			{
+				return this._fBatchName;
+			}
+			set
+			{
+				if ((this._fBatchName != value))
+				{
+					this._fBatchName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserTaoBatch", DbType="NVarChar(255)")]
+		public string UserTaoBatch
+		{
+			get
+			{
+				return this._UserTaoBatch;
+			}
+			set
+			{
+				if ((this._UserTaoBatch != value))
+				{
+					this._UserTaoBatch = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SoLuongHinh", DbType="NVarChar(255)")]
+		public string SoLuongHinh
+		{
+			get
+			{
+				return this._SoLuongHinh;
+			}
+			set
+			{
+				if ((this._SoLuongHinh != value))
+				{
+					this._SoLuongHinh = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NgayTaoBatch", DbType="DateTime")]
+		public System.Nullable<System.DateTime> NgayTaoBatch
+		{
+			get
+			{
+				return this._NgayTaoBatch;
+			}
+			set
+			{
+				if ((this._NgayTaoBatch != value))
+				{
+					this._NgayTaoBatch = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fPathPicture", DbType="NVarChar(255)")]
+		public string fPathPicture
+		{
+			get
+			{
+				return this._fPathPicture;
+			}
+			set
+			{
+				if ((this._fPathPicture != value))
+				{
+					this._fPathPicture = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ChiaUser", DbType="Bit")]
+		public System.Nullable<bool> ChiaUser
+		{
+			get
+			{
+				return this._ChiaUser;
+			}
+			set
+			{
+				if ((this._ChiaUser != value))
+				{
+					this._ChiaUser = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CongKhaiBatch", DbType="Bit")]
+		public System.Nullable<bool> CongKhaiBatch
+		{
+			get
+			{
+				return this._CongKhaiBatch;
+			}
+			set
+			{
+				if ((this._CongKhaiBatch != value))
+				{
+					this._CongKhaiBatch = value;
 				}
 			}
 		}
