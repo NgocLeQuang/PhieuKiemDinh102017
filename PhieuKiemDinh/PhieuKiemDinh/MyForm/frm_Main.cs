@@ -38,6 +38,7 @@ namespace PhieuKiemDinh.MyForm
             Global.FreeTime = 0;
             ChiaUser = -1;
             LevelUser = -1;
+            Global.FlagChangeSave = false;
             UserLookAndFeel.Default.SkinName = Settings.Default.ApplicationSkinName;
             xtraTabControl1.TabPages.Remove(tp_DeSo);
             splitMain.SplitterPosition = Settings.Default.PositionSplitMain;
@@ -61,7 +62,7 @@ namespace PhieuKiemDinh.MyForm
                 try
                 {
                     Global.FlagChangeSave = true;
-                    var ktBatch = (from w in Global.Db.tbl_Batches where w.fBatchName == Global.StrBatch select w.ChiaUser).FirstOrDefault();
+                    var ktBatch = (from w in Global.Db.CheckBatchChiaUser(Global.StrUserName) select w.ChiaUser).FirstOrDefault();
                     if (ktBatch == true)
                     {
                         ChiaUser = 1;
@@ -70,7 +71,7 @@ namespace PhieuKiemDinh.MyForm
                     {
                         ChiaUser = 0;
                     }
-                    var ktUser = (from w in Global.DbBpo.tbl_Users where w.Username == Global.StrUserName select w.NotGoodUser).FirstOrDefault();
+                    var ktUser = (from w in Global.DbBpo.CheckLevelUser(Global.StrUserName) select w.NotGoodUser).FirstOrDefault();
                     if (ktUser == true)
                         LevelUser = 0;
                     else if (ktUser == false)
@@ -94,6 +95,13 @@ namespace PhieuKiemDinh.MyForm
                 btn_Check.Enabled = true;
                 btn_Submit.Enabled = false;
                 btn_Submit_Logout.Enabled = false;
+                FlagLoad = true;
+                bool? OutSource = (from w in Global.DbBpo.tbl_Versions where w.IDProject == Global.StrIdProject select w.OutSource).FirstOrDefault();
+                if (OutSource == true)
+                    ckOutSource.EditValue = true;
+                else
+                    ckOutSource.EditValue = false;
+                FlagLoad = false;
             }
             else if (Global.StrRole == "CHECKERDESO")
             {
@@ -113,27 +121,32 @@ namespace PhieuKiemDinh.MyForm
             }
         }
 
+        private string[] strTrans = null;
+        private string getFilename = "";
+
         private string GetImage()
         {
             lb_IdImage.Text = "";
+            strTrans = null;
+            getFilename = "";
             if (Global.StrRole=="DESO")
             {
                 if (ChiaUser==1)  //Batch có chia User nhập
                 {
                     if (LevelUser==1) //User Level Good
                     {
-                        string temp = (from w in Global.Db.tbl_MissImage_DeSos where w.fBatchName == lb_fBatchName.Text && w.UserName == lb_UserName.Text && w.Submit == 0 select w.IdImage).FirstOrDefault();
-                        if (string.IsNullOrEmpty(temp))
+                        getFilename = (from w in Global.Db.tbl_MissImage_DeSos where w.fBatchName == lb_fBatchName.Text && w.UserName == lb_UserName.Text && w.Submit == 0 select w.IdImage).FirstOrDefault();
+                        if (string.IsNullOrEmpty(getFilename))
                         {
                             try
                             {
-                                var getFilename = (from w in Global.Db.GetImage_Group_Good(lb_fBatchName.Text, lb_UserName.Text) select w.Column1).FirstOrDefault();
+                                getFilename = (from w in Global.Db.GetImage_Group_Good(lb_fBatchName.Text, lb_UserName.Text) select w.Column1).FirstOrDefault();
                                 if (string.IsNullOrEmpty(getFilename))
                                 {
                                     return "NULL";
                                 }
                                 lb_IdImage.Text = getFilename;
-                                string[] strTrans = getFilename.Split('.');
+                                strTrans = getFilename.Split('.');
                                 uC_DESO1.txt_TruongSo01.Text = strTrans[0];
                                 uc_PictureBox1.imageBox1.Image = null;
                                 if (uc_PictureBox1.LoadImage(Global.Webservice + lb_fBatchName.Text + "/" + getFilename, getFilename, Settings.Default.ZoomImage) == "Error")
@@ -167,11 +180,11 @@ namespace PhieuKiemDinh.MyForm
                         }
                         else
                         {
-                            lb_IdImage.Text = temp;
-                            string[] strTrans = temp.Split('.');
+                            lb_IdImage.Text = getFilename;
+                            strTrans = getFilename.Split('.');
                             uC_DESO1.txt_TruongSo01.Text = strTrans[0];
                             uc_PictureBox1.imageBox1.Image = null;
-                            if (uc_PictureBox1.LoadImage(Global.Webservice + lb_fBatchName.Text + "/" + temp, temp, Settings.Default.ZoomImage) == "Error")
+                            if (uc_PictureBox1.LoadImage(Global.Webservice + lb_fBatchName.Text + "/" + getFilename, getFilename, Settings.Default.ZoomImage) == "Error")
                             {
                                 uc_PictureBox1.imageBox1.Image = Resources.svn_deleted;
                                 return "Error";
@@ -218,8 +231,8 @@ namespace PhieuKiemDinh.MyForm
                     }
                     else if (LevelUser == 0) //User Level Not Good
                     {
-                        string temp = (from w in Global.Db.tbl_MissImage_DeSos where w.fBatchName == lb_fBatchName.Text && w.UserName == lb_UserName.Text && w.Submit == 0 select w.IdImage).FirstOrDefault();
-                        if (string.IsNullOrEmpty(temp))
+                        getFilename = (from w in Global.Db.tbl_MissImage_DeSos where w.fBatchName == lb_fBatchName.Text && w.UserName == lb_UserName.Text && w.Submit == 0 select w.IdImage).FirstOrDefault();
+                        if (string.IsNullOrEmpty(getFilename))
                         {
                             try
                             {
@@ -229,7 +242,7 @@ namespace PhieuKiemDinh.MyForm
                                     return "NULL";
                                 }
                                 lb_IdImage.Text = getFilename;
-                                string[] strTrans = getFilename.Split('.');
+                                strTrans = getFilename.Split('.');
                                 uC_DESO1.txt_TruongSo01.Text = strTrans[0];
                                 uc_PictureBox1.imageBox1.Image = null;
                                 if (uc_PictureBox1.LoadImage(Global.Webservice + lb_fBatchName.Text + "/" + getFilename, getFilename, Settings.Default.ZoomImage) == "Error")
@@ -263,11 +276,11 @@ namespace PhieuKiemDinh.MyForm
                         }
                         else
                         {
-                            lb_IdImage.Text = temp;
-                            string[] strTrans = temp.Split('.');
+                            lb_IdImage.Text = getFilename;
+                            strTrans = getFilename.Split('.');
                             uC_DESO1.txt_TruongSo01.Text = strTrans[0];
                             uc_PictureBox1.imageBox1.Image = null;
-                            if (uc_PictureBox1.LoadImage(Global.Webservice + lb_fBatchName.Text + "/" + temp, temp, Settings.Default.ZoomImage) == "Error")
+                            if (uc_PictureBox1.LoadImage(Global.Webservice + lb_fBatchName.Text + "/" + getFilename, getFilename, Settings.Default.ZoomImage) == "Error")
                             {
                                 uc_PictureBox1.imageBox1.Image = Resources.svn_deleted;
                                 return "Error";
@@ -315,8 +328,8 @@ namespace PhieuKiemDinh.MyForm
                 }
                 else if (ChiaUser == 0)  //Batch không chia user
                 {
-                    string temp = (from w in Global.Db.tbl_MissImage_DeSos where w.fBatchName == lb_fBatchName.Text && w.UserName == lb_UserName.Text && w.Submit == 0 select w.IdImage).FirstOrDefault();
-                    if (string.IsNullOrEmpty(temp))
+                   getFilename = (from w in Global.Db.tbl_MissImage_DeSos where w.fBatchName == lb_fBatchName.Text && w.UserName == lb_UserName.Text && w.Submit == 0 select w.IdImage).FirstOrDefault();
+                    if (string.IsNullOrEmpty(getFilename))
                     {
                         try
                         {
@@ -326,7 +339,7 @@ namespace PhieuKiemDinh.MyForm
                                 return "NULL";
                             }
                             lb_IdImage.Text = getFilename;
-                            string[] strTrans = getFilename.Split('.');
+                            strTrans = getFilename.Split('.');
                             uC_DESO1.txt_TruongSo01.Text = strTrans[0];
                             uc_PictureBox1.imageBox1.Image = null;
                             if (uc_PictureBox1.LoadImage(Global.Webservice + lb_fBatchName.Text + "/" + getFilename, getFilename, Settings.Default.ZoomImage) == "Error")
@@ -360,11 +373,11 @@ namespace PhieuKiemDinh.MyForm
                     }
                     else
                     {
-                        lb_IdImage.Text = temp;
-                        string[] strTrans = temp.Split('.');
+                        lb_IdImage.Text = getFilename;
+                        strTrans = getFilename.Split('.');
                         uC_DESO1.txt_TruongSo01.Text = strTrans[0];
                         uc_PictureBox1.imageBox1.Image = null;
-                        if (uc_PictureBox1.LoadImage(Global.Webservice + lb_fBatchName.Text + "/" + temp, temp, Settings.Default.ZoomImage) == "Error")
+                        if (uc_PictureBox1.LoadImage(Global.Webservice + lb_fBatchName.Text + "/" + getFilename, getFilename, Settings.Default.ZoomImage) == "Error")
                         {
                             uc_PictureBox1.imageBox1.Image = Resources.svn_deleted;
                             return "Error";
@@ -414,17 +427,22 @@ namespace PhieuKiemDinh.MyForm
             return "ok";
         }
 
+        private string token = "", version = "", Image_temp="";
+
         private void btn_Submit_Click(object sender, EventArgs e)
         {
+            token = "";
+            version = "";
+            Image_temp = "";
             Global.DbBpo.UpdateTimeLastRequest(Global.Token);
             //Kiểm tra token
-            var token = (from w in Global.DbBpo.tbl_TokenLogins where w.UserName == Global.StrUserName && w.IDProject == Global.StrIdProject select w.Token).FirstOrDefault();
+            token = (from w in Global.DbBpo.tbl_TokenLogins where w.UserName == Global.StrUserName && w.IDProject == Global.StrIdProject select w.Token).FirstOrDefault();
             if (token != Global.Token)
             {
                 MessageBox.Show(@"User logged on to another PC, please login again!");
                 DialogResult = DialogResult.Yes;
             }
-            var version = (from w in Global.DbBpo.tbl_Versions where w.IDProject == Global.StrIdProject select w.IDVersion).FirstOrDefault();
+            version = (from w in Global.DbBpo.tbl_Versions where w.IDProject == Global.StrIdProject select w.IDVersion).FirstOrDefault();
             if (version != Global.Version)
             {
                 MessageBox.Show("Version bạn dùng đã cũ, vui lòng cập nhật phiên bản mới!", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -438,9 +456,9 @@ namespace PhieuKiemDinh.MyForm
                     MessageBox.Show("Vui lòng đăng nhập lại và chọn Batch!");
                     return;
                 }
-                string temp = GetImage();
+                Image_temp = GetImage();
 
-                if (temp == "NULL")
+                if (Image_temp == "NULL")
                 {
                     MessageBox.Show(@"Hoàn thành batch '" + lb_fBatchName.Text + "'");
                     if (LevelUser==0)
@@ -448,10 +466,15 @@ namespace PhieuKiemDinh.MyForm
                         var listResult = Global.Db.GetBatNotFinishDeSo_NotGood(Global.StrUserName).ToList();
                         if (listResult.Count > 0)
                         {
-                            if (MessageBox.Show(@"Batch tiếp theo: " + listResult[0].fbatchname + "\n Bạn muốn làm tiếp ??", "Thông báo!", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                            if (MessageBox.Show(@"Batch tiếp theo: " + listResult[0].fbatchname + "\nBạn muốn làm tiếp ??", "Thông báo!", MessageBoxButtons.YesNo,MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                             {
+                                if (Global.CheckOutSource(Global.StrRole) == true)
+                                {
+                                    MessageBox.Show("Hiện tại dự án chưa có nhu cầu về nguồn nhân lực bên ngoài");
+                                    btn_Logout_ItemClick(null, null);
+                                }
                                 Global.StrBatch = listResult[0].fbatchname;
-                                var ktBatch = (from w in Global.Db.tbl_Batches where w.fBatchName == Global.StrBatch select w.ChiaUser).FirstOrDefault();
+                                var ktBatch = (from w in Global.Db.CheckBatchChiaUser(listResult[0].fbatchname) select w.ChiaUser).FirstOrDefault();
                                 if (ktBatch == true)
                                 {
                                     ChiaUser = 1;
@@ -482,10 +505,15 @@ namespace PhieuKiemDinh.MyForm
                         var listResult = Global.Db.GetBatNotFinishDeSo_Good(Global.StrUserName).ToList();
                         if (listResult.Count > 0)
                         {
-                            if (MessageBox.Show(@"Batch tiếp theo: " + listResult[0].fbatchname + "\n Bạn muốn làm tiếp ??", "Thông báo!", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                            if (MessageBox.Show(@"Batch tiếp theo: " + listResult[0].fbatchname + "\nBạn muốn làm tiếp ??", "Thông báo!", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                             {
+                                if (Global.CheckOutSource(Global.StrRole) == true)
+                                {
+                                    MessageBox.Show("Hiện tại dự án chưa có nhu cầu về nguồn nhân lực bên ngoài");
+                                    btn_Logout_ItemClick(null, null);
+                                }
                                 Global.StrBatch = listResult[0].fbatchname;
-                                var ktBatch = (from w in Global.Db.tbl_Batches where w.fBatchName == Global.StrBatch select w.ChiaUser).FirstOrDefault();
+                                var ktBatch = (from w in Global.Db.CheckBatchChiaUser(listResult[0].fbatchname) select w.ChiaUser).FirstOrDefault();
                                 if (ktBatch == true)
                                 {
                                     ChiaUser = 1;
@@ -511,7 +539,7 @@ namespace PhieuKiemDinh.MyForm
                         }
                     }
                 }
-                else if (temp == "Error")
+                else if (Image_temp == "Error")
                 {
                     MessageBox.Show("Không thể load hình!");
                     btn_Logout_ItemClick(null, null);
@@ -548,8 +576,8 @@ namespace PhieuKiemDinh.MyForm
                     uC_DESO1.ResetData();
                     setValue();
                 }
-                string temp = GetImage();
-                if (temp == "NULL")
+                Image_temp = GetImage();
+                if (Image_temp == "NULL")
                 {
                     MessageBox.Show(@"Hoàn thành batch '" + lb_fBatchName.Text + "'");
                     if (LevelUser == 0)
@@ -557,10 +585,15 @@ namespace PhieuKiemDinh.MyForm
                         var listResult = Global.Db.GetBatNotFinishDeSo_NotGood(Global.StrUserName).ToList();
                         if (listResult.Count > 0)
                         {
-                            if (MessageBox.Show(@"Batch tiếp theo: " + listResult[0].fbatchname + "\n Bạn muốn làm tiếp ??", "Thông báo!", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                            if (MessageBox.Show(@"Batch tiếp theo: " + listResult[0].fbatchname + "\nBạn muốn làm tiếp ??", "Thông báo!", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                             {
+                                if (Global.CheckOutSource(Global.StrRole) == true)
+                                {
+                                    MessageBox.Show("Hiện tại dự án chưa có nhu cầu về nguồn nhân lực bên ngoài");
+                                    btn_Logout_ItemClick(null, null);
+                                }
                                 Global.StrBatch = listResult[0].fbatchname;
-                                var ktBatch = (from w in Global.Db.tbl_Batches where w.fBatchName == Global.StrBatch select w.ChiaUser).FirstOrDefault();
+                                var ktBatch = (from w in Global.Db.CheckBatchChiaUser(listResult[0].fbatchname) select w.ChiaUser).FirstOrDefault();
                                 if (ktBatch == true)
                                 {
                                     ChiaUser = 1;
@@ -591,10 +624,15 @@ namespace PhieuKiemDinh.MyForm
                         var listResult = Global.Db.GetBatNotFinishDeSo_Good(Global.StrUserName).ToList();
                         if (listResult.Count > 0)
                         {
-                            if (MessageBox.Show(@"Batch tiếp theo: " + listResult[0].fbatchname + "\n Bạn muốn làm tiếp ??", "Thông báo!", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                            if (MessageBox.Show(@"Batch tiếp theo: " + listResult[0].fbatchname + "\nBạn muốn làm tiếp ??", "Thông báo!", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                             {
+                                if (Global.CheckOutSource(Global.StrRole) == true)
+                                {
+                                    MessageBox.Show("Hiện tại dự án chưa có nhu cầu về nguồn nhân lực bên ngoài");
+                                    btn_Logout_ItemClick(null, null);
+                                }
                                 Global.StrBatch = listResult[0].fbatchname;
-                                var ktBatch = (from w in Global.Db.tbl_Batches where w.fBatchName == Global.StrBatch select w.ChiaUser).FirstOrDefault();
+                                var ktBatch = (from w in Global.Db.CheckBatchChiaUser(listResult[0].fbatchname) select w.ChiaUser).FirstOrDefault();
                                 if (ktBatch == true)
                                 {
                                     ChiaUser = 1;
@@ -620,7 +658,7 @@ namespace PhieuKiemDinh.MyForm
                         }
                     }
                 }
-                else if (temp == "Error")
+                else if (Image_temp == "Error")
                 {
                     MessageBox.Show("Không thể load hình!");
                     btn_Logout_ItemClick(null, null);
@@ -756,7 +794,7 @@ namespace PhieuKiemDinh.MyForm
         private void btn_Check_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             Global.FlagChangeSave = false;
-            Global.StrCheck = "DESO";
+            Global.StrCheck = "CHECKDESO";
             new frm_Checker().ShowDialog();
         }
 
@@ -764,7 +802,32 @@ namespace PhieuKiemDinh.MyForm
         {
             new Refresh_ImageNotInput().ShowDialog();
         }
+<<<<<<< HEAD
 
       
+=======
+        bool FlagLoad = false;
+        private void ckOutSource_EditValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (FlagLoad == true)
+                    return;
+                int a = Global.DbBpo.UpdateOutSourceProject(Global.StrIdProject, Convert.ToBoolean(ckOutSource.EditValue+""));
+                if (a == 0)
+                {
+                    MessageBox.Show("Thay đổi thành công");
+                }
+                else if (a == -1)
+                {
+                    MessageBox.Show("Thay đổi không thành công");
+                }
+            }
+            catch (Exception i)
+            {
+                MessageBox.Show("Xẩy ra lỗi: " + i.Message); ;
+            }
+        }
+>>>>>>> ce177f5033b9b93fde3e28f6ec445fb1d06fc34d
     }
 }

@@ -28,7 +28,7 @@ namespace PhieuKiemDinh.MyForm
                 DialogResult thongbao = MessageBox.Show(@"Bạn chắc chắn muốn sửa UserName '" + txt_username.Text + "'", @"Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (thongbao == DialogResult.Yes)
                 {
-                    Global.DbBpo.UpdateUsername(txt_username.Text, txt_password.Text, roleid, nhanvien, "");
+                    Global.DbBpo.UpdateUsername_NEW(txt_username.Text, txt_password.Text,chk_LevelUser_Inexperience.Checked==true?true:false, roleid, nhanvien, "", Global.StrUserName, Global.GetServerIpAddress().ToString(), Environment.MachineName, Environment.UserDomainName + @"\" + Environment.UserName);
                     frm_User_Load(sender, e);
                 }
             }
@@ -49,7 +49,7 @@ namespace PhieuKiemDinh.MyForm
 
             if (!string.IsNullOrEmpty(roleid)&&!string.IsNullOrEmpty(nhanvien)&& !string.IsNullOrEmpty(txt_username.Text)&&!string.IsNullOrEmpty(txt_password.Text))
             {
-                r = Global.DbBpo.InsertUsername(txt_username.Text, txt_password.Text, roleid,nhanvien, "");
+                r = Global.DbBpo.InsertUsername_New(txt_username.Text, txt_password.Text, chk_LevelUser_Inexperience.Checked == true ? true : false, roleid,nhanvien, "", Global.StrUserName, Global.GetServerIpAddress().ToString(), Environment.MachineName, Environment.UserDomainName + @"\" + Environment.UserName);
                 if (r == 0)
                 {
                     MessageBox.Show("UserName đã tồn tại, Vui lòng nhập UserName khác !");
@@ -106,10 +106,28 @@ namespace PhieuKiemDinh.MyForm
                 cbb_idrole.SelectedValue = gridView1.GetRowCellValue(gridView1.FocusedRowHandle, "IDRole") != null ? gridView1.GetRowCellValue(gridView1.FocusedRowHandle, "IDRole").ToString() : "";
                 txt_FullName.Text = gridView1.GetRowCellValue(gridView1.FocusedRowHandle, "FullName") != null ? gridView1.GetRowCellValue(gridView1.FocusedRowHandle, "FullName").ToString() : "";
                 txt_password.Text = "";
+                chk_LevelUser_Inexperience.Checked=Convert.ToBoolean( gridView1.GetRowCellValue(gridView1.FocusedRowHandle, "NotGoodUser") != null ? gridView1.GetRowCellValue(gridView1.FocusedRowHandle, "NotGoodUser").ToString() : "");
             }
             catch (Exception)
             {
                 // ignored
+            }
+        }
+
+        private void gridView1_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        {
+            string username = gridView1.GetFocusedRowCellValue("Username").ToString();
+            if (e.Column.FieldName == "NotGoodUser")
+            {
+                bool check = (bool)e.Value;
+                if (check)
+                {
+                    Global.DbBpo.updateNotGoodUser_New(username, true, Global.StrUserName, Global.GetServerIpAddress().ToString(), Environment.MachineName, Environment.UserDomainName + @"\" + Environment.UserName);
+                }
+                else
+                {
+                    Global.DbBpo.updateNotGoodUser_New(username, false, Global.StrUserName, Global.GetServerIpAddress().ToString(), Environment.MachineName, Environment.UserDomainName + @"\" + Environment.UserName);
+                }
             }
         }
     }

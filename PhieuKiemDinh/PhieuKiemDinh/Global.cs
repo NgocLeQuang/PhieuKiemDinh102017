@@ -47,5 +47,12 @@ namespace PhieuKiemDinh
                 return null;
             }
         }
+        public static bool CheckOutSource(string Role)
+        {
+            bool? OutSource = (from w in DbBpo.tbl_Versions where w.IDProject == StrIdProject select w.OutSource).FirstOrDefault();
+            if (OutSource == false && Properties.Settings.Default.Server == "Khác" && Role== "DESO")
+                return true;
+            return false;
+        }
     }
 }

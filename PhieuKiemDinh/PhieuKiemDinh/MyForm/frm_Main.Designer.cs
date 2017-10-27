@@ -91,6 +91,8 @@
             this.uc_PictureBox1 = new PhieuKiemDinh.MyUserControl.uc_PictureBox();
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.splitMain = new DevExpress.XtraEditors.SplitContainerControl();
+            this.ckOutSource = new DevExpress.XtraBars.BarEditItem();
+            this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.tp_DeSo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
@@ -108,6 +110,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitMain)).BeginInit();
             this.splitMain.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).BeginInit();
             this.SuspendLayout();
             // 
             // tp_DeSo
@@ -349,15 +352,17 @@
             this.skinBarSubItem1,
             this.skinBarSubItem2,
             this.btn_Check,
-            this.btn_RefreshImageNotInput});
+            this.btn_RefreshImageNotInput,
+            this.ckOutSource});
             this.barManager1.MainMenu = this.bar2;
-            this.barManager1.MaxItemId = 33;
+            this.barManager1.MaxItemId = 34;
             this.barManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemTextEdit1,
             this.repositoryItemSpinEdit1,
             this.repositoryItemTrackBar1,
             this.repositoryItemSpinEdit2,
-            this.repositoryItemTextEdit2});
+            this.repositoryItemTextEdit2,
+            this.repositoryItemCheckEdit1});
             // 
             // bar2
             // 
@@ -411,7 +416,8 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.btn_ExportExcel),
             new DevExpress.XtraBars.LinkPersistInfo(this.btn_TienDo),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem3),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btn_RefreshImageNotInput)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.btn_RefreshImageNotInput),
+            new DevExpress.XtraBars.LinkPersistInfo(this.ckOutSource)});
             this.menu_QuanLy.Name = "menu_QuanLy";
             // 
             // btn_QuanLyBatch
@@ -660,6 +666,19 @@
             this.splitMain.Text = "splitContainerControl1";
             this.splitMain.SplitterPositionChanged += new System.EventHandler(this.splitMain_SplitterPositionChanged);
             // 
+            // ckOutSource
+            // 
+            this.ckOutSource.Caption = "Out Source";
+            this.ckOutSource.Edit = this.repositoryItemCheckEdit1;
+            this.ckOutSource.Id = 33;
+            this.ckOutSource.Name = "ckOutSource";
+            this.ckOutSource.EditValueChanged += new System.EventHandler(this.ckOutSource_EditValueChanged);
+            // 
+            // repositoryItemCheckEdit1
+            // 
+            this.repositoryItemCheckEdit1.AutoHeight = false;
+            this.repositoryItemCheckEdit1.Name = "repositoryItemCheckEdit1";
+            // 
             // frm_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -697,6 +716,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitMain)).EndInit();
             this.splitMain.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -765,5 +785,7 @@
         private DevExpress.XtraEditors.SimpleButton btn_Pause;
         private DevExpress.XtraBars.BarButtonItem btn_Check;
         private DevExpress.XtraBars.BarButtonItem btn_RefreshImageNotInput;
+        private DevExpress.XtraBars.BarEditItem ckOutSource;
+        private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit1;
     }
 }

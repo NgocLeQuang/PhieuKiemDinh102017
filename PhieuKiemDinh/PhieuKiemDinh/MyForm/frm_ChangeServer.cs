@@ -63,6 +63,11 @@ namespace PhieuKiemDinh.MyForm
                     Global.Db.CommandTimeout = 5 * 60; // 5 Mins
                     Global.DbBpo = new KiemDinh_EntryBPODataContext(@"Data Source=117.2.142.10,3607;Initial Catalog=DatabaseDataEntryBPO;Persist Security Info=True;Network Library=DBMSSOCN;User ID=bpoentry;Password=123@123a");
                 }
+                //if (Global.CheckOutSource() == true)
+                //{
+                //    MessageBox.Show("Hiện tại dự án chưa có nhu cầu về nguồn nhân lực bên ngoài");
+                //    return;
+                //}
             }
             catch (Exception i) { MessageBox.Show(i.Message + ""); }
             this.DialogResult = DialogResult.OK;

@@ -84,6 +84,11 @@ namespace PhieuKiemDinh.MyForm
             {
                 if (GetInfo())
                 {
+                    if(Global.CheckOutSource(txt_role.Text)==true)
+                    {
+                        MessageBox.Show("Hiện tại dự án chưa có nhu cầu về nguồn nhân lực bên ngoài");
+                        return;
+                    }
                     if (string.IsNullOrEmpty(cbb_batchname.Text))
                     {
                         if (MessageBox.Show("Không có batch nào được chọn. Bạn vẫn muốn đăng nhập?", "Thông báo!", MessageBoxButtons.YesNo) == DialogResult.No)

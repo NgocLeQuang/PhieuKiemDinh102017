@@ -25,8 +25,7 @@ namespace PhieuKiemDinh.MyForm
 
         private void refresh()
         {
-            var temp = from var in Global.Db.tbl_Batches orderby var.NgayTaoBatch select var;
-            gridControl1.DataSource = temp;
+            gridControl1.DataSource = (from var in Global.Db.GetBatch_Full() select var).ToList();
         }
         
         private void btn_Xoa_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
@@ -75,6 +74,10 @@ namespace PhieuKiemDinh.MyForm
                     Global.Db.SubmitChanges();
                     Global.Db.UpdateCongKhaiBatch(batchname, 0);
                 }
+                refresh();
+                int rowHandle = gridView1.LocateByValue("fBatchName", batchname);
+                if (rowHandle != DevExpress.XtraGrid.GridControl.InvalidRowHandle)
+                    gridView1.FocusedRowHandle = rowHandle;
             }
             else if (e.Column.FieldName == "ChiaUser")
             {
@@ -100,14 +103,12 @@ namespace PhieuKiemDinh.MyForm
                         Global.Db.SubmitChanges();
                         Global.Db.UpdateBatchKhongChiaUser(batchname);
                     }
-
                 }
+                refresh();
+                int rowHandle = gridView1.LocateByValue("fBatchName", batchname);
+                if (rowHandle != DevExpress.XtraGrid.GridControl.InvalidRowHandle)
+                    gridView1.FocusedRowHandle = rowHandle;
             }
-
-            refresh();
-            int rowHandle = gridView1.LocateByValue("fBatchName", batchname);
-            if (rowHandle != DevExpress.XtraGrid.GridControl.InvalidRowHandle)
-                gridView1.FocusedRowHandle = rowHandle;
         }
 
         private void btn_xoabatch_Click(object sender, EventArgs e)

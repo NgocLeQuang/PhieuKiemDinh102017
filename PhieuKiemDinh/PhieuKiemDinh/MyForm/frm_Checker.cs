@@ -23,7 +23,7 @@ namespace PhieuKiemDinh.MyForm
         private bool fLagRefresh = false;
         private void btn_Start_Click(object sender, EventArgs e)
         {
-            if (Global.StrCheck=="DESO")
+            if (Global.StrCheck== "CHECKDESO")
             {
                 var version = (from w in Global.DbBpo.tbl_Versions where w.IDProject == Global.StrIdProject select w.IDVersion).FirstOrDefault();
                 if (version != Global.Version)
@@ -129,7 +129,7 @@ namespace PhieuKiemDinh.MyForm
 
         private void ResetData()
         {
-            if (Global.StrCheck=="DESO")
+            if (Global.StrCheck== "CHECKDESO")
             {
                 lb_Image.Text = "";
                 uC_DESO1.ResetData();
@@ -147,19 +147,14 @@ namespace PhieuKiemDinh.MyForm
 
         public void LoadBatchMoi()
         {
-            if (MessageBox.Show(@"You want to do the next batch?", @"Notification", MessageBoxButtons.YesNo) == DialogResult.No)
+            if (MessageBox.Show(@"You want to do the next batch?", @"Notification", MessageBoxButtons.YesNo,MessageBoxIcon.Question,MessageBoxDefaultButton.Button2) == DialogResult.No)
             {
                 Close();
             }
             else
             {
-                btn_Luu_DeSo1.Visible = false;
-                btn_Luu_DeSo2.Visible = false;
-                btn_SuaVaLuu_DeSo1.Visible = false;
-                btn_SuaVaLuu_DeSo2.Visible = false;
-
+                VisibleButtonSave();
                 ResetData();
-
                 cbb_Batch_Check.DataSource = (from w in Global.Db.GetBatNotFinishCheckerDeSo(Global.StrUserName) select w.fbatchname).ToList();
                 cbb_Batch_Check.DisplayMember = "fbatchname";
                 var soloi = (from w in Global.Db.GetSoLoi_CheckDeSo(cbb_Batch_Check.Text) select w.Column1).FirstOrDefault();
@@ -168,38 +163,73 @@ namespace PhieuKiemDinh.MyForm
             }
         }
 
+        private void VisibleButtonSave()
+        {
+            btn_Luu_DeSo1.Visible = false;
+            btn_Luu_DeSo2.Visible = false;
+            btn_SuaVaLuu_DeSo1.Visible = false;
+            btn_SuaVaLuu_DeSo2.Visible = false;
+        }
 
         private void LockControl(bool kt)
         {
             if (kt)
             {
-                btn_Luu_DeSo1.Enabled = false;
-                btn_Luu_DeSo2.Enabled = false;
+                btn_Luu_DeSo1.Visible = false;
+                btn_Luu_DeSo2.Visible = false;
             }
             else
             {
-                btn_Luu_DeSo1.Visible = true;
-                btn_Luu_DeSo2.Visible = true;
-                btn_Luu_DeSo1.Enabled = true;
-                btn_Luu_DeSo2.Enabled = true;
+                if(fLagRefresh==true)
+                {
+                    var temp = (from w in Global.Db.tbl_DeSos
+                                where w.fBatchName == fbatchRefresh && w.IdImage == lb_Image.Text
+                                select new
+                                {
+                                    w.UserName,
+                                    w.Error,
+                                    w.True
+                                }).ToList();
+                    if(temp[0].Error == 1 && temp[0].True == 1)
+                    {
+                        btn_SuaVaLuu_DeSo1.Visible = true;
+                        btn_Luu_DeSo2.Visible = true;
+                    }
+                    else if (temp[1].Error == 1 && temp[1].True == 1)
+                    {
+                        btn_SuaVaLuu_DeSo2.Visible = true;
+                        btn_Luu_DeSo1.Visible = true;
+                    }
+                    else
+                    {
+                        btn_Luu_DeSo1.Visible = true;
+                        btn_Luu_DeSo2.Visible = true;
+                    }
+                }
+                else
+                {
+                    btn_Luu_DeSo1.Visible = true;
+                    btn_Luu_DeSo2.Visible = true;
+                }
             }
         }
-
+        private string imageTemp_check = "";
         private string GetImage_DeSo()
         {
             LockControl(true);
             lb_Image.Text = "";
-            var temp = (from w in Global.Db.tbl_Images where w.fBatchName == Global.StrBatch && w.UserNameCheckDeSo == Global.StrUserName && w.ReadImageCheckDeSo == 1 && w.SubmitCheckDeSo == 0 select w.IdImage).FirstOrDefault();
-            if (string.IsNullOrEmpty(temp))
+            imageTemp_check = "";
+            imageTemp_check = (from w in Global.Db.tbl_Images where w.fBatchName == Global.StrBatch && w.UserNameCheckDeSo == Global.StrUserName && w.ReadImageCheckDeSo == 1 && w.SubmitCheckDeSo == 0 select w.IdImage).FirstOrDefault();
+            if (string.IsNullOrEmpty(imageTemp_check))
             {
-                var getFilename = (from w in Global.Db.ImageCheck_DeSo(Global.StrBatch, Global.StrUserName) select w.Column1).FirstOrDefault();
-                if (string.IsNullOrEmpty(getFilename))
+                imageTemp_check = (from w in Global.Db.ImageCheck_DeSo(Global.StrBatch, Global.StrUserName) select w.Column1).FirstOrDefault();
+                if (string.IsNullOrEmpty(imageTemp_check))
                 {
                     return "NULL";
                 }
-                lb_Image.Text = getFilename;
+                lb_Image.Text = imageTemp_check;
                 uc_PictureBox1.imageBox1.Image = null;
-                if (uc_PictureBox1.LoadImage(Global.Webservice + cbb_Batch_Check.Text + "/" + getFilename, getFilename, Settings.Default.ZoomImage)=="Error")
+                if (uc_PictureBox1.LoadImage(Global.Webservice + cbb_Batch_Check.Text + "/" + imageTemp_check, imageTemp_check, Settings.Default.ZoomImage)=="Error")
                 {
                     uc_PictureBox1.imageBox1.Image = Resources.svn_deleted;
                     return "Error";
@@ -207,9 +237,9 @@ namespace PhieuKiemDinh.MyForm
             }
             else
             {
-                lb_Image.Text = temp;
+                lb_Image.Text = imageTemp_check;
                 uc_PictureBox1.imageBox1.Image = null;
-                if (uc_PictureBox1.LoadImage(Global.Webservice + cbb_Batch_Check.Text + "/" + temp, temp, Settings.Default.ZoomImage)=="Error")
+                if (uc_PictureBox1.LoadImage(Global.Webservice + cbb_Batch_Check.Text + "/" + imageTemp_check, imageTemp_check, Settings.Default.ZoomImage)=="Error")
                 {
                     uc_PictureBox1.imageBox1.Image = Resources.svn_deleted;
                     return "Error";
@@ -240,8 +270,7 @@ namespace PhieuKiemDinh.MyForm
         //        {
         //            uc_PictureBox1.imageBox1.Image = Resources.svn_deleted;
         //            return "Error";
-        //        }
-                
+        //        } 
         //    }
         //    else
         //    {
@@ -253,7 +282,6 @@ namespace PhieuKiemDinh.MyForm
         //            uc_PictureBox1.imageBox1.Image = Resources.svn_deleted;
         //            return "Error";
         //        }
-                
         //    }
         //    return "ok";
         //}
@@ -338,8 +366,8 @@ namespace PhieuKiemDinh.MyForm
             Compare_TextBox(uC_DESO1.txt_TruongSo13, uC_DESO2.txt_TruongSo13);
             Compare_TextBox(uC_DESO1.txt_TruongSo14, uC_DESO2.txt_TruongSo14);
            // Compare_TextBox(uC_DESO1.txt_FlagError, uC_DESO2.txt_FlagError);
-            var soloi = ((from w in Global.Db.tbl_DeSos where w.fBatchName == Global.StrBatch && w.Dem == 1 select w.IdImage).Count() / 2).ToString();
-            lb_Loi.Text = soloi + " Lỗi";
+            
+            lb_Loi.Text = ((from w in Global.Db.tbl_DeSos where w.fBatchName == Global.StrBatch && w.Dem == 1 select w.IdImage).Count() / 2).ToString() + " Lỗi";
             timer1.Enabled = true;
         }
 
@@ -375,14 +403,11 @@ namespace PhieuKiemDinh.MyForm
             //xtraTabControl1.TabPages.Remove(tp_DeJP1);
             //xtraTabControl2.TabPages.Remove(tp_DeJP2);
 
-            if (Global.StrCheck=="DESO")
+            if (Global.StrCheck== "CHECKDESO")
             {
                 xtraTabControl1.TabPages.Add(tp_DeSo1);
                 xtraTabControl2.TabPages.Add(tp_DeSo2);
-                btn_Luu_DeSo1.Visible = false;
-                btn_SuaVaLuu_DeSo1.Visible = false;
-                btn_Luu_DeSo2.Visible = false;
-                btn_SuaVaLuu_DeSo2.Visible = false;
+                VisibleButtonSave();
                 uC_DESO1.Changed += UC_DESO1_Changed;
                 uC_DESO2.Changed += Uc_DeSo2_Changed;
                 var soloi = ((from w in Global.Db.tbl_DeSos where w.fBatchName == Global.StrBatch && w.Dem == 1 select w.IdImage).Count()/2).ToString();
@@ -404,7 +429,6 @@ namespace PhieuKiemDinh.MyForm
             //          select w.IdImage).Count() / 2).ToString();
             //    lb_Loi.Text = soloi + " Lỗi";
             //}
-            
         }
 
         //private void Uc_DeJP2_Changed(object sender, EventArgs e)
@@ -423,9 +447,7 @@ namespace PhieuKiemDinh.MyForm
         {
             if (string.IsNullOrEmpty(lb_Image.Text))
                 return;
-            btn_Luu_DeSo1.Visible = false;
-            btn_SuaVaLuu_DeSo1.Visible = false;
-            btn_Luu_DeSo2.Visible = false;
+            VisibleButtonSave();
             btn_SuaVaLuu_DeSo2.Visible = true;
         }
 
@@ -433,9 +455,7 @@ namespace PhieuKiemDinh.MyForm
         {
             if (string.IsNullOrEmpty(lb_Image.Text))
                 return;
-            btn_Luu_DeSo1.Visible = false;
-            btn_Luu_DeSo2.Visible = false;
-            btn_SuaVaLuu_DeSo2.Visible = false;
+            VisibleButtonSave();
             btn_SuaVaLuu_DeSo1.Visible = true;
         }
 
@@ -467,15 +487,11 @@ namespace PhieuKiemDinh.MyForm
             if (temp=="Error")
             {
                 MessageBox.Show("Lỗi load hình");
-                btn_Luu_DeSo1.Visible = false;
-                btn_Luu_DeSo2.Visible = false;
-                btn_SuaVaLuu_DeSo1.Visible = false;
-                btn_SuaVaLuu_DeSo2.Visible = false;
+                VisibleButtonSave();
                 return;
             }
             Load_DeSo(Global.StrBatch, lb_Image.Text);
-            btn_SuaVaLuu_DeSo1.Visible = false;
-            btn_SuaVaLuu_DeSo2.Visible = false;
+            VisibleButtonSave();
         }
 
         private void btn_Luu_DeSo2_Click(object sender, EventArgs e)
@@ -506,15 +522,11 @@ namespace PhieuKiemDinh.MyForm
             if (temp == "Error")
             {
                 MessageBox.Show("Lỗi load hình");
-                btn_Luu_DeSo1.Visible = false;
-                btn_Luu_DeSo2.Visible = false;
-                btn_SuaVaLuu_DeSo1.Visible = false;
-                btn_SuaVaLuu_DeSo2.Visible = false;
+                VisibleButtonSave();
                 return;
             }
             Load_DeSo(Global.StrBatch, lb_Image.Text);
-            btn_SuaVaLuu_DeSo1.Visible = false;
-            btn_SuaVaLuu_DeSo2.Visible = false;
+            VisibleButtonSave();
         }
 
         private void btn_SuaVaLuu_DeSo1_Click(object sender, EventArgs e)
@@ -575,17 +587,11 @@ namespace PhieuKiemDinh.MyForm
             if (temp == "Error")
             {
                 MessageBox.Show("Lỗi load hình");
-                btn_Luu_DeSo1.Visible = false;
-                btn_Luu_DeSo2.Visible = false;
-                btn_SuaVaLuu_DeSo1.Visible = false;
-                btn_SuaVaLuu_DeSo2.Visible = false;
+                VisibleButtonSave();
                 return;
             }
             Load_DeSo(Global.StrBatch, lb_Image.Text);
-            btn_Luu_DeSo1.Visible = true;
-            btn_Luu_DeSo2.Visible = true;
-            btn_SuaVaLuu_DeSo1.Visible = false;
-            btn_SuaVaLuu_DeSo2.Visible = false;
+            VisibleButtonSave();
         }
 
         private void btn_SuaVaLuu_DeSo2_Click(object sender, EventArgs e)
@@ -646,17 +652,11 @@ namespace PhieuKiemDinh.MyForm
             if (temp == "Error")
             {
                 MessageBox.Show("Lỗi load hình");
-                btn_Luu_DeSo1.Visible = false;
-                btn_Luu_DeSo2.Visible = false;
-                btn_SuaVaLuu_DeSo1.Visible = false;
-                btn_SuaVaLuu_DeSo2.Visible = false;
+                VisibleButtonSave();
                 return;
             }
             Load_DeSo(Global.StrBatch, lb_Image.Text);
-            btn_Luu_DeSo1.Visible = true;
-            btn_Luu_DeSo2.Visible = true;
-            btn_SuaVaLuu_DeSo1.Visible = false;
-            btn_SuaVaLuu_DeSo2.Visible = false;
+            VisibleButtonSave();
         }
         
         private void Compare_TextBox(TextEdit t1, TextEdit t2)
@@ -746,10 +746,7 @@ namespace PhieuKiemDinh.MyForm
 
         private void cbb_Batch_Check_SelectedIndexChanged(object sender, EventArgs e)
         {
-            btn_Luu_DeSo1.Visible = false;
-            btn_Luu_DeSo2.Visible = false;
-            btn_SuaVaLuu_DeSo1.Visible = false;
-            btn_SuaVaLuu_DeSo2.Visible = false;
+            VisibleButtonSave();
             lb_Image.Text = "";
             Global.StrBatch = cbb_Batch_Check.Text;
             var soloi = (from w in Global.Db.GetSoLoi_CheckDeSo(cbb_Batch_Check.Text) select w.Column1).FirstOrDefault();
@@ -771,6 +768,8 @@ namespace PhieuKiemDinh.MyForm
 
         private void btn_CheckLai_Click(object sender, EventArgs e)
         {
+            lb_Image.Text = "";
+            fbatchRefresh = "";
             var version = (from w in Global.DbBpo.tbl_Versions where w.IDProject == Global.StrIdProject select w.IDVersion).FirstOrDefault();
             if (version != Global.Version)
             {
@@ -784,10 +783,7 @@ namespace PhieuKiemDinh.MyForm
             fbatchRefresh = temp.fBatchName;
             uc_PictureBox1.LoadImage(Global.Webservice + fbatchRefresh + "/" + lb_Image.Text, lb_Image.Text, Settings.Default.ZoomImage);
             Load_DeSo(fbatchRefresh, lb_Image.Text);
-            btn_Luu_DeSo1.Visible = false;
-            btn_Luu_DeSo2.Visible = false;
-            btn_SuaVaLuu_DeSo1.Visible = false;
-            btn_SuaVaLuu_DeSo2.Visible = false;
+            VisibleButtonSave();
             fLagRefresh = true;
             btn_Start.Visible = false;
         }
