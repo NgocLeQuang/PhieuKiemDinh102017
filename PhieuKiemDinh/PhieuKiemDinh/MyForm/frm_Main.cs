@@ -802,10 +802,6 @@ namespace PhieuKiemDinh.MyForm
         {
             new Refresh_ImageNotInput().ShowDialog();
         }
-<<<<<<< HEAD
-
-      
-=======
         bool FlagLoad = false;
         private void ckOutSource_EditValueChanged(object sender, EventArgs e)
         {
@@ -828,6 +824,5 @@ namespace PhieuKiemDinh.MyForm
                 MessageBox.Show("Xẩy ra lỗi: " + i.Message); ;
             }
         }
->>>>>>> ce177f5033b9b93fde3e28f6ec445fb1d06fc34d
     }
 }
