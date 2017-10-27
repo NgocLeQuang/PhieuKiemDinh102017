@@ -42,7 +42,7 @@
             this.uC_DESO_FeedBack3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.uC_DESO_FeedBack3.Location = new System.Drawing.Point(1240, 4);
             this.uC_DESO_FeedBack3.Name = "uC_DESO_FeedBack3";
-            this.uC_DESO_FeedBack3.Size = new System.Drawing.Size(174, 431);
+            this.uC_DESO_FeedBack3.Size = new System.Drawing.Size(174, 399);
             this.uC_DESO_FeedBack3.TabIndex = 7;
             // 
             // uC_DESO_FeedBack2
@@ -52,7 +52,7 @@
             this.uC_DESO_FeedBack2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.uC_DESO_FeedBack2.Location = new System.Drawing.Point(1061, 4);
             this.uC_DESO_FeedBack2.Name = "uC_DESO_FeedBack2";
-            this.uC_DESO_FeedBack2.Size = new System.Drawing.Size(174, 431);
+            this.uC_DESO_FeedBack2.Size = new System.Drawing.Size(174, 399);
             this.uC_DESO_FeedBack2.TabIndex = 6;
             // 
             // uC_DESO_FeedBack1
@@ -62,7 +62,7 @@
             this.uC_DESO_FeedBack1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.uC_DESO_FeedBack1.Location = new System.Drawing.Point(882, 4);
             this.uC_DESO_FeedBack1.Name = "uC_DESO_FeedBack1";
-            this.uC_DESO_FeedBack1.Size = new System.Drawing.Size(174, 431);
+            this.uC_DESO_FeedBack1.Size = new System.Drawing.Size(174, 399);
             this.uC_DESO_FeedBack1.TabIndex = 5;
             // 
             // uc_PictureBox1
@@ -73,7 +73,7 @@
             this.uc_PictureBox1.AutoSize = true;
             this.uc_PictureBox1.Location = new System.Drawing.Point(37, 4);
             this.uc_PictureBox1.Name = "uc_PictureBox1";
-            this.uc_PictureBox1.Size = new System.Drawing.Size(839, 431);
+            this.uc_PictureBox1.Size = new System.Drawing.Size(839, 399);
             this.uc_PictureBox1.TabIndex = 0;
             // 
             // textbox1
@@ -98,7 +98,7 @@
             this.Controls.Add(this.uC_DESO_FeedBack1);
             this.Controls.Add(this.uc_PictureBox1);
             this.Name = "UC_FeedBack";
-            this.Size = new System.Drawing.Size(1418, 438);
+            this.Size = new System.Drawing.Size(1418, 406);
             this.ResumeLayout(false);
             this.PerformLayout();
 

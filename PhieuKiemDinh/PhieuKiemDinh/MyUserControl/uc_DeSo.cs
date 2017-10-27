@@ -293,44 +293,38 @@ namespace PhieuKiemDinh.MyUserControl
 
         private void txt_TruongSo10_EditValueChanged(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(txt_TruongSo10.Text))
-              {
-                  if (txt_TruongSo10.Text != "?")
-                  {
-                    // trường hợp ngoài/*int.Parse(txt_TruongSo10.Text) > 311231 || int.Parse(txt_TruongSo10.Text) < 291001||
-                    if ( txt_TruongSo10.Text.Length!=6)
-                    {
-                        txt_TruongSo10.BackColor = Color.Red;
-                        txt_TruongSo10.ForeColor = Color.White;
-                    }
-                    else
-                    {
-                        txt_TruongSo10.BackColor = Color.White;
-                        txt_TruongSo10.ForeColor = Color.Black;
-                    }
-                    /*   else
-                       {
-                           try
-                           {
-                               if (int.Parse(txt_TruongSo10.Text.Substring(2,2)+"")>12|| int.Parse(txt_TruongSo10.Text.Substring(4, 2) + "") > 31)
-                               {
-                                   txt_TruongSo10.BackColor = Color.Red;
-                                   txt_TruongSo10.ForeColor = Color.White;
-                               }
-                               else
-                               {
-                                   txt_TruongSo10.BackColor = Color.White;
-                                   txt_TruongSo10.ForeColor = Color.Black;
-                               }
-                           }
-                           catch { }
-                       }*/
+            if (!string.IsNullOrEmpty(txt_TruongSo10.Text) && txt_TruongSo10.Text != "?")
+            {
+
+                // trường hợp ngoài/*int.Parse(txt_TruongSo10.Text) > 311231 || int.Parse(txt_TruongSo10.Text) < 291001||
+                if (txt_TruongSo10.Text.Length != 6)
+                {
+                    txt_TruongSo10.BackColor = Color.Red;
+                    txt_TruongSo10.ForeColor = Color.White;
                 }
                 else
                 {
                     txt_TruongSo10.BackColor = Color.White;
                     txt_TruongSo10.ForeColor = Color.Black;
                 }
+                /*   else
+                    {
+                        try
+                        {
+                            if (int.Parse(txt_TruongSo10.Text.Substring(2,2)+"")>12|| int.Parse(txt_TruongSo10.Text.Substring(4, 2) + "") > 31)
+                            {
+                                txt_TruongSo10.BackColor = Color.Red;
+                                txt_TruongSo10.ForeColor = Color.White;
+                            }
+                            else
+                            {
+                                txt_TruongSo10.BackColor = Color.White;
+                                txt_TruongSo10.ForeColor = Color.Black;
+                            }
+                        }
+                        catch { }
+                    }*/
+
             }
             else
             {
@@ -343,54 +337,53 @@ namespace PhieuKiemDinh.MyUserControl
 
         private void txt_TruongSo10_Leave(object sender, EventArgs e)
         {
-             // if (txt_TruongSo10.Text.Length < 6 & !string.IsNullOrEmpty(txt_TruongSo10.Text))
-               //   txt_TruongSo10.Text = "?";
-
-              //Gọi change
-              if (!string.IsNullOrEmpty(txt_TruongSo10.Text))
-              {
-                  if (txt_TruongSo10.Text != "?")
-                  {
-                      // trường hợp ngoài
-                      if (/*int.Parse(txt_TruongSo10.Text) > 311231 || int.Parse(txt_TruongSo10.Text) < 291001 ||*/ txt_TruongSo10.Text.Length != 6)
-                      {
-                          txt_TruongSo10.BackColor = Color.Red;
-                          txt_TruongSo10.ForeColor = Color.White;
-                    }
-                    else
-                    {
-                        txt_TruongSo10.BackColor = Color.White;
-                        txt_TruongSo10.ForeColor = Color.Black;
-                    }
-                    /*  else
-                      {
-                          try
-                          {
-                              if (int.Parse(txt_TruongSo10.Text.Substring(2, 2) + "") > 12 || int.Parse(txt_TruongSo10.Text.Substring(4, 2) + "") > 31)
-                              {
-                                  txt_TruongSo10.BackColor = Color.Red;
-                                  txt_TruongSo10.ForeColor = Color.White;
-                              }
-                              else
-                              {
-                                  txt_TruongSo10.BackColor = Color.White;
-                                  txt_TruongSo10.ForeColor = Color.Black;
-                              }
-                          }
-                          catch { }
-                      }*/
-                }
-                  else
-                  {
-                      txt_TruongSo10.BackColor = Color.White;
-                      txt_TruongSo10.ForeColor = Color.Black;
-                  }
-              }
-              else
-              {
-                  txt_TruongSo10.BackColor = Color.White;
-                  txt_TruongSo10.ForeColor = Color.Black;
-              }
+             //// if (txt_TruongSo10.Text.Length < 6 & !string.IsNullOrEmpty(txt_TruongSo10.Text))
+             //  //   txt_TruongSo10.Text = "?";
+             // //Gọi change
+             // if (!string.IsNullOrEmpty(txt_TruongSo10.Text))
+             // {
+             //     if (txt_TruongSo10.Text != "?")
+             //     {
+             //         // trường hợp ngoài
+             //         if (/*int.Parse(txt_TruongSo10.Text) > 311231 || int.Parse(txt_TruongSo10.Text) < 291001 ||*/ txt_TruongSo10.Text.Length != 6)
+             //         {
+             //             txt_TruongSo10.BackColor = Color.Red;
+             //             txt_TruongSo10.ForeColor = Color.White;
+             //       }
+             //       else
+             //       {
+             //           txt_TruongSo10.BackColor = Color.White;
+             //           txt_TruongSo10.ForeColor = Color.Black;
+             //       }
+             //       /*  else
+             //         {
+             //             try
+             //             {
+             //                 if (int.Parse(txt_TruongSo10.Text.Substring(2, 2) + "") > 12 || int.Parse(txt_TruongSo10.Text.Substring(4, 2) + "") > 31)
+             //                 {
+             //                     txt_TruongSo10.BackColor = Color.Red;
+             //                     txt_TruongSo10.ForeColor = Color.White;
+             //                 }
+             //                 else
+             //                 {
+             //                     txt_TruongSo10.BackColor = Color.White;
+             //                     txt_TruongSo10.ForeColor = Color.Black;
+             //                 }
+             //             }
+             //             catch { }
+             //         }*/
+             //   }
+             //     else
+             //     {
+             //         txt_TruongSo10.BackColor = Color.White;
+             //         txt_TruongSo10.ForeColor = Color.Black;
+             //     }
+             // }
+             // else
+             // {
+             //     txt_TruongSo10.BackColor = Color.White;
+             //     txt_TruongSo10.ForeColor = Color.Black;
+             // }
            
             if (Global.FlagChangeSave == false)
                 return;
@@ -400,37 +393,29 @@ namespace PhieuKiemDinh.MyUserControl
 
         private void txt_TruongSo11_EditValueChanged(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(txt_TruongSo11.Text))
+            if (!string.IsNullOrEmpty(txt_TruongSo11.Text) && txt_TruongSo11.Text != "?")
             {
-                if (txt_TruongSo11.Text != "?")
+                if (int.Parse(txt_TruongSo11.Text) > 291231 || int.Parse(txt_TruongSo11.Text) < 291001 || txt_TruongSo10.Text.Length != 6)
                 {
-                    if (int.Parse(txt_TruongSo11.Text) > 291231 || int.Parse(txt_TruongSo11.Text) < 291001||txt_TruongSo10.Text.Length!=6)
-                    {
-                        txt_TruongSo11.BackColor = Color.Red;
-                        txt_TruongSo11.ForeColor = Color.White;
-                    }
-                    else
-                    {
-                        try
-                        {
-                            if (int.Parse(txt_TruongSo11.Text.Substring(2, 2) + "") > 12 || int.Parse(txt_TruongSo11.Text.Substring(4, 2) + "") > 31)
-                            {
-                                txt_TruongSo11.BackColor = Color.Red;
-                                txt_TruongSo11.ForeColor = Color.White;
-                            }
-                            else
-                            {
-                                txt_TruongSo11.BackColor = Color.White;
-                                txt_TruongSo11.ForeColor = Color.Black;
-                            }
-                        }
-                        catch { }
-                    }
+                    txt_TruongSo11.BackColor = Color.Red;
+                    txt_TruongSo11.ForeColor = Color.White;
                 }
                 else
                 {
-                    txt_TruongSo11.BackColor = Color.White;
-                    txt_TruongSo11.ForeColor = Color.Black;
+                    try
+                    {
+                        if (int.Parse(txt_TruongSo11.Text.Substring(2, 2) + "") > 12 || int.Parse(txt_TruongSo11.Text.Substring(4, 2) + "") > 31)
+                        {
+                            txt_TruongSo11.BackColor = Color.Red;
+                            txt_TruongSo11.ForeColor = Color.White;
+                        }
+                        else
+                        {
+                            txt_TruongSo11.BackColor = Color.White;
+                            txt_TruongSo11.ForeColor = Color.Black;
+                        }
+                    }
+                    catch { }
                 }
             }
             else
@@ -529,45 +514,46 @@ namespace PhieuKiemDinh.MyUserControl
                 }
                 catch { }
             }*/
-            //Gọi change 11
-            if (!string.IsNullOrEmpty(txt_TruongSo11.Text))
-            {
-                if (txt_TruongSo11.Text != "?")
-                {
-                    if (int.Parse(txt_TruongSo11.Text) > 291231 || int.Parse(txt_TruongSo11.Text) < 291001)
-                    {
-                        txt_TruongSo11.BackColor = Color.Red;
-                        txt_TruongSo11.ForeColor = Color.White;
-                    }
-                    else
-                    {
-                        try
-                        {
-                            if (int.Parse(txt_TruongSo11.Text.Substring(2, 2) + "") > 12 || int.Parse(txt_TruongSo11.Text.Substring(4, 2) + "") > 31)
-                            {
-                                txt_TruongSo11.BackColor = Color.Red;
-                                txt_TruongSo11.ForeColor = Color.White;
-                            }
-                            else
-                            {
-                                txt_TruongSo11.BackColor = Color.White;
-                                txt_TruongSo11.ForeColor = Color.Black;
-                            }
-                        }
-                        catch { }
-                    }
-                }
-                else
-                {
-                    txt_TruongSo11.BackColor = Color.White;
-                    txt_TruongSo11.ForeColor = Color.Black;
-                }
-            }
-            else
-            {
-                txt_TruongSo11.BackColor = Color.White;
-                txt_TruongSo11.ForeColor = Color.Black;
-            }
+            ////Gọi change 11
+            //if (!string.IsNullOrEmpty(txt_TruongSo11.Text))
+            //{
+            //    if (txt_TruongSo11.Text != "?")
+            //    {
+            //        if (int.Parse(txt_TruongSo11.Text) > 291231 || int.Parse(txt_TruongSo11.Text) < 291001)
+            //        {
+            //            txt_TruongSo11.BackColor = Color.Red;
+            //            txt_TruongSo11.ForeColor = Color.White;
+            //        }
+            //        else
+            //        {
+            //            try
+            //            {
+            //                if (int.Parse(txt_TruongSo11.Text.Substring(2, 2) + "") > 12 || int.Parse(txt_TruongSo11.Text.Substring(4, 2) + "") > 31)
+            //                {
+            //                    txt_TruongSo11.BackColor = Color.Red;
+            //                    txt_TruongSo11.ForeColor = Color.White;
+            //                }
+            //                else
+            //                {
+            //                    txt_TruongSo11.BackColor = Color.White;
+            //                    txt_TruongSo11.ForeColor = Color.Black;
+            //                }
+            //            }
+            //            catch { }
+            //        }
+            //    }
+            //    else
+            //    {
+            //        txt_TruongSo11.BackColor = Color.White;
+            //        txt_TruongSo11.ForeColor = Color.Black;
+            //    }
+            //}
+            //else
+            //{
+            //    txt_TruongSo11.BackColor = Color.White;
+            //    txt_TruongSo11.ForeColor = Color.Black;
+            //}
+
             if (Global.FlagChangeSave == false)
                 return;
             Properties.Settings.Default.Truong11 = txt_TruongSo11.Text;

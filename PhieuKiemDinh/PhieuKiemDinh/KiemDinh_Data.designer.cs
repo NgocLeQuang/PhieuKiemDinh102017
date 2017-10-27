@@ -505,6 +505,13 @@ namespace PhieuKiemDinh
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userSaiIt, userSaiNhieu, idImage, fBatchName, userCheck, truongSo01, truongSo03, truongSo04, truongSo05, truongSo06, truongSo07, truongSo08_1, truongSo08_2, truongSo09, truongSo10, truongSo11, truongSo12, truongSo13, truongSo14);
 			return ((int)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.CheckBatchChiaUser")]
+		public ISingleResult<CheckBatchChiaUserResult> CheckBatchChiaUser([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Batch", DbType="NVarChar(255)")] string batch)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), batch);
+			return ((ISingleResult<CheckBatchChiaUserResult>)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tbl_Batch")]
@@ -5859,6 +5866,32 @@ namespace PhieuKiemDinh
 				if ((this._TruongSo14 != value))
 				{
 					this._TruongSo14 = value;
+				}
+			}
+		}
+	}
+	
+	public partial class CheckBatchChiaUserResult
+	{
+		
+		private System.Nullable<bool> _ChiaUser;
+		
+		public CheckBatchChiaUserResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ChiaUser", DbType="Bit")]
+		public System.Nullable<bool> ChiaUser
+		{
+			get
+			{
+				return this._ChiaUser;
+			}
+			set
+			{
+				if ((this._ChiaUser != value))
+				{
+					this._ChiaUser = value;
 				}
 			}
 		}

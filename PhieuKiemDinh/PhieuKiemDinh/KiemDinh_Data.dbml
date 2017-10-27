@@ -526,4 +526,10 @@
     <Parameter Name="TruongSo14" Parameter="truongSo14" Type="System.String" DbType="NVarChar(255)" />
     <Return Type="System.Int32" />
   </Function>
+  <Function Name="dbo.CheckBatchChiaUser" Method="CheckBatchChiaUser">
+    <Parameter Name="Batch" Parameter="batch" Type="System.String" DbType="NVarChar(255)" />
+    <ElementType Name="CheckBatchChiaUserResult">
+      <Column Name="ChiaUser" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

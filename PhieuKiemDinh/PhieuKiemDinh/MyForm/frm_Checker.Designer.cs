@@ -82,7 +82,7 @@
             this.uc_PictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uc_PictureBox1.Location = new System.Drawing.Point(0, 30);
             this.uc_PictureBox1.Name = "uc_PictureBox1";
-            this.uc_PictureBox1.Size = new System.Drawing.Size(946, 615);
+            this.uc_PictureBox1.Size = new System.Drawing.Size(845, 625);
             this.uc_PictureBox1.TabIndex = 25;
             this.uc_PictureBox1.Click += new System.EventHandler(this.btn_Start_Click);
             // 
@@ -103,17 +103,17 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(433, 645);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(433, 655);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // xtraTabControl2
             // 
             this.xtraTabControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.xtraTabControl2.Location = new System.Drawing.Point(3, 325);
+            this.xtraTabControl2.Location = new System.Drawing.Point(3, 330);
             this.xtraTabControl2.Name = "xtraTabControl2";
             this.xtraTabControl2.SelectedTabPage = this.tp_DeSo2;
             this.xtraTabControl2.ShowTabHeader = DevExpress.Utils.DefaultBoolean.False;
-            this.xtraTabControl2.Size = new System.Drawing.Size(427, 317);
+            this.xtraTabControl2.Size = new System.Drawing.Size(427, 322);
             this.xtraTabControl2.TabIndex = 3;
             this.xtraTabControl2.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.tp_DeSo2});
@@ -124,7 +124,7 @@
             this.tp_DeSo2.Controls.Add(this.panel2);
             this.tp_DeSo2.Controls.Add(this.panelControl4);
             this.tp_DeSo2.Name = "tp_DeSo2";
-            this.tp_DeSo2.Size = new System.Drawing.Size(421, 311);
+            this.tp_DeSo2.Size = new System.Drawing.Size(421, 316);
             this.tp_DeSo2.Text = "Số";
             // 
             // panel2
@@ -135,7 +135,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(421, 277);
+            this.panel2.Size = new System.Drawing.Size(421, 282);
             this.panel2.TabIndex = 1;
             // 
             // uC_DESO2
@@ -145,7 +145,7 @@
             this.uC_DESO2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uC_DESO2.Location = new System.Drawing.Point(0, 0);
             this.uC_DESO2.Name = "uC_DESO2";
-            this.uC_DESO2.Size = new System.Drawing.Size(421, 277);
+            this.uC_DESO2.Size = new System.Drawing.Size(421, 282);
             this.uC_DESO2.TabIndex = 0;
             this.uC_DESO2.Scroll += new System.Windows.Forms.ScrollEventHandler(this.uC_DESO2_Scroll);
             // 
@@ -155,7 +155,7 @@
             this.panelControl4.Controls.Add(this.btn_SuaVaLuu_DeSo2);
             this.panelControl4.Controls.Add(this.btn_Luu_DeSo2);
             this.panelControl4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelControl4.Location = new System.Drawing.Point(0, 277);
+            this.panelControl4.Location = new System.Drawing.Point(0, 282);
             this.panelControl4.Name = "panelControl4";
             this.panelControl4.Size = new System.Drawing.Size(421, 34);
             this.panelControl4.TabIndex = 0;
@@ -196,7 +196,7 @@
             this.xtraTabControl1.Name = "xtraTabControl1";
             this.xtraTabControl1.SelectedTabPage = this.tp_DeSo1;
             this.xtraTabControl1.ShowTabHeader = DevExpress.Utils.DefaultBoolean.False;
-            this.xtraTabControl1.Size = new System.Drawing.Size(427, 316);
+            this.xtraTabControl1.Size = new System.Drawing.Size(427, 321);
             this.xtraTabControl1.TabIndex = 2;
             this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.tp_DeSo1});
@@ -207,7 +207,7 @@
             this.tp_DeSo1.Controls.Add(this.panel1);
             this.tp_DeSo1.Controls.Add(this.panelControl3);
             this.tp_DeSo1.Name = "tp_DeSo1";
-            this.tp_DeSo1.Size = new System.Drawing.Size(421, 310);
+            this.tp_DeSo1.Size = new System.Drawing.Size(421, 315);
             this.tp_DeSo1.Text = "Số";
             // 
             // panel1
@@ -218,7 +218,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(421, 279);
+            this.panel1.Size = new System.Drawing.Size(421, 284);
             this.panel1.TabIndex = 1;
             // 
             // uC_DESO1
@@ -228,7 +228,7 @@
             this.uC_DESO1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uC_DESO1.Location = new System.Drawing.Point(0, 0);
             this.uC_DESO1.Name = "uC_DESO1";
-            this.uC_DESO1.Size = new System.Drawing.Size(421, 279);
+            this.uC_DESO1.Size = new System.Drawing.Size(421, 284);
             this.uC_DESO1.TabIndex = 0;
             this.uC_DESO1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.uC_DESO1_Scroll);
             // 
@@ -238,7 +238,7 @@
             this.panelControl3.Controls.Add(this.btn_SuaVaLuu_DeSo1);
             this.panelControl3.Controls.Add(this.btn_Luu_DeSo1);
             this.panelControl3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelControl3.Location = new System.Drawing.Point(0, 279);
+            this.panelControl3.Location = new System.Drawing.Point(0, 284);
             this.panelControl3.Name = "panelControl3";
             this.panelControl3.Size = new System.Drawing.Size(421, 31);
             this.panelControl3.TabIndex = 0;
@@ -275,7 +275,7 @@
             // btn_CheckLai
             // 
             this.btn_CheckLai.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_CheckLai.Location = new System.Drawing.Point(867, 611);
+            this.btn_CheckLai.Location = new System.Drawing.Point(766, 621);
             this.btn_CheckLai.Name = "btn_CheckLai";
             this.btn_CheckLai.Size = new System.Drawing.Size(57, 28);
             this.btn_CheckLai.TabIndex = 3;
@@ -297,7 +297,7 @@
             this.splitCheck.Panel1.Text = "Panel1";
             this.splitCheck.Panel2.Controls.Add(this.tableLayoutPanel1);
             this.splitCheck.Panel2.Text = "Panel2";
-            this.splitCheck.Size = new System.Drawing.Size(1384, 645);
+            this.splitCheck.Size = new System.Drawing.Size(1283, 655);
             this.splitCheck.SplitterPosition = 433;
             this.splitCheck.TabIndex = 28;
             this.splitCheck.Text = "splitContainerControl1";
@@ -306,7 +306,7 @@
             // btn_Start
             // 
             this.btn_Start.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_Start.Location = new System.Drawing.Point(780, 611);
+            this.btn_Start.Location = new System.Drawing.Point(679, 621);
             this.btn_Start.Name = "btn_Start";
             this.btn_Start.Size = new System.Drawing.Size(81, 29);
             this.btn_Start.TabIndex = 27;
@@ -324,7 +324,7 @@
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(946, 30);
+            this.panelControl1.Size = new System.Drawing.Size(845, 30);
             this.panelControl1.TabIndex = 26;
             // 
             // btn_ShowImageCheck
@@ -332,7 +332,7 @@
             this.btn_ShowImageCheck.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_ShowImageCheck.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_ShowImageCheck.Appearance.Options.UseFont = true;
-            this.btn_ShowImageCheck.Location = new System.Drawing.Point(840, 3);
+            this.btn_ShowImageCheck.Location = new System.Drawing.Point(739, 3);
             this.btn_ShowImageCheck.Name = "btn_ShowImageCheck";
             this.btn_ShowImageCheck.Size = new System.Drawing.Size(101, 23);
             this.btn_ShowImageCheck.TabIndex = 3;
@@ -390,7 +390,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1384, 645);
+            this.ClientSize = new System.Drawing.Size(1283, 655);
             this.Controls.Add(this.splitCheck);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frm_Checker";

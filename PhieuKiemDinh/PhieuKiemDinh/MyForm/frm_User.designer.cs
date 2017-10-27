@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions2 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_User));
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.cbb_idrole = new System.Windows.Forms.ComboBox();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
@@ -50,6 +50,7 @@
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btn_delete = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.chk_LevelUser_Inexperience = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txt_password.Properties)).BeginInit();
@@ -62,6 +63,7 @@
             // 
             // panelControl1
             // 
+            this.panelControl1.Controls.Add(this.chk_LevelUser_Inexperience);
             this.panelControl1.Controls.Add(this.cbb_idrole);
             this.panelControl1.Controls.Add(this.labelControl5);
             this.panelControl1.Controls.Add(this.labelControl4);
@@ -224,6 +226,7 @@
             this.gridView1.OptionsView.EnableAppearanceOddRow = true;
             this.gridView1.OptionsView.ShowAutoFilterRow = true;
             this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridView1_CellValueChanged);
             this.gridView1.RowCellDefaultAlignment += new DevExpress.XtraGrid.Views.Base.RowCellAlignmentEventHandler(this.gridView1_RowCellDefaultAlignment);
             this.gridView1.GotFocus += new System.EventHandler(this.gridView1_GotFocus);
             // 
@@ -259,7 +262,7 @@
             // 
             // gridColumn7
             // 
-            this.gridColumn7.Caption = "NotGoodUser";
+            this.gridColumn7.Caption = "Inexperience";
             this.gridColumn7.FieldName = "NotGoodUser";
             this.gridColumn7.Name = "gridColumn7";
             this.gridColumn7.Visible = true;
@@ -277,11 +280,22 @@
             // btn_delete
             // 
             this.btn_delete.AutoHeight = false;
+            editorButtonImageOptions2.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions2.Image")));
             this.btn_delete.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("btn_delete.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(editorButtonImageOptions2, DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, null)});
             this.btn_delete.Name = "btn_delete";
             this.btn_delete.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.btn_delete.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btn_delete_ButtonClick);
+            // 
+            // chk_LevelUser_Inexperience
+            // 
+            this.chk_LevelUser_Inexperience.AutoSize = true;
+            this.chk_LevelUser_Inexperience.Location = new System.Drawing.Point(625, 14);
+            this.chk_LevelUser_Inexperience.Name = "chk_LevelUser_Inexperience";
+            this.chk_LevelUser_Inexperience.Size = new System.Drawing.Size(89, 17);
+            this.chk_LevelUser_Inexperience.TabIndex = 15;
+            this.chk_LevelUser_Inexperience.Text = "Inexperience";
+            this.chk_LevelUser_Inexperience.UseVisualStyleBackColor = true;
             // 
             // frm_User
             // 
@@ -333,5 +347,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
         private DevExpress.XtraEditors.TextEdit txt_password;
         private DevExpress.XtraEditors.LabelControl labelControl3;
+        private System.Windows.Forms.CheckBox chk_LevelUser_Inexperience;
     }
 }
