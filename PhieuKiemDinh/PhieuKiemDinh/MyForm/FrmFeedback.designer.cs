@@ -147,7 +147,7 @@
             // 
             // btn_hienthi
             // 
-            this.btn_hienthi.Location = new System.Drawing.Point(577, 6);
+            this.btn_hienthi.Location = new System.Drawing.Point(580, 6);
             this.btn_hienthi.Name = "btn_hienthi";
             this.btn_hienthi.Size = new System.Drawing.Size(75, 23);
             this.btn_hienthi.TabIndex = 9;
