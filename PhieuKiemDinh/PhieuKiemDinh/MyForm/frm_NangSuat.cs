@@ -109,6 +109,7 @@ namespace PhieuKiemDinh.MyForm
                 Microsoft.Office.Interop.Excel.Workbook book = app.Workbooks.Open(strfilename, 0, true, 5, "", "", false, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "", true, false, 0, true, false, false);
                 Microsoft.Office.Interop.Excel.Worksheet wrksheet = (Microsoft.Office.Interop.Excel.Worksheet)book.ActiveSheet;
                 int h = 1;
+                wrksheet.Cells[2, 10] = "* Thời gian:" + timeFisrt.Text + "/" + dtp_FirstDay.Value.Day + ":" + dtp_FirstDay.Value.Month + " - " + timeEnd.Text + "/" + dtp_EndDay.Value.Day + ":" + dtp_EndDay.Value.Month;
                 for (int i = 0; i < dataGridView1.RowCount; i++)
                 {
                     wrksheet.Cells[h + 2, 1] = h;
@@ -125,7 +126,7 @@ namespace PhieuKiemDinh.MyForm
                 SaveFileDialog saveFileDialog1 = new SaveFileDialog();
                 saveFileDialog1.Title = @"Save Excel Files";
                 saveFileDialog1.Filter = @"Excel files (*.xlsx)|*.xlsx";
-                saveFileDialog1.FileName = "NangSuat_PhieuKiemDinh_" + dtp_FirstDay.Value.Day + "-" + dtp_EndDay.Value.Day;
+                saveFileDialog1.FileName = "NangSuat_PhieuKiemDinh_" + dtp_FirstDay.Value.Day + "-"+  dtp_EndDay.Value.Day;
                 saveFileDialog1.RestoreDirectory = true;
                 if (saveFileDialog1.ShowDialog() == DialogResult.OK)
                 {

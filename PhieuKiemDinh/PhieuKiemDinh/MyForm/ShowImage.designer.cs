@@ -32,23 +32,10 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
+            this.uc_PictureBox1 = new PhieuKiemDinh.MyUserControl.uc_PictureBox();
             this.UserName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TruongSo01 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TruongSo03 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -64,8 +51,21 @@
             this.TruongSo13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TruongSo14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FlagError = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
-            this.uc_PictureBox1 = new PhieuKiemDinh.MyUserControl.uc_PictureBox();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -119,97 +119,6 @@
             this.dataGridView2.Size = new System.Drawing.Size(1431, 193);
             this.dataGridView2.TabIndex = 0;
             // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "UserName";
-            this.dataGridViewTextBoxColumn1.Frozen = true;
-            this.dataGridViewTextBoxColumn1.HeaderText = "UserName";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "TruongSo01";
-            this.dataGridViewTextBoxColumn2.HeaderText = "TruongSo01";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "TruongSo03";
-            this.dataGridViewTextBoxColumn3.HeaderText = "TruongSo03";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "TruongSo04";
-            this.dataGridViewTextBoxColumn4.HeaderText = "TruongSo04";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "TruongSo05";
-            this.dataGridViewTextBoxColumn5.HeaderText = "TruongSo05";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.DataPropertyName = "TruongSo06";
-            this.dataGridViewTextBoxColumn6.HeaderText = "TruongSo06";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            // 
-            // dataGridViewTextBoxColumn7
-            // 
-            this.dataGridViewTextBoxColumn7.DataPropertyName = "TruongSo07";
-            this.dataGridViewTextBoxColumn7.HeaderText = "TruongSo07";
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            // 
-            // dataGridViewTextBoxColumn8
-            // 
-            this.dataGridViewTextBoxColumn8.DataPropertyName = "TruongSo08";
-            this.dataGridViewTextBoxColumn8.HeaderText = "TruongSo08";
-            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
-            // 
-            // dataGridViewTextBoxColumn9
-            // 
-            this.dataGridViewTextBoxColumn9.DataPropertyName = "TruongSo09";
-            this.dataGridViewTextBoxColumn9.HeaderText = "TruongSo09";
-            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
-            // 
-            // dataGridViewTextBoxColumn10
-            // 
-            this.dataGridViewTextBoxColumn10.DataPropertyName = "TruongSo10";
-            this.dataGridViewTextBoxColumn10.HeaderText = "TruongSo10";
-            this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
-            // 
-            // dataGridViewTextBoxColumn11
-            // 
-            this.dataGridViewTextBoxColumn11.DataPropertyName = "TruongSo11";
-            this.dataGridViewTextBoxColumn11.HeaderText = "TruongSo11";
-            this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
-            // 
-            // dataGridViewTextBoxColumn12
-            // 
-            this.dataGridViewTextBoxColumn12.DataPropertyName = "TruongSo12";
-            this.dataGridViewTextBoxColumn12.HeaderText = "TruongSo12";
-            this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
-            // 
-            // dataGridViewTextBoxColumn13
-            // 
-            this.dataGridViewTextBoxColumn13.DataPropertyName = "TruongSo13";
-            this.dataGridViewTextBoxColumn13.HeaderText = "TruongSo13";
-            this.dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
-            // 
-            // dataGridViewTextBoxColumn14
-            // 
-            this.dataGridViewTextBoxColumn14.DataPropertyName = "TruongSo14";
-            this.dataGridViewTextBoxColumn14.HeaderText = "TruongSo14";
-            this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
-            // 
-            // dataGridViewTextBoxColumn15
-            // 
-            this.dataGridViewTextBoxColumn15.DataPropertyName = "FlagError";
-            this.dataGridViewTextBoxColumn15.HeaderText = "FlagError";
-            this.dataGridViewTextBoxColumn15.Name = "dataGridViewTextBoxColumn15";
-            // 
             // panelControl2
             // 
             this.panelControl2.Controls.Add(this.dataGridView1);
@@ -252,6 +161,23 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(637, 453);
             this.dataGridView1.TabIndex = 0;
+            // 
+            // panelControl3
+            // 
+            this.panelControl3.Controls.Add(this.uc_PictureBox1);
+            this.panelControl3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelControl3.Location = new System.Drawing.Point(0, 0);
+            this.panelControl3.Name = "panelControl3";
+            this.panelControl3.Size = new System.Drawing.Size(794, 457);
+            this.panelControl3.TabIndex = 2;
+            // 
+            // uc_PictureBox1
+            // 
+            this.uc_PictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uc_PictureBox1.Location = new System.Drawing.Point(2, 2);
+            this.uc_PictureBox1.Name = "uc_PictureBox1";
+            this.uc_PictureBox1.Size = new System.Drawing.Size(790, 453);
+            this.uc_PictureBox1.TabIndex = 0;
             // 
             // UserName
             // 
@@ -343,23 +269,99 @@
             this.FlagError.DataPropertyName = "FlagError";
             this.FlagError.HeaderText = "FlagError";
             this.FlagError.Name = "FlagError";
+            this.FlagError.Visible = false;
             // 
-            // panelControl3
+            // dataGridViewTextBoxColumn1
             // 
-            this.panelControl3.Controls.Add(this.uc_PictureBox1);
-            this.panelControl3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelControl3.Location = new System.Drawing.Point(0, 0);
-            this.panelControl3.Name = "panelControl3";
-            this.panelControl3.Size = new System.Drawing.Size(794, 457);
-            this.panelControl3.TabIndex = 2;
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "UserName";
+            this.dataGridViewTextBoxColumn1.Frozen = true;
+            this.dataGridViewTextBoxColumn1.HeaderText = "UserName";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             // 
-            // uc_PictureBox1
+            // dataGridViewTextBoxColumn2
             // 
-            this.uc_PictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uc_PictureBox1.Location = new System.Drawing.Point(2, 2);
-            this.uc_PictureBox1.Name = "uc_PictureBox1";
-            this.uc_PictureBox1.Size = new System.Drawing.Size(790, 453);
-            this.uc_PictureBox1.TabIndex = 0;
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "TruongSo01";
+            this.dataGridViewTextBoxColumn2.HeaderText = "TruongSo01";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "TruongSo03";
+            this.dataGridViewTextBoxColumn3.HeaderText = "TruongSo03";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "TruongSo04";
+            this.dataGridViewTextBoxColumn4.HeaderText = "TruongSo04";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "TruongSo05";
+            this.dataGridViewTextBoxColumn5.HeaderText = "TruongSo05";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.DataPropertyName = "TruongSo06";
+            this.dataGridViewTextBoxColumn6.HeaderText = "TruongSo06";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.DataPropertyName = "TruongSo07";
+            this.dataGridViewTextBoxColumn7.HeaderText = "TruongSo07";
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            // 
+            // dataGridViewTextBoxColumn8
+            // 
+            this.dataGridViewTextBoxColumn8.DataPropertyName = "TruongSo08";
+            this.dataGridViewTextBoxColumn8.HeaderText = "TruongSo08";
+            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            // 
+            // dataGridViewTextBoxColumn9
+            // 
+            this.dataGridViewTextBoxColumn9.DataPropertyName = "TruongSo09";
+            this.dataGridViewTextBoxColumn9.HeaderText = "TruongSo09";
+            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
+            // 
+            // dataGridViewTextBoxColumn10
+            // 
+            this.dataGridViewTextBoxColumn10.DataPropertyName = "TruongSo10";
+            this.dataGridViewTextBoxColumn10.HeaderText = "TruongSo10";
+            this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
+            // 
+            // dataGridViewTextBoxColumn11
+            // 
+            this.dataGridViewTextBoxColumn11.DataPropertyName = "TruongSo11";
+            this.dataGridViewTextBoxColumn11.HeaderText = "TruongSo11";
+            this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
+            // 
+            // dataGridViewTextBoxColumn12
+            // 
+            this.dataGridViewTextBoxColumn12.DataPropertyName = "TruongSo12";
+            this.dataGridViewTextBoxColumn12.HeaderText = "TruongSo12";
+            this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
+            // 
+            // dataGridViewTextBoxColumn13
+            // 
+            this.dataGridViewTextBoxColumn13.DataPropertyName = "TruongSo13";
+            this.dataGridViewTextBoxColumn13.HeaderText = "TruongSo13";
+            this.dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
+            // 
+            // dataGridViewTextBoxColumn14
+            // 
+            this.dataGridViewTextBoxColumn14.DataPropertyName = "TruongSo14";
+            this.dataGridViewTextBoxColumn14.HeaderText = "TruongSo14";
+            this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
+            // 
+            // dataGridViewTextBoxColumn15
+            // 
+            this.dataGridViewTextBoxColumn15.DataPropertyName = "FlagError";
+            this.dataGridViewTextBoxColumn15.HeaderText = "FlagError";
+            this.dataGridViewTextBoxColumn15.Name = "dataGridViewTextBoxColumn15";
+            this.dataGridViewTextBoxColumn15.Visible = false;
             // 
             // ShowImage
             // 

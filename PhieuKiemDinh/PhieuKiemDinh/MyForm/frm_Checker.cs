@@ -282,7 +282,7 @@ namespace PhieuKiemDinh.MyForm
                     w.TruongSo12,
                     w.TruongSo13,
                     w.TruongSo14,
-                    w.FlagError,
+                 //   w.FlagError,
                     w.True
                 }).ToList();
             lb_User1.Text = deso[0].UserName;
@@ -661,21 +661,21 @@ namespace PhieuKiemDinh.MyForm
         
         private void Compare_TextBox(TextEdit t1, TextEdit t2)
         {
-            if (!string.IsNullOrEmpty(t1.Text) || !string.IsNullOrEmpty(t2.Text))
-            {
+            //if (!string.IsNullOrEmpty(t1.Text) || !string.IsNullOrEmpty(t2.Text))
+           // {
                 if (t1.Text != t2.Text)
                 {
                     t1.BackColor = Color.PaleVioletRed;
                     t2.BackColor = Color.PaleVioletRed;
                 }
-            }
-            else
-            {
-                t1.BackColor = Color.White;
-                t2.BackColor = Color.White;
-            }
+          //  }
+           // else
+           // {
+          //      t1.BackColor = Color.White;
+            //    t2.BackColor = Color.White;
+           // }
         }
-        public void CompareRichTextBox(RichTextBox t1, RichTextBox t2)
+       /* public void CompareRichTextBox(RichTextBox t1, RichTextBox t2)
         {
             int n = 0;
             string s = t1.Text;
@@ -709,7 +709,7 @@ namespace PhieuKiemDinh.MyForm
                 }
             } 
         }
-
+        */
         private void lb_fBatchName_Click(object sender, EventArgs e)
         {
             Clipboard.SetText(cbb_Batch_Check.Text);

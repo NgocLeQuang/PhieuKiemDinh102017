@@ -764,5 +764,7 @@ namespace PhieuKiemDinh.MyForm
         {
             new Refresh_ImageNotInput().ShowDialog();
         }
+
+      
     }
 }

@@ -9,7 +9,6 @@ using System.Windows.Forms.Design;
 using DevExpress.XtraEditors;
 using Microsoft.Office.Core;
 using PhieuKiemDinh.MyUserControl;
-
 namespace PhieuKiemDinh.MyForm
 {
     public partial class FrmFeedback : XtraForm
@@ -294,10 +293,15 @@ namespace PhieuKiemDinh.MyForm
             for (int i = 0; i < idimage.Count; i++)
             {
                 string id = idimage[i];
-                Image oImage = Image.FromFile(pathServer + "/" + idimage[i]);
-                wrksheet.Shapes.AddPicture(pathServer + "/" + idimage[i], Microsoft.Office.Core.MsoTriState.msoFalse,Microsoft.Office.Core.MsoTriState.msoCTrue, 15, distance, 370, 270);
-                distance += 300;
-               var deso = Global.Db.FeedBackExcel(id, cbb_batch.Text).ToList();
+                Microsoft.Office.Interop.Excel.Range oRange = wrksheet.Cells[r + 1, 2];
+                float Left = (float)((double)oRange.Left);
+                float Top = (float)((double)oRange.Top);
+                wrksheet.Shapes.AddPicture(pathServer + "/" + idimage[i], Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, Left, Top, 365, 270);
+                //string id = idimage[i];
+                //Image oImage = Image.FromFile(pathServer + "/" + idimage[i]);
+                //wrksheet.Shapes.AddPicture(pathServer + "/" + idimage[i], Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, 20, distance, 365, 270);
+                //distance += 300;
+                var deso = Global.Db.FeedBackExcel(id, cbb_batch.Text).ToList();
                int h = 9;
                 var nameCheck = (from w in Global.Db.GetNameCheck(id,cbb_batch.Text) select w.UserNameCheckDeSo).FirstOrDefault();
                 wrksheet.Cells[r + 1, 10] = nameCheck+@" ";
@@ -326,7 +330,7 @@ namespace PhieuKiemDinh.MyForm
                         wrksheet.Cells[r + 1, h] = deso[j].UserName + "";
                     }
                     wrksheet.Cells[r + 2, h] = deso[j].TruongSo01 + "";
-                   wrksheet.Cells[r + 3, h] = deso[j].TruongSo03 + "";
+                    wrksheet.Cells[r + 3, h] = deso[j].TruongSo03 + "";
                     wrksheet.Cells[r + 4, h] = deso[j].TruongSo04 + "";
                     wrksheet.Cells[r + 5, h] = deso[j].TruongSo05 + "";
                     wrksheet.Cells[r + 6, h] = deso[j].TruongSo06 + "";
@@ -345,8 +349,8 @@ namespace PhieuKiemDinh.MyForm
                 Microsoft.Office.Interop.Excel.Range cellImage2 = wrksheet.Cells[h][r + 20];
                 Microsoft.Office.Interop.Excel.Range rangeImage = wrksheet.get_Range(cellImage1, cellImage2);
                 rangeImage.BorderAround(Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous,
-    Microsoft.Office.Interop.Excel.XlBorderWeight.xlThin,
-    Microsoft.Office.Interop.Excel.XlColorIndex.xlColorIndexAutomatic,1);
+                    Microsoft.Office.Interop.Excel.XlBorderWeight.xlThin,
+                    Microsoft.Office.Interop.Excel.XlColorIndex.xlColorIndexAutomatic,1);
                 Microsoft.Office.Interop.Excel.Range cell1 = wrksheet.Cells[h - 3][r + 1];
                 Microsoft.Office.Interop.Excel.Range cell2 = wrksheet.Cells[h][r + 14];
                 Microsoft.Office.Interop.Excel.Range range = wrksheet.get_Range(cell1, cell2);
@@ -393,12 +397,19 @@ namespace PhieuKiemDinh.MyForm
         book = App.Workbooks.Open(System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments)+ "\\Feedback_User.xlsx", 0, true, 5, "", "", false, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "", true, false, 0, true, false, false);
         wrksheet = (Microsoft.Office.Interop.Excel.Worksheet)book.ActiveSheet;
         string pathServer = Global.StrPath + "/" + cbb_batch.Text;
-        for (int i = 0; i < idimage.Count; i++)
-        {
-            string id = idimage[i];
-            Image oImage = Image.FromFile(pathServer + "/" + idimage[i]);
-            wrksheet.Shapes.AddPicture(pathServer + "/" + idimage[i], Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, 15, distance, 370, 270);
-            distance += 300;
+            for (int i = 0; i < idimage.Count; i++)
+            {
+                string id = idimage[i];
+                Microsoft.Office.Interop.Excel.Range oRange = wrksheet.Cells[r+1,2 ];
+                float Left = (float)((double)oRange.Left);
+                float Top = (float)((double)oRange.Top);
+                wrksheet.Shapes.AddPicture(pathServer + "/" + idimage[i], Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, Left, Top, 365, 270);
+                // oRange.RowHeight = 367;
+                // wrksheet.Cells[1, 20] = wrksheet.Shapes.AddPicture(pathServer + "/" + idimage[i], Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, 20, distance, 365, 270);
+              
+            //Image oImage = Image.FromFile(pathServer + "/" + idimage[i]);
+            //wrksheet.Shapes.AddPicture(pathServer + "/" + idimage[i], Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, 20, distance, 365, 270);
+          //  distance += 300;
             var deso = Global.Db.FeedBackExcel_User(id,cbb_username.Text, cbb_batch.Text).ToList();
             int h = 9;
             var nameCheck = (from w in Global.Db.GetNameCheck(id, cbb_batch.Text) select w.UserNameCheckDeSo).FirstOrDefault();
