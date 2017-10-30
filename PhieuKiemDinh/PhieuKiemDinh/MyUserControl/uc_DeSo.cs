@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using PhieuKiemDinh.MyClass;
+using System.Text.RegularExpressions;
 
 namespace PhieuKiemDinh.MyUserControl
 {
@@ -21,80 +22,80 @@ namespace PhieuKiemDinh.MyUserControl
         {
             InitializeComponent();
         }
+        #region Curency cũ
+        /*  public void curency(TextEdit luong)
+          {
+              try
+              {
+                  string t;
+                  string txt, txt1;
+                  txt1 = luong.Text.Replace(",", "");
+                  txt = "";
+                  int n = txt1.Length;
+                  int dem = 0;
 
-        public void curency(TextEdit luong)
-        {
-            try
-            {
-                string t;
-                string txt, txt1;
-                txt1 = luong.Text.Replace(",", "");
-                txt = "";
-                int n = txt1.Length;
-                int dem = 0;
+                  if (luong.Text.Length > 0)
+                  {
+                      if (luong.Text.Substring(0, 1) == "-")
+                      {
+                          if (luong.Text.Length > 1)
+                          {
+                              if (luong.SelectionLength != luong.Text.Length)
+                              {
+                                  if (luong.Text != "?")
+                                  {
+                                      for (int i = n - 1; i >= 0; i--)
+                                      {
+                                          if (dem == 2 && i != 0)
+                                          {
+                                              txt = "," + txt1.Substring(i, 1) + txt;
+                                              dem = 0;
+                                          }
+                                          else
+                                          {
+                                              txt = txt1.Substring(i, 1) + txt;
+                                              dem += 1;
+                                          }
+                                      }
+                                      luong.Text = txt;
+                                      luong.Select(luong.Text.Length, 0);
+                                  }
+                              }
+                          }
+                      }
+                      else
+                      {
+                          if (luong.SelectionLength != luong.Text.Length)
+                          {
+                              if (luong.Text != "?")
+                              {
+                                  for (int i = n - 1; i >= 0; i--)
+                                  {
+                                      if (dem == 2 && i != 0)
+                                      {
+                                          txt = "," + txt1.Substring(i, 1) + txt;
+                                          dem = 0;
+                                      }
+                                      else
+                                      {
+                                          txt = txt1.Substring(i, 1) + txt;
+                                          dem += 1;
+                                      }
+                                  }
+                                  luong.Text = txt;
+                                  luong.Select(luong.Text.Length, 0);
+                              }
+                          }
+                      }
+                  }
+              }
+              catch (Exception e)
+              {
+                  MessageBox.Show(e.Message);
+              }
 
-                if (luong.Text.Length > 0)
-                {
-                    if (luong.Text.Substring(0, 1) == "-")
-                    {
-                        if (luong.Text.Length > 1)
-                        {
-                            if (luong.SelectionLength != luong.Text.Length)
-                            {
-                                if (luong.Text != "?")
-                                {
-                                    for (int i = n - 1; i >= 0; i--)
-                                    {
-                                        if (dem == 2 && i != 0)
-                                        {
-                                            txt = "," + txt1.Substring(i, 1) + txt;
-                                            dem = 0;
-                                        }
-                                        else
-                                        {
-                                            txt = txt1.Substring(i, 1) + txt;
-                                            dem += 1;
-                                        }
-                                    }
-                                    luong.Text = txt;
-                                    luong.Select(luong.Text.Length, 0);
-                                }
-                            }
-                        }
-                    }
-                    else
-                    {
-                        if (luong.SelectionLength != luong.Text.Length)
-                        {
-                            if (luong.Text != "?")
-                            {
-                                for (int i = n - 1; i >= 0; i--)
-                                {
-                                    if (dem == 2 && i != 0)
-                                    {
-                                        txt = "," + txt1.Substring(i, 1) + txt;
-                                        dem = 0;
-                                    }
-                                    else
-                                    {
-                                        txt = txt1.Substring(i, 1) + txt;
-                                        dem += 1;
-                                    }
-                                }
-                                luong.Text = txt;
-                                luong.Select(luong.Text.Length, 0);
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message);
-            }
-
-        }
-
+          }*/
+        #endregion
         public void ResetData()
         {
             txt_TruongSo01.Text = "";
@@ -111,7 +112,7 @@ namespace PhieuKiemDinh.MyUserControl
             txt_TruongSo12.Text = "";
             txt_TruongSo13.Text = "";
             txt_TruongSo14.Text = "";
-           // txt_FlagError.Text = "";
+            // txt_FlagError.Text = "";
 
             txt_TruongSo01.BackColor = Color.White;
             txt_TruongSo03.BackColor = Color.White;
@@ -144,8 +145,7 @@ namespace PhieuKiemDinh.MyUserControl
                 string.IsNullOrEmpty(txt_TruongSo11.Text) &&
                 string.IsNullOrEmpty(txt_TruongSo12.Text) &&
                 string.IsNullOrEmpty(txt_TruongSo13.Text) &&
-                string.IsNullOrEmpty(txt_TruongSo14.Text) //&&
-               // string.IsNullOrEmpty(txt_FlagError.Text)
+                string.IsNullOrEmpty(txt_TruongSo14.Text) //&& string.IsNullOrEmpty(txt_FlagError.Text)
                )
                 return true;
             return false;
@@ -167,13 +167,13 @@ namespace PhieuKiemDinh.MyUserControl
             txt_TruongSo12.Text = deso.TruongSo12;
             txt_TruongSo13.Text = deso.TruongSo13;
             txt_TruongSo14.Text = deso.TruongSo14;
-           // txt_FlagError.Text = deso.FlagError;
+            // txt_FlagError.Text = deso.FlagError;
         }
-        
+
         private void DoiMau(int soByteBe, int soBytelon, TextEdit textBox)
         {
-            if(!string.IsNullOrEmpty(textBox.Text))
-            {
+            //if (!string.IsNullOrEmpty(textBox.Text))
+            //{
                 if (textBox.Text != "?")
                 {
                     if (textBox.Text.Length >= soByteBe && textBox.Text.Length <= soBytelon)
@@ -192,12 +192,12 @@ namespace PhieuKiemDinh.MyUserControl
                     textBox.BackColor = Color.White;
                     textBox.ForeColor = Color.Black;
                 }
-            }
-            else
-            {
-                textBox.BackColor = Color.White;
-                textBox.ForeColor = Color.Black;
-            }
+            //}
+            //else
+            //{
+            //    textBox.BackColor = Color.White;
+            //    textBox.ForeColor = Color.Black;
+            //}
         }
 
         private void txt_TruongSo01_EditValueChanged(object sender, EventArgs e)
@@ -209,17 +209,17 @@ namespace PhieuKiemDinh.MyUserControl
         {
             Changed?.Invoke(sender, e);
         }
-        
+
         private void txt_TruongSo03_EditValueChanged(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(txt_TruongSo03.Text))
             {
-                if (txt_TruongSo03.Text!="?")
+                if (txt_TruongSo03.Text != "?")
                 {
-                    if (int.Parse(txt_TruongSo03.Text) > 3 || int.Parse(txt_TruongSo03.Text) < 1|| txt_TruongSo03.Text.Length>1)
+                    if (int.Parse(txt_TruongSo03.Text) > 3 || int.Parse(txt_TruongSo03.Text) < 1 || txt_TruongSo03.Text.Length > 1)
                     {
                         txt_TruongSo03.BackColor = Color.Red;
-                        txt_TruongSo03.ForeColor= Color.White;
+                        txt_TruongSo03.ForeColor = Color.White;
                     }
                     else
                     {
@@ -240,7 +240,7 @@ namespace PhieuKiemDinh.MyUserControl
             }
             Changed?.Invoke(sender, e);
         }
-      
+
         private void txt_TruongSo04_EditValueChanged(object sender, EventArgs e)
         {
             if (txt_TruongSo04.Text.Length > 8)
@@ -295,7 +295,6 @@ namespace PhieuKiemDinh.MyUserControl
         {
             if (!string.IsNullOrEmpty(txt_TruongSo10.Text) && txt_TruongSo10.Text != "?")
             {
-
                 // trường hợp ngoài/*int.Parse(txt_TruongSo10.Text) > 311231 || int.Parse(txt_TruongSo10.Text) < 291001||
                 if (txt_TruongSo10.Text.Length != 6)
                 {
@@ -331,60 +330,60 @@ namespace PhieuKiemDinh.MyUserControl
                 txt_TruongSo10.BackColor = Color.White;
                 txt_TruongSo10.ForeColor = Color.Black;
             }
-           
+
             Changed?.Invoke(sender, e);
         }
 
         private void txt_TruongSo10_Leave(object sender, EventArgs e)
         {
-             //// if (txt_TruongSo10.Text.Length < 6 & !string.IsNullOrEmpty(txt_TruongSo10.Text))
-             //  //   txt_TruongSo10.Text = "?";
-             // //Gọi change
-             // if (!string.IsNullOrEmpty(txt_TruongSo10.Text))
-             // {
-             //     if (txt_TruongSo10.Text != "?")
-             //     {
-             //         // trường hợp ngoài
-             //         if (/*int.Parse(txt_TruongSo10.Text) > 311231 || int.Parse(txt_TruongSo10.Text) < 291001 ||*/ txt_TruongSo10.Text.Length != 6)
-             //         {
-             //             txt_TruongSo10.BackColor = Color.Red;
-             //             txt_TruongSo10.ForeColor = Color.White;
-             //       }
-             //       else
-             //       {
-             //           txt_TruongSo10.BackColor = Color.White;
-             //           txt_TruongSo10.ForeColor = Color.Black;
-             //       }
-             //       /*  else
-             //         {
-             //             try
-             //             {
-             //                 if (int.Parse(txt_TruongSo10.Text.Substring(2, 2) + "") > 12 || int.Parse(txt_TruongSo10.Text.Substring(4, 2) + "") > 31)
-             //                 {
-             //                     txt_TruongSo10.BackColor = Color.Red;
-             //                     txt_TruongSo10.ForeColor = Color.White;
-             //                 }
-             //                 else
-             //                 {
-             //                     txt_TruongSo10.BackColor = Color.White;
-             //                     txt_TruongSo10.ForeColor = Color.Black;
-             //                 }
-             //             }
-             //             catch { }
-             //         }*/
-             //   }
-             //     else
-             //     {
-             //         txt_TruongSo10.BackColor = Color.White;
-             //         txt_TruongSo10.ForeColor = Color.Black;
-             //     }
-             // }
-             // else
-             // {
-             //     txt_TruongSo10.BackColor = Color.White;
-             //     txt_TruongSo10.ForeColor = Color.Black;
-             // }
-           
+            //// if (txt_TruongSo10.Text.Length < 6 & !string.IsNullOrEmpty(txt_TruongSo10.Text))
+            //  //   txt_TruongSo10.Text = "?";
+            // //Gọi change
+            // if (!string.IsNullOrEmpty(txt_TruongSo10.Text))
+            // {
+            //     if (txt_TruongSo10.Text != "?")
+            //     {
+            //         // trường hợp ngoài
+            //         if (/*int.Parse(txt_TruongSo10.Text) > 311231 || int.Parse(txt_TruongSo10.Text) < 291001 ||*/ txt_TruongSo10.Text.Length != 6)
+            //         {
+            //             txt_TruongSo10.BackColor = Color.Red;
+            //             txt_TruongSo10.ForeColor = Color.White;
+            //       }
+            //       else
+            //       {
+            //           txt_TruongSo10.BackColor = Color.White;
+            //           txt_TruongSo10.ForeColor = Color.Black;
+            //       }
+            //       /*  else
+            //         {
+            //             try
+            //             {
+            //                 if (int.Parse(txt_TruongSo10.Text.Substring(2, 2) + "") > 12 || int.Parse(txt_TruongSo10.Text.Substring(4, 2) + "") > 31)
+            //                 {
+            //                     txt_TruongSo10.BackColor = Color.Red;
+            //                     txt_TruongSo10.ForeColor = Color.White;
+            //                 }
+            //                 else
+            //                 {
+            //                     txt_TruongSo10.BackColor = Color.White;
+            //                     txt_TruongSo10.ForeColor = Color.Black;
+            //                 }
+            //             }
+            //             catch { }
+            //         }*/
+            //   }
+            //     else
+            //     {
+            //         txt_TruongSo10.BackColor = Color.White;
+            //         txt_TruongSo10.ForeColor = Color.Black;
+            //     }
+            // }
+            // else
+            // {
+            //     txt_TruongSo10.BackColor = Color.White;
+            //     txt_TruongSo10.ForeColor = Color.Black;
+            // }
+
             if (Global.FlagChangeSave == false)
                 return;
             Properties.Settings.Default.Truong10 = txt_TruongSo10.Text;
@@ -635,7 +634,7 @@ namespace PhieuKiemDinh.MyUserControl
         private void uc_DeSo_Load(object sender, EventArgs e)
         {
             txt_TruongSo03.GotFocus += Txt_TruongSo03_GotFocus;
-            txt_TruongSo04.GotFocus += Txt_TruongSo04_GotFocus; 
+            txt_TruongSo04.GotFocus += Txt_TruongSo04_GotFocus;
             txt_TruongSo05.GotFocus += Txt_TruongSo03_GotFocus;
             txt_TruongSo06.GotFocus += Txt_TruongSo03_GotFocus;
             txt_TruongSo07.GotFocus += Txt_TruongSo03_GotFocus;
@@ -647,7 +646,7 @@ namespace PhieuKiemDinh.MyUserControl
             txt_TruongSo12.GotFocus += Txt_TruongSo03_GotFocus;
             txt_TruongSo13.GotFocus += Txt_TruongSo03_GotFocus;
             txt_TruongSo14.GotFocus += Txt_TruongSo03_GotFocus;
-           // txt_FlagError.GotFocus += Txt_TruongSo03_GotFocus;
+            // txt_FlagError.GotFocus += Txt_TruongSo03_GotFocus;
 
         }
 
@@ -660,7 +659,7 @@ namespace PhieuKiemDinh.MyUserControl
         {
             is_focus = true;
             ((TextEdit)sender).SelectAll();
-            
+
         }
 
         private void txt_TruongSo04_Leave(object sender, EventArgs e)
@@ -674,16 +673,33 @@ namespace PhieuKiemDinh.MyUserControl
 
         private void txt_TruongSo04_KeyUp(object sender, KeyEventArgs e)
         {
-            try
+            if (!string.IsNullOrEmpty(txt_TruongSo04.Text))
             {
-                curency((TextEdit)sender);
-            }
-            catch
-            {
-                // ignored
+                txt_TruongSo04.Text = string.Format("{0:###,###,###,###}", decimal.Parse(txt_TruongSo04.Text));
+                txt_TruongSo04.SelectionStart = txt_TruongSo04.Text.Length;
             }
         }
-
+        #region Curency trên 40 kí tự       //{
+        //    string str = txt_TruongSo04.Text;
+        //    int start = txt_TruongSo04.Text.Length - txt_TruongSo04.SelectionStart;
+        //    str = str.Replace(",", "");
+        //    txt_TruongSo04.Text = FormatCurency(str);
+        //    txt_TruongSo04.SelectionStart = -start + txt_TruongSo04.Text.Length;
+        //}
+        //string FormatCurency(object curency)// định dạng 1,234
+        //{
+        //    string str = curency.ToString();
+        //    string pattern = @"(?<a>\d*)(?<b>\d{3})*";
+        //    Match m = Regex.Match(str, pattern, RegexOptions.RightToLeft);
+        //    StringBuilder sb = new StringBuilder();
+        //    foreach (Capture i in m.Groups["b"].Captures)
+        //    {
+        //        sb.Insert(0, "," + i.Value);
+        //    }
+        //    sb.Insert(0, m.Groups["a"].Value);
+        //    return sb.ToString().Trim(',');
+        //}
+        #endregion
         private void txt_TruongSo03_Leave(object sender, EventArgs e)
         {
             if (Global.FlagChangeSave == false)
@@ -771,5 +787,7 @@ namespace PhieuKiemDinh.MyUserControl
             Properties.Settings.Default.FlagError = txt_FlagError.Text;
             Properties.Settings.Default.Save();
         }
+
+       
     }
 }

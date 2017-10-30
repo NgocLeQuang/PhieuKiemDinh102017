@@ -295,7 +295,7 @@ namespace PhieuKiemDinh.MyForm
                 string id = idimage[i];
                 Microsoft.Office.Interop.Excel.Range oRange = wrksheet.Cells[r + 1, 2];
                 float Left = (float)((double)oRange.Left);
-                float Top = (float)((double)oRange.Top);
+                float Top = (float)((double)oRange.Top)+2;
                 wrksheet.Shapes.AddPicture(pathServer + "/" + idimage[i], Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, Left, Top, 365, 270);
                 //string id = idimage[i];
                 //Image oImage = Image.FromFile(pathServer + "/" + idimage[i]);
@@ -402,7 +402,7 @@ namespace PhieuKiemDinh.MyForm
                 string id = idimage[i];
                 Microsoft.Office.Interop.Excel.Range oRange = wrksheet.Cells[r+1,2 ];
                 float Left = (float)((double)oRange.Left);
-                float Top = (float)((double)oRange.Top);
+                float Top = (float)((double)oRange.Top+2);
                 wrksheet.Shapes.AddPicture(pathServer + "/" + idimage[i], Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, Left, Top, 365, 270);
                 // oRange.RowHeight = 367;
                 // wrksheet.Cells[1, 20] = wrksheet.Shapes.AddPicture(pathServer + "/" + idimage[i], Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, 20, distance, 365, 270);

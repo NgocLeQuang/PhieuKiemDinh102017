@@ -128,7 +128,7 @@ namespace PhieuKiemDinh.MyForm
                         }
                         else
                         {
-                            if (MessageBox.Show(@"This user has logged in on another machine. Would you like to continue signing in?", @"Notification", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                            if (MessageBox.Show(@"User đang đăng nhập vào máy khác. Bạn có muốn tiếp tục đăng nhập?", @"Notification", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                             {
                                 Global.DbBpo.updateToken(txt_username.Text, Global.StrIdProject, Global.Token);
                                 Global.DbBpo.InsertLoginTime_new(txt_username.Text, DateTime.Now, txt_userwindow.Text, txt_machine.Text, txt_ipaddress.Text, Global.Token, Global.StrIdProject);

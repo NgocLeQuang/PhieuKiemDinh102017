@@ -33,7 +33,7 @@ namespace PhieuKiemDinh.MyUserControl
             txt_TruongSo12.Text = "";
             txt_TruongSo13.Text = "";
             txt_TruongSo14.Text = "";
-            txt_FlagError.Text = "";
+            //txt_FlagError.Text = "";
 
             txt_TruongSo01.BackColor = Color.White;
             txt_TruongSo03.BackColor = Color.White;
