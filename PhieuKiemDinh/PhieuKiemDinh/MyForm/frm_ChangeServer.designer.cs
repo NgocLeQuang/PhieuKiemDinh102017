@@ -43,6 +43,7 @@
             this.rb_Khac.TabStop = true;
             this.rb_Khac.Text = "Khác";
             this.rb_Khac.UseVisualStyleBackColor = true;
+            this.rb_Khac.CheckedChanged += new System.EventHandler(this.rb_Khac_CheckedChanged);
             // 
             // rb_DaNang
             // 
@@ -54,6 +55,7 @@
             this.rb_DaNang.TabStop = true;
             this.rb_DaNang.Text = "Chi nhánh Đà Nẵng (Làm việc tại Minh Phúc Đà Nẵng)";
             this.rb_DaNang.UseVisualStyleBackColor = true;
+            this.rb_DaNang.CheckedChanged += new System.EventHandler(this.rb_DaNang_CheckedChanged);
             // 
             // btn_Save
             // 

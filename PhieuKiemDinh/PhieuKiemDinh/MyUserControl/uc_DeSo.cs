@@ -172,32 +172,24 @@ namespace PhieuKiemDinh.MyUserControl
 
         private void DoiMau(int soByteBe, int soBytelon, TextEdit textBox)
         {
-            //if (!string.IsNullOrEmpty(textBox.Text))
-            //{
-                if (textBox.Text != "?")
-                {
-                    if (textBox.Text.Length >= soByteBe && textBox.Text.Length <= soBytelon)
-                    {
-                        textBox.BackColor = Color.White;
-                        textBox.ForeColor = Color.Black;
-                    }
-                    else
-                    {
-                        textBox.BackColor = Color.Red;
-                        textBox.ForeColor = Color.White;
-                    }
-                }
-                else
+            if (textBox.Text != "?" && !string.IsNullOrEmpty(textBox.Text))
+            {
+                if (textBox.Text.Length >= soByteBe && textBox.Text.Length <= soBytelon)
                 {
                     textBox.BackColor = Color.White;
                     textBox.ForeColor = Color.Black;
                 }
-            //}
-            //else
-            //{
-            //    textBox.BackColor = Color.White;
-            //    textBox.ForeColor = Color.Black;
-            //}
+                else
+                {
+                    textBox.BackColor = Color.Red;
+                    textBox.ForeColor = Color.White;
+                }
+            }
+            else
+            {
+                textBox.BackColor = Color.White;
+                textBox.ForeColor = Color.Black;
+            }
         }
 
         private void txt_TruongSo01_EditValueChanged(object sender, EventArgs e)
@@ -670,35 +662,35 @@ namespace PhieuKiemDinh.MyUserControl
             Properties.Settings.Default.Truong4 = txt_TruongSo04.Text;
             Properties.Settings.Default.Save();
         }
-
+        #region Curency trên 40 kí tự     
         private void txt_TruongSo04_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (!string.IsNullOrEmpty(txt_TruongSo04.Text))
-            {
-                txt_TruongSo04.Text = string.Format("{0:###,###,###,###}", decimal.Parse(txt_TruongSo04.Text));
-                txt_TruongSo04.SelectionStart = txt_TruongSo04.Text.Length;
-            }
-        }
-        #region Curency trên 40 kí tự       //{
-        //    string str = txt_TruongSo04.Text;
-        //    int start = txt_TruongSo04.Text.Length - txt_TruongSo04.SelectionStart;
-        //    str = str.Replace(",", "");
-        //    txt_TruongSo04.Text = FormatCurency(str);
-        //    txt_TruongSo04.SelectionStart = -start + txt_TruongSo04.Text.Length;
-        //}
-        //string FormatCurency(object curency)// định dạng 1,234
         //{
-        //    string str = curency.ToString();
-        //    string pattern = @"(?<a>\d*)(?<b>\d{3})*";
-        //    Match m = Regex.Match(str, pattern, RegexOptions.RightToLeft);
-        //    StringBuilder sb = new StringBuilder();
-        //    foreach (Capture i in m.Groups["b"].Captures)
+        //    if (!string.IsNullOrEmpty(txt_TruongSo04.Text))
         //    {
-        //        sb.Insert(0, "," + i.Value);
+        //        txt_TruongSo04.Text = string.Format("{0:###,###,###,###}", decimal.Parse(txt_TruongSo04.Text));
+        //        txt_TruongSo04.SelectionStart = txt_TruongSo04.Text.Length;
         //    }
-        //    sb.Insert(0, m.Groups["a"].Value);
-        //    return sb.ToString().Trim(',');
         //}
+        {
+            string str = txt_TruongSo04.Text;
+            int start = txt_TruongSo04.Text.Length - txt_TruongSo04.SelectionStart;
+            str = str.Replace(",", "");
+            txt_TruongSo04.Text = FormatCurency(str);
+            txt_TruongSo04.SelectionStart = -start + txt_TruongSo04.Text.Length;
+        }
+        string FormatCurency(object curency)// định dạng 1,234
+        {
+            string str = curency.ToString();
+            string pattern = @"(?<a>\d*)(?<b>\d{3})*";
+            Match m = Regex.Match(str, pattern, RegexOptions.RightToLeft);
+            StringBuilder sb = new StringBuilder();
+            foreach (Capture i in m.Groups["b"].Captures)
+            {
+                sb.Insert(0, "," + i.Value);
+            }
+            sb.Insert(0, m.Groups["a"].Value);
+            return sb.ToString().Trim(',');
+        }
         #endregion
         private void txt_TruongSo03_Leave(object sender, EventArgs e)
         {
