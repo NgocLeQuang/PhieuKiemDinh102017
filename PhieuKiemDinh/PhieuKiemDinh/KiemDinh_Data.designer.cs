@@ -519,6 +519,27 @@ namespace PhieuKiemDinh
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
 			return ((ISingleResult<GetBatch_FullResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.Insert_Batch_Image")]
+		public int Insert_Batch_Image([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(255)")] string fBatchName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ListIdImage", DbType="Xml")] System.Xml.Linq.XElement listIdImage, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserTaoBatch", DbType="NVarChar(255)")] string userTaoBatch, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(255)")] string fPathPicture, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="SoLuongHinh", DbType="NVarChar(255)")] string soLuongHinh, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ChiaUser", DbType="Int")] System.Nullable<int> chiaUser)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), fBatchName, listIdImage, userTaoBatch, fPathPicture, soLuongHinh, chiaUser);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.Insert_Image_New")]
+		public int Insert_Image_New([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(255)")] string fBatchName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ListIdImage", DbType="NVarChar(MAX)")] string listIdImage, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ChiaUser", DbType="Int")] System.Nullable<int> chiaUser)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), fBatchName, listIdImage, chiaUser);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetNumberImageMissImage")]
+		public ISingleResult<GetNumberImageMissImageResult> GetNumberImageMissImage([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(255)")] string fBatchName)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), fBatchName);
+			return ((ISingleResult<GetNumberImageMissImageResult>)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tbl_Batch")]
@@ -6051,6 +6072,122 @@ namespace PhieuKiemDinh
 				if ((this._CongKhaiBatch != value))
 				{
 					this._CongKhaiBatch = value;
+				}
+			}
+		}
+	}
+	
+	public partial class GetNumberImageMissImageResult
+	{
+		
+		private int _id;
+		
+		private string _fBatchName;
+		
+		private string _UserName;
+		
+		private string _IdImage;
+		
+		private System.Nullable<int> _Submit;
+		
+		private System.Nullable<System.DateTime> _DateInput;
+		
+		public GetNumberImageMissImageResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL")]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this._id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fBatchName", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string fBatchName
+		{
+			get
+			{
+				return this._fBatchName;
+			}
+			set
+			{
+				if ((this._fBatchName != value))
+				{
+					this._fBatchName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserName", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string UserName
+		{
+			get
+			{
+				return this._UserName;
+			}
+			set
+			{
+				if ((this._UserName != value))
+				{
+					this._UserName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdImage", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string IdImage
+		{
+			get
+			{
+				return this._IdImage;
+			}
+			set
+			{
+				if ((this._IdImage != value))
+				{
+					this._IdImage = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Submit", DbType="Int")]
+		public System.Nullable<int> Submit
+		{
+			get
+			{
+				return this._Submit;
+			}
+			set
+			{
+				if ((this._Submit != value))
+				{
+					this._Submit = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DateInput", DbType="DateTime")]
+		public System.Nullable<System.DateTime> DateInput
+		{
+			get
+			{
+				return this._DateInput;
+			}
+			set
+			{
+				if ((this._DateInput != value))
+				{
+					this._DateInput = value;
 				}
 			}
 		}

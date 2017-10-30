@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Drawing;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using System.Windows.Forms;
+using System.Data;
 
 namespace PhieuKiemDinh
 {
