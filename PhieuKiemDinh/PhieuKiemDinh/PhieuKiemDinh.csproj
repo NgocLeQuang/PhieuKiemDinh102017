@@ -248,11 +248,11 @@
       <LastGenOutput>KiemDinh_Data.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="KiemDinh_Data.dbml.layout">
-      <DependentUpon>KiemDinh_Data.dbml</DependentUpon>
-    </None>
     <None Include="KiemDinh_EntryBPO.dbml.layout">
       <DependentUpon>KiemDinh_EntryBPO.dbml</DependentUpon>
+    </None>
+    <None Include="KiemDinh_Data.dbml.layout">
+      <DependentUpon>KiemDinh_Data.dbml</DependentUpon>
     </None>
     <EmbeddedResource Include="MyForm\FrmFeedback.resx">
       <DependentUpon>FrmFeedback.cs</DependentUpon>

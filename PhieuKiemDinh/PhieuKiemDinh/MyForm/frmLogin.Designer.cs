@@ -313,7 +313,7 @@
             this.lb_version.Name = "lb_version";
             this.lb_version.Size = new System.Drawing.Size(26, 13);
             this.lb_version.TabIndex = 3;
-            this.lb_version.Text = "1.0.3";
+            this.lb_version.Text = "1.0.4";
             // 
             // pictureBox1
             // 

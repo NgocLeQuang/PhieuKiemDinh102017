@@ -284,12 +284,12 @@ namespace PhieuKiemDinh.MyForm
                     Properties.Resources.FeedBack);
             }
             int r = 1;
-            int distance = 15;
+            //int distance = 15;
             App = new Microsoft.Office.Interop.Excel.Application();
             book = App.Workbooks.Open(System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments)
                 + "\\FeedBack.xlsx", 0, true, 5, "", "", false, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "", true, false, 0, true, false, false);
             wrksheet = (Microsoft.Office.Interop.Excel.Worksheet)book.ActiveSheet;
-            string pathServer = Global.StrPath +"/"+ cbb_batch.Text;
+            string pathServer = Global.Webservice +"/"+ cbb_batch.Text;
             for (int i = 0; i < idimage.Count; i++)
             {
                 string id = idimage[i];
@@ -393,11 +393,11 @@ namespace PhieuKiemDinh.MyForm
             }
 
             int r = 1;
-        int distance = 15;
+        //int distance = 15;
         App = new Microsoft.Office.Interop.Excel.Application();
         book = App.Workbooks.Open(System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments)+ "\\Feedback_User.xlsx", 0, true, 5, "", "", false, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "", true, false, 0, true, false, false);
         wrksheet = (Microsoft.Office.Interop.Excel.Worksheet)book.ActiveSheet;
-        string pathServer = Global.StrPath + "/" + cbb_batch.Text;
+        string pathServer = Global.Webservice + "/" + cbb_batch.Text;
             for (int i = 0; i < idimage.Count; i++)
             {
                 string id = idimage[i];

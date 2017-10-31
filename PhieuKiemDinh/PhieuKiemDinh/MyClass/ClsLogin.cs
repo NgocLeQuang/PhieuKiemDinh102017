@@ -46,9 +46,9 @@ namespace PhieuKiemDinh.MyClass
         }
         public void Combobox_NotFinishCheckDeSo(ComboBox cbb, string tb)
         {
-            cbb.DataSource = (from w in Global.Db.GetBatNotFinishCheckerDeSo(tb) select w.fbatchname).ToList();
-            cbb.DisplayMember = "fbatchname";
-            cbb.ValueMember = "fbatchname";
+            cbb.DataSource = (from w in Global.Db.GetBatNotFinishCheckerDeSo(tb) select w.fBatchName).ToList();
+            cbb.DisplayMember = "fBatchName";
+            cbb.ValueMember = "fBatchName";
         }
     }
 }

@@ -192,9 +192,9 @@ namespace PhieuKiemDinh.MyForm
             }
             else if (txt_role.Text == "CHECKERDESO")
             {
-                cbb_batchname.DataSource = (from w in Global.Db.GetBatNotFinishCheckerDeSo(txt_username.Text) select w.fbatchname).ToList();
-                cbb_batchname.DisplayMember = "fbatchname";
-                cbb_batchname.ValueMember = "fbatchname";
+                cbb_batchname.DataSource = (from w in Global.Db.GetBatNotFinishCheckerDeSo(txt_username.Text) select w.fBatchName).ToList();
+                cbb_batchname.DisplayMember = "fBatchName";
+                cbb_batchname.ValueMember = "fBatchName";
             }
             else if(txt_role.Text == "ADMIN")
             {

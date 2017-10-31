@@ -100,6 +100,11 @@ namespace PhieuKiemDinh.MyForm
         private void time_CheckHinhChuaNhap_Tick(object sender, EventArgs e)
         {
             if (cbb_Batch.Text == "No batch")
-                return; }
+                return;
+            ThongKe();
+            lb_soHinhUserGood.Text = (from w in Global.Db.tbl_Images where w.ReadImageDESO_Good == 0 & w.fBatchName == cbb_Batch.Text select w).Count().ToString();
+            lb_soHinhUserNotGood.Text = (from w in Global.Db.tbl_Images where w.ReadImageDESO_NotGood == 0 & w.fBatchName == cbb_Batch.Text select w).Count().ToString();
+
+        }
     }
 }

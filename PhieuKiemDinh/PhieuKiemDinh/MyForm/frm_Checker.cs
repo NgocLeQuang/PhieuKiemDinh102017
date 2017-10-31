@@ -155,8 +155,8 @@ namespace PhieuKiemDinh.MyForm
             {
                 VisibleButtonSave();
                 ResetData();
-                cbb_Batch_Check.DataSource = (from w in Global.Db.GetBatNotFinishCheckerDeSo(Global.StrUserName) select w.fbatchname).ToList();
-                cbb_Batch_Check.DisplayMember = "fbatchname";
+                cbb_Batch_Check.DataSource = (from w in Global.Db.GetBatNotFinishCheckerDeSo(Global.StrUserName) select w.fBatchName).ToList();
+                cbb_Batch_Check.DisplayMember = "fBatchName";
                 var soloi = (from w in Global.Db.GetSoLoi_CheckDeSo(cbb_Batch_Check.Text) select w.Column1).FirstOrDefault();
                 lb_Loi.Text = soloi + @" Error";
                 btn_Start_Click(null, null);
@@ -395,8 +395,8 @@ namespace PhieuKiemDinh.MyForm
         private void frm_Checker_Load(object sender, EventArgs e)
         {
             splitCheck.SplitterPosition = Settings.Default.PositionSplitCheck;
-            cbb_Batch_Check.DataSource = (from w in Global.Db.GetBatNotFinishCheckerDeSo(Global.StrUserName) select w.fbatchname).ToList();
-            cbb_Batch_Check.DisplayMember = "fbatchname";
+            cbb_Batch_Check.DataSource = (from w in Global.Db.GetBatNotFinishCheckerDeSo(Global.StrUserName) select w.fBatchName).ToList();
+            cbb_Batch_Check.DisplayMember = "fBatchName";
             cbb_Batch_Check.Text = Global.StrBatch;
             xtraTabControl1.TabPages.Remove(tp_DeSo1);
             xtraTabControl2.TabPages.Remove(tp_DeSo2);

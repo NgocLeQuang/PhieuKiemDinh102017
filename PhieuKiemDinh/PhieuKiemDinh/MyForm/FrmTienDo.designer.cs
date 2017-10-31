@@ -27,7 +27,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             DevExpress.XtraCharts.Series series1 = new DevExpress.XtraCharts.Series();
             DevExpress.XtraCharts.PieSeriesView pieSeriesView1 = new DevExpress.XtraCharts.PieSeriesView();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmTienDo));
@@ -39,7 +38,11 @@
             this.cbb_Batch = new DevExpress.XtraEditors.LookUpEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.chartControl1 = new DevExpress.XtraCharts.ChartControl();
-            this.time_CheckHinhChuaNhap = new System.Windows.Forms.Timer(this.components);
+            this.time_CheckHinhChuaNhap = new System.Windows.Forms.Timer();
+            this.lb_soHinhUserNotGood = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
+            this.lb_soHinhUserGood = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ck_All.Properties)).BeginInit();
@@ -51,6 +54,10 @@
             // 
             // panelControl1
             // 
+            this.panelControl1.Controls.Add(this.lb_soHinhUserNotGood);
+            this.panelControl1.Controls.Add(this.labelControl5);
+            this.panelControl1.Controls.Add(this.lb_soHinhUserGood);
+            this.panelControl1.Controls.Add(this.labelControl3);
             this.panelControl1.Controls.Add(this.labelControl2);
             this.panelControl1.Controls.Add(this.lb_TongSoHinh);
             this.panelControl1.Controls.Add(this.ck_All);
@@ -68,7 +75,7 @@
             this.labelControl2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.labelControl2.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.labelControl2.Appearance.Options.UseFont = true;
-            this.labelControl2.Location = new System.Drawing.Point(920, 60);
+            this.labelControl2.Location = new System.Drawing.Point(915, 60);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(74, 13);
             this.labelControl2.TabIndex = 7;
@@ -81,7 +88,7 @@
             this.lb_TongSoHinh.Appearance.ForeColor = System.Drawing.Color.Red;
             this.lb_TongSoHinh.Appearance.Options.UseFont = true;
             this.lb_TongSoHinh.Appearance.Options.UseForeColor = true;
-            this.lb_TongSoHinh.Location = new System.Drawing.Point(1000, 55);
+            this.lb_TongSoHinh.Location = new System.Drawing.Point(995, 55);
             this.lb_TongSoHinh.Name = "lb_TongSoHinh";
             this.lb_TongSoHinh.Size = new System.Drawing.Size(40, 19);
             this.lb_TongSoHinh.TabIndex = 6;
@@ -153,6 +160,46 @@
             this.time_CheckHinhChuaNhap.Interval = 2000;
             this.time_CheckHinhChuaNhap.Tick += new System.EventHandler(this.time_CheckHinhChuaNhap_Tick);
             // 
+            // lb_soHinhUserNotGood
+            // 
+            this.lb_soHinhUserNotGood.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_soHinhUserNotGood.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lb_soHinhUserNotGood.Appearance.Options.UseFont = true;
+            this.lb_soHinhUserNotGood.Appearance.Options.UseForeColor = true;
+            this.lb_soHinhUserNotGood.Location = new System.Drawing.Point(868, 39);
+            this.lb_soHinhUserNotGood.Name = "lb_soHinhUserNotGood";
+            this.lb_soHinhUserNotGood.Size = new System.Drawing.Size(8, 14);
+            this.lb_soHinhUserNotGood.TabIndex = 15;
+            this.lb_soHinhUserNotGood.Text = "0";
+            // 
+            // labelControl5
+            // 
+            this.labelControl5.Location = new System.Drawing.Point(677, 40);
+            this.labelControl5.Name = "labelControl5";
+            this.labelControl5.Size = new System.Drawing.Size(183, 13);
+            this.labelControl5.TabIndex = 14;
+            this.labelControl5.Text = "Số hình chưa nhập của User NotGood:";
+            // 
+            // lb_soHinhUserGood
+            // 
+            this.lb_soHinhUserGood.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_soHinhUserGood.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.lb_soHinhUserGood.Appearance.Options.UseFont = true;
+            this.lb_soHinhUserGood.Appearance.Options.UseForeColor = true;
+            this.lb_soHinhUserGood.Location = new System.Drawing.Point(868, 21);
+            this.lb_soHinhUserGood.Name = "lb_soHinhUserGood";
+            this.lb_soHinhUserGood.Size = new System.Drawing.Size(8, 14);
+            this.lb_soHinhUserGood.TabIndex = 13;
+            this.lb_soHinhUserGood.Text = "0";
+            // 
+            // labelControl3
+            // 
+            this.labelControl3.Location = new System.Drawing.Point(677, 22);
+            this.labelControl3.Name = "labelControl3";
+            this.labelControl3.Size = new System.Drawing.Size(166, 13);
+            this.labelControl3.TabIndex = 12;
+            this.labelControl3.Text = "Số hình chưa nhập của User Good:";
+            // 
             // FrmTienDo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -188,5 +235,9 @@
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.LabelControl lb_TongSoHinh;
         private System.Windows.Forms.Timer time_CheckHinhChuaNhap;
+        private DevExpress.XtraEditors.LabelControl lb_soHinhUserNotGood;
+        private DevExpress.XtraEditors.LabelControl labelControl5;
+        private DevExpress.XtraEditors.LabelControl lb_soHinhUserGood;
+        private DevExpress.XtraEditors.LabelControl labelControl3;
     }
 }

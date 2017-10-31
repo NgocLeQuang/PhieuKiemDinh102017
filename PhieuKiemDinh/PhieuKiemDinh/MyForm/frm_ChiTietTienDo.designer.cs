@@ -254,6 +254,7 @@
             this.gridView1.OptionsView.EnableAppearanceOddRow = true;
             this.gridView1.OptionsView.ShowAutoFilterRow = true;
             this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridView1_CustomDrawRowIndicator);
             // 
             // gridColumn6
             // 

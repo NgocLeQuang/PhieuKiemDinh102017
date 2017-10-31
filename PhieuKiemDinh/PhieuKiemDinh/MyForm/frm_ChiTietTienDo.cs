@@ -21,6 +21,20 @@ namespace PhieuKiemDinh.MyForm
             InitializeComponent();
         }
 
+        public bool Cal(int width, GridView view)
+        {
+            view.IndicatorWidth = view.IndicatorWidth < width ? width : view.IndicatorWidth;
+            return true;
+        }
+
+        private void LoadSttGridView(RowIndicatorCustomDrawEventArgs e, GridView dgv)
+        {
+            if (e.Info.IsRowIndicator && e.RowHandle >= 0)
+                e.Info.DisplayText = (e.RowHandle + 1).ToString();
+            SizeF size = e.Graphics.MeasureString(e.Info.DisplayText, e.Appearance.Font);
+            int width = Convert.ToInt32(size.Width) + 20;
+            BeginInvoke(new MethodInvoker(delegate { Cal(width, dgv); }));
+        }
         private void DoRowDoubleClick(GridView view, Point pt)
         {
             GridHitInfo info = view.CalcHitInfo(pt);
@@ -140,15 +154,17 @@ namespace PhieuKiemDinh.MyForm
             }
         }
 
-       
-
         private void repositoryItemPopupContainerEdit1_Click(object sender, EventArgs e)
         {
             string idimage = gridView1.GetFocusedRowCellValue("idimage").ToString();
             string fBatchName = gridView1.GetFocusedRowCellValue("fBatchName").ToString();
             gridControl2.DataSource = null;
            gridControl2.DataSource = Global.Db.ChiTietUserDeSo(fBatchName, idimage);
-           
+        }
+
+        private void gridView1_CustomDrawRowIndicator(object sender, RowIndicatorCustomDrawEventArgs e)
+        {
+            LoadSttGridView(e, gridView1);
         }
     }
 }

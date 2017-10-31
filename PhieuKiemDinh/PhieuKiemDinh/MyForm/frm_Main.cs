@@ -62,7 +62,7 @@ namespace PhieuKiemDinh.MyForm
                 try
                 {
                     Global.FlagChangeSave = true;
-                    var ktBatch = (from w in Global.Db.CheckBatchChiaUser(Global.StrUserName) select w.ChiaUser).FirstOrDefault();
+                    var ktBatch = (from w in Global.Db.CheckBatchChiaUser(Global.StrBatch) select w.ChiaUser).FirstOrDefault();
                     if (ktBatch == true)
                     {
                         ChiaUser = 1;
