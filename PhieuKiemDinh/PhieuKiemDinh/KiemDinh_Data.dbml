@@ -570,4 +570,27 @@
       <Column Name="DateInput" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.GetDataShowToCheck" Method="GetDataShowToCheck">
+    <Parameter Name="fBatchName" Type="System.String" DbType="NVarChar(255)" />
+    <Parameter Name="image" Type="System.String" DbType="NVarChar(255)" />
+    <ElementType Name="GetDataShowToCheckResult">
+      <Column Name="TruongSo01" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="TruongSo03" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="TruongSo04" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="TruongSo05" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="TruongSo06" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="TruongSo07" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="TruongSo08" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="TruongSo08_2" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="TruongSo09" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="TruongSo10" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="TruongSo11" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="TruongSo12" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="TruongSo13" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="TruongSo14" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="True" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UserName" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="STT" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
 </Database>

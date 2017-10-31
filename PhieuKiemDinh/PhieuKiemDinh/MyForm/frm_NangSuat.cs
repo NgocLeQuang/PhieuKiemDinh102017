@@ -25,6 +25,8 @@ namespace PhieuKiemDinh.MyForm
 
         private void frm_NangSuat_Load(object sender, EventArgs e)
         {
+            timeFisrt.EditValue = "00:00";
+            timeEnd.EditValue = "23:59";
             string firstdate = dtp_FirstDay.Value.ToString("yyyy-MM-dd ") + timeFisrt.Text+":00";//" 00:00:00";
             string lastdate = dtp_EndDay.Value.ToString("yyyy-MM-dd ") + timeEnd.Text+":59";// " 23:59:59";
 

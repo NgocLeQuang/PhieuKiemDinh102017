@@ -1,20 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Text;
 using System.Linq;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
-using PhieuKiemDinh.MyClass;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraGrid;
 
 namespace PhieuKiemDinh.MyForm
 {
-    public partial class frm_ShowCheckedImage : DevExpress.XtraEditors.XtraForm
+    public partial class frm_ShowCheckedImage : XtraForm
     {
         public frm_ShowCheckedImage()
         {
@@ -23,6 +19,20 @@ namespace PhieuKiemDinh.MyForm
 
         public string fbatchname = "";
 
+        public bool Cal(int width, GridView view)
+        {
+            view.IndicatorWidth = view.IndicatorWidth < width ? width : view.IndicatorWidth;
+            return true;
+        }
+
+        private void LoadSttGridView(RowIndicatorCustomDrawEventArgs e, GridView dgv)
+        {
+            if (e.Info.IsRowIndicator && e.RowHandle >= 0)
+                e.Info.DisplayText = (e.RowHandle + 1).ToString();
+            SizeF size = e.Graphics.MeasureString(e.Info.DisplayText, e.Appearance.Font);
+            int width = Convert.ToInt32(size.Width) + 20;
+            BeginInvoke(new MethodInvoker(delegate { Cal(width, dgv); }));
+        }
         public void SetNumberRowGridView(DataGridView dgv)
         {
             for (int i = 0; i < dgv.Rows.Count; i++)
@@ -32,7 +42,6 @@ namespace PhieuKiemDinh.MyForm
         }
         private void frm_ShowCheckedImage_Load(object sender, EventArgs e)
         {
-            //var listfBatch = (from w in Global.DbKiemDinhXe.tbl_Batches where w.CongKhaiBatch == true select w.fBatchName).ToList();
             gridView1.DoubleClick += gridView1_DoubleClick;
             gridView1.ShownEditor += gridView1_ShownEditor;
             gridView1.HiddenEditor += gridView1_HiddenEditor;
@@ -53,7 +62,6 @@ namespace PhieuKiemDinh.MyForm
                 orderby w.DateCheckDeSo descending
                 select new {w.fBatchName, w.IdImage, w.DateCheckDeSo}).ToList();
             gridControl1.DataSource = listimage;
-            //SetNumberRowGridView(dataGridView1);
         }
         private void DoRowDoubleClick(GridView view, Point pt)
         {
@@ -99,6 +107,16 @@ namespace PhieuKiemDinh.MyForm
         private void dataGridView1_DoubleClick(object sender, EventArgs e)
         {
             
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            btn_Search_Click(null, null);
+        }
+
+        private void gridView1_CustomDrawRowIndicator(object sender, RowIndicatorCustomDrawEventArgs e)
+        {
+            LoadSttGridView(e, gridView1);
         }
     }
 }
