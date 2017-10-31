@@ -156,7 +156,10 @@ namespace PhieuKiemDinh.MyForm
             else
             {
                 MessageBox.Show("Version bạn dùng đã cũ, vui lòng cập nhật phiên bản mới!", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Process.Start(@"\\10.10.10.254\DE_Viet\2017\PHIEU_KIEM_DINH\Tools");
+                if(Settings.Default.Server == "Đà Nẵng")
+                    Process.Start(@"\\10.10.10.254\DE_Viet\2017\PHIEU_KIEM_DINH\Tools");
+                else
+                    Process.Start(@"https://drive.google.com/drive/folders/0BwO0VkvgrRHaeW5meEE4blBHdnc?usp=sharing");
                 Application.Exit();
             }
         } 

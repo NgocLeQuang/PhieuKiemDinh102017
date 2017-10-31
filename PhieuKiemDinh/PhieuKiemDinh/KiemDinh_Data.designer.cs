@@ -330,20 +330,6 @@ namespace PhieuKiemDinh
 			return ((ISingleResult<GetBatchResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.UpdateBatchChiaUser")]
-		public int UpdateBatchChiaUser([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(100)")] string fbatchname)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), fbatchname);
-			return ((int)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.UpdateBatchKhongChiaUser")]
-		public int UpdateBatchKhongChiaUser([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(100)")] string fbatchname)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), fbatchname);
-			return ((int)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.UpdateCongKhaiBatch")]
 		public int UpdateCongKhaiBatch([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(100)")] string fbatchname, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> status)
 		{
@@ -546,6 +532,13 @@ namespace PhieuKiemDinh
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), fBatchName, image);
 			return ((ISingleResult<GetDataShowToCheckResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.UpdateBatchChiaUser")]
+		public int UpdateBatchChiaUser([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(100)")] string fbatchname, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> status)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), fbatchname, status);
+			return ((int)(result.ReturnValue));
 		}
 	}
 	

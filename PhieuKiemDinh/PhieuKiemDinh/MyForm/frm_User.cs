@@ -130,26 +130,33 @@ namespace PhieuKiemDinh.MyForm
             }
         }
 
-        private void gridView1_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
-        {
-            string username = gridView1.GetFocusedRowCellValue("Username").ToString();
-            if (e.Column.FieldName == "NotGoodUser")
-            {
-                bool check = (bool)e.Value;
-                if (check)
-                {
-                    Global.DbBpo.updateNotGoodUser_New(username, true, Global.StrUserName, Global.GetServerIpAddress().ToString(), Environment.MachineName, Environment.UserDomainName + @"\" + Environment.UserName);
-                }
-                else
-                {
-                    Global.DbBpo.updateNotGoodUser_New(username, false, Global.StrUserName, Global.GetServerIpAddress().ToString(), Environment.MachineName, Environment.UserDomainName + @"\" + Environment.UserName);
-                }
-            }
-        }
-
         private void gridView1_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
         {
             LoadSttGridView(e, gridView1);
+        }
+
+        private void gridView1_CellValueChanging(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        {
+            try
+            {
+                string username = gridView1.GetFocusedRowCellValue("Username").ToString();
+                if (e.Column.FieldName == "NotGoodUser")
+                {
+                    bool check = (bool)e.Value;
+                    if (check)
+                    {
+                        Global.DbBpo.updateNotGoodUser_New(username, true, Global.StrUserName, Global.GetServerIpAddress().ToString(), Environment.MachineName, Environment.UserDomainName + @"\" + Environment.UserName);
+                    }
+                    else
+                    {
+                        Global.DbBpo.updateNotGoodUser_New(username, false, Global.StrUserName, Global.GetServerIpAddress().ToString(), Environment.MachineName, Environment.UserDomainName + @"\" + Environment.UserName);
+                    }
+                }
+            }
+            catch (Exception i)
+            {
+                MessageBox.Show("Lỗi : " + i);
+            }
         }
     }
 }

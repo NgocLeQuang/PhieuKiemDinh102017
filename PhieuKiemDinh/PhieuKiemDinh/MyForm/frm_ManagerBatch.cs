@@ -1,18 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.IO;
-using System.Text;
 using System.Linq;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraGrid.Views.Base;
 
 namespace PhieuKiemDinh.MyForm
 {
-    public partial class frm_ManagerBatch : DevExpress.XtraEditors.XtraForm
+    public partial class frm_ManagerBatch : XtraForm
     {
         public frm_ManagerBatch()
         {
@@ -69,63 +66,6 @@ namespace PhieuKiemDinh.MyForm
             refresh();
         }
 
-        private void gridView1_CellValueChanging(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
-        {
-            string batchname = gridView1.GetFocusedRowCellValue("fBatchName") + "";
-            if (e.Column.FieldName == "CongKhaiBatch")
-            {
-                bool check = (bool)e.Value;
-                if (check)
-                {
-                    var batch = (from w in Global.Db.tbl_Batches where w.fBatchName == batchname select w).Single();
-                    batch.CongKhaiBatch = true;
-                    Global.Db.SubmitChanges();
-                    Global.Db.UpdateCongKhaiBatch(batchname, 1);
-                }
-                else
-                {
-                    var batch = (from w in Global.Db.tbl_Batches where w.fBatchName == batchname select w).Single();
-                    batch.CongKhaiBatch = false;
-                    Global.Db.SubmitChanges();
-                    Global.Db.UpdateCongKhaiBatch(batchname, 0);
-                }
-                refresh();
-                int rowHandle = gridView1.LocateByValue("fBatchName", batchname);
-                if (rowHandle != DevExpress.XtraGrid.GridControl.InvalidRowHandle)
-                    gridView1.FocusedRowHandle = rowHandle;
-            }
-            else if (e.Column.FieldName == "ChiaUser")
-            {
-                var kt = (from w in Global.Db.GetNumberImageMissImage(batchname) select w).ToList();
-                if (kt.Count > 0)
-                {
-                    MessageBox.Show("Batch này đã được nhập!");
-                }
-                else
-                {
-                    bool check = (bool)e.Value;
-                    if (check)
-                    {
-                        var batch = (from w in Global.Db.tbl_Batches where w.fBatchName == batchname select w).Single();
-                        batch.ChiaUser = true;
-                        Global.Db.SubmitChanges();
-                        Global.Db.UpdateBatchChiaUser(batchname);
-                    }
-                    else
-                    {
-                        var batch = (from w in Global.Db.tbl_Batches where w.fBatchName == batchname select w).Single();
-                        batch.ChiaUser = false;
-                        Global.Db.SubmitChanges();
-                        Global.Db.UpdateBatchKhongChiaUser(batchname);
-                    }
-                }
-                refresh();
-                int rowHandle = gridView1.LocateByValue("fBatchName", batchname);
-                if (rowHandle != DevExpress.XtraGrid.GridControl.InvalidRowHandle)
-                    gridView1.FocusedRowHandle = rowHandle;
-            }
-        }
-
         private void btn_xoabatch_Click(object sender, EventArgs e)
         {
             int i = 0;
@@ -155,6 +95,59 @@ namespace PhieuKiemDinh.MyForm
         private void gridView1_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
         {
             LoadSttGridView(e, gridView1);
+        }
+        
+        private void gridView1_CellValueChanging(object sender, CellValueChangedEventArgs e)
+        {
+            try
+            {
+                string batchname = gridView1.GetFocusedRowCellValue("fBatchName") + "";
+                string fielname = e.Column.FieldName;
+                if (fielname == "CongKhaiBatch")
+                {
+                    bool check = (bool)e.Value;
+                    if (check)
+                    {
+                        Global.Db.UpdateCongKhaiBatch(batchname, 1);
+                    }
+                    else
+                    {
+                        Global.Db.UpdateCongKhaiBatch(batchname, 0);
+                    }
+                    int rowHandle = gridView1.LocateByValue("fBatchName", batchname);
+                    refresh();
+                    if (rowHandle != DevExpress.XtraGrid.GridControl.InvalidRowHandle)
+                        gridView1.FocusedRowHandle = rowHandle;
+                }
+                else if (fielname == "ChiaUser")
+                {
+                    var kt = (from w in Global.Db.tbl_MissImage_DeSos where w.fBatchName == batchname select w.IdImage).ToList();
+                    if (kt.Count > 0)
+                    {
+                        MessageBox.Show("Batch này đã được nhập!");
+                    }
+                    else
+                    {
+                        bool check = (bool)e.Value;
+                        if (check)
+                        {
+                            Global.Db.UpdateBatchChiaUser(batchname,1);
+                        }
+                        else
+                        {
+                            Global.Db.UpdateBatchChiaUser(batchname,0);
+                        }
+                    }
+                    int rowHandle = gridView1.LocateByValue("fBatchName", batchname);
+                    refresh();
+                    if (rowHandle != DevExpress.XtraGrid.GridControl.InvalidRowHandle)
+                        gridView1.FocusedRowHandle = rowHandle;
+                }
+            }
+            catch(Exception i)
+            {
+                MessageBox.Show("Lỗi : " + i.Message);
+            }
         }
     }
 }

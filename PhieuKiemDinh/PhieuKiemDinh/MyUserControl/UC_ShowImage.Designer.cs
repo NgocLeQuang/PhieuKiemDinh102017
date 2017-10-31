@@ -30,12 +30,12 @@
         {
             this.panel3 = new System.Windows.Forms.Panel();
             this.lb_User2 = new System.Windows.Forms.Label();
+            this.uc_DeSo3 = new PhieuKiemDinh.MyUserControl.uc_DeSo();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lb_User1 = new System.Windows.Forms.Label();
+            this.uc_DeSo2 = new PhieuKiemDinh.MyUserControl.uc_DeSo();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lb_UserCheck = new System.Windows.Forms.Label();
-            this.uc_DeSo3 = new PhieuKiemDinh.MyUserControl.uc_DeSo();
-            this.uc_DeSo2 = new PhieuKiemDinh.MyUserControl.uc_DeSo();
             this.uc_DeSo1 = new PhieuKiemDinh.MyUserControl.uc_DeSo();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -55,11 +55,20 @@
             // lb_User2
             // 
             this.lb_User2.AutoSize = true;
-            this.lb_User2.Location = new System.Drawing.Point(317, 239);
+            this.lb_User2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_User2.Location = new System.Drawing.Point(251, 234);
             this.lb_User2.Name = "lb_User2";
-            this.lb_User2.Size = new System.Drawing.Size(38, 13);
+            this.lb_User2.Size = new System.Drawing.Size(49, 15);
             this.lb_User2.TabIndex = 1;
             this.lb_User2.Text = "User1:";
+            // 
+            // uc_DeSo3
+            // 
+            this.uc_DeSo3.AutoScroll = true;
+            this.uc_DeSo3.Location = new System.Drawing.Point(-1, -1);
+            this.uc_DeSo3.Name = "uc_DeSo3";
+            this.uc_DeSo3.Size = new System.Drawing.Size(429, 267);
+            this.uc_DeSo3.TabIndex = 0;
             // 
             // panel2
             // 
@@ -74,11 +83,20 @@
             // lb_User1
             // 
             this.lb_User1.AutoSize = true;
-            this.lb_User1.Location = new System.Drawing.Point(317, 239);
+            this.lb_User1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_User1.Location = new System.Drawing.Point(251, 234);
             this.lb_User1.Name = "lb_User1";
-            this.lb_User1.Size = new System.Drawing.Size(41, 13);
+            this.lb_User1.Size = new System.Drawing.Size(53, 15);
             this.lb_User1.TabIndex = 1;
             this.lb_User1.Text = "User1: ";
+            // 
+            // uc_DeSo2
+            // 
+            this.uc_DeSo2.AutoScroll = true;
+            this.uc_DeSo2.Location = new System.Drawing.Point(4, 2);
+            this.uc_DeSo2.Name = "uc_DeSo2";
+            this.uc_DeSo2.Size = new System.Drawing.Size(424, 261);
+            this.uc_DeSo2.TabIndex = 0;
             // 
             // panel1
             // 
@@ -93,27 +111,12 @@
             // lb_UserCheck
             // 
             this.lb_UserCheck.AutoSize = true;
-            this.lb_UserCheck.Location = new System.Drawing.Point(317, 239);
+            this.lb_UserCheck.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_UserCheck.Location = new System.Drawing.Point(251, 234);
             this.lb_UserCheck.Name = "lb_UserCheck";
-            this.lb_UserCheck.Size = new System.Drawing.Size(44, 13);
+            this.lb_UserCheck.Size = new System.Drawing.Size(54, 15);
             this.lb_UserCheck.TabIndex = 1;
             this.lb_UserCheck.Text = "Check: ";
-            // 
-            // uc_DeSo3
-            // 
-            this.uc_DeSo3.AutoScroll = true;
-            this.uc_DeSo3.Location = new System.Drawing.Point(-1, -1);
-            this.uc_DeSo3.Name = "uc_DeSo3";
-            this.uc_DeSo3.Size = new System.Drawing.Size(429, 267);
-            this.uc_DeSo3.TabIndex = 0;
-            // 
-            // uc_DeSo2
-            // 
-            this.uc_DeSo2.AutoScroll = true;
-            this.uc_DeSo2.Location = new System.Drawing.Point(4, 2);
-            this.uc_DeSo2.Name = "uc_DeSo2";
-            this.uc_DeSo2.Size = new System.Drawing.Size(424, 261);
-            this.uc_DeSo2.TabIndex = 0;
             // 
             // uc_DeSo1
             // 
