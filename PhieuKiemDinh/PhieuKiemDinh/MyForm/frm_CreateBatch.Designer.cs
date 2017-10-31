@@ -28,79 +28,49 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_CreateBatch));
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.txt_fBatchName = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.txt_DateCreate = new DevExpress.XtraEditors.TextEdit();
             this.txt_UserCreate = new DevExpress.XtraEditors.TextEdit();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
-            this.btn_TaoBatch = new DevExpress.XtraEditors.SimpleButton();
             this.lb_SoLuongAnh = new DevExpress.XtraEditors.LabelControl();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.lb_SobatchHoanThanh = new System.Windows.Forms.Label();
-            this.btn_drawhide = new DevExpress.XtraEditors.SimpleButton();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btn_ShowPoint = new DevExpress.XtraEditors.SimpleButton();
             this.ck_ChiaUser = new System.Windows.Forms.CheckBox();
-            this.txt_ImagePath = new DevExpress.XtraEditors.TextEdit();
-            this.btn_ChonAnh = new DevExpress.XtraEditors.SimpleButton();
-            this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
-            this.txt_folder_Multiline = new DevExpress.XtraEditors.TextEdit();
-            this.btn_Browser = new DevExpress.XtraEditors.SimpleButton();
-            this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
-            this.lb_SoBatch = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.txt_fBatchName.Properties)).BeginInit();
+            this.button1 = new System.Windows.Forms.Button();
+            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.BatchIsExists = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.btn_TaoBatch = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.txt_DateCreate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_UserCreate.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txt_ImagePath.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txt_folder_Multiline.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // labelControl1
             // 
-            this.labelControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelControl1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Bold);
             this.labelControl1.Appearance.ForeColor = System.Drawing.Color.Red;
             this.labelControl1.Appearance.Options.UseFont = true;
             this.labelControl1.Appearance.Options.UseForeColor = true;
-            this.labelControl1.Location = new System.Drawing.Point(258, 12);
+            this.labelControl1.Location = new System.Drawing.Point(507, 9);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(160, 23);
             this.labelControl1.TabIndex = 1;
             this.labelControl1.Text = "TẠO BATCH MỚI";
             // 
-            // txt_fBatchName
-            // 
-            this.txt_fBatchName.Location = new System.Drawing.Point(156, 41);
-            this.txt_fBatchName.Name = "txt_fBatchName";
-            this.txt_fBatchName.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_fBatchName.Properties.Appearance.Options.UseFont = true;
-            this.txt_fBatchName.Size = new System.Drawing.Size(348, 22);
-            this.txt_fBatchName.TabIndex = 4;
-            this.txt_fBatchName.EditValueChanged += new System.EventHandler(this.txt_fBatchName_EditValueChanged);
-            // 
-            // labelControl2
-            // 
-            this.labelControl2.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl2.Appearance.ForeColor = System.Drawing.Color.Black;
-            this.labelControl2.Appearance.Options.UseFont = true;
-            this.labelControl2.Appearance.Options.UseForeColor = true;
-            this.labelControl2.Location = new System.Drawing.Point(12, 46);
-            this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(112, 16);
-            this.labelControl2.TabIndex = 3;
-            this.labelControl2.Text = "Tên batch (Single):";
-            // 
             // txt_DateCreate
             // 
-            this.txt_DateCreate.Location = new System.Drawing.Point(156, 161);
+            this.txt_DateCreate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.txt_DateCreate.Location = new System.Drawing.Point(156, 565);
             this.txt_DateCreate.Name = "txt_DateCreate";
             this.txt_DateCreate.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_DateCreate.Properties.Appearance.Options.UseFont = true;
@@ -110,7 +80,8 @@
             // 
             // txt_UserCreate
             // 
-            this.txt_UserCreate.Location = new System.Drawing.Point(156, 132);
+            this.txt_UserCreate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.txt_UserCreate.Location = new System.Drawing.Point(156, 536);
             this.txt_UserCreate.Name = "txt_UserCreate";
             this.txt_UserCreate.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_UserCreate.Properties.Appearance.Options.UseFont = true;
@@ -120,9 +91,10 @@
             // 
             // labelControl4
             // 
+            this.labelControl4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labelControl4.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl4.Appearance.Options.UseFont = true;
-            this.labelControl4.Location = new System.Drawing.Point(12, 164);
+            this.labelControl4.Location = new System.Drawing.Point(12, 568);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(94, 16);
             this.labelControl4.TabIndex = 5;
@@ -130,34 +102,23 @@
             // 
             // labelControl3
             // 
+            this.labelControl3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labelControl3.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl3.Appearance.Options.UseFont = true;
-            this.labelControl3.Location = new System.Drawing.Point(12, 135);
+            this.labelControl3.Location = new System.Drawing.Point(12, 539);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(90, 16);
             this.labelControl3.TabIndex = 6;
             this.labelControl3.Text = "User tạo batch:";
             // 
-            // btn_TaoBatch
-            // 
-            this.btn_TaoBatch.Appearance.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Bold);
-            this.btn_TaoBatch.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.btn_TaoBatch.Appearance.Options.UseFont = true;
-            this.btn_TaoBatch.Appearance.Options.UseForeColor = true;
-            this.btn_TaoBatch.Location = new System.Drawing.Point(258, 256);
-            this.btn_TaoBatch.Name = "btn_TaoBatch";
-            this.btn_TaoBatch.Size = new System.Drawing.Size(160, 29);
-            this.btn_TaoBatch.TabIndex = 12;
-            this.btn_TaoBatch.Text = "Tạo Batch";
-            this.btn_TaoBatch.Click += new System.EventHandler(this.btn_TaoBatch_Click);
-            // 
             // lb_SoLuongAnh
             // 
+            this.lb_SoLuongAnh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lb_SoLuongAnh.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
             this.lb_SoLuongAnh.Appearance.ForeColor = System.Drawing.Color.Red;
             this.lb_SoLuongAnh.Appearance.Options.UseFont = true;
             this.lb_SoLuongAnh.Appearance.Options.UseForeColor = true;
-            this.lb_SoLuongAnh.Location = new System.Drawing.Point(138, 229);
+            this.lb_SoLuongAnh.Location = new System.Drawing.Point(138, 568);
             this.lb_SoLuongAnh.Name = "lb_SoLuongAnh";
             this.lb_SoLuongAnh.Size = new System.Drawing.Size(0, 16);
             this.lb_SoLuongAnh.TabIndex = 14;
@@ -167,187 +128,175 @@
             this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
             this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
             // 
-            // progressBar1
-            // 
-            this.progressBar1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.progressBar1.Location = new System.Drawing.Point(36, 323);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(579, 23);
-            this.progressBar1.TabIndex = 15;
-            // 
-            // lb_SobatchHoanThanh
-            // 
-            this.lb_SobatchHoanThanh.AutoSize = true;
-            this.lb_SobatchHoanThanh.Location = new System.Drawing.Point(103, 293);
-            this.lb_SobatchHoanThanh.Name = "lb_SobatchHoanThanh";
-            this.lb_SobatchHoanThanh.Size = new System.Drawing.Size(35, 13);
-            this.lb_SobatchHoanThanh.TabIndex = 16;
-            this.lb_SobatchHoanThanh.Text = "label1";
-            // 
-            // btn_drawhide
-            // 
-            this.btn_drawhide.Location = new System.Drawing.Point(134, 195);
-            this.btn_drawhide.Name = "btn_drawhide";
-            this.btn_drawhide.Size = new System.Drawing.Size(75, 23);
-            this.btn_drawhide.TabIndex = 17;
-            this.btn_drawhide.Text = "Vẽ ẫn";
-            this.btn_drawhide.Click += new System.EventHandler(this.btn_drawhide_Click);
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(311, 195);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(237, 21);
-            this.comboBox1.TabIndex = 18;
-            this.comboBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBox1_KeyPress);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(233, 200);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(73, 13);
-            this.label1.TabIndex = 19;
-            this.label1.Text = "Chọn tọa độ :";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.pictureBox1.Location = new System.Drawing.Point(467, 229);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(148, 77);
-            this.pictureBox1.TabIndex = 20;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Visible = false;
-            // 
-            // btn_ShowPoint
-            // 
-            this.btn_ShowPoint.Location = new System.Drawing.Point(562, 193);
-            this.btn_ShowPoint.Name = "btn_ShowPoint";
-            this.btn_ShowPoint.Size = new System.Drawing.Size(75, 23);
-            this.btn_ShowPoint.TabIndex = 21;
-            this.btn_ShowPoint.Text = "Sửa";
-            this.btn_ShowPoint.Click += new System.EventHandler(this.btn_ShowPoint_Click);
-            // 
             // ck_ChiaUser
             // 
+            this.ck_ChiaUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ck_ChiaUser.AutoSize = true;
-            this.ck_ChiaUser.Location = new System.Drawing.Point(510, 44);
+            this.ck_ChiaUser.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ck_ChiaUser.Location = new System.Drawing.Point(334, 538);
             this.ck_ChiaUser.Name = "ck_ChiaUser";
-            this.ck_ChiaUser.Size = new System.Drawing.Size(72, 17);
+            this.ck_ChiaUser.Size = new System.Drawing.Size(87, 20);
             this.ck_ChiaUser.TabIndex = 71;
             this.ck_ChiaUser.Text = "Chia User";
             this.ck_ChiaUser.UseVisualStyleBackColor = true;
             // 
-            // txt_ImagePath
+            // button1
             // 
-            this.txt_ImagePath.Location = new System.Drawing.Point(156, 69);
-            this.txt_ImagePath.Name = "txt_ImagePath";
-            this.txt_ImagePath.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_ImagePath.Properties.Appearance.Options.UseFont = true;
-            this.txt_ImagePath.Size = new System.Drawing.Size(392, 22);
-            this.txt_ImagePath.TabIndex = 74;
+            this.button1.Location = new System.Drawing.Point(19, 597);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 79;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // btn_ChonAnh
+            // gridControl1
             // 
-            this.btn_ChonAnh.Location = new System.Drawing.Point(563, 67);
-            this.btn_ChonAnh.Name = "btn_ChonAnh";
-            this.btn_ChonAnh.Size = new System.Drawing.Size(75, 23);
-            this.btn_ChonAnh.TabIndex = 73;
-            this.btn_ChonAnh.Text = "&Chọn ảnh";
-            this.btn_ChonAnh.Click += new System.EventHandler(this.btn_ChonAnh_Click);
+            this.gridControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gridControl1.Location = new System.Drawing.Point(6, 41);
+            this.gridControl1.MainView = this.gridView1;
+            this.gridControl1.Name = "gridControl1";
+            this.gridControl1.Size = new System.Drawing.Size(1181, 489);
+            this.gridControl1.TabIndex = 80;
+            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView1});
             // 
-            // labelControl7
+            // gridView1
             // 
-            this.labelControl7.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl7.Appearance.Options.UseFont = true;
-            this.labelControl7.Location = new System.Drawing.Point(13, 73);
-            this.labelControl7.Name = "labelControl7";
-            this.labelControl7.Size = new System.Drawing.Size(93, 16);
-            this.labelControl7.TabIndex = 72;
-            this.labelControl7.Text = "Đường dẫn ảnh:";
+            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn1,
+            this.BatchIsExists,
+            this.gridColumn2,
+            this.gridColumn4,
+            this.gridColumn3});
+            this.gridView1.GridControl = this.gridControl1;
+            this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsSelection.MultiSelect = true;
+            this.gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
+            this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridView1_CustomDrawRowIndicator);
             // 
-            // txt_folder_Multiline
+            // gridColumn1
             // 
-            this.txt_folder_Multiline.Location = new System.Drawing.Point(156, 99);
-            this.txt_folder_Multiline.Name = "txt_folder_Multiline";
-            this.txt_folder_Multiline.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_folder_Multiline.Properties.Appearance.Options.UseFont = true;
-            this.txt_folder_Multiline.Size = new System.Drawing.Size(392, 22);
-            this.txt_folder_Multiline.TabIndex = 77;
-            this.txt_folder_Multiline.EditValueChanged += new System.EventHandler(this.txt_folder_Multiline_EditValueChanged);
+            this.gridColumn1.Caption = "Folder";
+            this.gridColumn1.FieldName = "Folder";
+            this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.OptionsColumn.ReadOnly = true;
+            this.gridColumn1.Visible = true;
+            this.gridColumn1.VisibleIndex = 1;
             // 
-            // btn_Browser
+            // BatchIsExists
             // 
-            this.btn_Browser.Location = new System.Drawing.Point(563, 97);
-            this.btn_Browser.Name = "btn_Browser";
-            this.btn_Browser.Size = new System.Drawing.Size(75, 23);
-            this.btn_Browser.TabIndex = 76;
-            this.btn_Browser.Text = "Browser...";
-            this.btn_Browser.Click += new System.EventHandler(this.btn_Browser_Click);
+            this.BatchIsExists.AppearanceCell.Options.UseTextOptions = true;
+            this.BatchIsExists.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.BatchIsExists.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.BatchIsExists.AppearanceHeader.Options.UseTextOptions = true;
+            this.BatchIsExists.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.BatchIsExists.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.BatchIsExists.Caption = "Batch Is Exists";
+            this.BatchIsExists.FieldName = "Is_Exists";
+            this.BatchIsExists.Name = "BatchIsExists";
+            this.BatchIsExists.OptionsColumn.ReadOnly = true;
+            this.BatchIsExists.Visible = true;
+            this.BatchIsExists.VisibleIndex = 2;
             // 
-            // labelControl5
+            // gridColumn2
             // 
-            this.labelControl5.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl5.Appearance.Options.UseFont = true;
-            this.labelControl5.Location = new System.Drawing.Point(13, 103);
-            this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(137, 16);
-            this.labelControl5.TabIndex = 75;
-            this.labelControl5.Text = "Folder batch (Multiline):";
+            this.gridColumn2.AppearanceCell.Options.UseTextOptions = true;
+            this.gridColumn2.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn2.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.gridColumn2.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn2.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.gridColumn2.Caption = "Numbers Image";
+            this.gridColumn2.FieldName = "NumberImage";
+            this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.OptionsColumn.ReadOnly = true;
+            this.gridColumn2.Visible = true;
+            this.gridColumn2.VisibleIndex = 3;
             // 
-            // lb_SoBatch
+            // gridColumn4
             // 
-            this.lb_SoBatch.AutoSize = true;
-            this.lb_SoBatch.Location = new System.Drawing.Point(33, 293);
-            this.lb_SoBatch.Name = "lb_SoBatch";
-            this.lb_SoBatch.Size = new System.Drawing.Size(35, 13);
-            this.lb_SoBatch.TabIndex = 78;
-            this.lb_SoBatch.Text = "label1";
+            this.gridColumn4.AppearanceCell.Options.UseTextOptions = true;
+            this.gridColumn4.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn4.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.gridColumn4.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn4.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn4.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.gridColumn4.Caption = "Date Create Folder";
+            this.gridColumn4.DisplayFormat.FormatString = "dd/MM/yyyy HH:mm:ss";
+            this.gridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.gridColumn4.FieldName = "DateCreateFolder";
+            this.gridColumn4.Name = "gridColumn4";
+            this.gridColumn4.OptionsColumn.ReadOnly = true;
+            this.gridColumn4.Visible = true;
+            this.gridColumn4.VisibleIndex = 4;
+            // 
+            // gridColumn3
+            // 
+            this.gridColumn3.AppearanceCell.Options.UseTextOptions = true;
+            this.gridColumn3.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn3.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.gridColumn3.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn3.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.gridColumn3.Caption = "Date Create Batch";
+            this.gridColumn3.DisplayFormat.FormatString = "dd/MM/yyyy HH:mm:ss";
+            this.gridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.gridColumn3.FieldName = "DateCreateBatch";
+            this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.OptionsColumn.ReadOnly = true;
+            this.gridColumn3.Visible = true;
+            this.gridColumn3.VisibleIndex = 5;
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 300000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // btn_TaoBatch
+            // 
+            this.btn_TaoBatch.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btn_TaoBatch.Appearance.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Bold);
+            this.btn_TaoBatch.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btn_TaoBatch.Appearance.Options.UseFont = true;
+            this.btn_TaoBatch.Appearance.Options.UseForeColor = true;
+            this.btn_TaoBatch.Location = new System.Drawing.Point(507, 594);
+            this.btn_TaoBatch.Name = "btn_TaoBatch";
+            this.btn_TaoBatch.Size = new System.Drawing.Size(160, 29);
+            this.btn_TaoBatch.TabIndex = 12;
+            this.btn_TaoBatch.Text = "Tạo Batch";
+            this.btn_TaoBatch.Click += new System.EventHandler(this.btn_TaoBatch_Click);
             // 
             // frm_CreateBatch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(652, 358);
-            this.Controls.Add(this.lb_SoBatch);
-            this.Controls.Add(this.txt_folder_Multiline);
-            this.Controls.Add(this.btn_Browser);
-            this.Controls.Add(this.labelControl5);
-            this.Controls.Add(this.txt_ImagePath);
-            this.Controls.Add(this.btn_ChonAnh);
-            this.Controls.Add(this.labelControl7);
+            this.ClientSize = new System.Drawing.Size(1194, 631);
+            this.Controls.Add(this.gridControl1);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.ck_ChiaUser);
-            this.Controls.Add(this.btn_ShowPoint);
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.btn_drawhide);
-            this.Controls.Add(this.lb_SobatchHoanThanh);
-            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.lb_SoLuongAnh);
             this.Controls.Add(this.btn_TaoBatch);
             this.Controls.Add(this.txt_DateCreate);
             this.Controls.Add(this.txt_UserCreate);
             this.Controls.Add(this.labelControl4);
             this.Controls.Add(this.labelControl3);
-            this.Controls.Add(this.txt_fBatchName);
-            this.Controls.Add(this.labelControl2);
             this.Controls.Add(this.labelControl1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
             this.Name = "frm_CreateBatch";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Tạo Batch mới";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frm_CreateBatch_FormClosing);
             this.Load += new System.EventHandler(this.frm_CreateBatch_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.txt_fBatchName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_DateCreate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_UserCreate.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txt_ImagePath.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txt_folder_Multiline.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -356,29 +305,22 @@
         #endregion
 
         private DevExpress.XtraEditors.LabelControl labelControl1;
-        private DevExpress.XtraEditors.TextEdit txt_fBatchName;
-        private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.TextEdit txt_DateCreate;
         private DevExpress.XtraEditors.TextEdit txt_UserCreate;
         private DevExpress.XtraEditors.LabelControl labelControl4;
         private DevExpress.XtraEditors.LabelControl labelControl3;
-        private DevExpress.XtraEditors.SimpleButton btn_TaoBatch;
         private DevExpress.XtraEditors.LabelControl lb_SoLuongAnh;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private System.Windows.Forms.ProgressBar progressBar1;
-        private System.Windows.Forms.Label lb_SobatchHoanThanh;
-        private DevExpress.XtraEditors.SimpleButton btn_drawhide;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private DevExpress.XtraEditors.SimpleButton btn_ShowPoint;
         private System.Windows.Forms.CheckBox ck_ChiaUser;
-        private DevExpress.XtraEditors.TextEdit txt_ImagePath;
-        private DevExpress.XtraEditors.SimpleButton btn_ChonAnh;
-        private DevExpress.XtraEditors.LabelControl labelControl7;
-        private DevExpress.XtraEditors.TextEdit txt_folder_Multiline;
-        private DevExpress.XtraEditors.SimpleButton btn_Browser;
-        private DevExpress.XtraEditors.LabelControl labelControl5;
-        private System.Windows.Forms.Label lb_SoBatch;
+        private System.Windows.Forms.Button button1;
+        private DevExpress.XtraGrid.GridControl gridControl1;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
+        private DevExpress.XtraGrid.Columns.GridColumn BatchIsExists;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
+        private System.Windows.Forms.Timer timer1;
+        private DevExpress.XtraEditors.SimpleButton btn_TaoBatch;
     }
 }

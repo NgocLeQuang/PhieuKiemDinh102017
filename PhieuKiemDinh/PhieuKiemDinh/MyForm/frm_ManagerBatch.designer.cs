@@ -93,6 +93,7 @@
             this.gridView1.OptionsSelection.UseIndicatorForSelection = false;
             this.gridView1.OptionsView.EnableAppearanceEvenRow = true;
             this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridView1_CustomDrawRowIndicator);
             this.gridView1.CellValueChanging += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridView1_CellValueChanging);
             // 
             // gridColumn1
@@ -100,6 +101,7 @@
             this.gridColumn1.Caption = "ID";
             this.gridColumn1.FieldName = "id";
             this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.OptionsColumn.ReadOnly = true;
             this.gridColumn1.Visible = true;
             this.gridColumn1.VisibleIndex = 1;
             this.gridColumn1.Width = 59;
@@ -109,6 +111,7 @@
             this.gridColumn2.Caption = "Tên Batch";
             this.gridColumn2.FieldName = "fBatchName";
             this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.OptionsColumn.ReadOnly = true;
             this.gridColumn2.Visible = true;
             this.gridColumn2.VisibleIndex = 2;
             this.gridColumn2.Width = 202;
@@ -118,6 +121,7 @@
             this.gridColumn5.Caption = "Ngày tạo";
             this.gridColumn5.FieldName = "NgayTaoBatch";
             this.gridColumn5.Name = "gridColumn5";
+            this.gridColumn5.OptionsColumn.ReadOnly = true;
             this.gridColumn5.Visible = true;
             this.gridColumn5.VisibleIndex = 3;
             this.gridColumn5.Width = 141;
@@ -127,6 +131,7 @@
             this.gridColumn3.Caption = "Số hình";
             this.gridColumn3.FieldName = "SoLuongHinh";
             this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.OptionsColumn.ReadOnly = true;
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 4;
             this.gridColumn3.Width = 110;
@@ -136,6 +141,7 @@
             this.gridColumn4.Caption = "User tạo batch";
             this.gridColumn4.FieldName = "UserTaoBatch";
             this.gridColumn4.Name = "gridColumn4";
+            this.gridColumn4.OptionsColumn.ReadOnly = true;
             this.gridColumn4.Visible = true;
             this.gridColumn4.VisibleIndex = 5;
             this.gridColumn4.Width = 95;

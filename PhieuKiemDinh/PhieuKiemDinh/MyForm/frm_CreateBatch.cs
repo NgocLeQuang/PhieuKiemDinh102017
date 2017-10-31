@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevExpress.XtraGrid.Views.Grid;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -6,23 +7,32 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
 
 namespace PhieuKiemDinh.MyForm
 {
     public partial class frm_CreateBatch : DevExpress.XtraEditors.XtraForm
     {
-        private string csvpath = "";
         private string[] lFileNames;
-        private string loaibatch;
-        private int soluonganh = 0;
         private DateTime TimeBeginCreateBatch;
-        Image Imagetemp;
         public frm_CreateBatch()
         {
             InitializeComponent();
         }
 
+        public bool Cal(int width, GridView view)
+        {
+            view.IndicatorWidth = view.IndicatorWidth < width ? width : view.IndicatorWidth;
+            return true;
+        }
+
+        private void LoadSttGridView(RowIndicatorCustomDrawEventArgs e, GridView dgv)
+        {
+            if (e.Info.IsRowIndicator && e.RowHandle >= 0)
+                e.Info.DisplayText = (e.RowHandle + 1).ToString();
+            SizeF size = e.Graphics.MeasureString(e.Info.DisplayText, e.Appearance.Font);
+            int width = Convert.ToInt32(size.Width) + 20;
+            BeginInvoke(new MethodInvoker(delegate { Cal(width, dgv); }));
+        }
         public struct point_rectangle
         {
             public int x1, y1, x2, y2;
@@ -51,43 +61,49 @@ namespace PhieuKiemDinh.MyForm
         }
 
         public List<point_rectangle> pr = new List<point_rectangle>();
-
-        private void btn_ChonAnh_Click(object sender, EventArgs e)
-        {
-            lFileNames = null;
-            if (string.IsNullOrEmpty(txt_fBatchName.Text))
-            {
-                MessageBox.Show("Vui lòng điền tên Batch", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            OpenFileDialog dlg = new OpenFileDialog();
-            dlg.Filter = "All Types Image|*.bmp;*.jpg;*.jpeg;*.png;*.tif;*.tiff";
-
-            dlg.Multiselect = true;
-
-            if (dlg.ShowDialog() == DialogResult.OK)
-            {
-                lFileNames = dlg.FileNames;
-                txt_ImagePath.Text = Path.GetDirectoryName(dlg.FileName);
-            }
-            soluonganh = dlg.FileNames.Length;
-            lb_SoLuongAnh.Text = soluonganh + " files ";
-        }
-
+        
         private void frm_CreateBatch_Load(object sender, EventArgs e)
         {
-            lb_SobatchHoanThanh.Text = "";
-            lb_SoBatch.Text = "";
+            //lb_SobatchHoanThanh.Text = "";
+            //lb_SoBatch.Text = "";
             txt_UserCreate.Text = Global.StrUserName;
-            var a= (from w in Global.Db.GetBatch_ToaDo() select w.fBatchName).ToList();
-            a.Insert(0,"");
-            comboBox1.DataSource = a;
-            comboBox1.DisplayMember = "fBatchName";
             txt_DateCreate.Text = DateTime.Now.ToShortDateString() + "  -  " + DateTime.Now.ToShortTimeString();
+            string[] foldersAll = Directory.GetDirectories(Global.StrPath);
+            string folder = "";
+            DateTime? DateCreateBatch;
+            bool Is_Exists = false;
+            category.Clear();
+            var listBatch = (from w in Global.Db.GetBatch_Full() select new { w.fBatchName, w.NgayTaoBatch }).ToList();
+            for (int i = 0; i < foldersAll.Count(); i++)
+            {
+                DirectoryInfo fi = new DirectoryInfo(foldersAll[i]);
+                folder = fi.Name;
+                DateCreateBatch = null;
+                if (listBatch.Exists(x => x.fBatchName == (folder)))
+                {
+                    Is_Exists = true;
+                    DateCreateBatch = (from w in listBatch where w.fBatchName == folder select w.NgayTaoBatch).FirstOrDefault();
+                }
+                else
+                    Is_Exists = false;
+                lFileNames = Directory.GetFiles(Global.StrPath +@"\"+ folder, "*.jpg").Select(Path.GetFileName).
+                    Union(Directory.GetFiles(Global.StrPath + @"\" + folder, "*.jpeg").Select(Path.GetFileName).
+                    Union(Directory.GetFiles(Global.StrPath + @"\" + folder, "*.png").Select(Path.GetFileName))).ToArray();
+                category.Add(new Category() { Folder = folder, NumberImage = lFileNames.Count(),Is_Exists=Is_Exists,DateCreateFolder= fi.LastAccessTime, DateCreateBatch= DateCreateBatch });
+            }
+            gridControl1.DataSource = (from w in category orderby w.Is_Exists descending, w.DateCreateBatch ascending, w.DateCreateFolder ascending select w).ToList();
         }
 
+        string listBatchExists = "";
+        int countBatchExists = 0;
+        List<string> batchExists = new List<string>();
         private void btn_TaoBatch_Click(object sender, EventArgs e)
         {
+            batchExists.Clear();
+            listBatchExists = "";
+            countBatchExists = 0;
+            timer1.Enabled = false;
+            fbatchname = "";
             if (!Directory.Exists(Global.StrPath))
             {
                 MessageBox.Show("Không thể mở thư mục lưu trữ hình ảnh.\r\nBạn hãy kiểm tra lại tài khoản đăng nhập hoặc kết nối internet");
@@ -106,314 +122,115 @@ namespace PhieuKiemDinh.MyForm
                     }
                     File.Delete(path);
                 }
-                catch { MessageBox.Show("Bạn chưa được cấp quyền để tạo thư mục lưu trữ hình ảnh."); }
+                catch { MessageBox.Show("Bạn chưa được cấp quyền để mở thư mục lưu trữ hình ảnh."); }
+            }
+            if(gridView1.GetSelectedRows().Count()<=0)
+            {
+                MessageBox.Show("Hạy chọn batch!");
+                return;
+            }
+            foreach (var rowHandle in gridView1.GetSelectedRows())
+            {
+                fbatchname = gridView1.GetRowCellValue(rowHandle, "Folder").ToString();
+                batchExists = (from w in Global.Db.tbl_Batches where w.fBatchName == fbatchname select w.fBatchName).ToList();
+                if (batchExists.Count > 0)
+                {
+                    countBatchExists += 1;
+                    listBatchExists += batchExists[0] + "\r\n";
+                }
+            }
+            if (countBatchExists > 0)
+            {
+                MessageBox.Show("Batch đã tồn tại trong database :\r\n" + listBatchExists);
+                return;
             }
             if (backgroundWorker1.IsBusy)
             {
                 MessageBox.Show("Quá trình tạo batch đang diễn ra, Bạn hãy chờ quá trình tạo batch kết thúc mới tiếp tục tạo batch mới !");
                 return;
             }
-            if(string.IsNullOrEmpty(txt_fBatchName.Text) && string.IsNullOrEmpty(txt_folder_Multiline.Text))
-            {
-                MessageBox.Show("Hãy nhập tên batch hoặc chọn folder hình ảnh !");
-                return;
-            }
-            if (string.IsNullOrEmpty(txt_ImagePath.Text)&& !string.IsNullOrEmpty(txt_fBatchName.Text))
-            {
-                MessageBox.Show("Chưa chọn hình ảnh!");
-                return;
-            }
-            if (string.IsNullOrEmpty(comboBox1.Text))
-            {
-                MessageBox.Show("Bạn chưa chọn tọa độ !");
-                return;
-            }
-            string temp = Global.StrPath + "\\" + txt_fBatchName.Text;
-            if (!Directory.Exists(temp) & !string.IsNullOrEmpty(txt_fBatchName.Text))
-            {
-                Directory.CreateDirectory(temp);
-            }
-            else if(!string.IsNullOrEmpty(txt_fBatchName.Text))
-            {
-                MessageBox.Show("Bị trùng tên thư mục chứa hình!");
-                return;
-            }
-            var batch = (from w in Global.Db.GetBatchCheckExists(txt_fBatchName.Text) select w.fBatchName).FirstOrDefault();
-            if (!string.IsNullOrEmpty(txt_ImagePath.Text) && !string.IsNullOrEmpty(txt_fBatchName.Text))
-            {
-                if (string.IsNullOrEmpty(batch))
-                {
-                    Global.Db.InsertBatch(txt_fBatchName.Text, txt_UserCreate.Text, txt_ImagePath.Text, soluonganh.ToString(),ck_ChiaUser.Checked ? 1:0);
-                }
-                else
-                {
-                    MessageBox.Show("Batch đã tồn tại vui lòng điền tên batch khác!");
-                    return;
-                }
-            }
-            else if(string.IsNullOrEmpty(txt_ImagePath.Text) && !string.IsNullOrEmpty(txt_fBatchName.Text))
-            {
-                MessageBox.Show("Bạn chưa chọn hình ảnh!");
-                return;
-            }
-            TimeBeginCreateBatch = DateTime.Now;
-            txt_fBatchName.ReadOnly = true;
-            txt_ImagePath.ReadOnly = true;
-            txt_folder_Multiline.ReadOnly = true;
-            ck_ChiaUser.Enabled = false;
-            btn_Browser.Enabled = false;
-            comboBox1.Enabled = false;
-            btn_ChonAnh.Enabled = false;
-            btn_drawhide.Enabled = false;
-            btn_ShowPoint.Enabled = false;
-            lb_SobatchHoanThanh.Text = "";
-            lb_SoBatch.Text = "";
-            var ListToaDo = (from w in Global.Db.GetToaDo(comboBox1.Text + "") select w).ToList();
-            for(int i=0;i<ListToaDo.Count;i++)
-            {
-                point_rectangle a = new point_rectangle
-                {
-                    _x1 = int.Parse(ListToaDo[i].x1 + ""),
-                    _x2 = int.Parse(ListToaDo[i].x2 + ""),
-                    _y1 = int.Parse(ListToaDo[i].y1 + ""),
-                    _y2 = int.Parse(ListToaDo[i].y2 + "")
-                };
-                pr.Add(a);
-            }
-            multiline = -1;
-            if (!string.IsNullOrEmpty(txt_fBatchName.Text) & string.IsNullOrEmpty(txt_folder_Multiline.Text))
-                multiline = 0;
-            else if (string.IsNullOrEmpty(txt_fBatchName.Text) & !string.IsNullOrEmpty(txt_folder_Multiline.Text))
-                multiline = 1;
             backgroundWorker1.RunWorkerAsync();
         }
+        
+        public class Category
+        {
+            public string Folder { get; set; }
+            public int NumberImage { get; set; }
+            public bool Is_Exists { get; set; }
+            public DateTime DateCreateFolder { get; set; }
+            public DateTime? DateCreateBatch { get; set; }
+        }
 
-        int multiline = -1;
+        private List<Category> category = new List<Category>();
 
+        int ChiaUser = 0, solaninsert = 0;
+        string temp = "";
+        string fbatchname = "";
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
-            int ChiaUser = 0;
+            //lb_SobatchHoanThanh.Text = "";
+            //lb_SoBatch.Text = "";
+            ChiaUser = 0;
+            temp = "";
+            fbatchname = "";
             if (ck_ChiaUser.Checked)
             {
                 ChiaUser = 1;
             }
-            //Up Single
-            if (multiline == 0)
+            try
             {
-                try
+
+                foreach (var rowHandle in gridView1.GetSelectedRows())
                 {
-                    progressBar1.Step = 1;
-                    progressBar1.Value = 0;
-                    progressBar1.Maximum = lFileNames.Length;
-                    progressBar1.Minimum = 0;
-                    ModifyProgressBarColor.SetState(progressBar1, 1);
-                    string batchtemp = Global.StrPath + "\\" + txt_fBatchName.Text;
-                    int m = 1;
-                    foreach (string i in lFileNames)
+                    fbatchname = "";
+                    lFileNames = null;
+                    solaninsert = 0;
+                    fbatchname = gridView1.GetRowCellValue(rowHandle, "Folder").ToString();
+                    lFileNames = Directory.GetFiles(Global.StrPath + @"\" + fbatchname, "*.jpg").Select(Path.GetFileName).ToArray();
+                    Global.Db.InsertBatch(fbatchname, Global.StrUserName, "", lFileNames.Count() + "", ChiaUser);
+                    solaninsert = (int)Math.Round(((decimal)lFileNames.Count() / 150), 0, MidpointRounding.AwayFromZero);
+                    if ((decimal)solaninsert < (decimal)lFileNames.Count() / 150)
                     {
-                        FileInfo fi = new FileInfo(i);
-                        Global.Db.InsertImage(txt_fBatchName.Text, Path.GetFileName(fi.ToString()), ChiaUser);
-                        Imagetemp = Image.FromFile(fi.FullName + "");
-                        pictureBox1.Height = Imagetemp.Height;
-                        pictureBox1.Width = Imagetemp.Width;
-                        pictureBox1.SizeMode = PictureBoxSizeMode.Normal;
-                        pictureBox1.Image = Imagetemp;
-                        Bitmap bmap = null;
-                        Bitmap newmap = null;
-                        for (int j = 0; j < pr.Count; j++)
-                        {
-                            int temp_x1 = 0, temp_y1 = 0, temp_x2 = 0, temp_y2 = 0;
-                            if (pr[j]._x2 < pr[j]._x1)
-                            {
-                                temp_x1 = pr[j]._x2;
-                                temp_x2 = pr[j]._x1;
-                            }
-                            else
-                            {
-                                temp_x1 = pr[j]._x1;
-
-                                temp_x2 = pr[j]._x2;
-                            }
-                            if (pr[j]._y2 < pr[j]._y1)
-                            {
-                                temp_y1 = pr[j]._y2;
-                                temp_y2 = pr[j]._y1;
-                            }
-                            else
-                            {
-                                temp_y1 = pr[j]._y1;
-                                temp_y2 = pr[j]._y2;
-                            }
-                            bmap = new Bitmap(pictureBox1.Image);
-                            newmap = bmap.Clone(new Rectangle(0, 0, bmap.Width, bmap.Height), System.Drawing.Imaging.PixelFormat.DontCare);
-
-                            Graphics g1 = Graphics.FromImage(newmap);
-                            g1.FillRectangle(Brushes.WhiteSmoke, new Rectangle(temp_x1, temp_y1, temp_x2 - temp_x1, temp_y2 - temp_y1));
-                            pictureBox1.Image = null;
-                            pictureBox1.Image = newmap;
-                        }
-                        newmap.Save(batchtemp + @"\" + Path.GetFileName(fi.FullName), System.Drawing.Imaging.ImageFormat.Jpeg);
-                        lb_SobatchHoanThanh.Text = "Image: " + m + @"\" + lFileNames.Length;
-                        m++;
-                        progressBar1.PerformStep();
+                        solaninsert += 1;
                     }
-                    MessageBox.Show("Tạo batch mới thành công!\r\nThời gian tạo batch từ " + TimeBeginCreateBatch + " đến " + DateTime.Now);
-                    txt_fBatchName.Text = "";
-                    txt_ImagePath.Text = "";
-                    txt_folder_Multiline.Text = "";
-                    lb_SoLuongAnh.Text = "";
-                    lb_SoBatch.Text = "";
-                    soluonganh = 0;
-                    txt_fBatchName.ReadOnly = false;
-                    txt_folder_Multiline.ReadOnly = false;
-                    txt_ImagePath.ReadOnly = false;
-                    btn_Browser.Enabled = true;
-                    ck_ChiaUser.Enabled = true;
-                    ck_ChiaUser.Checked = false;
-                    comboBox1.Enabled = true;
-                    btn_drawhide.Enabled = true;
-                    btn_ShowPoint.Enabled = true;
-                    btn_ChonAnh.Enabled = true;
+                    int numberRecordLast = lFileNames.Count() - 150 * (solaninsert - 1);
+
+                    for (int k = 1; k <= solaninsert; k += 1)
+                    {
+                        temp = "";
+                        if (k == solaninsert)
+                        {
+                            for (int i = (k - 1) * 150; i < lFileNames.Count(); i++)
+                            {
+                                temp += lFileNames[i] + "!@#";
+                            }
+                            Global.Db.Insert_Image_New(fbatchname, temp, ChiaUser);
+                        }
+                        else
+                        {
+                            for (int i = (k - 1) * 150; i < k * 150; i++)
+                            {
+                                temp += lFileNames[i] + "!@#";
+                            }
+                            Global.Db.Insert_Image_New(fbatchname, temp, ChiaUser);
+                        }
+                    }
                 }
-                catch (Exception r)
-                {
-                    MessageBox.Show("Lỗi:\n" + r);
-                }
+                MessageBox.Show("Tạo batch thành công!");
             }
-            else if (multiline == 1) //Up Multiline
+            catch (Exception i)
             {
-                try
-                {
-                    List<string> lStrBath = new List<string>();
-                    lStrBath.AddRange(Directory.GetDirectories(txt_folder_Multiline.Text));
-                    int countBatchExists = 0, n = 0;
-                    string listBatchExists = "";
-                    for (int i = 0; i < lStrBath.Count; i++)
-                    {
-                        var batchExists = (from w in Global.Db.tbl_Batches where w.fBatchName == new DirectoryInfo(lStrBath[i]).Name select w.fBatchName).ToList();
-                        if (batchExists.Count > 0)
-                        {
-                            countBatchExists += 1;
-                            listBatchExists += batchExists[0] + "\r\n";
-                        }
-                    }
-                    if (countBatchExists > 0)
-                    {
-                        MessageBox.Show("Batch đã tồn tại :\r\n" + listBatchExists);
-                        return;
-                    }
-                    foreach (string itemBatch in lStrBath)
-                    {
-                        string batchNametemp = new DirectoryInfo(itemBatch).Name;
-                        string batchtemp = Global.StrPath + "\\" + batchNametemp;
-                        if (Directory.Exists(batchtemp))
-                        {
-                            countBatchExists += 1;
-                            listBatchExists += batchNametemp + "\r\n";
-                        }
-                    }
-                    if (countBatchExists > 0)
-                    {
-                        MessageBox.Show("Bị trùng tên thư mục chứa hình :\r\n" + listBatchExists);
-                        return;
-                    }
-                    string batchName = "";
-                    FileInfo fi = null;
-                    Bitmap bmap = null;
-                    Bitmap newmap = null;
-                    Graphics g1 = null;
-                    int temp_x1 = 0, temp_y1 = 0, temp_x2 = 0, temp_y2 = 0,m=0;
-                    foreach (string itemBatch in lStrBath)
-                    {
-                        batchName = new DirectoryInfo(itemBatch).Name;
-                        m = 0;
-                        string batchtemp = Global.StrPath + "\\" + batchName;
-                        var filters = new String[] { "jpg", "jpeg", "png", "gif", "tif", "bmp" };
-                        lFileNames = GetFilesFrom(itemBatch, filters, false);
-                        Global.Db.InsertBatch(batchName, txt_UserCreate.Text, itemBatch, Directory.GetFiles(itemBatch).Length.ToString(), ChiaUser);
-                        Directory.CreateDirectory(batchtemp);
-                        n++;
-                        lb_SoBatch.Text = "Batch: " + n + @"\" + lStrBath.Count();
-                        progressBar1.Step = 1;
-                        progressBar1.Value = 0;
-                        progressBar1.Maximum = lFileNames.Length;
-                        progressBar1.Minimum = 0;
-                        ModifyProgressBarColor.SetState(progressBar1, 1);
-                        foreach (string i in lFileNames)
-                        {
-                            fi= new FileInfo(i);
-                            Global.Db.InsertImage(batchName, Path.GetFileName(fi.ToString()), ChiaUser);
-                            Imagetemp = Image.FromFile(fi.FullName + "");
-                            pictureBox1.Height = Imagetemp.Height;
-                            pictureBox1.Width = Imagetemp.Width;
-                            pictureBox1.SizeMode = PictureBoxSizeMode.Normal;
-                            pictureBox1.Image = Imagetemp;
-                            for (int j = 0; j < pr.Count; j++)
-                            {
-                                if (pr[j]._x2 < pr[j]._x1)
-                                {
-                                    temp_x1 = pr[j]._x2;
-                                    temp_x2 = pr[j]._x1;
-                                }
-                                else
-                                {
-                                    temp_x1 = pr[j]._x1;
-
-                                    temp_x2 = pr[j]._x2;
-                                }
-                                if (pr[j]._y2 < pr[j]._y1)
-                                {
-                                    temp_y1 = pr[j]._y2;
-                                    temp_y2 = pr[j]._y1;
-                                }
-                                else
-                                {
-                                    temp_y1 = pr[j]._y1;
-                                    temp_y2 = pr[j]._y2;
-                                }
-                                bmap = new Bitmap(pictureBox1.Image);
-                                newmap = bmap.Clone(new Rectangle(0, 0, bmap.Width, bmap.Height), System.Drawing.Imaging.PixelFormat.DontCare);
-
-                                g1 = Graphics.FromImage(newmap);
-                                g1.FillRectangle(Brushes.WhiteSmoke, new Rectangle(temp_x1, temp_y1, temp_x2 - temp_x1, temp_y2 - temp_y1));
-                                pictureBox1.Image = null;
-                                pictureBox1.Image = newmap;
-                            }
-                            newmap.Save(batchtemp + @"\" + Path.GetFileName(fi.FullName), System.Drawing.Imaging.ImageFormat.Jpeg);
-                            bmap.Dispose();
-                            newmap.Dispose();
-                            g1.Dispose();
-                            (pictureBox1.Image).Dispose();
-                            lb_SobatchHoanThanh.Text = "Image: " + m + @"\" + lFileNames.Length;
-                            m++;
-                            progressBar1.PerformStep();
-                        }
-                    }
-                    MessageBox.Show("Tạo batch mới thành công!\r\nThời gian tạo batch từ " + TimeBeginCreateBatch + " đến " + DateTime.Now);
-                    txt_fBatchName.Text = "";
-                    txt_ImagePath.Text = "";
-                    txt_folder_Multiline.Text = "";
-                    lb_SoBatch.Text = "";
-                    lb_SoLuongAnh.Text = "";
-                    soluonganh = 0;
-                    txt_folder_Multiline.ReadOnly = false;
-                    btn_Browser.Enabled = true;
-                    txt_fBatchName.ReadOnly = false;
-                    txt_ImagePath.ReadOnly = false;
-                    ck_ChiaUser.Enabled = true;
-                    ck_ChiaUser.Checked = false;
-                    comboBox1.Enabled = true;
-                    btn_drawhide.Enabled = true;
-                    btn_ShowPoint.Enabled = true;
-                    btn_ChonAnh.Enabled = true;
-                }
-                catch (Exception p)
-                {
-                    MessageBox.Show("Lỗi :\r\n" + p.Message);
-                }
+                MessageBox.Show("Xảy ra lỗi : " + i.Message);
+                gridControl1.Enabled = true;
+                ck_ChiaUser.Enabled = true;
+                timer1.Enabled = true;
             }
+            frm_CreateBatch_Load(null, null);
+            gridControl1.Enabled = true;
+            ck_ChiaUser.Enabled = true;
+            timer1.Enabled = true;
         }
-        
+
         public static string[] GetFilesFrom(string searchFolder, string[] filters, bool isRecursive)
         {
             List<string> filesFound = new List<string>();
@@ -442,108 +259,41 @@ namespace PhieuKiemDinh.MyForm
             closePending = false;
         }
 
-        private void btn_drawhide_Click(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrEmpty((from w in Global.Db.tbl_Point_Hides where w.fBatchName== txt_fBatchName.Text select w.fBatchName).FirstOrDefault()+""))
-            {
-                MessageBox.Show("Tọa độ đã tồn tại vui lòng điền tên tọa độ khác!");
-                return;
-            }
-            if (string.IsNullOrEmpty(txt_fBatchName.Text))
-            {
-                MessageBox.Show("Hãy nhập tên batch !");
-                return;
-            }
-            frm_DrawHide fd = new frm_DrawHide();
-            fd.fbatchname = txt_fBatchName.Text;
-            fd.ShowDialog();
-            var a = (from w in Global.Db.GetBatch_ToaDo() select w.fBatchName).ToList();
-            a.Insert(0, "");
-            comboBox1.DataSource = a;
-            comboBox1.DisplayMember = "fBatchName";
-            if (!string.IsNullOrEmpty((from w in Global.Db.tbl_Point_Hides where w.fBatchName == txt_fBatchName.Text select w.fBatchName).FirstOrDefault() + ""))
-            {
-                comboBox1.SelectedText = txt_fBatchName.Text;
-            }
-        }
-
         private void comboBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar != 3)
                 e.Handled = true;
         }
-
-        private void btn_ShowPoint_Click(object sender, EventArgs e)
+        
+        private void button1_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(comboBox1.Text))
+            lFileNames = Directory.GetFiles(@"\\10.10.10.248\phieukiemdinh$\B111", "*.jpeg").Select(Path.GetFileName)
+                                     .Union(Directory.GetFiles(@"\\10.10.10.248\phieukiemdinh$\B111", "*.jpg").Select(Path.GetFileName)).ToArray();
+            string path = Global.StrPath + @"\MyTest.txt";
+            string temp = "";
+            for(int i=0;i< lFileNames.Count();i++)
             {
-                MessageBox.Show("Bạn chưa chọn tọa độ !");
-                return;
+                temp += (i+1)+lFileNames[i] + "!@#";
             }
-            frm_DrawHide fd = new frm_DrawHide();
-            string fbatchPoint = comboBox1.Text;
-            fd.fbatchname = fbatchPoint;
-            fd.ShowDialog();
-            var a = (from w in Global.Db.GetBatch_ToaDo() select w.fBatchName).ToList();
-            a.Insert(0, "");
-            comboBox1.DataSource = a;
-            comboBox1.DisplayMember = "fBatchName";
-            if (!string.IsNullOrEmpty((from w in Global.Db.tbl_Point_Hides where w.fBatchName == txt_fBatchName.Text select w.fBatchName).FirstOrDefault() + ""))
+            using (StreamWriter sw = File.CreateText(path))
             {
-                comboBox1.SelectedText = txt_fBatchName.Text;
+                sw.WriteLine(temp);
             }
         }
 
-        private void txt_fBatchName_EditValueChanged(object sender, EventArgs e)
+        private void gridView1_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
         {
-            if (!string.IsNullOrEmpty(txt_fBatchName.Text))
-            {
-                txt_folder_Multiline.Text = "";
-                txt_folder_Multiline.Enabled = false;
-                btn_Browser.Enabled = false;
-            }
-            else
-            {
-                txt_folder_Multiline.Enabled = true;
-                btn_Browser.Enabled = true;
-            }
+            LoadSttGridView(e, gridView1);
         }
 
-        private void txt_folder_Multiline_EditValueChanged(object sender, EventArgs e)
+        private void timer1_Tick(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(txt_folder_Multiline.Text))
-            {
-                txt_fBatchName.Text = "";
-                txt_fBatchName.Enabled = false;
-                txt_ImagePath.Text = "";
-                txt_ImagePath.Enabled = false;
-                btn_ChonAnh.Enabled = false;
-            }
-            else
-            {
-                txt_ImagePath.Enabled = true;
-                btn_ChonAnh.Enabled = true;
-                txt_fBatchName.Enabled = true;
-            }
+            frm_CreateBatch_Load(null,null);
         }
 
-        private void btn_Browser_Click(object sender, EventArgs e)
+        private void frm_CreateBatch_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Properties.Settings.Default.Reload();
-            FolderBrowserDialog fbd = new FolderBrowserDialog();
-            if (!string.IsNullOrEmpty(Properties.Settings.Default.LastSelectedFolder))
-            {
-                fbd.SelectedPath = Properties.Settings.Default.LastSelectedFolder;
-            }
-            if (fbd.ShowDialog() == DialogResult.OK)
-            {
-                txt_folder_Multiline.Text = fbd.SelectedPath;
-                if (!string.IsNullOrEmpty(txt_folder_Multiline.Text))
-                {
-                    Properties.Settings.Default.LastSelectedFolder = txt_folder_Multiline.Text;
-                    Properties.Settings.Default.Save();
-                }
-            }
+            timer1.Enabled = false;
         }
     }
     public static class ModifyProgressBarColor

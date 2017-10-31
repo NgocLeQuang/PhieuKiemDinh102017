@@ -123,7 +123,7 @@
             this.txt_TruongSo04.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
             this.txt_TruongSo04.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_TruongSo04.Properties.Appearance.Options.UseFont = true;
-            this.txt_TruongSo04.Properties.Mask.EditMask = "[0-9,?]+";
+            this.txt_TruongSo04.Properties.Mask.EditMask = "[0-9,?,●]+";
             this.txt_TruongSo04.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
             this.txt_TruongSo04.Size = new System.Drawing.Size(143, 22);
             this.txt_TruongSo04.TabIndex = 3;
@@ -225,7 +225,7 @@
             this.txt_TruongSo11.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
             this.txt_TruongSo11.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_TruongSo11.Properties.Appearance.Options.UseFont = true;
-            this.txt_TruongSo11.Properties.Mask.EditMask = "[0-9?]+";
+            this.txt_TruongSo11.Properties.Mask.EditMask = "[0-9?●]+";
             this.txt_TruongSo11.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
             this.txt_TruongSo11.Size = new System.Drawing.Size(97, 22);
             this.txt_TruongSo11.TabIndex = 11;

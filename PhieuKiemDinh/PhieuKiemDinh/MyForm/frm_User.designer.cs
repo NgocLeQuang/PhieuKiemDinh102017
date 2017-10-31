@@ -28,9 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions2 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_User));
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.chk_LevelUser_Inexperience = new System.Windows.Forms.CheckBox();
             this.cbb_idrole = new System.Windows.Forms.ComboBox();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
@@ -50,7 +51,6 @@
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btn_delete = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
-            this.chk_LevelUser_Inexperience = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txt_password.Properties)).BeginInit();
@@ -79,6 +79,16 @@
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(872, 69);
             this.panelControl1.TabIndex = 9;
+            // 
+            // chk_LevelUser_Inexperience
+            // 
+            this.chk_LevelUser_Inexperience.AutoSize = true;
+            this.chk_LevelUser_Inexperience.Location = new System.Drawing.Point(625, 14);
+            this.chk_LevelUser_Inexperience.Name = "chk_LevelUser_Inexperience";
+            this.chk_LevelUser_Inexperience.Size = new System.Drawing.Size(89, 17);
+            this.chk_LevelUser_Inexperience.TabIndex = 15;
+            this.chk_LevelUser_Inexperience.Text = "Inexperience";
+            this.chk_LevelUser_Inexperience.UseVisualStyleBackColor = true;
             // 
             // cbb_idrole
             // 
@@ -226,6 +236,7 @@
             this.gridView1.OptionsView.EnableAppearanceOddRow = true;
             this.gridView1.OptionsView.ShowAutoFilterRow = true;
             this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridView1_CustomDrawRowIndicator);
             this.gridView1.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridView1_CellValueChanged);
             this.gridView1.RowCellDefaultAlignment += new DevExpress.XtraGrid.Views.Base.RowCellAlignmentEventHandler(this.gridView1_RowCellDefaultAlignment);
             this.gridView1.GotFocus += new System.EventHandler(this.gridView1_GotFocus);
@@ -280,22 +291,12 @@
             // btn_delete
             // 
             this.btn_delete.AutoHeight = false;
-            editorButtonImageOptions2.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions2.Image")));
+            editorButtonImageOptions1.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions1.Image")));
             this.btn_delete.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(editorButtonImageOptions2, DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, null)});
+            new DevExpress.XtraEditors.Controls.EditorButton(editorButtonImageOptions1, DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, null)});
             this.btn_delete.Name = "btn_delete";
             this.btn_delete.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.btn_delete.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btn_delete_ButtonClick);
-            // 
-            // chk_LevelUser_Inexperience
-            // 
-            this.chk_LevelUser_Inexperience.AutoSize = true;
-            this.chk_LevelUser_Inexperience.Location = new System.Drawing.Point(625, 14);
-            this.chk_LevelUser_Inexperience.Name = "chk_LevelUser_Inexperience";
-            this.chk_LevelUser_Inexperience.Size = new System.Drawing.Size(89, 17);
-            this.chk_LevelUser_Inexperience.TabIndex = 15;
-            this.chk_LevelUser_Inexperience.Text = "Inexperience";
-            this.chk_LevelUser_Inexperience.UseVisualStyleBackColor = true;
             // 
             // frm_User
             // 

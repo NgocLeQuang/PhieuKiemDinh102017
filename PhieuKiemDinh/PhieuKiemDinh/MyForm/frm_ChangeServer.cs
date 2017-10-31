@@ -43,8 +43,14 @@ namespace PhieuKiemDinh.MyForm
 
         private void btn_Save_Click(object sender, EventArgs e)
         {
+            if (rb_DaNang.Checked == false && rb_Khac.Checked == false)
+            {
+                MessageBox.Show("Vui lòng chọn vị trí bạn làm việc.");
+                return;
+            }
             try
             {
+                
                 if (rb_DaNang.Checked)
                 {
                     Settings.Default.Server = "Đà Nẵng";
@@ -84,6 +90,23 @@ namespace PhieuKiemDinh.MyForm
                 }
             }
             throw new Exception("Local IP Address Not Found!");
+        }
+
+        private void rb_DaNang_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rb_DaNang.Checked)
+                rb_Khac.Checked = false;
+            else
+                rb_DaNang.Checked = false;
+
+        }
+
+        private void rb_Khac_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rb_Khac.Checked)
+                rb_DaNang.Checked = false;
+            else
+                rb_Khac.Checked = false;
         }
     }
 }

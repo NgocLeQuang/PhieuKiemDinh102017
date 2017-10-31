@@ -8,6 +8,7 @@ using System.Text;
 using System.Linq;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
+using DevExpress.XtraGrid.Views.Grid;
 
 namespace PhieuKiemDinh.MyForm
 {
@@ -21,6 +22,21 @@ namespace PhieuKiemDinh.MyForm
         private void frm_ManagerBatch_Load(object sender, EventArgs e)
         {
             refresh();
+        }
+
+        public bool Cal(int width, DevExpress.XtraGrid.Views.Grid.GridView view)
+        {
+            view.IndicatorWidth = view.IndicatorWidth < width ? width : view.IndicatorWidth;
+            return true;
+        }
+
+        private void LoadSttGridView(RowIndicatorCustomDrawEventArgs e, GridView dgv)
+        {
+            if (e.Info.IsRowIndicator && e.RowHandle >= 0)
+                e.Info.DisplayText = (e.RowHandle + 1).ToString();
+            SizeF size = e.Graphics.MeasureString(e.Info.DisplayText, e.Appearance.Font);
+            int width = Convert.ToInt32(size.Width) + 20;
+            BeginInvoke(new MethodInvoker(delegate { Cal(width, dgv); }));
         }
 
         private void refresh()
@@ -37,7 +53,6 @@ namespace PhieuKiemDinh.MyForm
                 try
                 {
                     Global.Db.XoaBatch(fbatchname);
-                    Directory.Delete(temp, true);
                     MessageBox.Show("Đã xóa batch thành công!");
                 }
                 catch (Exception)
@@ -81,7 +96,7 @@ namespace PhieuKiemDinh.MyForm
             }
             else if (e.Column.FieldName == "ChiaUser")
             {
-                var kt = (from w in Global.Db.tbl_MissImage_DeSos where w.fBatchName == batchname select w.IdImage).ToList();
+                var kt = (from w in Global.Db.GetNumberImageMissImage(batchname) select w).ToList();
                 if (kt.Count > 0)
                 {
                     MessageBox.Show("Batch này đã được nhập!");
@@ -133,9 +148,13 @@ namespace PhieuKiemDinh.MyForm
                 string fbatchname = gridView1.GetRowCellValue(rowHandle, "fBatchName").ToString();
                 string temp = Global.StrPath + "\\" + fbatchname;
                 Global.Db.XoaBatch(fbatchname);
-                Directory.Delete(temp, true);
             }
             refresh();
+        }
+
+        private void gridView1_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
+        {
+            LoadSttGridView(e, gridView1);
         }
     }
 }

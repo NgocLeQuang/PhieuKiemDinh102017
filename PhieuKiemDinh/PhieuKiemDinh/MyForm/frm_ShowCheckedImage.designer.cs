@@ -134,6 +134,7 @@
             // 
             this.gridColumn3.Caption = "Thời gian check";
             this.gridColumn3.DisplayFormat.FormatString = "dd/MM/yyyy HH:mm:ss";
+            this.gridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.gridColumn3.FieldName = "DateCheckDeSo";
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.Visible = true;

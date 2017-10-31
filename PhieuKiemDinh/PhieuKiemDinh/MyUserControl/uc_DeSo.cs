@@ -172,32 +172,24 @@ namespace PhieuKiemDinh.MyUserControl
 
         private void DoiMau(int soByteBe, int soBytelon, TextEdit textBox)
         {
-            //if (!string.IsNullOrEmpty(textBox.Text))
-            //{
-                if (textBox.Text != "?")
-                {
-                    if (textBox.Text.Length >= soByteBe && textBox.Text.Length <= soBytelon)
-                    {
-                        textBox.BackColor = Color.White;
-                        textBox.ForeColor = Color.Black;
-                    }
-                    else
-                    {
-                        textBox.BackColor = Color.Red;
-                        textBox.ForeColor = Color.White;
-                    }
-                }
-                else
+            if (textBox.Text != "?" && !string.IsNullOrEmpty(textBox.Text))
+            {
+                if (textBox.Text.Length >= soByteBe && textBox.Text.Length <= soBytelon)
                 {
                     textBox.BackColor = Color.White;
                     textBox.ForeColor = Color.Black;
                 }
-            //}
-            //else
-            //{
-            //    textBox.BackColor = Color.White;
-            //    textBox.ForeColor = Color.Black;
-            //}
+                else
+                {
+                    textBox.BackColor = Color.Red;
+                    textBox.ForeColor = Color.White;
+                }
+            }
+            else
+            {
+                textBox.BackColor = Color.White;
+                textBox.ForeColor = Color.Black;
+            }
         }
 
         private void txt_TruongSo01_EditValueChanged(object sender, EventArgs e)
@@ -670,7 +662,7 @@ namespace PhieuKiemDinh.MyUserControl
             Properties.Settings.Default.Truong4 = txt_TruongSo04.Text;
             Properties.Settings.Default.Save();
         }
-        #region Curency Trường số 04
+
         private void txt_TruongSo04_KeyUp(object sender, KeyEventArgs e)
         //{
         //    if (!string.IsNullOrEmpty(txt_TruongSo04.Text))

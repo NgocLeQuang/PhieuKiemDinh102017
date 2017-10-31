@@ -76,7 +76,7 @@
             // 
             // timeEnd
             // 
-            this.timeEnd.EditValue = new System.DateTime(2017, 10, 25, 0, 0, 0, 0);
+            this.timeEnd.EditValue = new System.DateTime(2017, 10, 25, 23, 59, 59, 0);
             this.timeEnd.Location = new System.Drawing.Point(428, 48);
             this.timeEnd.Name = "timeEnd";
             this.timeEnd.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {

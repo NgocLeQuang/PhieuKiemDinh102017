@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DevExpress.XtraGrid.Views.Grid;
+using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace PhieuKiemDinh.MyForm
@@ -10,6 +12,20 @@ namespace PhieuKiemDinh.MyForm
             InitializeComponent();
         }
 
+        public bool Cal(int width, DevExpress.XtraGrid.Views.Grid.GridView view)
+        {
+            view.IndicatorWidth = view.IndicatorWidth < width ? width : view.IndicatorWidth;
+            return true;
+        }
+
+        private void LoadSttGridView(RowIndicatorCustomDrawEventArgs e, GridView dgv)
+        {
+            if (e.Info.IsRowIndicator && e.RowHandle >= 0)
+                e.Info.DisplayText = (e.RowHandle + 1).ToString();
+            SizeF size = e.Graphics.MeasureString(e.Info.DisplayText, e.Appearance.Font);
+            int width = Convert.ToInt32(size.Width) + 20;
+            BeginInvoke(new MethodInvoker(delegate { Cal(width, dgv); }));
+        }
         private void frm_User_Load(object sender, EventArgs e)
         {
             dgv_listuser.DataSource = Global.DbBpo.GetListUser();
@@ -129,6 +145,11 @@ namespace PhieuKiemDinh.MyForm
                     Global.DbBpo.updateNotGoodUser_New(username, false, Global.StrUserName, Global.GetServerIpAddress().ToString(), Environment.MachineName, Environment.UserDomainName + @"\" + Environment.UserName);
                 }
             }
+        }
+
+        private void gridView1_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
+        {
+            LoadSttGridView(e, gridView1);
         }
     }
 }
