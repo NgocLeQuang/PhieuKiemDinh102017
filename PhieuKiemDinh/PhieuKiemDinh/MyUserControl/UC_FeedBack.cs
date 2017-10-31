@@ -44,7 +44,7 @@ namespace PhieuKiemDinh.MyUserControl
                         select w).ToList();
             var nameCheck = (from w in Global.Db.GetNameCheck(idimage, fbatchname) select w.UserNameCheckDeSo).FirstOrDefault();
             uC_DESO_FeedBack3.LoadDataChecker(deso[0],nameCheck+"" );
-                    }
+        }
 
       
 
