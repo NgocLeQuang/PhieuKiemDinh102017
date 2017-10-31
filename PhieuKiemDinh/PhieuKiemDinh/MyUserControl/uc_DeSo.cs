@@ -698,7 +698,7 @@ namespace PhieuKiemDinh.MyUserControl
             sb.Insert(0, m.Groups["a"].Value);
             return sb.ToString().Trim(',');
         }
-        #endregion
+     //   #endregion
         private void txt_TruongSo03_Leave(object sender, EventArgs e)
         {
             if (Global.FlagChangeSave == false)
