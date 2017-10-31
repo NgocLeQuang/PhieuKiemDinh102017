@@ -296,15 +296,17 @@ namespace PhieuKiemDinh.MyForm
                 Microsoft.Office.Interop.Excel.Range oRange = wrksheet.Cells[r + 1, 2];
                 float Left = (float)((double)oRange.Left);
                 float Top = (float)((double)oRange.Top)+2;
-                wrksheet.Shapes.AddPicture(pathServer + "/" + idimage[i], Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, Left, Top, 365, 270);
+                Microsoft.Office.Interop.Excel.Range final = wrksheet.Cells[r + 20, 9];
+                float leftFinal = (float)((double)final.Left) - Left-1 ;
+                float topFinal = (float)((double)final.Top + 2) - Top;
+                wrksheet.Shapes.AddPicture(pathServer + "/" + idimage[i], Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, Left, Top, leftFinal, topFinal);//, 270);
                 //string id = idimage[i];
                 //Image oImage = Image.FromFile(pathServer + "/" + idimage[i]);
                 //wrksheet.Shapes.AddPicture(pathServer + "/" + idimage[i], Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, 20, distance, 365, 270);
                 //distance += 300;
                 var deso = Global.Db.FeedBackExcel(id, cbb_batch.Text).ToList();
                int h = 9;
-                var nameCheck = (from w in Global.Db.GetNameCheck(id,cbb_batch.Text) select w.UserNameCheckDeSo).FirstOrDefault();
-                wrksheet.Cells[r + 1, 10] = nameCheck+@" ";
+              
                 wrksheet.Cells[r + 1, h] = "UserName";
                 wrksheet.Cells[r + 2, h] = "Trường 1";
                 wrksheet.Cells[r + 3, h] = "Trường 3";
@@ -312,23 +314,21 @@ namespace PhieuKiemDinh.MyForm
                 wrksheet.Cells[r + 5, h] = "Trường 5";
                 wrksheet.Cells[r + 6, h] = "Trường 6";
                 wrksheet.Cells[r + 7, h] = "Trường 7";
-                wrksheet.Cells[r + 8, h] = "Trường 8";
-                wrksheet.Cells[r + 9, h] = "Trường 9";
-                wrksheet.Cells[r + 10, h] = "Trường 10";
-                wrksheet.Cells[r + 11, h] = "Trường 11";
-                wrksheet.Cells[r + 12, h] = "Trường 12";
-                wrksheet.Cells[r + 13, h] = "Trường 13";
-                wrksheet.Cells[r + 14, h] = "Trường 14";
+                wrksheet.Cells[r + 8, h] = "Trường 8.1";
+                wrksheet.Cells[r + 9, h] = "Trường 8.2";
+                wrksheet.Cells[r + 10, h] = "Trường 9";
+                wrksheet.Cells[r + 11, h] = "Trường 10";
+                wrksheet.Cells[r + 12, h] = "Trường 11";
+                wrksheet.Cells[r + 13, h] = "Trường 12";
+                wrksheet.Cells[r + 14, h] = "Trường 13";
+                wrksheet.Cells[r + 15, h] = "Trường 14";
               //  wrksheet.Cells[r + 15, h] = "FlagError";
                 wrksheet.Cells[r+20 ,1] = id + "";
                 wrksheet.Cells[r+1, 1] = i + 1;
                 for (int j = 0; j < deso.Count(); j++)
                 {
                     h++;
-                    if (j != 0)
-                    {
-                        wrksheet.Cells[r + 1, h] = deso[j].UserName + "";
-                    }
+                    wrksheet.Cells[r + 1, h] = deso[j].UserName + "";
                     wrksheet.Cells[r + 2, h] = deso[j].TruongSo01 + "";
                     wrksheet.Cells[r + 3, h] = deso[j].TruongSo03 + "";
                     wrksheet.Cells[r + 4, h] = deso[j].TruongSo04 + "";
@@ -336,12 +336,13 @@ namespace PhieuKiemDinh.MyForm
                     wrksheet.Cells[r + 6, h] = deso[j].TruongSo06 + "";
                     wrksheet.Cells[r + 7, h] = deso[j].TruongSo07 + "";
                     wrksheet.Cells[r + 8, h] = deso[j].TruongSo08 + "";
-                    wrksheet.Cells[r + 9, h] = deso[j].TruongSo09 + "";
-                    wrksheet.Cells[r + 10, h] = deso[j].TruongSo10 + "";
-                    wrksheet.Cells[r + 11, h] = deso[j].TruongSo11 + "";
-                    wrksheet.Cells[r + 12, h] = deso[j].TruongSo12 + "";
-                    wrksheet.Cells[r + 13, h] = deso[j].TruongSo13 + "";
-                    wrksheet.Cells[r + 14, h] = deso[j].TruongSo14 + "";
+                    wrksheet.Cells[r + 9, h] = deso[j].TruongSo08_2 + "";
+                    wrksheet.Cells[r + 10, h] = deso[j].TruongSo09 + "";
+                    wrksheet.Cells[r + 11, h] = deso[j].TruongSo10 + "";
+                    wrksheet.Cells[r + 12, h] = deso[j].TruongSo11 + "";
+                    wrksheet.Cells[r + 13, h] = deso[j].TruongSo12 + "";
+                    wrksheet.Cells[r + 14, h] = deso[j].TruongSo13 + "";
+                    wrksheet.Cells[r + 15, h] = deso[j].TruongSo14 + "";
                  //   wrksheet.Cells[r + 15, h] = deso[j].FlagError + "";
                 }
 
@@ -352,7 +353,7 @@ namespace PhieuKiemDinh.MyForm
                     Microsoft.Office.Interop.Excel.XlBorderWeight.xlThin,
                     Microsoft.Office.Interop.Excel.XlColorIndex.xlColorIndexAutomatic,1);
                 Microsoft.Office.Interop.Excel.Range cell1 = wrksheet.Cells[h - 3][r + 1];
-                Microsoft.Office.Interop.Excel.Range cell2 = wrksheet.Cells[h][r + 14];
+                Microsoft.Office.Interop.Excel.Range cell2 = wrksheet.Cells[h][r + 15];
                 Microsoft.Office.Interop.Excel.Range range = wrksheet.get_Range(cell1, cell2);
                 range.Borders.LineStyle = Microsoft.Office.Interop.Excel.Constants.xlSolid;
                 range.Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.MediumSpringGreen);
@@ -403,7 +404,11 @@ namespace PhieuKiemDinh.MyForm
                 Microsoft.Office.Interop.Excel.Range oRange = wrksheet.Cells[r+1,2 ];
                 float Left = (float)((double)oRange.Left);
                 float Top = (float)((double)oRange.Top+2);
-                wrksheet.Shapes.AddPicture(pathServer + "/" + idimage[i], Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, Left, Top, 365, 270);
+                Microsoft.Office.Interop.Excel.Range final = wrksheet.Cells[r + 20, 9];
+                float leftFinal = (float)((double)final.Left) - Left-1;
+                float topFinal = (float)((double)final.Top + 2)-Top;
+
+                wrksheet.Shapes.AddPicture(pathServer + "/" + idimage[i], Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, Left, Top, leftFinal, topFinal);//365, 270);
                 // oRange.RowHeight = 367;
                 // wrksheet.Cells[1, 20] = wrksheet.Shapes.AddPicture(pathServer + "/" + idimage[i], Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, 20, distance, 365, 270);
               
@@ -412,8 +417,6 @@ namespace PhieuKiemDinh.MyForm
           //  distance += 300;
             var deso = Global.Db.FeedBackExcel_User(id,cbb_username.Text, cbb_batch.Text).ToList();
             int h = 9;
-            var nameCheck = (from w in Global.Db.GetNameCheck(id, cbb_batch.Text) select w.UserNameCheckDeSo).FirstOrDefault();
-            wrksheet.Cells[r + 1, 10] = nameCheck + @" ";
             wrksheet.Cells[r + 1, h] = "UserName";
             wrksheet.Cells[r + 2, h] = "Trường 1";
             wrksheet.Cells[r + 3, h] = "Trường 3";
@@ -421,22 +424,21 @@ namespace PhieuKiemDinh.MyForm
             wrksheet.Cells[r + 5, h] = "Trường 5";
             wrksheet.Cells[r + 6, h] = "Trường 6";
             wrksheet.Cells[r + 7, h] = "Trường 7";
-            wrksheet.Cells[r + 8, h] = "Trường 8";
-            wrksheet.Cells[r + 9, h] = "Trường 9";
-            wrksheet.Cells[r + 10, h] = "Trường 10";
-            wrksheet.Cells[r + 11, h] = "Trường 11";
-            wrksheet.Cells[r + 12, h] = "Trường 12";
-            wrksheet.Cells[r + 13, h] = "Trường 13";
-            wrksheet.Cells[r + 14, h] = "Trường 14";
-         //   wrksheet.Cells[r + 15, h] = "FlagError";
-            wrksheet.Cells[r+20 ,1] = id + "";
+            wrksheet.Cells[r + 8, h] = "Trường 8.1";
+                wrksheet.Cells[r + 9, h] = "Trường 8.2";
+                wrksheet.Cells[r + 10, h] = "Trường 9";
+                wrksheet.Cells[r + 11, h] = "Trường 10";
+                wrksheet.Cells[r + 12, h] = "Trường 11";
+                wrksheet.Cells[r + 13, h] = "Trường 12";
+                wrksheet.Cells[r + 14, h] = "Trường 13";
+                wrksheet.Cells[r + 15, h] = "Trường 14";
+                //   wrksheet.Cells[r + 15, h] = "FlagError";
+                wrksheet.Cells[r+20 ,1] = id + "";
                 wrksheet.Cells[r+1, 1] = i+1;
             for (int j = 0; j < deso.Count(); j++)
             {
-                h++; if (j != 0)
-                    {
-                        wrksheet.Cells[r + 1, h] = deso[j].UserName + "";
-                    }
+                h++;
+                wrksheet.Cells[r + 1, h] = deso[j].UserName + "";                  
                 wrksheet.Cells[r + 2, h] = deso[j].TruongSo01 + "";
                 wrksheet.Cells[r + 3, h] = deso[j].TruongSo03 + "";
                 wrksheet.Cells[r + 4, h] = deso[j].TruongSo04 + "";
@@ -444,21 +446,21 @@ namespace PhieuKiemDinh.MyForm
                 wrksheet.Cells[r + 6, h] = deso[j].TruongSo06 + "";
                 wrksheet.Cells[r + 7, h] = deso[j].TruongSo07 + "";
                 wrksheet.Cells[r + 8, h] = deso[j].TruongSo08 + "";
-                wrksheet.Cells[r + 9, h] = deso[j].TruongSo09 + "";
-                wrksheet.Cells[r + 10, h] = deso[j].TruongSo10 + "";
-                wrksheet.Cells[r + 11, h] = deso[j].TruongSo11 + "";
-                wrksheet.Cells[r + 12, h] = deso[j].TruongSo12 + "";
-                wrksheet.Cells[r + 13, h] = deso[j].TruongSo13 + "";
-                wrksheet.Cells[r + 14, h] = deso[j].TruongSo14 + "";
+                wrksheet.Cells[r + 9, h] = deso[j].TruongSo08_2 + "";
+                wrksheet.Cells[r + 10, h] = deso[j].TruongSo09 + "";
+                wrksheet.Cells[r + 11, h] = deso[j].TruongSo10 + "";
+                wrksheet.Cells[r + 12, h] = deso[j].TruongSo11 + "";
+                wrksheet.Cells[r + 13, h] = deso[j].TruongSo12 + "";
+                wrksheet.Cells[r + 14, h] = deso[j].TruongSo13 + "";
+                wrksheet.Cells[r + 15, h] = deso[j].TruongSo14 + "";
               //  wrksheet.Cells[r + 15, h] = deso[j].FlagError + "";
             }
-               
             Microsoft.Office.Interop.Excel.Range cellImage1 = wrksheet.Cells[h - 10][r + 1];
             Microsoft.Office.Interop.Excel.Range cellImage2 = wrksheet.Cells[h][r + 20];
             Microsoft.Office.Interop.Excel.Range rangeImage = wrksheet.get_Range(cellImage1, cellImage2);
             rangeImage.BorderAround(Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous,Microsoft.Office.Interop.Excel.XlBorderWeight.xlThin,Microsoft.Office.Interop.Excel.XlColorIndex.xlColorIndexAutomatic, 1);
             Microsoft.Office.Interop.Excel.Range cell1 = wrksheet.Cells[h - 2][r + 1];
-            Microsoft.Office.Interop.Excel.Range cell2 = wrksheet.Cells[h][r + 14];
+            Microsoft.Office.Interop.Excel.Range cell2 = wrksheet.Cells[h][r + 15];
             Microsoft.Office.Interop.Excel.Range range = wrksheet.get_Range(cell1, cell2);
             range.Borders.LineStyle = Microsoft.Office.Interop.Excel.Constants.xlSolid;
             range.Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.LightGreen);
