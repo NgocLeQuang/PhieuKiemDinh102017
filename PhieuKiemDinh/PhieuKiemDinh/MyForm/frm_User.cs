@@ -12,7 +12,7 @@ namespace PhieuKiemDinh.MyForm
             InitializeComponent();
         }
 
-        public bool Cal(int width, DevExpress.XtraGrid.Views.Grid.GridView view)
+        public bool Cal(int width, GridView view)
         {
             view.IndicatorWidth = view.IndicatorWidth < width ? width : view.IndicatorWidth;
             return true;

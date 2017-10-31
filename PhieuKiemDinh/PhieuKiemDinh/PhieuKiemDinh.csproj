@@ -234,6 +234,12 @@
     <Compile Include="MyUserControl\uc_PictureBox.Designer.cs">
       <DependentUpon>uc_PictureBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="MyUserControl\UC_ShowImage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MyUserControl\UC_ShowImage.Designer.cs">
+      <DependentUpon>UC_ShowImage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="app.config" />
@@ -316,6 +322,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MyUserControl\uc_PictureBox.resx">
       <DependentUpon>uc_PictureBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyUserControl\UC_ShowImage.resx">
+      <DependentUpon>UC_ShowImage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">

@@ -384,7 +384,14 @@ namespace PhieuKiemDinh.MyUserControl
 
         private void txt_TruongSo11_EditValueChanged(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(txt_TruongSo11.Text) && txt_TruongSo11.Text != "?")
+            if (txt_TruongSo11.Text.IndexOf('●') >= 0)
+            {
+                txt_TruongSo11.Text = "●";
+                txt_TruongSo11.BackColor = Color.White;
+                txt_TruongSo11.ForeColor = Color.Black;
+                return;
+            }
+            if (!string.IsNullOrEmpty(txt_TruongSo11.Text) && txt_TruongSo11.Text != "?" && txt_TruongSo11.Text != "●")
             {
                 if (int.Parse(txt_TruongSo11.Text) > 291231 || int.Parse(txt_TruongSo11.Text) < 291001 || txt_TruongSo10.Text.Length != 6)
                 {
@@ -664,19 +671,19 @@ namespace PhieuKiemDinh.MyUserControl
         }
 
         private void txt_TruongSo04_KeyUp(object sender, KeyEventArgs e)
-        //{
-        //    if (!string.IsNullOrEmpty(txt_TruongSo04.Text))
-        //    {
-        //        txt_TruongSo04.Text = string.Format("{0:###,###,###,###}", decimal.Parse(txt_TruongSo04.Text));
-        //        txt_TruongSo04.SelectionStart = txt_TruongSo04.Text.Length;
-        //    }
-        //}
         {
-            string str = txt_TruongSo04.Text;
-            int start = txt_TruongSo04.Text.Length - txt_TruongSo04.SelectionStart;
-            str = str.Replace(",", "");
-            txt_TruongSo04.Text = FormatCurency(str);
-            txt_TruongSo04.SelectionStart = -start + txt_TruongSo04.Text.Length;
+            if(txt_TruongSo04.Text.IndexOf('●')>=0)
+            {
+                txt_TruongSo04.Text=txt_TruongSo04.Text.Replace(",", "");
+            }
+            else
+            {
+                string str = txt_TruongSo04.Text;
+                int start = txt_TruongSo04.Text.Length - txt_TruongSo04.SelectionStart;
+                str = str.Replace(",", "");
+                txt_TruongSo04.Text = FormatCurency(str);
+                txt_TruongSo04.SelectionStart = -start + txt_TruongSo04.Text.Length;
+            }
         }
         string FormatCurency(object curency)// định dạng 1,234
         {

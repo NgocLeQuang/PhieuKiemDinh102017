@@ -53,6 +53,7 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(586, 21);
             this.comboBox1.TabIndex = 0;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // btn_Search
             // 
@@ -61,6 +62,7 @@
             this.btn_Search.Size = new System.Drawing.Size(75, 23);
             this.btn_Search.TabIndex = 1;
             this.btn_Search.Text = "Search";
+            this.btn_Search.Visible = false;
             this.btn_Search.Click += new System.EventHandler(this.btn_Search_Click);
             // 
             // label1
@@ -113,6 +115,7 @@
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsView.ShowAutoFilterRow = true;
             this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridView1_CustomDrawRowIndicator);
             // 
             // gridColumn1
             // 
