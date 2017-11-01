@@ -29,7 +29,7 @@ namespace PhieuKiemDinh.MyForm
                 if (version != Global.Version)
                 {
                     MessageBox.Show("Version bạn dùng đã cũ, vui lòng cập nhật phiên bản mới!", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    Process.Start(@"\\10.10.10.254\DE_Viet\2017\PHIEU_KIEM_DINH\Tools");
+                    Global.RunUpdateVersion();
                     Application.Exit();
                 }
                 //  var CountImageNotComplete = (from w in Global.Db.CheckInputComplete(Global.StrBatch) select w.IdImage).ToList();
@@ -473,7 +473,7 @@ namespace PhieuKiemDinh.MyForm
             if (version != Global.Version)
             {
                 MessageBox.Show("Version bạn dùng đã cũ, vui lòng cập nhật phiên bản mới!", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Process.Start(@"\\10.10.10.254\DE_Viet\2017\PHIEU_KIEM_DINH\Tools");
+                Global.RunUpdateVersion();
                 Application.Exit();
             }
             string temp = GetImage_DeSo();
@@ -508,7 +508,7 @@ namespace PhieuKiemDinh.MyForm
             if (version != Global.Version)
             {
                 MessageBox.Show("Version bạn dùng đã cũ, vui lòng cập nhật phiên bản mới!", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Process.Start(@"\\10.10.10.254\DE_Viet\2017\PHIEU_KIEM_DINH\Tools");
+                Global.RunUpdateVersion();
                 Application.Exit();
             }
             string temp = GetImage_DeSo();
@@ -544,7 +544,7 @@ namespace PhieuKiemDinh.MyForm
                                             uC_DESO1.txt_TruongSo08_2.Text,
                                             uC_DESO1.txt_TruongSo09.Text,
                                             uC_DESO1.txt_TruongSo10.Text,
-                                            uC_DESO1.txt_TruongSo11.Text,
+                                            uC_DESO1.txt_TruongSo11.Text.IndexOf('●') >= 0 ? "●" : uC_DESO1.txt_TruongSo11.Text,
                                             uC_DESO1.txt_TruongSo12.Text,
                                             uC_DESO1.txt_TruongSo13.Text,
                                             uC_DESO1.txt_TruongSo14.Text//, uC_DESO1.txt_FlagError.Text
@@ -561,7 +561,7 @@ namespace PhieuKiemDinh.MyForm
                                             uC_DESO1.txt_TruongSo08_2.Text,
                                             uC_DESO1.txt_TruongSo09.Text,
                                             uC_DESO1.txt_TruongSo10.Text,
-                                            uC_DESO1.txt_TruongSo11.Text,
+                                            uC_DESO1.txt_TruongSo11.Text.IndexOf('●') >= 0 ? "●" : uC_DESO1.txt_TruongSo11.Text,
                                             uC_DESO1.txt_TruongSo12.Text,
                                             uC_DESO1.txt_TruongSo13.Text,
                                             uC_DESO1.txt_TruongSo14.Text//,uC_DESO1.txt_FlagError.Text
@@ -573,7 +573,7 @@ namespace PhieuKiemDinh.MyForm
             if (version != Global.Version)
             {
                 MessageBox.Show("Version bạn dùng đã cũ, vui lòng cập nhật phiên bản mới!", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Process.Start(@"\\10.10.10.254\DE_Viet\2017\PHIEU_KIEM_DINH\Tools");
+                Global.RunUpdateVersion();
                 Application.Exit();
             }
             string temp = GetImage_DeSo();
@@ -609,7 +609,7 @@ namespace PhieuKiemDinh.MyForm
                                             uC_DESO2.txt_TruongSo08_2.Text,
                                             uC_DESO2.txt_TruongSo09.Text,
                                             uC_DESO2.txt_TruongSo10.Text,
-                                            uC_DESO2.txt_TruongSo11.Text,
+                                            uC_DESO2.txt_TruongSo11.Text.IndexOf('●') >= 0 ? "●" : uC_DESO2.txt_TruongSo11.Text,
                                             uC_DESO2.txt_TruongSo12.Text,
                                             uC_DESO2.txt_TruongSo13.Text,
                                             uC_DESO2.txt_TruongSo14.Text//, uC_DESO2.txt_FlagError.Text
@@ -626,7 +626,7 @@ namespace PhieuKiemDinh.MyForm
                                             uC_DESO2.txt_TruongSo08_2.Text,
                                             uC_DESO2.txt_TruongSo09.Text,
                                             uC_DESO2.txt_TruongSo10.Text,
-                                            uC_DESO2.txt_TruongSo11.Text,
+                                            uC_DESO2.txt_TruongSo11.Text.IndexOf('●') >= 0 ? "●" : uC_DESO2.txt_TruongSo11.Text,
                                             uC_DESO2.txt_TruongSo12.Text,
                                             uC_DESO2.txt_TruongSo13.Text,
                                             uC_DESO2.txt_TruongSo14.Text//,uC_DESO2.txt_FlagError.Text
@@ -638,7 +638,7 @@ namespace PhieuKiemDinh.MyForm
             if (version != Global.Version)
             {
                 MessageBox.Show("Version bạn dùng đã cũ, vui lòng cập nhật phiên bản mới!", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Process.Start(@"\\10.10.10.254\DE_Viet\2017\PHIEU_KIEM_DINH\Tools");
+                Global.RunUpdateVersion();
                 Application.Exit();
             }
             string temp = GetImage_DeSo();
@@ -768,17 +768,22 @@ namespace PhieuKiemDinh.MyForm
 
         private void btn_CheckLai_Click(object sender, EventArgs e)
         {
+            var temp = (from w in Global.Db.tbl_Images where w.UserNameCheckDeSo == Global.StrUserName && w.ReadImageCheckDeSo == 1 && w.SubmitCheckDeSo == 1 orderby w.DateCheckDeSo descending select new { w.fBatchName, w.IdImage }).FirstOrDefault();
+            if (temp==null)
+            {
+                MessageBox.Show("Bạn chưa check, vui lòng check hình trước khi check lại");
+                return;
+            }
             lb_Image.Text = "";
             fbatchRefresh = "";
             var version = (from w in Global.DbBpo.tbl_Versions where w.IDProject == Global.StrIdProject select w.IDVersion).FirstOrDefault();
             if (version != Global.Version)
             {
                 MessageBox.Show("Version bạn dùng đã cũ, vui lòng cập nhật phiên bản mới!", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Process.Start(@"\\10.10.10.254\DE_Viet\2017\PHIEU_KIEM_DINH\Tools");
+                Global.RunUpdateVersion();
                 Application.Exit();
             }
             ResetData();
-            var temp = (from w in Global.Db.tbl_Images where w.UserNameCheckDeSo == Global.StrUserName && w.ReadImageCheckDeSo == 1 && w.SubmitCheckDeSo == 1 orderby w.DateCheckDeSo descending select new { w.fBatchName, w.IdImage }).FirstOrDefault();
             lb_Image.Text = temp.IdImage;
             fbatchRefresh = temp.fBatchName;
             uc_PictureBox1.LoadImage(Global.Webservice + fbatchRefresh + "/" + lb_Image.Text, lb_Image.Text, Settings.Default.ZoomImage);

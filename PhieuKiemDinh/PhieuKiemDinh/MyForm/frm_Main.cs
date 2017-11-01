@@ -446,7 +446,7 @@ namespace PhieuKiemDinh.MyForm
             if (version != Global.Version)
             {
                 MessageBox.Show("Version bạn dùng đã cũ, vui lòng cập nhật phiên bản mới!", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Process.Start(@"\\10.10.10.254\DE_Viet\2017\PHIEU_KIEM_DINH\Tools");
+                Global.RunUpdateVersion();
                 Application.Exit();
             }
             if (btn_Submit.Text == "Start")
@@ -567,7 +567,7 @@ namespace PhieuKiemDinh.MyForm
                        uC_DESO1.txt_TruongSo08_2.Text,
                        uC_DESO1.txt_TruongSo09.Text,
                        uC_DESO1.txt_TruongSo10.Text,
-                       uC_DESO1.txt_TruongSo11.Text,
+                       uC_DESO1.txt_TruongSo11.Text.IndexOf('●')>=0? "●": uC_DESO1.txt_TruongSo11.Text,
                        uC_DESO1.txt_TruongSo12.Text,
                        uC_DESO1.txt_TruongSo13.Text,
                        uC_DESO1.txt_TruongSo14.Text//,
@@ -680,7 +680,7 @@ namespace PhieuKiemDinh.MyForm
             if (version != Global.Version)
             {
                 MessageBox.Show("Version bạn dùng đã cũ, vui lòng cập nhật phiên bản mới!", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Process.Start(@"\\10.10.10.254\DE_Viet\2017\PHIEU_KIEM_DINH\Tools");
+                Global.RunUpdateVersion();
                 Application.Exit();
             }
             if (Global.StrRole == "DESO")
@@ -701,7 +701,7 @@ namespace PhieuKiemDinh.MyForm
                        uC_DESO1.txt_TruongSo08_2.Text,
                        uC_DESO1.txt_TruongSo09.Text,
                        uC_DESO1.txt_TruongSo10.Text,
-                       uC_DESO1.txt_TruongSo11.Text,
+                       uC_DESO1.txt_TruongSo11.Text.IndexOf('●') >= 0 ? "●" : uC_DESO1.txt_TruongSo11.Text,
                        uC_DESO1.txt_TruongSo12.Text,
                        uC_DESO1.txt_TruongSo13.Text,
                        uC_DESO1.txt_TruongSo14.Text//,

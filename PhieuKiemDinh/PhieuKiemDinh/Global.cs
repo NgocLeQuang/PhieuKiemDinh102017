@@ -5,6 +5,8 @@ using System.Net;
 using System.Net.Sockets;
 using System.Windows.Forms;
 using System.Data;
+using PhieuKiemDinh.Properties;
+using System.Diagnostics;
 
 namespace PhieuKiemDinh
 {
@@ -56,6 +58,13 @@ namespace PhieuKiemDinh
             if (OutSource == false && Properties.Settings.Default.Server == "Khác" && Role== "DESO")
                 return true;
             return false;
+        }
+        public static void RunUpdateVersion()
+        {
+            if (Settings.Default.Server == "Đà Nẵng")
+                Process.Start(@"\\10.10.10.254\DE_Viet\2017\PHIEU_KIEM_DINH\Tools");
+            else
+                Process.Start(@"https://drive.google.com/drive/folders/0BwO0VkvgrRHaeW5meEE4blBHdnc?usp=sharing");
         }
     }
 }

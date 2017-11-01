@@ -2,11 +2,11 @@
 using DevExpress.XtraEditors;
 using System;
 using System.Linq;
-using Microsoft.Office.Interop.Excel;
 using Series = DevExpress.XtraCharts.Series;
 
 namespace PhieuKiemDinh.MyForm
-{public partial class FrmTienDo : XtraForm
+{
+    public partial class FrmTienDo : XtraForm
     {
         public FrmTienDo()
         {
@@ -20,7 +20,6 @@ namespace PhieuKiemDinh.MyForm
         cbb_Batch.Properties.DisplayMember = "fBatchName";
         cbb_Batch.Properties.ValueMember = "fBatchName";
         cbb_Batch.Text = Global.StrBatch;
-
     }
 
         private void ThongKe()

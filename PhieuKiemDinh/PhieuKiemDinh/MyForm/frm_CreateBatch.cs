@@ -111,22 +111,22 @@ namespace PhieuKiemDinh.MyForm
             }
             else
             {
-                try
-                {
-                    string path = Global.StrPath + @"\MyTest.txt";
-                    using (StreamWriter sw = File.CreateText(path))
-                    {
-                        sw.WriteLine("Hello");
-                        sw.WriteLine("And");
-                        sw.WriteLine("Welcome");
-                    }
-                    File.Delete(path);
-                }
-                catch { MessageBox.Show("Bạn chưa được cấp quyền để mở thư mục lưu trữ hình ảnh."); }
+                //try
+                //{
+                //    string path = Global.StrPath + @"\MyTest.txt";
+                //    using (StreamWriter sw = File.CreateText(path))
+                //    {
+                //        sw.WriteLine("Hello");
+                //        sw.WriteLine("And");
+                //        sw.WriteLine("Welcome");
+                //    }
+                //    File.Delete(path);
+                //}
+                //catch { MessageBox.Show("Bạn chưa được cấp quyền để mở thư mục lưu trữ hình ảnh."); }
             }
             if(gridView1.GetSelectedRows().Count()<=0)
             {
-                MessageBox.Show("Hạy chọn batch!");
+                MessageBox.Show("Hãy chọn batch!");
                 return;
             }
             foreach (var rowHandle in gridView1.GetSelectedRows())

@@ -384,6 +384,7 @@ namespace PhieuKiemDinh.MyUserControl
 
         private void txt_TruongSo11_EditValueChanged(object sender, EventArgs e)
         {
+            Changed?.Invoke(sender, e);
             if (txt_TruongSo11.Text.IndexOf('●') >= 0)
             {
                 txt_TruongSo11.Text = "●";
@@ -421,7 +422,6 @@ namespace PhieuKiemDinh.MyUserControl
                 txt_TruongSo11.BackColor = Color.White;
                 txt_TruongSo11.ForeColor = Color.Black;
             }
-            Changed?.Invoke(sender, e);
         }
 
         private void txt_TruongSo11_Leave(object sender, EventArgs e)
@@ -786,7 +786,5 @@ namespace PhieuKiemDinh.MyUserControl
             Properties.Settings.Default.FlagError = txt_FlagError.Text;
             Properties.Settings.Default.Save();
         }
-
-       
     }
 }
