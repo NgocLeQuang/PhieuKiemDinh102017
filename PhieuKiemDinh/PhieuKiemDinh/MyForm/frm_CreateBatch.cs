@@ -61,35 +61,66 @@ namespace PhieuKiemDinh.MyForm
         }
 
         public List<point_rectangle> pr = new List<point_rectangle>();
-        
+        private List<string> listBatchIsDelete = new List<string>();
+        DirectoryInfo fi_ = null;
         private void frm_CreateBatch_Load(object sender, EventArgs e)
         {
-            //lb_SobatchHoanThanh.Text = "";
-            //lb_SoBatch.Text = "";
             txt_UserCreate.Text = Global.StrUserName;
             txt_DateCreate.Text = DateTime.Now.ToShortDateString() + "  -  " + DateTime.Now.ToShortTimeString();
             string[] foldersAll = Directory.GetDirectories(Global.StrPath);
-            string folder = "";
+            string folder_ = "", folder = "";
             DateTime? DateCreateBatch;
             bool Is_Exists = false;
             category.Clear();
+            listBatchIsDelete.Clear();
+            listBatchIsDelete = (from w in Global.Db.GetListBatchIsDelete() select w.fBatchName).ToList();
             var listBatch = (from w in Global.Db.GetBatch_Full() select new { w.fBatchName, w.NgayTaoBatch }).ToList();
+            List<string> listBatchLocation = new List<string>();
             for (int i = 0; i < foldersAll.Count(); i++)
             {
-                DirectoryInfo fi = new DirectoryInfo(foldersAll[i]);
-                folder = fi.Name;
-                DateCreateBatch = null;
-                if (listBatch.Exists(x => x.fBatchName == (folder)))
+                fi_ = new DirectoryInfo(foldersAll[i]);
+                folder_ = fi_.Name;
+                listBatchLocation.Clear();
+                listBatchLocation.AddRange(Directory.GetDirectories(Global.StrPath + @"\" + folder_));
+                if (listBatchLocation.Count() <= 0)
                 {
-                    Is_Exists = true;
-                    DateCreateBatch = (from w in listBatch where w.fBatchName == folder select w.NgayTaoBatch).FirstOrDefault();
+                    if (!listBatchIsDelete.Contains(folder_))
+                    {
+                        DateCreateBatch = null;
+                        if (listBatch.Exists(x => x.fBatchName == (folder_)))
+                        {
+                            Is_Exists = true;
+                            DateCreateBatch = (from w in listBatch where w.fBatchName == folder_ select w.NgayTaoBatch).FirstOrDefault();
+                        }
+                        else
+                            Is_Exists = false;
+                        var filters = new String[] { "jpg", "jpeg", "png", "gif", "tif", "bmp" };
+                        lFileNames = GetFilesFrom(Global.StrPath + @"\" + folder_, filters, false);
+                        category.Add(new Category() { Folder_ = "", Folder = folder_, NumberImage = lFileNames.Count(), Is_Exists = Is_Exists, DateCreateFolder = fi_.LastAccessTime, DateCreateBatch = DateCreateBatch });
+                    }
                 }
                 else
-                    Is_Exists = false;
-                lFileNames = Directory.GetFiles(Global.StrPath +@"\"+ folder, "*.jpg").Select(Path.GetFileName).
-                    Union(Directory.GetFiles(Global.StrPath + @"\" + folder, "*.jpeg").Select(Path.GetFileName).
-                    Union(Directory.GetFiles(Global.StrPath + @"\" + folder, "*.png").Select(Path.GetFileName))).ToArray();
-                category.Add(new Category() { Folder = folder, NumberImage = lFileNames.Count(),Is_Exists=Is_Exists,DateCreateFolder= fi.LastAccessTime, DateCreateBatch= DateCreateBatch });
+                {
+                    for (int j = 0; j < listBatchLocation.Count(); j++)
+                    {
+                        DirectoryInfo fi = new DirectoryInfo(listBatchLocation[j]);
+                        folder = fi.Name;
+                        if (!listBatchIsDelete.Contains(folder))
+                        {
+                            DateCreateBatch = null;
+                            if (listBatch.Exists(x => x.fBatchName == (folder)))
+                            {
+                                Is_Exists = true;
+                                DateCreateBatch = (from w in listBatch where w.fBatchName == folder select w.NgayTaoBatch).FirstOrDefault();
+                            }
+                            else
+                                Is_Exists = false;
+                            var filters = new String[] { "jpg", "jpeg", "png", "gif", "tif", "bmp" };
+                            lFileNames = GetFilesFrom(Global.StrPath + @"\" + folder_ + @"\" + folder, filters, false);
+                            category.Add(new Category() { Folder_ = folder_, Folder = folder, NumberImage = lFileNames.Count(), Is_Exists = Is_Exists, DateCreateFolder = fi.LastAccessTime, DateCreateBatch = DateCreateBatch });
+                        }
+                    }
+                }
             }
             gridControl1.DataSource = (from w in category orderby w.Is_Exists descending, w.DateCreateBatch ascending, w.DateCreateFolder ascending select w).ToList();
         }
@@ -111,18 +142,7 @@ namespace PhieuKiemDinh.MyForm
             }
             else
             {
-                //try
-                //{
-                //    string path = Global.StrPath + @"\MyTest.txt";
-                //    using (StreamWriter sw = File.CreateText(path))
-                //    {
-                //        sw.WriteLine("Hello");
-                //        sw.WriteLine("And");
-                //        sw.WriteLine("Welcome");
-                //    }
-                //    File.Delete(path);
-                //}
-                //catch { MessageBox.Show("Bạn chưa được cấp quyền để mở thư mục lưu trữ hình ảnh."); }
+               
             }
             if(gridView1.GetSelectedRows().Count()<=0)
             {
@@ -149,27 +169,6 @@ namespace PhieuKiemDinh.MyForm
                 MessageBox.Show("Quá trình tạo batch đang diễn ra, Bạn hãy chờ quá trình tạo batch kết thúc mới tiếp tục tạo batch mới !");
                 return;
             }
-            backgroundWorker1.RunWorkerAsync();
-        }
-        
-        public class Category
-        {
-            public string Folder { get; set; }
-            public int NumberImage { get; set; }
-            public bool Is_Exists { get; set; }
-            public DateTime DateCreateFolder { get; set; }
-            public DateTime? DateCreateBatch { get; set; }
-        }
-
-        private List<Category> category = new List<Category>();
-
-        int ChiaUser = 0, solaninsert = 0;
-        string temp = "";
-        string fbatchname = "";
-        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
-        {
-            //lb_SobatchHoanThanh.Text = "";
-            //lb_SoBatch.Text = "";
             ChiaUser = 0;
             temp = "";
             fbatchname = "";
@@ -179,15 +178,22 @@ namespace PhieuKiemDinh.MyForm
             }
             try
             {
-
                 foreach (var rowHandle in gridView1.GetSelectedRows())
                 {
                     fbatchname = "";
                     lFileNames = null;
                     solaninsert = 0;
                     fbatchname = gridView1.GetRowCellValue(rowHandle, "Folder").ToString();
-                    lFileNames = Directory.GetFiles(Global.StrPath + @"\" + fbatchname, "*.jpg").Select(Path.GetFileName).ToArray();
-                    Global.Db.InsertBatch(fbatchname, Global.StrUserName, "", lFileNames.Count() + "", ChiaUser);
+                    if (string.IsNullOrEmpty(gridView1.GetRowCellValue(rowHandle, "Folder_").ToString()))
+                    {
+                        pathBatch = Global.StrPath + @"\" + fbatchname;
+                    }
+                    else
+                    {
+                        pathBatch = Global.StrPath + @"\" + gridView1.GetRowCellValue(rowHandle, "Folder_").ToString() + @"\" + fbatchname;
+                    }
+                    lFileNames = Directory.GetFiles(pathBatch, "*.jpg").Select(Path.GetFileName).ToArray();
+                    Global.Db.InsertBatch(fbatchname, Global.StrUserName, gridView1.GetRowCellValue(rowHandle, "Folder_").ToString(), lFileNames.Count() + "", ChiaUser);
                     solaninsert = (int)Math.Round(((decimal)lFileNames.Count() / 150), 0, MidpointRounding.AwayFromZero);
                     if ((decimal)solaninsert < (decimal)lFileNames.Count() / 150)
                     {
@@ -229,6 +235,28 @@ namespace PhieuKiemDinh.MyForm
             gridControl1.Enabled = true;
             ck_ChiaUser.Enabled = true;
             timer1.Enabled = true;
+            //backgroundWorker1.RunWorkerAsync();
+        }
+        
+        public class Category
+        {
+            public string Folder_ { get; set; }
+            public string Folder { get; set; }
+            public int NumberImage { get; set; }
+            public bool Is_Exists { get; set; }
+            public DateTime DateCreateFolder { get; set; }
+            public DateTime? DateCreateBatch { get; set; }
+        }
+
+        private List<Category> category = new List<Category>();
+
+        int ChiaUser = 0, solaninsert = 0;
+        string temp = "";
+        string fbatchname = "";
+        string pathBatch = "";
+        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        {
+            
         }
 
         public static string[] GetFilesFrom(string searchFolder, string[] filters, bool isRecursive)
@@ -289,6 +317,11 @@ namespace PhieuKiemDinh.MyForm
         private void timer1_Tick(object sender, EventArgs e)
         {
             frm_CreateBatch_Load(null,null);
+        }
+
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            new frm_BatchIsDelete().ShowDialog();
         }
 
         private void frm_CreateBatch_FormClosing(object sender, FormClosingEventArgs e)

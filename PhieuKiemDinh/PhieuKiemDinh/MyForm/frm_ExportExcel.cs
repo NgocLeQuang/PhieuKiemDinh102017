@@ -23,6 +23,7 @@ namespace PhieuKiemDinh.MyForm
         Microsoft.Office.Interop.Excel.Workbook book = null;
         Microsoft.Office.Interop.Excel.Worksheet wrksheet = null;
         int h = 0;
+        string namefileExcel = "";
         private void frm_ExportExcel_Load(object sender, EventArgs e)
         {
             cbb_Batch.DataSource = Global.Db.GetBatch();
@@ -83,6 +84,7 @@ namespace PhieuKiemDinh.MyForm
             //TableToExcel(System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments) + "\\ExportExcel.xlsx");
             dataGridView1.DataSource = null;
             dataGridView1.DataSource = Global.Db.ExportExcel_PhieuKiemDinh(cbb_Batch.Text);
+            namefileExcel = "";
             App = new Microsoft.Office.Interop.Excel.Application();
             book = App.Workbooks.Open(System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments) + "\\ExportExcel.xlsx", 0, true, 5, "", "", false, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "", true, false, 0, true, false, false);
             wrksheet = (Microsoft.Office.Interop.Excel.Worksheet)book.ActiveSheet;            
@@ -116,6 +118,10 @@ namespace PhieuKiemDinh.MyForm
                 if (tempTruong11 == "?")
                 {
                     wrksheet.Cells[h, 10] = "?";
+                }
+                else if (tempTruong11 == "●")
+                {
+                    wrksheet.Cells[h, 10] = "●";
                 }
                 else if (tempTruong11.Length == 6)
                 {
@@ -190,7 +196,7 @@ namespace PhieuKiemDinh.MyForm
             string savePath = "";
             saveFileDialog1.Title = "Save Excel Files";
             saveFileDialog1.Filter = "Excel files (*.xlsx)|*.xlsx";
-            saveFileDialog1.FileName = cbb_Batch.Text;
+            saveFileDialog1.FileName = cbb_Batch.Text+namefileExcel;
             saveFileDialog1.RestoreDirectory = true;
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
@@ -211,6 +217,65 @@ namespace PhieuKiemDinh.MyForm
         {
             if (e.KeyChar != 3)
                 e.Handled = true;
+        }
+
+        private void simpleButton2_Click(object sender, EventArgs e)
+        {
+            var CountImageNotComplete = (from w in Global.Db.CheckInputComplete(cbb_Batch.Text) select w.IdImage).ToList();
+            var check = (from w in Global.Db.tbl_MissImage_DeSos where w.fBatchName == cbb_Batch.Text && w.Submit == 0 select w.IdImage).Count();
+
+            if (CountImageNotComplete.Count > 0)
+            {
+                MessageBox.Show("Chưa nhập xong DeSo!");
+                return;
+            }
+            if (check > 0)
+            {
+                var list_user = (from w in Global.Db.tbl_MissImage_DeSos where w.fBatchName == cbb_Batch.Text && w.Submit == 0 select w.UserName).ToList();
+                string sss = "";
+                foreach (var item in list_user)
+                {
+                    sss += item + "\r\n";
+                }
+                if (list_user.Count > 0)
+                {
+                    MessageBox.Show("Những user lấy hình về nhưng chưa nhập: \r\n" + sss);
+                    return;
+                }
+            }
+
+            var soloi = ((from w in Global.Db.tbl_DeSos where w.fBatchName == cbb_Batch.Text && w.Dem == 1 select w.IdImage).Count() / 2);
+
+            var ListCheckNotComplete = (from w in Global.Db.tbl_Images where w.fBatchName == cbb_Batch.Text && w.ReadImageCheckDeSo == 1 && w.SubmitCheckDeSo == 0 select new { w.IdImage, w.UserNameCheckDeSo }).ToList();
+            if (ListCheckNotComplete.Count > 0 || soloi > 0)
+            {
+                MessageBox.Show("Chưa check xong DeSo!");
+                string sss = "";
+                foreach (var item in ListCheckNotComplete)
+                {
+                    sss += item.UserNameCheckDeSo + "\r\n";
+                }
+                MessageBox.Show("Những user lấy hình về nhưng chưa check: \r\n" + sss);
+                return;
+            }
+
+            if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\ExportExcel.xlsx"))
+            {
+                File.Delete(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\ExportExcel.xlsx");
+                File.WriteAllBytes((Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/ExportExcel.xlsx"), Properties.Resources.ExportExcel);
+            }
+            else
+            {
+                File.WriteAllBytes((Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/ExportExcel.xlsx"), Properties.Resources.ExportExcel);
+            }
+            //TableToExcel(System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments) + "\\ExportExcel.xlsx");
+            dataGridView1.DataSource = null;
+            dataGridView1.DataSource = Global.Db.ExportExcel_Error_PhieuKiemDinh(cbb_Batch.Text);
+            namefileExcel = "_Error";
+            App = new Microsoft.Office.Interop.Excel.Application();
+            book = App.Workbooks.Open(System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments) + "\\ExportExcel.xlsx", 0, true, 5, "", "", false, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "", true, false, 0, true, false, false);
+            wrksheet = (Microsoft.Office.Interop.Excel.Worksheet)book.ActiveSheet;
+            backgroundWorker1.RunWorkerAsync();
         }
     }
 }

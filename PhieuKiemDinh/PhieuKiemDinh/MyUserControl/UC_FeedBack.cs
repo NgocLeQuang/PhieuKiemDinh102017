@@ -32,7 +32,8 @@ namespace PhieuKiemDinh.MyUserControl
             var deso = (from w in Global.Db.tbl_DeSo_BackUps
                         where w.fBatchName == fbatchname && w.IdImage == idimage
                         select w).ToList();
-
+            if (deso.Count() <= 0)
+                return;
             uC_DESO_FeedBack1.LoadData(deso[0]);
             uC_DESO_FeedBack2.LoadData(deso[1]);
         }
@@ -42,6 +43,8 @@ namespace PhieuKiemDinh.MyUserControl
             var deso = (from w in Global.Db.tbl_DeSos
                         where w.fBatchName == fbatchname && w.IdImage == idimage && w.True == 1
                         select w).ToList();
+            if (deso.Count() <= 0)
+                return;
             var nameCheck = (from w in Global.Db.GetNameCheck(idimage, fbatchname) select w.UserNameCheckDeSo).FirstOrDefault();
             uC_DESO_FeedBack3.LoadDataChecker(deso[0],nameCheck+"" );
         }

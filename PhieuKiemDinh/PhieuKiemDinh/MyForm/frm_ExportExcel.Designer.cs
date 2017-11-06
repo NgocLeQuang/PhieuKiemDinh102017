@@ -39,6 +39,7 @@
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
@@ -96,6 +97,7 @@
             // 
             this.panelControl1.Controls.Add(this.lb_Complete);
             this.panelControl1.Controls.Add(this.progressBar1);
+            this.panelControl1.Controls.Add(this.simpleButton2);
             this.panelControl1.Controls.Add(this.simpleButton1);
             this.panelControl1.Controls.Add(this.labelControl1);
             this.panelControl1.Controls.Add(this.cbb_Batch);
@@ -137,6 +139,17 @@
             this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
             this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
             // 
+            // simpleButton2
+            // 
+            this.simpleButton2.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.simpleButton2.Appearance.Options.UseFont = true;
+            this.simpleButton2.Location = new System.Drawing.Point(607, 8);
+            this.simpleButton2.Name = "simpleButton2";
+            this.simpleButton2.Size = new System.Drawing.Size(102, 25);
+            this.simpleButton2.TabIndex = 2;
+            this.simpleButton2.Text = "Error";
+            this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click);
+            // 
             // frm_ExportExcel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -171,5 +184,6 @@
         private System.Windows.Forms.ProgressBar progressBar1;
         private DevExpress.XtraEditors.PanelControl panelControl2;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private DevExpress.XtraEditors.SimpleButton simpleButton2;
     }
 }

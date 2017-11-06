@@ -41,6 +41,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.BatchIsExists = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -48,6 +49,7 @@
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.btn_TaoBatch = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.txt_DateCreate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_UserCreate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -167,6 +169,7 @@
             // gridView1
             // 
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn5,
             this.gridColumn1,
             this.BatchIsExists,
             this.gridColumn2,
@@ -179,14 +182,25 @@
             this.gridView1.OptionsView.ShowGroupPanel = false;
             this.gridView1.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridView1_CustomDrawRowIndicator);
             // 
+            // gridColumn5
+            // 
+            this.gridColumn5.Caption = "Folder";
+            this.gridColumn5.FieldName = "Folder_";
+            this.gridColumn5.Name = "gridColumn5";
+            this.gridColumn5.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.True;
+            this.gridColumn5.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.True;
+            this.gridColumn5.OptionsColumn.ReadOnly = true;
+            this.gridColumn5.Visible = true;
+            this.gridColumn5.VisibleIndex = 1;
+            // 
             // gridColumn1
             // 
-            this.gridColumn1.Caption = "Folder";
+            this.gridColumn1.Caption = "Batch";
             this.gridColumn1.FieldName = "Folder";
             this.gridColumn1.Name = "gridColumn1";
             this.gridColumn1.OptionsColumn.ReadOnly = true;
             this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 1;
+            this.gridColumn1.VisibleIndex = 2;
             // 
             // BatchIsExists
             // 
@@ -201,7 +215,7 @@
             this.BatchIsExists.Name = "BatchIsExists";
             this.BatchIsExists.OptionsColumn.ReadOnly = true;
             this.BatchIsExists.Visible = true;
-            this.BatchIsExists.VisibleIndex = 2;
+            this.BatchIsExists.VisibleIndex = 3;
             // 
             // gridColumn2
             // 
@@ -216,7 +230,7 @@
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.OptionsColumn.ReadOnly = true;
             this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 3;
+            this.gridColumn2.VisibleIndex = 4;
             // 
             // gridColumn4
             // 
@@ -233,7 +247,7 @@
             this.gridColumn4.Name = "gridColumn4";
             this.gridColumn4.OptionsColumn.ReadOnly = true;
             this.gridColumn4.Visible = true;
-            this.gridColumn4.VisibleIndex = 4;
+            this.gridColumn4.VisibleIndex = 5;
             // 
             // gridColumn3
             // 
@@ -243,14 +257,14 @@
             this.gridColumn3.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn3.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.gridColumn3.Caption = "Date Create Batch";
+            this.gridColumn3.Caption = "Date Create Data";
             this.gridColumn3.DisplayFormat.FormatString = "dd/MM/yyyy HH:mm:ss";
             this.gridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.gridColumn3.FieldName = "DateCreateBatch";
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.OptionsColumn.ReadOnly = true;
             this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 5;
+            this.gridColumn3.VisibleIndex = 6;
             // 
             // timer1
             // 
@@ -265,12 +279,26 @@
             this.btn_TaoBatch.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.btn_TaoBatch.Appearance.Options.UseFont = true;
             this.btn_TaoBatch.Appearance.Options.UseForeColor = true;
-            this.btn_TaoBatch.Location = new System.Drawing.Point(507, 594);
+            this.btn_TaoBatch.Location = new System.Drawing.Point(466, 594);
             this.btn_TaoBatch.Name = "btn_TaoBatch";
             this.btn_TaoBatch.Size = new System.Drawing.Size(160, 29);
             this.btn_TaoBatch.TabIndex = 12;
             this.btn_TaoBatch.Text = "Tạo Batch";
             this.btn_TaoBatch.Click += new System.EventHandler(this.btn_TaoBatch_Click);
+            // 
+            // simpleButton1
+            // 
+            this.simpleButton1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.simpleButton1.Appearance.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Bold);
+            this.simpleButton1.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.simpleButton1.Appearance.Options.UseFont = true;
+            this.simpleButton1.Appearance.Options.UseForeColor = true;
+            this.simpleButton1.Location = new System.Drawing.Point(632, 594);
+            this.simpleButton1.Name = "simpleButton1";
+            this.simpleButton1.Size = new System.Drawing.Size(160, 29);
+            this.simpleButton1.TabIndex = 12;
+            this.simpleButton1.Text = "Batch đã xóa";
+            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
             // 
             // frm_CreateBatch
             // 
@@ -281,6 +309,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.ck_ChiaUser);
             this.Controls.Add(this.lb_SoLuongAnh);
+            this.Controls.Add(this.simpleButton1);
             this.Controls.Add(this.btn_TaoBatch);
             this.Controls.Add(this.txt_DateCreate);
             this.Controls.Add(this.txt_UserCreate);
@@ -322,5 +351,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
         private System.Windows.Forms.Timer timer1;
         private DevExpress.XtraEditors.SimpleButton btn_TaoBatch;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
+        private DevExpress.XtraEditors.SimpleButton simpleButton1;
     }
 }

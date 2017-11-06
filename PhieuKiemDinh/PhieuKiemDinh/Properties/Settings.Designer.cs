@@ -61,7 +61,7 @@ namespace PhieuKiemDinh.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("65")]
+        [global::System.Configuration.DefaultSettingValueAttribute("53")]
         public int ZoomImage {
             get {
                 return ((int)(this["ZoomImage"]));

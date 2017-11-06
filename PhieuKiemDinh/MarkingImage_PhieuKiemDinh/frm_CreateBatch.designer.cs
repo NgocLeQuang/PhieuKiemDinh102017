@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_CreateBatch));
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.txt_fBatchName = new DevExpress.XtraEditors.TextEdit();
@@ -52,6 +53,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.rdo_Server = new System.Windows.Forms.RadioButton();
             this.rdo_Client = new System.Windows.Forms.RadioButton();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.lb_tocdoMasking = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.txt_fBatchName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_ImagePath.Properties)).BeginInit();
@@ -66,11 +69,11 @@
             this.labelControl1.Appearance.ForeColor = System.Drawing.Color.Red;
             this.labelControl1.Appearance.Options.UseFont = true;
             this.labelControl1.Appearance.Options.UseForeColor = true;
-            this.labelControl1.Location = new System.Drawing.Point(258, 12);
+            this.labelControl1.Location = new System.Drawing.Point(352, 10);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(160, 23);
+            this.labelControl1.Size = new System.Drawing.Size(93, 23);
             this.labelControl1.TabIndex = 1;
-            this.labelControl1.Text = "TẠO BATCH MỚI";
+            this.labelControl1.Text = "MASKING";
             // 
             // txt_fBatchName
             // 
@@ -78,7 +81,7 @@
             this.txt_fBatchName.Name = "txt_fBatchName";
             this.txt_fBatchName.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_fBatchName.Properties.Appearance.Options.UseFont = true;
-            this.txt_fBatchName.Size = new System.Drawing.Size(348, 22);
+            this.txt_fBatchName.Size = new System.Drawing.Size(461, 22);
             this.txt_fBatchName.TabIndex = 4;
             this.txt_fBatchName.EditValueChanged += new System.EventHandler(this.txt_fBatchName_EditValueChanged);
             // 
@@ -88,23 +91,24 @@
             this.labelControl2.Appearance.ForeColor = System.Drawing.Color.Black;
             this.labelControl2.Appearance.Options.UseFont = true;
             this.labelControl2.Appearance.Options.UseForeColor = true;
-            this.labelControl2.Location = new System.Drawing.Point(12, 46);
+            this.labelControl2.Location = new System.Drawing.Point(13, 46);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(112, 16);
+            this.labelControl2.Size = new System.Drawing.Size(123, 16);
             this.labelControl2.TabIndex = 3;
-            this.labelControl2.Text = "Tên batch (Single):";
+            this.labelControl2.Text = "Batch name (Single):";
             // 
             // btn_TaoBatch
             // 
+            this.btn_TaoBatch.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btn_TaoBatch.Appearance.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Bold);
             this.btn_TaoBatch.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.btn_TaoBatch.Appearance.Options.UseFont = true;
             this.btn_TaoBatch.Appearance.Options.UseForeColor = true;
-            this.btn_TaoBatch.Location = new System.Drawing.Point(258, 239);
+            this.btn_TaoBatch.Location = new System.Drawing.Point(340, 224);
             this.btn_TaoBatch.Name = "btn_TaoBatch";
             this.btn_TaoBatch.Size = new System.Drawing.Size(160, 29);
             this.btn_TaoBatch.TabIndex = 12;
-            this.btn_TaoBatch.Text = "Tạo Batch";
+            this.btn_TaoBatch.Text = "Start";
             this.btn_TaoBatch.Click += new System.EventHandler(this.btn_TaoBatch_Click);
             // 
             // lb_SoLuongAnh
@@ -126,15 +130,16 @@
             // progressBar1
             // 
             this.progressBar1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.progressBar1.Location = new System.Drawing.Point(38, 293);
+            this.progressBar1.Location = new System.Drawing.Point(39, 266);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(579, 23);
+            this.progressBar1.Size = new System.Drawing.Size(732, 23);
             this.progressBar1.TabIndex = 15;
             // 
             // lb_SobatchHoanThanh
             // 
+            this.lb_SobatchHoanThanh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lb_SobatchHoanThanh.AutoSize = true;
-            this.lb_SobatchHoanThanh.Location = new System.Drawing.Point(103, 258);
+            this.lb_SobatchHoanThanh.Location = new System.Drawing.Point(81, 224);
             this.lb_SobatchHoanThanh.Name = "lb_SobatchHoanThanh";
             this.lb_SobatchHoanThanh.Size = new System.Drawing.Size(35, 13);
             this.lb_SobatchHoanThanh.TabIndex = 16;
@@ -144,9 +149,9 @@
             // 
             this.btn_drawhide.Location = new System.Drawing.Point(134, 165);
             this.btn_drawhide.Name = "btn_drawhide";
-            this.btn_drawhide.Size = new System.Drawing.Size(75, 23);
+            this.btn_drawhide.Size = new System.Drawing.Size(88, 23);
             this.btn_drawhide.TabIndex = 17;
-            this.btn_drawhide.Text = "Vẽ ẫn";
+            this.btn_drawhide.Text = "Draw masking ";
             this.btn_drawhide.Click += new System.EventHandler(this.btn_drawhide_Click);
             // 
             // comboBox1
@@ -154,36 +159,36 @@
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(311, 165);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(237, 21);
+            this.comboBox1.Size = new System.Drawing.Size(350, 21);
             this.comboBox1.TabIndex = 18;
             this.comboBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBox1_KeyPress);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(233, 170);
+            this.label1.Location = new System.Drawing.Point(247, 170);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(73, 13);
+            this.label1.Size = new System.Drawing.Size(58, 13);
             this.label1.TabIndex = 19;
-            this.label1.Text = "Chọn tọa độ :";
+            this.label1.Text = "Template :";
             // 
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.pictureBox1.Location = new System.Drawing.Point(467, 199);
+            this.pictureBox1.Location = new System.Drawing.Point(678, 214);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(148, 77);
+            this.pictureBox1.Size = new System.Drawing.Size(40, 39);
             this.pictureBox1.TabIndex = 20;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Visible = false;
             // 
             // btn_ShowPoint
             // 
-            this.btn_ShowPoint.Location = new System.Drawing.Point(562, 163);
+            this.btn_ShowPoint.Location = new System.Drawing.Point(678, 163);
             this.btn_ShowPoint.Name = "btn_ShowPoint";
             this.btn_ShowPoint.Size = new System.Drawing.Size(75, 23);
             this.btn_ShowPoint.TabIndex = 21;
-            this.btn_ShowPoint.Text = "Sửa";
+            this.btn_ShowPoint.Text = "Edit";
             this.btn_ShowPoint.Click += new System.EventHandler(this.btn_ShowPoint_Click);
             // 
             // txt_ImagePath
@@ -192,16 +197,16 @@
             this.txt_ImagePath.Name = "txt_ImagePath";
             this.txt_ImagePath.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_ImagePath.Properties.Appearance.Options.UseFont = true;
-            this.txt_ImagePath.Size = new System.Drawing.Size(392, 22);
+            this.txt_ImagePath.Size = new System.Drawing.Size(505, 22);
             this.txt_ImagePath.TabIndex = 74;
             // 
             // btn_ChonAnh
             // 
-            this.btn_ChonAnh.Location = new System.Drawing.Point(563, 67);
+            this.btn_ChonAnh.Location = new System.Drawing.Point(679, 67);
             this.btn_ChonAnh.Name = "btn_ChonAnh";
-            this.btn_ChonAnh.Size = new System.Drawing.Size(75, 23);
+            this.btn_ChonAnh.Size = new System.Drawing.Size(92, 23);
             this.btn_ChonAnh.TabIndex = 73;
-            this.btn_ChonAnh.Text = "&Chọn ảnh";
+            this.btn_ChonAnh.Text = "Image browser";
             this.btn_ChonAnh.Click += new System.EventHandler(this.btn_ChonAnh_Click);
             // 
             // labelControl7
@@ -210,9 +215,9 @@
             this.labelControl7.Appearance.Options.UseFont = true;
             this.labelControl7.Location = new System.Drawing.Point(13, 73);
             this.labelControl7.Name = "labelControl7";
-            this.labelControl7.Size = new System.Drawing.Size(93, 16);
+            this.labelControl7.Size = new System.Drawing.Size(70, 16);
             this.labelControl7.TabIndex = 72;
-            this.labelControl7.Text = "Đường dẫn ảnh:";
+            this.labelControl7.Text = "Image path:";
             // 
             // txt_folder_Multiline
             // 
@@ -220,17 +225,18 @@
             this.txt_folder_Multiline.Name = "txt_folder_Multiline";
             this.txt_folder_Multiline.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_folder_Multiline.Properties.Appearance.Options.UseFont = true;
-            this.txt_folder_Multiline.Size = new System.Drawing.Size(392, 22);
+            this.txt_folder_Multiline.Properties.ReadOnly = true;
+            this.txt_folder_Multiline.Size = new System.Drawing.Size(505, 22);
             this.txt_folder_Multiline.TabIndex = 77;
             this.txt_folder_Multiline.EditValueChanged += new System.EventHandler(this.txt_folder_Multiline_EditValueChanged);
             // 
             // btn_Browser
             // 
-            this.btn_Browser.Location = new System.Drawing.Point(563, 97);
+            this.btn_Browser.Location = new System.Drawing.Point(679, 97);
             this.btn_Browser.Name = "btn_Browser";
-            this.btn_Browser.Size = new System.Drawing.Size(75, 23);
+            this.btn_Browser.Size = new System.Drawing.Size(92, 23);
             this.btn_Browser.TabIndex = 76;
-            this.btn_Browser.Text = "Browser...";
+            this.btn_Browser.Text = "Folder browser";
             this.btn_Browser.Click += new System.EventHandler(this.btn_Browser_Click);
             // 
             // labelControl5
@@ -239,14 +245,15 @@
             this.labelControl5.Appearance.Options.UseFont = true;
             this.labelControl5.Location = new System.Drawing.Point(13, 103);
             this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(137, 16);
+            this.labelControl5.Size = new System.Drawing.Size(127, 16);
             this.labelControl5.TabIndex = 75;
-            this.labelControl5.Text = "Folder batch (Multiline):";
+            this.labelControl5.Text = "Image path (Multiple):";
             // 
             // lb_SoBatch
             // 
+            this.lb_SoBatch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lb_SoBatch.AutoSize = true;
-            this.lb_SoBatch.Location = new System.Drawing.Point(35, 258);
+            this.lb_SoBatch.Location = new System.Drawing.Point(13, 224);
             this.lb_SoBatch.Name = "lb_SoBatch";
             this.lb_SoBatch.Size = new System.Drawing.Size(35, 13);
             this.lb_SoBatch.TabIndex = 78;
@@ -288,11 +295,27 @@
             this.rdo_Client.UseVisualStyleBackColor = true;
             this.rdo_Client.CheckedChanged += new System.EventHandler(this.rdo_Client_CheckedChanged);
             // 
+            // timer1
+            // 
+            this.timer1.Interval = 2000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // lb_tocdoMasking
+            // 
+            this.lb_tocdoMasking.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lb_tocdoMasking.AutoSize = true;
+            this.lb_tocdoMasking.Location = new System.Drawing.Point(193, 224);
+            this.lb_tocdoMasking.Name = "lb_tocdoMasking";
+            this.lb_tocdoMasking.Size = new System.Drawing.Size(35, 13);
+            this.lb_tocdoMasking.TabIndex = 82;
+            this.lb_tocdoMasking.Text = "label3";
+            // 
             // frm_CreateBatch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(656, 323);
+            this.ClientSize = new System.Drawing.Size(805, 301);
+            this.Controls.Add(this.lb_tocdoMasking);
             this.Controls.Add(this.rdo_Client);
             this.Controls.Add(this.rdo_Server);
             this.Controls.Add(this.label2);
@@ -320,7 +343,7 @@
             this.MaximizeBox = false;
             this.Name = "frm_CreateBatch";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Tạo Batch mới";
+            this.Text = "Marking image";
             this.Load += new System.EventHandler(this.frm_CreateBatch_Load);
             ((System.ComponentModel.ISupportInitialize)(this.txt_fBatchName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -356,5 +379,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.RadioButton rdo_Server;
         private System.Windows.Forms.RadioButton rdo_Client;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Label lb_tocdoMasking;
     }
 }

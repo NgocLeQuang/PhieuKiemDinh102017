@@ -44,17 +44,30 @@ namespace PhieuKiemDinh.MyForm
         private void btn_Xoa_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
             string fbatchname = gridView1.GetFocusedRowCellValue("fBatchName").ToString();
-            string temp = Global.StrPath + "\\" + fbatchname;
-            if (MessageBox.Show("Bạn chắc chắn muốn xóa batch: " + fbatchname + "?", "Thông báo", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            DialogResult dlr = (MessageBox.Show("Bạn đang thực hiện xóa batch: " + fbatchname + "\nYes = xóa và tạo lại batch này \nNo = xóa và không tạo lại batch này \nCancel = không thực hiện xóa", "Thông báo", MessageBoxButtons.YesNoCancel,MessageBoxIcon.Warning,MessageBoxDefaultButton.Button2));
+            if (dlr == DialogResult.No)
             {
                 try
                 {
                     Global.Db.XoaBatch(fbatchname);
                     MessageBox.Show("Đã xóa batch thành công!");
                 }
-                catch (Exception)
+                catch (Exception i)
                 {
-                    MessageBox.Show("Xóa batch bị lỗi!");
+                    MessageBox.Show("Xóa batch bị lỗi!\n"+i.Message);
+                }
+            }
+            if (dlr == DialogResult.Yes)
+            {
+                try
+                {
+                    Global.Db.XoaBatch(fbatchname);
+                    Global.Db.Delete_BatchIsDelete(fbatchname);
+                    MessageBox.Show("Đã xóa batch thành công!\nBạn có thể tạo lại batch này.");
+                }
+                catch (Exception i)
+                {
+                    MessageBox.Show("Xóa batch bị lỗi!\n" + i.Message);
                 }
             }
             refresh();
@@ -86,7 +99,7 @@ namespace PhieuKiemDinh.MyForm
             foreach (var rowHandle in gridView1.GetSelectedRows())
             {
                 string fbatchname = gridView1.GetRowCellValue(rowHandle, "fBatchName").ToString();
-                string temp = Global.StrPath + "\\" + fbatchname;
+                //string temp = Global.StrPath + "\\" + fbatchname;
                 Global.Db.XoaBatch(fbatchname);
             }
             refresh();

@@ -28,9 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_Checker));
             this.uc_PictureBox1 = new PhieuKiemDinh.MyUserControl.uc_PictureBox();
-            this.timer1 = new System.Windows.Forms.Timer();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.xtraTabControl2 = new DevExpress.XtraTab.XtraTabControl();
             this.tp_DeSo2 = new DevExpress.XtraTab.XtraTabPage();
@@ -49,6 +50,7 @@
             this.btn_SuaVaLuu_DeSo1 = new DevExpress.XtraEditors.SimpleButton();
             this.btn_Luu_DeSo1 = new DevExpress.XtraEditors.SimpleButton();
             this.btn_CheckLai = new DevExpress.XtraEditors.SimpleButton();
+            this.toolTipController1 = new DevExpress.Utils.ToolTipController(this.components);
             this.splitCheck = new DevExpress.XtraEditors.SplitContainerControl();
             this.btn_Start = new DevExpress.XtraEditors.SimpleButton();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
@@ -281,8 +283,19 @@
             this.btn_CheckLai.TabIndex = 3;
             this.btn_CheckLai.Text = "<<";
             this.btn_CheckLai.ToolTip = "Nhấp để check lại phiếu vừa submit";
+            this.btn_CheckLai.ToolTipController = this.toolTipController1;
             this.btn_CheckLai.ToolTipIconType = DevExpress.Utils.ToolTipIconType.Information;
             this.btn_CheckLai.Click += new System.EventHandler(this.btn_CheckLai_Click);
+            // 
+            // toolTipController1
+            // 
+            this.toolTipController1.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.toolTipController1.Appearance.BackColor2 = System.Drawing.Color.Gray;
+            this.toolTipController1.Appearance.Options.UseBackColor = true;
+            this.toolTipController1.AppearanceTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.toolTipController1.AppearanceTitle.BackColor2 = System.Drawing.Color.Gray;
+            this.toolTipController1.AppearanceTitle.Options.UseBackColor = true;
+            this.toolTipController1.ToolTipLocation = DevExpress.Utils.ToolTipLocation.TopRight;
             // 
             // splitCheck
             // 
@@ -311,6 +324,9 @@
             this.btn_Start.Size = new System.Drawing.Size(81, 29);
             this.btn_Start.TabIndex = 27;
             this.btn_Start.Text = "Start";
+            this.btn_Start.ToolTip = "Bắt đầu nhập";
+            this.btn_Start.ToolTipController = this.toolTipController1;
+            this.btn_Start.ToolTipIconType = DevExpress.Utils.ToolTipIconType.Information;
             this.btn_Start.Click += new System.EventHandler(this.btn_Start_Click);
             // 
             // panelControl1
@@ -357,6 +373,7 @@
             this.cbb_Batch_Check.Size = new System.Drawing.Size(214, 21);
             this.cbb_Batch_Check.TabIndex = 6;
             this.cbb_Batch_Check.SelectedIndexChanged += new System.EventHandler(this.cbb_Batch_Check_SelectedIndexChanged);
+            this.cbb_Batch_Check.TextChanged += new System.EventHandler(this.cbb_Batch_Check_TextChanged);
             // 
             // labelControl1
             // 
@@ -455,5 +472,6 @@
         private DevExpress.XtraEditors.LabelControl lb_Image;
         private DevExpress.XtraEditors.LabelControl lb_Loi;
         private DevExpress.XtraEditors.SimpleButton btn_Start;
+        private DevExpress.Utils.ToolTipController toolTipController1;
     }
 }

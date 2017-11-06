@@ -587,7 +587,7 @@ namespace PhieuKiemDinh.MyUserControl
                  txt_TruongSo12.BackColor = Color.White;
                  txt_TruongSo12.ForeColor = Color.Black;
              }*/
-            if (txt_TruongSo12.Text.Length > 2)
+            if ((txt_TruongSo12.Text.Length > 2|| txt_TruongSo12.Text.Length < 2) && !string.IsNullOrEmpty(txt_TruongSo12.Text) && txt_TruongSo12.Text!="?")
             {
                 txt_TruongSo12.BackColor = Color.Red;
                 txt_TruongSo12.ForeColor = Color.White;
@@ -602,7 +602,7 @@ namespace PhieuKiemDinh.MyUserControl
 
         private void txt_TruongSo13_EditValueChanged(object sender, EventArgs e)
         {
-            if (txt_TruongSo13.Text.Length > 8)
+            if (txt_TruongSo13.Text.Length > 8 && txt_TruongSo13.Text!="?")
             {
                 txt_TruongSo13.BackColor = Color.Red;
                 txt_TruongSo13.ForeColor = Color.White;
@@ -672,7 +672,7 @@ namespace PhieuKiemDinh.MyUserControl
 
         private void txt_TruongSo04_KeyUp(object sender, KeyEventArgs e)
         {
-            if(txt_TruongSo04.Text.IndexOf('●')>=0)
+            if(txt_TruongSo04.Text.IndexOf('●')>=0 || txt_TruongSo04.Text.IndexOf('?') >= 0)
             {
                 txt_TruongSo04.Text=txt_TruongSo04.Text.Replace(",", "");
             }
@@ -763,8 +763,21 @@ namespace PhieuKiemDinh.MyUserControl
             Properties.Settings.Default.Save();
         }
 
-        private void txt_TruongSo13_Leave(object sender, EventArgs e)
+        public void txt_TruongSo13_Leave(object sender, EventArgs e)
         {
+            if (!Global.listdata13.Contains(txt_TruongSo13.Text) && !string.IsNullOrEmpty(txt_TruongSo13.Text))
+            {
+                if (txt_TruongSo13.Text[0] == '0')
+                {
+                    if (!Global.listdata13.Contains(txt_TruongSo13.Text.Substring(1, txt_TruongSo13.Text.Length - 1)))
+                        txt_TruongSo13.BackColor = Color.SkyBlue;
+                }
+                else
+                {
+                    txt_TruongSo13.BackColor = Color.SkyBlue;
+                }
+            }
+
             if (Global.FlagChangeSave == false)
                 return;
             Properties.Settings.Default.Truong13 = txt_TruongSo13.Text;
@@ -785,6 +798,18 @@ namespace PhieuKiemDinh.MyUserControl
                 return;
             Properties.Settings.Default.FlagError = txt_FlagError.Text;
             Properties.Settings.Default.Save();
+        }
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((int)e.KeyChar != 3 && (int)e.KeyChar != 1)
+                e.Handled = true;
+        }
+
+        private void textBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete)
+                e.Handled = true;
         }
     }
 }

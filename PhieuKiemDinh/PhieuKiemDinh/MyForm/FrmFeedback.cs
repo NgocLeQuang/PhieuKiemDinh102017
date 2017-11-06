@@ -46,7 +46,7 @@ namespace PhieuKiemDinh.MyForm
                 {
                     string id = idimage[j];
                     UC_FeedBack ucF = new UC_FeedBack();
-                    string url = Global.Webservice + cbb_batch.Text + "/" + id;
+                    string url = Global.Webservice + Folder + "/" + cbb_batch.Text + "/" + id;
                     ucF.LoadImage(cbb_batch.Text, url, id);
                     Point p = new Point();
                     foreach (Control ct in pnl_Mainfeedback1.Controls)
@@ -66,7 +66,7 @@ namespace PhieuKiemDinh.MyForm
                 {
                     string id = idimage[j];
                     UC_FeedBack ucF = new UC_FeedBack();
-                    string url = Global.Webservice + cbb_batch.Text + "/" + id;
+                    string url = Global.Webservice + Folder + "/" + cbb_batch.Text + "/" + id;
                     ucF.LoadImage(cbb_batch.Text, url, id);
                     Point p = new Point();
                     foreach (Control ct in pnl_Mainfeedback1.Controls)
@@ -83,7 +83,6 @@ namespace PhieuKiemDinh.MyForm
 
         private void GetImageDesoUser(int n)
         {
-
             idimage.Clear();
             idimage = (from w in (Global.Db.GetImageFailUserDeSo(cbb_username.Text, cbb_batch.Text)) select w.IdImage).ToList();
             lb_soloi.Text = idimage.Count.ToString();
@@ -94,7 +93,7 @@ namespace PhieuKiemDinh.MyForm
                 {
                     string id = idimage[j];
                     UC_FeedBack ucF = new UC_FeedBack();
-                    string url = Global.Webservice + cbb_batch.Text + "/" + id;
+                    string url = Global.Webservice + Folder + "/" + cbb_batch.Text + "/" + id;
                     ucF.LoadImageUser(cbb_username.Text, cbb_batch.Text, url, id);
                     Point p = new Point();
                     foreach (Control ct in pnl_Mainfeedback1.Controls)
@@ -115,7 +114,7 @@ namespace PhieuKiemDinh.MyForm
                 {
                     string id = idimage[j];
                     UC_FeedBack ucF = new UC_FeedBack();
-                    string url = Global.Webservice + cbb_batch.Text + "/" + id;
+                    string url = Global.Webservice + Folder+"/"+ cbb_batch.Text + "/" + id;
                     ucF.LoadImageUser(cbb_username.Text, cbb_batch.Text, url, id);
 
                     Point p = new Point();
@@ -150,8 +149,8 @@ namespace PhieuKiemDinh.MyForm
         }
         private void btn_hienthi_Click(object sender, EventArgs e)
         {
-            try
-            {
+            //try
+            //{
                 Num = 0;
                 lb_soloi.Text = @"0";
                 pnl_Mainfeedback1.Controls.Clear();
@@ -166,8 +165,8 @@ namespace PhieuKiemDinh.MyForm
                 {
                     GetImageDeso(Num);
                 }
-            }
-            catch (Exception w) { MessageBox.Show(@"Can not retrieve data. Error:" + w); }
+            //}
+            //catch (Exception w) { MessageBox.Show(@"Can not retrieve data. Error:" + w); }
         }
 
         private void btn_next_Click(object sender, EventArgs e)
@@ -227,6 +226,8 @@ namespace PhieuKiemDinh.MyForm
 
         private void cbb_batch_TextChanged(object sender, EventArgs e)
         {
+            Folder = "";
+            Folder = (from w in Global.Db.GetFolder(cbb_batch.Text) select w.fPathPicture).FirstOrDefault();
             pnl_Mainfeedback1.Controls.Clear();
             btn_back.Enabled = false;
             btn_next.Enabled = false;
@@ -289,7 +290,7 @@ namespace PhieuKiemDinh.MyForm
             book = App.Workbooks.Open(System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments)
                 + "\\FeedBack.xlsx", 0, true, 5, "", "", false, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "", true, false, 0, true, false, false);
             wrksheet = (Microsoft.Office.Interop.Excel.Worksheet)book.ActiveSheet;
-            string pathServer = Global.Webservice +"/"+ cbb_batch.Text;
+            string pathServer = Global.Webservice + Folder + "/" + cbb_batch.Text;
             for (int i = 0; i < idimage.Count; i++)
             {
                 string id = idimage[i];
@@ -397,7 +398,7 @@ namespace PhieuKiemDinh.MyForm
         App = new Microsoft.Office.Interop.Excel.Application();
         book = App.Workbooks.Open(System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments)+ "\\Feedback_User.xlsx", 0, true, 5, "", "", false, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "", true, false, 0, true, false, false);
         wrksheet = (Microsoft.Office.Interop.Excel.Worksheet)book.ActiveSheet;
-        string pathServer = Global.Webservice + "/" + cbb_batch.Text;
+        string pathServer = Global.Webservice + Folder + "/" + cbb_batch.Text;
             for (int i = 0; i < idimage.Count; i++)
             {
                 string id = idimage[i];
@@ -488,5 +489,6 @@ namespace PhieuKiemDinh.MyForm
     }
 
         #endregion
+        private string Folder = "";
     }
 }

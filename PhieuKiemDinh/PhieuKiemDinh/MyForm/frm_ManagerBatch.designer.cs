@@ -188,7 +188,7 @@
             this.btn_xoabatch.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btn_xoabatch.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_xoabatch.Appearance.Options.UseFont = true;
-            this.btn_xoabatch.Location = new System.Drawing.Point(468, 6);
+            this.btn_xoabatch.Location = new System.Drawing.Point(478, 6);
             this.btn_xoabatch.Name = "btn_xoabatch";
             this.btn_xoabatch.Size = new System.Drawing.Size(120, 27);
             this.btn_xoabatch.TabIndex = 1;
@@ -200,7 +200,7 @@
             this.btn_TaoBatch.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btn_TaoBatch.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_TaoBatch.Appearance.Options.UseFont = true;
-            this.btn_TaoBatch.Location = new System.Drawing.Point(339, 6);
+            this.btn_TaoBatch.Location = new System.Drawing.Point(349, 6);
             this.btn_TaoBatch.Name = "btn_TaoBatch";
             this.btn_TaoBatch.Size = new System.Drawing.Size(118, 27);
             this.btn_TaoBatch.TabIndex = 0;

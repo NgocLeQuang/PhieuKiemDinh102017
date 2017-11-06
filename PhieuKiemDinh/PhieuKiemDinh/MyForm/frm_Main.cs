@@ -18,6 +18,7 @@ namespace PhieuKiemDinh.MyForm
 
         int ChiaUser = -1;
         int LevelUser = -1;
+        private string Folder = "";
         private void btn_Logout_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             DialogResult = System.Windows.Forms.DialogResult.Yes;
@@ -35,31 +36,35 @@ namespace PhieuKiemDinh.MyForm
 
         private void frm_Main_Load(object sender, EventArgs e)
         {
-            Global.FreeTime = 0;
-            ChiaUser = -1;
-            LevelUser = -1;
-            Global.FlagChangeSave = false;
-            UserLookAndFeel.Default.SkinName = Settings.Default.ApplicationSkinName;
-            xtraTabControl1.TabPages.Remove(tp_DeSo);
-            splitMain.SplitterPosition = Settings.Default.PositionSplitMain;
-            lb_IdImage.Text = "";
-
-            menu_QuanLy.Enabled = false;
-            btn_Check.Enabled = false;
-            btn_Submit.Enabled = false;
-            btn_Submit_Logout.Enabled = false;
-
-            lb_fBatchName.Text = Global.StrBatch;
-            lb_UserName.Text = Global.StrUserName;
-            var checkDisableUser = (from w in Global.DbBpo.tbl_Users where w.Username == Global.StrUserName select w.IsDelete).FirstOrDefault();
-            if (checkDisableUser)
+            try
             {
-                MessageBox.Show("Tài khoản này đã vô hiệu hóa. Vui lòng liên hệ với Admin");
-                DialogResult = DialogResult.Yes;
-            }
-            if (Global.StrRole == "DESO")
-            {
-                try
+                Global.FreeTime = 0;
+                ChiaUser = -1;
+                LevelUser = -1;
+                Global.FlagChangeSave = false;
+                UserLookAndFeel.Default.SkinName = Settings.Default.ApplicationSkinName;
+                xtraTabControl1.TabPages.Remove(tp_DeSo);
+                splitMain.SplitterPosition = Settings.Default.PositionSplitMain;
+                lb_IdImage.Text = "";
+
+                menu_QuanLy.Enabled = false;
+                btn_Check.Enabled = false;
+                btn_Submit.Enabled = false;
+                btn_Submit_Logout.Enabled = false;
+                Folder = "";
+
+                lb_fBatchName.Text = Global.StrBatch;
+                lb_UserName.Text = Global.StrUserName;
+                var checkDisableUser = (from w in Global.DbBpo.tbl_Users where w.Username == Global.StrUserName select w.IsDelete).FirstOrDefault();
+                Global.listdata13.Clear();
+                Global.listdata13 = (from w in Global.Db.tbl_Database_Truong13s select w.id3).ToList();
+                Folder = (from w in Global.Db.GetFolder(lb_fBatchName.Text) select w.fPathPicture).FirstOrDefault();
+                if (checkDisableUser)
+                {
+                    MessageBox.Show("Tài khoản này đã vô hiệu hóa. Vui lòng liên hệ với Admin");
+                    DialogResult = DialogResult.Yes;
+                }
+                if (Global.StrRole == "DESO")
                 {
                     Global.FlagChangeSave = true;
                     var ktBatch = (from w in Global.Db.CheckBatchChiaUser(Global.StrBatch) select w.ChiaUser).FirstOrDefault();
@@ -77,38 +82,39 @@ namespace PhieuKiemDinh.MyForm
                     else if (ktUser == false)
                         LevelUser = 1;
                     lb_TongPhieu.Text = (from w in Global.Db.tbl_Batches where w.fBatchName == Global.StrBatch select w.SoLuongHinh).FirstOrDefault();
+
+                    setValue();
+                    xtraTabControl1.TabPages.Add(tp_DeSo);
+                    menu_QuanLy.Enabled = false;
+                    btn_Check.Enabled = false;
+                    btn_Submit.Enabled = true;
                 }
-                catch
+                else if (Global.StrRole == "ADMIN")
                 {
-                    MessageBox.Show("Kết nối internet của bạn bị gián đoạn, Vui lòng kiểm tra lại!");
-                    DialogResult = DialogResult.Yes;
+                    menu_QuanLy.Enabled = true;
+                    btn_Check.Enabled = true;
+                    btn_Submit.Enabled = false;
+                    btn_Submit_Logout.Enabled = false;
+                    FlagLoad = true;
+                    bool? OutSource = (from w in Global.DbBpo.tbl_Versions where w.IDProject == Global.StrIdProject select w.OutSource).FirstOrDefault();
+                    if (OutSource == true)
+                        ckOutSource.EditValue = true;
+                    else
+                        ckOutSource.EditValue = false;
+                    FlagLoad = false;
                 }
-                setValue();
-                xtraTabControl1.TabPages.Add(tp_DeSo);
-                menu_QuanLy.Enabled = false;
-                btn_Check.Enabled = false;
-                btn_Submit.Enabled = true;
+                else if (Global.StrRole == "CHECKERDESO")
+                {
+                    menu_QuanLy.Enabled = false;
+                    btn_Check.Enabled = true;
+                    btn_Submit.Enabled = false;
+                    btn_Submit_Logout.Enabled = false;
+                }
             }
-            else if (Global.StrRole == "ADMIN")
+            catch
             {
-                menu_QuanLy.Enabled = true;
-                btn_Check.Enabled = true;
-                btn_Submit.Enabled = false;
-                btn_Submit_Logout.Enabled = false;
-                FlagLoad = true;
-                bool? OutSource = (from w in Global.DbBpo.tbl_Versions where w.IDProject == Global.StrIdProject select w.OutSource).FirstOrDefault();
-                if (OutSource == true)
-                    ckOutSource.EditValue = true;
-                else
-                    ckOutSource.EditValue = false;
-                FlagLoad = false;
-            }
-            else if (Global.StrRole == "CHECKERDESO")
-            {
-                menu_QuanLy.Enabled = false;
-                btn_Check.Enabled = true;
-                btn_Submit.Enabled = false;
-                btn_Submit_Logout.Enabled = false;
+                MessageBox.Show("Kết nối internet của bạn bị gián đoạn, Vui lòng kiểm tra lại!");
+                DialogResult = DialogResult.Yes;
             }
         }
 
@@ -149,7 +155,7 @@ namespace PhieuKiemDinh.MyForm
                                 strTrans = getFilename.Split('.');
                                 uC_DESO1.txt_TruongSo01.Text = strTrans[0];
                                 uc_PictureBox1.imageBox1.Image = null;
-                                if (uc_PictureBox1.LoadImage(Global.Webservice + lb_fBatchName.Text + "/" + getFilename, getFilename, Settings.Default.ZoomImage) == "Error")
+                                if (uc_PictureBox1.LoadImage(Global.Webservice + Folder + @"\" + lb_fBatchName.Text + "/" + getFilename, getFilename, Settings.Default.ZoomImage) == "Error")
                                 {
                                     uc_PictureBox1.imageBox1.Image = Resources.svn_deleted;
                                     return "Error";
@@ -184,7 +190,7 @@ namespace PhieuKiemDinh.MyForm
                             strTrans = getFilename.Split('.');
                             uC_DESO1.txt_TruongSo01.Text = strTrans[0];
                             uc_PictureBox1.imageBox1.Image = null;
-                            if (uc_PictureBox1.LoadImage(Global.Webservice + lb_fBatchName.Text + "/" + getFilename, getFilename, Settings.Default.ZoomImage) == "Error")
+                            if (uc_PictureBox1.LoadImage(Global.Webservice + Folder + @"\" + lb_fBatchName.Text + "/" + getFilename, getFilename, Settings.Default.ZoomImage) == "Error")
                             {
                                 uc_PictureBox1.imageBox1.Image = Resources.svn_deleted;
                                 return "Error";
@@ -204,6 +210,7 @@ namespace PhieuKiemDinh.MyForm
                                 uC_DESO1.txt_TruongSo12.Text = Settings.Default.Truong12;
                                 uC_DESO1.txt_TruongSo13.Text = Settings.Default.Truong13;
                                 uC_DESO1.txt_TruongSo14.Text = Settings.Default.Truong14;
+                                uC_DESO1.txt_TruongSo13_Leave(null, null);
                                 //uC_DESO1.txt_FlagError.Text = Settings.Default.FlagError;
                             }
                             else
@@ -245,7 +252,7 @@ namespace PhieuKiemDinh.MyForm
                                 strTrans = getFilename.Split('.');
                                 uC_DESO1.txt_TruongSo01.Text = strTrans[0];
                                 uc_PictureBox1.imageBox1.Image = null;
-                                if (uc_PictureBox1.LoadImage(Global.Webservice + lb_fBatchName.Text + "/" + getFilename, getFilename, Settings.Default.ZoomImage) == "Error")
+                                if (uc_PictureBox1.LoadImage(Global.Webservice + Folder + @"\" + lb_fBatchName.Text + "/" + getFilename, getFilename, Settings.Default.ZoomImage) == "Error")
                                 {
                                     uc_PictureBox1.imageBox1.Image = Resources.svn_deleted;
                                     return "Error";
@@ -280,7 +287,7 @@ namespace PhieuKiemDinh.MyForm
                             strTrans = getFilename.Split('.');
                             uC_DESO1.txt_TruongSo01.Text = strTrans[0];
                             uc_PictureBox1.imageBox1.Image = null;
-                            if (uc_PictureBox1.LoadImage(Global.Webservice + lb_fBatchName.Text + "/" + getFilename, getFilename, Settings.Default.ZoomImage) == "Error")
+                            if (uc_PictureBox1.LoadImage(Global.Webservice + Folder + @"\" + lb_fBatchName.Text + "/" + getFilename, getFilename, Settings.Default.ZoomImage) == "Error")
                             {
                                 uc_PictureBox1.imageBox1.Image = Resources.svn_deleted;
                                 return "Error";
@@ -342,7 +349,7 @@ namespace PhieuKiemDinh.MyForm
                             strTrans = getFilename.Split('.');
                             uC_DESO1.txt_TruongSo01.Text = strTrans[0];
                             uc_PictureBox1.imageBox1.Image = null;
-                            if (uc_PictureBox1.LoadImage(Global.Webservice + lb_fBatchName.Text + "/" + getFilename, getFilename, Settings.Default.ZoomImage) == "Error")
+                            if (uc_PictureBox1.LoadImage(Global.Webservice + Folder + @"\" + lb_fBatchName.Text + "/" + getFilename, getFilename, Settings.Default.ZoomImage) == "Error")
                             {
                                 uc_PictureBox1.imageBox1.Image = Resources.svn_deleted;
                                 return "Error";
@@ -377,7 +384,7 @@ namespace PhieuKiemDinh.MyForm
                         strTrans = getFilename.Split('.');
                         uC_DESO1.txt_TruongSo01.Text = strTrans[0];
                         uc_PictureBox1.imageBox1.Image = null;
-                        if (uc_PictureBox1.LoadImage(Global.Webservice + lb_fBatchName.Text + "/" + getFilename, getFilename, Settings.Default.ZoomImage) == "Error")
+                        if (uc_PictureBox1.LoadImage(Global.Webservice + Folder + @"\" + lb_fBatchName.Text + "/" + getFilename, getFilename, Settings.Default.ZoomImage) == "Error")
                         {
                             uc_PictureBox1.imageBox1.Image = Resources.svn_deleted;
                             return "Error";
@@ -428,7 +435,7 @@ namespace PhieuKiemDinh.MyForm
         }
 
         private string token = "", version = "", Image_temp="";
-
+        string flagTruong13 = "";
         private void btn_Submit_Click(object sender, EventArgs e)
         {
             token = "";
@@ -461,9 +468,11 @@ namespace PhieuKiemDinh.MyForm
                 if (Image_temp == "NULL")
                 {
                     MessageBox.Show(@"Hoàn thành batch '" + lb_fBatchName.Text + "'");
+                    Global.StrBatch = "";
+                    Folder = "";
                     if (LevelUser==0)
                     {
-                        var listResult = Global.Db.GetBatNotFinishDeSo_NotGood(Global.StrUserName).ToList();
+                       var listResult = Global.Db.GetBatNotFinishDeSo_NotGood(Global.StrUserName).ToList();
                         if (listResult.Count > 0)
                         {
                             if (MessageBox.Show(@"Batch tiếp theo: " + listResult[0].fbatchname + "\nBạn muốn làm tiếp ??", "Thông báo!", MessageBoxButtons.YesNo,MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
@@ -474,6 +483,8 @@ namespace PhieuKiemDinh.MyForm
                                     btn_Logout_ItemClick(null, null);
                                 }
                                 Global.StrBatch = listResult[0].fbatchname;
+                                Folder = (from w in Global.Db.GetFolder(listResult[0].fbatchname) select w.fPathPicture).FirstOrDefault();
+
                                 var ktBatch = (from w in Global.Db.CheckBatchChiaUser(listResult[0].fbatchname) select w.ChiaUser).FirstOrDefault();
                                 if (ktBatch == true)
                                 {
@@ -513,6 +524,7 @@ namespace PhieuKiemDinh.MyForm
                                     btn_Logout_ItemClick(null, null);
                                 }
                                 Global.StrBatch = listResult[0].fbatchname;
+                                Folder = (from w in Global.Db.GetFolder(listResult[0].fbatchname) select w.fPathPicture).FirstOrDefault();
                                 var ktBatch = (from w in Global.Db.CheckBatchChiaUser(listResult[0].fbatchname) select w.ChiaUser).FirstOrDefault();
                                 if (ktBatch == true)
                                 {
@@ -556,7 +568,13 @@ namespace PhieuKiemDinh.MyForm
                         if (MessageBox.Show("Bạn đang để trống 1 hoặc nhiều trường. Bạn có muốn submit không? \r\nYes = Submit và chuyển qua hình khác<Nhấn Enter>\r\nNo = nhập lại trường trống cho hình này.<nhấn phím N>", "Cảnh báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning,MessageBoxDefaultButton.Button2) == DialogResult.No)
                             return;
                     }
-                    Global.Db.Insert_DeSo(lb_IdImage.Text, lb_fBatchName.Text, Global.StrUserName,
+                    uC_DESO1.txt_TruongSo13_Leave(null, null);
+                    if (uC_DESO1.txt_TruongSo13.BackColor == System.Drawing.Color.SkyBlue)
+                    {
+                        flagTruong13 = "1";
+                    }
+                    else { flagTruong13 = "0"; }
+                    Global.Db.Insert_DeSo_New(lb_IdImage.Text, lb_fBatchName.Text, Global.StrUserName,
                        uC_DESO1.txt_TruongSo01.Text,
                        uC_DESO1.txt_TruongSo03.Text,
                        uC_DESO1.txt_TruongSo04.Text.Replace(",",""),
@@ -570,6 +588,7 @@ namespace PhieuKiemDinh.MyForm
                        uC_DESO1.txt_TruongSo11.Text.IndexOf('●')>=0? "●": uC_DESO1.txt_TruongSo11.Text,
                        uC_DESO1.txt_TruongSo12.Text,
                        uC_DESO1.txt_TruongSo13.Text,
+                       flagTruong13,
                        uC_DESO1.txt_TruongSo14.Text//,
                       // uC_DESO1.txt_FlagError.Text
                       );
@@ -580,6 +599,8 @@ namespace PhieuKiemDinh.MyForm
                 if (Image_temp == "NULL")
                 {
                     MessageBox.Show(@"Hoàn thành batch '" + lb_fBatchName.Text + "'");
+                    Global.StrBatch = "";
+                    Folder = "";
                     if (LevelUser == 0)
                     {
                         var listResult = Global.Db.GetBatNotFinishDeSo_NotGood(Global.StrUserName).ToList();
@@ -593,6 +614,7 @@ namespace PhieuKiemDinh.MyForm
                                     btn_Logout_ItemClick(null, null);
                                 }
                                 Global.StrBatch = listResult[0].fbatchname;
+                                Folder = (from w in Global.Db.GetFolder(listResult[0].fbatchname) select w.fPathPicture).FirstOrDefault();
                                 var ktBatch = (from w in Global.Db.CheckBatchChiaUser(listResult[0].fbatchname) select w.ChiaUser).FirstOrDefault();
                                 if (ktBatch == true)
                                 {
@@ -632,6 +654,7 @@ namespace PhieuKiemDinh.MyForm
                                     btn_Logout_ItemClick(null, null);
                                 }
                                 Global.StrBatch = listResult[0].fbatchname;
+                                Folder = (from w in Global.Db.GetFolder(listResult[0].fbatchname) select w.fPathPicture).FirstOrDefault();
                                 var ktBatch = (from w in Global.Db.CheckBatchChiaUser(listResult[0].fbatchname) select w.ChiaUser).FirstOrDefault();
                                 if (ktBatch == true)
                                 {
@@ -690,7 +713,13 @@ namespace PhieuKiemDinh.MyForm
                     if (MessageBox.Show("Bạn đang để trống 1 hoặc nhiều trường. Bạn có muốn submit không? \r\nYes = Submit và chuyển qua hình khác<Nhấn Enter>\r\nNo = nhập lại trường trống cho hình này.<nhấn phím N>", "Cảnh báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning,MessageBoxDefaultButton.Button2) == DialogResult.No)
                         return;
                 }
-                Global.Db.Insert_DeSo(lb_IdImage.Text, lb_fBatchName.Text, Global.StrUserName,
+                uC_DESO1.txt_TruongSo13_Leave(null, null);
+                if (uC_DESO1.txt_TruongSo13.BackColor == System.Drawing.Color.SkyBlue)
+                {
+                    flagTruong13 = "1";
+                }
+                else { flagTruong13 = "0"; }
+                Global.Db.Insert_DeSo_New(lb_IdImage.Text, lb_fBatchName.Text, Global.StrUserName,
                        uC_DESO1.txt_TruongSo01.Text,
                        uC_DESO1.txt_TruongSo03.Text,
                        uC_DESO1.txt_TruongSo04.Text,
@@ -704,6 +733,7 @@ namespace PhieuKiemDinh.MyForm
                        uC_DESO1.txt_TruongSo11.Text.IndexOf('●') >= 0 ? "●" : uC_DESO1.txt_TruongSo11.Text,
                        uC_DESO1.txt_TruongSo12.Text,
                        uC_DESO1.txt_TruongSo13.Text,
+                       flagTruong13,
                        uC_DESO1.txt_TruongSo14.Text//,
                        //uC_DESO1.txt_FlagError.Text
                        );

@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using System.Data;
 using PhieuKiemDinh.Properties;
 using System.Diagnostics;
+using System.Collections.Generic;
 
 namespace PhieuKiemDinh
 {
@@ -23,10 +24,10 @@ namespace PhieuKiemDinh
         public static int FreeTime = 0;
         public static string Version = "";
         public static bool FlagChangeSave = true;
-        public static string StrPath = @"\\10.10.10.248\phieukiemdinh$";
+        public static string StrPath =@"\\10.10.10.248\PhieuKiemDinh$";
         public static string Webservice ;
+        public static List<string> listdata13 = new List<string>();
         //public static string Webservice = "http://10.10.10.248:8888/phieukiemdinh/";
-
         public static KiemDinh_DataDataContext Db;
         public static KiemDinh_EntryBPODataContext DbBpo;
 

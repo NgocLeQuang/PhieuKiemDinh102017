@@ -58,6 +58,8 @@
             this.labelControl14 = new DevExpress.XtraEditors.LabelControl();
             this.txt_TruongSo08_2 = new DevExpress.XtraEditors.TextEdit();
             this.labelControl15 = new DevExpress.XtraEditors.LabelControl();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.txt_TruongSo01.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_FlagError.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_TruongSo03.Properties)).BeginInit();
@@ -194,12 +196,13 @@
             // 
             // txt_TruongSo09
             // 
+            this.txt_TruongSo09.EditValue = "";
             this.txt_TruongSo09.Location = new System.Drawing.Point(102, 105);
             this.txt_TruongSo09.Name = "txt_TruongSo09";
             this.txt_TruongSo09.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_TruongSo09.Properties.Appearance.Options.UseFont = true;
             this.txt_TruongSo09.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txt_TruongSo09.Size = new System.Drawing.Size(317, 22);
+            this.txt_TruongSo09.Size = new System.Drawing.Size(213, 22);
             this.txt_TruongSo09.TabIndex = 9;
             this.txt_TruongSo09.EditValueChanged += new System.EventHandler(this.txt_TruongSo09_EditValueChanged);
             this.txt_TruongSo09.Leave += new System.EventHandler(this.txt_TruongSo09_Leave);
@@ -211,7 +214,7 @@
             this.txt_TruongSo10.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
             this.txt_TruongSo10.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_TruongSo10.Properties.Appearance.Options.UseFont = true;
-            this.txt_TruongSo10.Properties.Mask.EditMask = "[0-9●]+";
+            this.txt_TruongSo10.Properties.Mask.EditMask = "[0-9●?]+";
             this.txt_TruongSo10.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
             this.txt_TruongSo10.Size = new System.Drawing.Size(120, 22);
             this.txt_TruongSo10.TabIndex = 10;
@@ -239,7 +242,7 @@
             this.txt_TruongSo12.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
             this.txt_TruongSo12.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_TruongSo12.Properties.Appearance.Options.UseFont = true;
-            this.txt_TruongSo12.Properties.Mask.EditMask = "[0-9●]+";
+            this.txt_TruongSo12.Properties.Mask.EditMask = "[0-9●?]+";
             this.txt_TruongSo12.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
             this.txt_TruongSo12.Size = new System.Drawing.Size(35, 22);
             this.txt_TruongSo12.TabIndex = 12;
@@ -252,8 +255,6 @@
             this.txt_TruongSo13.Name = "txt_TruongSo13";
             this.txt_TruongSo13.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_TruongSo13.Properties.Appearance.Options.UseFont = true;
-            this.txt_TruongSo13.Properties.Mask.EditMask = "[0-9?●]+";
-            this.txt_TruongSo13.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
             this.txt_TruongSo13.Size = new System.Drawing.Size(317, 22);
             this.txt_TruongSo13.TabIndex = 13;
             this.txt_TruongSo13.EditValueChanged += new System.EventHandler(this.txt_TruongSo13_EditValueChanged);
@@ -405,11 +406,11 @@
             // 
             this.labelControl14.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl14.Appearance.Options.UseFont = true;
-            this.labelControl14.Location = new System.Drawing.Point(262, 76);
+            this.labelControl14.Location = new System.Drawing.Point(263, 76);
             this.labelControl14.Name = "labelControl14";
             this.labelControl14.Size = new System.Drawing.Size(52, 16);
             this.labelControl14.TabIndex = 0;
-            this.labelControl14.Text = "8.1.入庫";
+            this.labelControl14.Text = "8.1.管理";
             // 
             // txt_TruongSo08_2
             // 
@@ -430,16 +431,40 @@
             // 
             this.labelControl15.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl15.Appearance.Options.UseFont = true;
-            this.labelControl15.Location = new System.Drawing.Point(342, 76);
+            this.labelControl15.Location = new System.Drawing.Point(343, 76);
             this.labelControl15.Name = "labelControl15";
             this.labelControl15.Size = new System.Drawing.Size(52, 16);
             this.labelControl15.TabIndex = 0;
-            this.labelControl15.Text = "8.2.入庫";
+            this.labelControl15.Text = "8.2.新規";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(315, 105);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(86, 22);
+            this.textBox1.TabIndex = 16;
+            this.textBox1.Text = "改  /   輸入車";
+            this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
+            this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
+            // 
+            // textBox2
+            // 
+            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox2.Location = new System.Drawing.Point(402, 105);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(15, 22);
+            this.textBox2.TabIndex = 16;
+            this.textBox2.Text = "●";
+            this.textBox2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
+            this.textBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
             // uc_DeSo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.labelControl3);
             this.Controls.Add(this.labelControl9);
             this.Controls.Add(this.labelControl15);
@@ -524,5 +549,7 @@
         public DevExpress.XtraEditors.LabelControl labelControl14;
         public DevExpress.XtraEditors.TextEdit txt_TruongSo08_2;
         public DevExpress.XtraEditors.LabelControl labelControl15;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox2;
     }
 }

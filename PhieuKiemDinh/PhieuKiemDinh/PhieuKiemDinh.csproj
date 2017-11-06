@@ -114,6 +114,12 @@
     <Compile Include="MyForm\FrmTienDo.designer.cs">
       <DependentUpon>FrmTienDo.cs</DependentUpon>
     </Compile>
+    <Compile Include="MyForm\frm_BatchIsDelete.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyForm\frm_BatchIsDelete.Designer.cs">
+      <DependentUpon>frm_BatchIsDelete.cs</DependentUpon>
+    </Compile>
     <Compile Include="MyForm\frm_ChangeServer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -262,6 +268,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MyForm\FrmTienDo.resx">
       <DependentUpon>FrmTienDo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForm\frm_BatchIsDelete.resx">
+      <DependentUpon>frm_BatchIsDelete.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MyForm\frm_ChangeServer.resx">
       <DependentUpon>frm_ChangeServer.cs</DependentUpon>

@@ -49,11 +49,15 @@ namespace PhieuKiemDinh.MyForm
                 }
             }
         }
+
+        private string Folder = "";
         private void ShowImage_Load(object sender, EventArgs e)
         {
             lb_Batch.Text = FBatchName;
             lb_Image.Text = IdImage;
-            uc_PictureBox1.LoadImage(Global.Webservice + FBatchName + "/" + IdImage, IdImage, Settings.Default.ZoomImage);
+            Folder = "";
+            Folder = (from w in Global.Db.GetFolder(FBatchName) select w.fPathPicture).FirstOrDefault();
+            uc_PictureBox1.LoadImage(Global.Webservice + Folder + @"\" + FBatchName + "/" + IdImage, IdImage, Settings.Default.ZoomImage);
             var data = (from w in Global.Db.GetDataShowToCheck(FBatchName,IdImage)
                                   select new
                                   {
@@ -140,7 +144,9 @@ namespace PhieuKiemDinh.MyForm
             SoSanhDoiMau(uC_ShowImage1.uc_DeSo1.txt_TruongSo12, uC_ShowImage1.uc_DeSo2.txt_TruongSo12, uC_ShowImage1.uc_DeSo3.txt_TruongSo12);
             SoSanhDoiMau(uC_ShowImage1.uc_DeSo1.txt_TruongSo13, uC_ShowImage1.uc_DeSo2.txt_TruongSo13, uC_ShowImage1.uc_DeSo3.txt_TruongSo13);
             SoSanhDoiMau(uC_ShowImage1.uc_DeSo1.txt_TruongSo14, uC_ShowImage1.uc_DeSo2.txt_TruongSo14, uC_ShowImage1.uc_DeSo3.txt_TruongSo14);
-
+            uC_ShowImage1.uc_DeSo1.txt_TruongSo13_Leave(null, null);
+            uC_ShowImage1.uc_DeSo2.txt_TruongSo13_Leave(null, null);
+            uC_ShowImage1.uc_DeSo3.txt_TruongSo13_Leave(null, null);
         }
 
         private void lb_Batch_Click(object sender, EventArgs e)

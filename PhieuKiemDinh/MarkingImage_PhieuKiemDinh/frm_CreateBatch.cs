@@ -78,7 +78,8 @@ namespace MarkingImage_PhieuKiemDinh.MyForm
         {
             lb_SobatchHoanThanh.Text = "";
             lb_SoBatch.Text = "";
-            rdo_Client.Checked = true;
+            lb_tocdoMasking.Text = "";
+            rdo_Server.Checked = true;
             var a= (from w in Global.Db.GetBatch_ToaDo() select w.fBatchName).ToList();
             a.Insert(0,"");
             comboBox1.DataSource = a;
@@ -88,9 +89,13 @@ namespace MarkingImage_PhieuKiemDinh.MyForm
         private void btn_TaoBatch_Click(object sender, EventArgs e)
         {
             if (rdo_Server.Checked)
+            {
+                //Global.StrPath = @"E:\test";
                 Global.StrPath = @"E:\WebservicesBPO\PhieuKiemDinh";
+            }
             else if (rdo_Client.Checked)
                 Global.StrPath = @"\\10.10.10.248\phieukiemdinh$";
+            
             if (backgroundWorker1.IsBusy)
             {
                 MessageBox.Show("Quá trình tạo batch đang diễn ra, Bạn hãy chờ quá trình tạo batch kết thúc mới tiếp tục tạo batch mới !");
@@ -170,8 +175,11 @@ namespace MarkingImage_PhieuKiemDinh.MyForm
                 multiline = 0;
             else if (string.IsNullOrEmpty(txt_fBatchName.Text) & !string.IsNullOrEmpty(txt_folder_Multiline.Text))
                 multiline = 1;
+            soluonganh = 0;
+            timer1.Enabled = true;
+
             backgroundWorker1.RunWorkerAsync();
-            
+
         }
 
         int multiline = -1;
@@ -181,6 +189,8 @@ namespace MarkingImage_PhieuKiemDinh.MyForm
         Bitmap bmap = null;
         Bitmap newmap = null;
         Graphics g1 = null;
+        List<string> lStrBath = new List<string>();
+        string folderBatch = "",batchtemp="";
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
             //Up Single
@@ -195,8 +205,10 @@ namespace MarkingImage_PhieuKiemDinh.MyForm
                     ModifyProgressBarColor.SetState(progressBar1, 1);
                     string batchtemp = Global.StrPath + "\\" + txt_fBatchName.Text;
                     int m = 1;
+                    TimeBeginCreateBatch = DateTime.Now;
                     for (int i = 0; i < lFileNames.Count(); i++)
                     {
+                        soluonganh += 1;
                         fi = new FileInfo(lFileNames[i]);
                         Imagetemp = Image.FromFile(fi.FullName + "");
                         pictureBox1.Height = Imagetemp.Height;
@@ -255,7 +267,6 @@ namespace MarkingImage_PhieuKiemDinh.MyForm
                     txt_folder_Multiline.Text = "";
                     lb_SoLuongAnh.Text = "";
                     lb_SoBatch.Text = "";
-                    soluonganh = 0;
                     txt_fBatchName.ReadOnly = false;
                     txt_folder_Multiline.ReadOnly = false;
                     txt_ImagePath.ReadOnly = false;
@@ -275,8 +286,16 @@ namespace MarkingImage_PhieuKiemDinh.MyForm
             {
                 try
                 {
-                    List<string> lStrBath = new List<string>();
+                    lStrBath = new List<string>();
+                    folderBatch = "";
+                    batchtemp = "";
+                    folderBatch = Path.GetFileName(Path.GetDirectoryName(txt_folder_Multiline.Text + @"\"));
+                    if (!Directory.Exists(Global.StrPath + "\\" + folderBatch))
+                    {
+                        Directory.CreateDirectory(Global.StrPath + "\\" + folderBatch);
+                    }
                     lStrBath.AddRange(Directory.GetDirectories(txt_folder_Multiline.Text));
+
                     int countBatchExists = 0, n = 0;
                     string listBatchExists = "";
                     for (int i = 0; i < lStrBath.Count; i++)
@@ -296,7 +315,7 @@ namespace MarkingImage_PhieuKiemDinh.MyForm
                     foreach (string itemBatch in lStrBath)
                     {
                         string batchNametemp = new DirectoryInfo(itemBatch).Name;
-                        string batchtemp = Global.StrPath + "\\" + batchNametemp;
+                        batchtemp = Global.StrPath + "\\" + folderBatch + "\\" + batchNametemp;
                         if (Directory.Exists(batchtemp))
                         {
                             countBatchExists += 1;
@@ -309,14 +328,14 @@ namespace MarkingImage_PhieuKiemDinh.MyForm
                         Process.Start(Global.StrPath);
                         return;
                     }
-                    
+                    TimeBeginCreateBatch = DateTime.Now;
                     foreach (string itemBatch in lStrBath)
                     {
                         batchName = new DirectoryInfo(itemBatch).Name;
                         m = 0;
-                        string batchtemp = Global.StrPath + "\\" + batchName;
+                        string batchtemp = Global.StrPath + "\\" + folderBatch + "\\" + batchName;
                         var filters = new String[] { "jpg", "jpeg", "png", "gif", "tif", "bmp" };
-                        lFileNames = GetFilesFrom(itemBatch, filters, false);
+                        lFileNames = GetFilesFrom(itemBatch, filters, true);
                         Directory.CreateDirectory(batchtemp);
                         n++;
                         lb_SoBatch.Text = "Batch: " + n + @"\" + lStrBath.Count();
@@ -325,8 +344,9 @@ namespace MarkingImage_PhieuKiemDinh.MyForm
                         progressBar1.Maximum = lFileNames.Length;
                         progressBar1.Minimum = 0;
                         ModifyProgressBarColor.SetState(progressBar1, 1);
-                        for(int i=0;i< lFileNames.Count();i++)
+                        for (int i = 0; i < lFileNames.Count(); i++)
                         {
+                            soluonganh += 1;
                             fi = new FileInfo(lFileNames[i]);
                             Imagetemp = Image.FromFile(fi.FullName + "");
                             pictureBox1.Height = Imagetemp.Height;
@@ -368,6 +388,8 @@ namespace MarkingImage_PhieuKiemDinh.MyForm
                                 pictureBox1.Image = newmap;
                             }
                             newmap.Save(batchtemp + @"\" + Path.GetFileName(fi.FullName), System.Drawing.Imaging.ImageFormat.Jpeg);
+                            GC.Collect();
+                            GC.WaitForPendingFinalizers();
                             bmap.Dispose();
                             newmap.Dispose();
                             g1.Dispose();
@@ -383,7 +405,6 @@ namespace MarkingImage_PhieuKiemDinh.MyForm
                     txt_folder_Multiline.Text = "";
                     lb_SoBatch.Text = "";
                     lb_SoLuongAnh.Text = "";
-                    soluonganh = 0;
                     txt_folder_Multiline.ReadOnly = false;
                     btn_Browser.Enabled = true;
                     txt_fBatchName.ReadOnly = false;
@@ -400,7 +421,7 @@ namespace MarkingImage_PhieuKiemDinh.MyForm
                 }
             }
         }
-        
+
         public static string[] GetFilesFrom(string searchFolder, string[] filters, bool isRecursive)
         {
             List<string> filesFound = new List<string>();
@@ -425,6 +446,7 @@ namespace MarkingImage_PhieuKiemDinh.MyForm
 
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            timer1.Enabled = false;
             if (closePending) Close();
             closePending = false;
         }
@@ -469,6 +491,17 @@ namespace MarkingImage_PhieuKiemDinh.MyForm
                 rdo_Server.Checked = false;
             else
                 rdo_Server.Checked = true;
+        }
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            try
+            {
+                //TimeSpan a = DateTime.Now.Subtract(TimeBeginCreateBatch);
+                lb_tocdoMasking.Text = (double)((double)soluonganh / (double)2) + " (Image/Seconds)";
+                soluonganh = 0;
+
+            }
+            catch { }
         }
 
         private void comboBox1_KeyPress(object sender, KeyPressEventArgs e)
