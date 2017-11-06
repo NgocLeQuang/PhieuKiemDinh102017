@@ -94,13 +94,26 @@ namespace PhieuKiemDinh.MyForm
                 MessageBox.Show("Bạn chưa chọn batch. Vui lòng chọn batch trước khi xóa");
                 return;
             }
-            if (MessageBox.Show("Bạn muốn xóa " + i + " batch sau:\n" + s, "Cảnh báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning,MessageBoxDefaultButton.Button1) == DialogResult.No)
+
+            DialogResult dlr = (MessageBox.Show("Bạn đang thực hiện xóa " + i + " batch sau:\n" + s + "\nYes = xóa và tạo lại những batch này \nNo = xóa và không tạo lại những batch này \nCancel = không thực hiện xóa", "Thông báo", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2));
+            if (dlr == DialogResult.Cancel)
                 return;
-            foreach (var rowHandle in gridView1.GetSelectedRows())
+            if (dlr == DialogResult.No)
             {
-                string fbatchname = gridView1.GetRowCellValue(rowHandle, "fBatchName").ToString();
-                //string temp = Global.StrPath + "\\" + fbatchname;
-                Global.Db.XoaBatch(fbatchname);
+                foreach (var rowHandle in gridView1.GetSelectedRows())
+                {
+                    string fbatchname = gridView1.GetRowCellValue(rowHandle, "fBatchName").ToString();
+                    Global.Db.XoaBatch(fbatchname);
+                }
+            }
+            if (dlr == DialogResult.Yes)
+            {
+                foreach (var rowHandle in gridView1.GetSelectedRows())
+                {
+                    string fbatchname = gridView1.GetRowCellValue(rowHandle, "fBatchName").ToString();
+                    Global.Db.XoaBatch(fbatchname);
+                    Global.Db.Delete_BatchIsDelete(fbatchname);
+                }
             }
             refresh();
         }

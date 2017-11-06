@@ -307,7 +307,8 @@ namespace PhieuKiemDinh.MyForm
                                 uC_DESO1.txt_TruongSo12.Text = Settings.Default.Truong12;
                                 uC_DESO1.txt_TruongSo13.Text = Settings.Default.Truong13;
                                 uC_DESO1.txt_TruongSo14.Text = Settings.Default.Truong14;
-                               // uC_DESO1.txt_FlagError.Text = Settings.Default.FlagError;
+                                uC_DESO1.txt_TruongSo13_Leave(null, null);
+                                // uC_DESO1.txt_FlagError.Text = Settings.Default.FlagError;
                             }
                             else
                             {
@@ -404,7 +405,8 @@ namespace PhieuKiemDinh.MyForm
                             uC_DESO1.txt_TruongSo12.Text = Settings.Default.Truong12;
                             uC_DESO1.txt_TruongSo13.Text = Settings.Default.Truong13;
                             uC_DESO1.txt_TruongSo14.Text = Settings.Default.Truong14;
-                           // uC_DESO1.txt_FlagError.Text = Settings.Default.FlagError;
+                            uC_DESO1.txt_TruongSo13_Leave(null, null);
+                            // uC_DESO1.txt_FlagError.Text = Settings.Default.FlagError;
                         }
                         else
                         {
@@ -852,7 +854,7 @@ namespace PhieuKiemDinh.MyForm
             }
             catch (Exception i)
             {
-                MessageBox.Show("Xẩy ra lỗi: " + i.Message); ;
+                MessageBox.Show("Lỗi: " + i.Message); ;
             }
         }
     }

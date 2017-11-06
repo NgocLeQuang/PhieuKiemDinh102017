@@ -22,10 +22,10 @@ namespace PhieuKiemDinh
         public static string StrIdProject = "PhieuKiemDinh";
         public static string StrCheck = "";
         public static int FreeTime = 0;
-        public static string Version = "";
+        public static string Version = "1.0.5";
         public static bool FlagChangeSave = true;
-        public static string StrPath =@"\\10.10.10.248\PhieuKiemDinh$";
-        public static string Webservice ;
+        public static string StrPath = @"\\10.10.10.248\PhieuKiemDinh$";
+        public static string Webservice;
         public static List<string> listdata13 = new List<string>();
         //public static string Webservice = "http://10.10.10.248:8888/phieukiemdinh/";
         public static KiemDinh_DataDataContext Db;
@@ -56,7 +56,7 @@ namespace PhieuKiemDinh
         public static bool CheckOutSource(string Role)
         {
             bool? OutSource = (from w in DbBpo.tbl_Versions where w.IDProject == StrIdProject select w.OutSource).FirstOrDefault();
-            if (OutSource == false && Properties.Settings.Default.Server == "Khác" && Role== "DESO")
+            if (OutSource == false && Settings.Default.Server == "Khác" && Role == "DESO")
                 return true;
             return false;
         }

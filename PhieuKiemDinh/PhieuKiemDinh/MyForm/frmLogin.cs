@@ -19,6 +19,7 @@ namespace PhieuKiemDinh.MyForm
 
         private void frmLogin_Load(object sender, EventArgs e)
         {
+            lb_version.Text = Global.Version;
             UserLookAndFeel.Default.SkinName = Settings.Default.ApplicationSkinName;
             txt_password.Properties.UseSystemPasswordChar = true;
             txt_machine.ReadOnly = true;

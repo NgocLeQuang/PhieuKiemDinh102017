@@ -1,19 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Text;
 using System.Linq;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
-using PhieuKiemDinh.MyClass;
 using PhieuKiemDinh.Properties;
-using System.Diagnostics;
 
 namespace PhieuKiemDinh.MyForm
 {
-    public partial class frm_Checker : DevExpress.XtraEditors.XtraForm
+    public partial class frm_Checker : XtraForm
     {
         public frm_Checker()
         {
@@ -24,7 +19,7 @@ namespace PhieuKiemDinh.MyForm
         private string Folder = "";
         private void btn_Start_Click(object sender, EventArgs e)
         {
-            if (Global.StrCheck== "CHECKDESO")
+            if (Global.StrCheck == "CHECKDESO")
             {
                 var version = (from w in Global.DbBpo.tbl_Versions where w.IDProject == Global.StrIdProject select w.IDVersion).FirstOrDefault();
                 if (version != Global.Version)
@@ -33,9 +28,9 @@ namespace PhieuKiemDinh.MyForm
                     Global.RunUpdateVersion();
                     Application.Exit();
                 }
-               var nhap = (from w in Global.Db.tbl_Images where w.fBatchName == Global.StrBatch && w.ReadImageDeSoNhap < 2 select w.IdImage).Count();
+                var nhap = (from w in Global.Db.tbl_Images where w.fBatchName == Global.StrBatch && w.ReadImageDeSoNhap < 2 select w.IdImage).Count();
                 var check = (from w in Global.Db.tbl_MissImage_DeSos where w.fBatchName == Global.StrBatch && w.Submit == 0 select w.IdImage).Count();
-                if(nhap>0)
+                if (nhap > 0)
                 {
                     MessageBox.Show("Chưa nhập xong DeSo!");
                     return;
@@ -56,7 +51,7 @@ namespace PhieuKiemDinh.MyForm
                     }
                 }
                 string temp = GetImage_DeSo();
-                if (temp=="NULL")
+                if (temp == "NULL")
                 {
                     uc_PictureBox1.imageBox1.Image = null;
                     MessageBox.Show(@"Batch '" + cbb_Batch_Check.Text + "' đã hoàn thành");
@@ -67,7 +62,7 @@ namespace PhieuKiemDinh.MyForm
                     MessageBox.Show("Lỗi load hình");
                     return;
                 }
-                Load_DeSo(Global.StrBatch,lb_Image.Text);
+                Load_DeSo(Global.StrBatch, lb_Image.Text);
                 btn_Luu_DeSo1.Visible = true;
                 btn_Luu_DeSo2.Visible = true;
                 btn_SuaVaLuu_DeSo1.Visible = false;
@@ -78,20 +73,20 @@ namespace PhieuKiemDinh.MyForm
 
         private void ResetData()
         {
-            if (Global.StrCheck== "CHECKDESO")
+            if (Global.StrCheck == "CHECKDESO")
             {
                 lb_Image.Text = "";
                 uC_DESO1.ResetData();
                 uC_DESO2.ResetData();
             }
             uc_PictureBox1.imageBox1.Image = null;
-            
+
         }
 
 
         public void LoadBatchMoi()
         {
-            if (MessageBox.Show(@"You want to do the next batch?", @"Notification", MessageBoxButtons.YesNo,MessageBoxIcon.Question,MessageBoxDefaultButton.Button2) == DialogResult.No)
+            if (MessageBox.Show(@"You want to do the next batch?", @"Notification", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.No)
             {
                 Close();
             }
@@ -126,7 +121,7 @@ namespace PhieuKiemDinh.MyForm
             }
             else
             {
-                if(fLagRefresh==true)
+                if (fLagRefresh == true)
                 {
                     var temp = (from w in Global.Db.tbl_DeSos
                                 where w.fBatchName == fbatchRefresh && w.IdImage == lb_Image.Text
@@ -136,7 +131,7 @@ namespace PhieuKiemDinh.MyForm
                                     w.Error,
                                     w.True
                                 }).ToList();
-                    if(temp[0].Error == 1 && temp[0].True == 1)
+                    if (temp[0].Error == 1 && temp[0].True == 1)
                     {
                         btn_SuaVaLuu_DeSo1.Visible = true;
                         btn_Luu_DeSo2.Visible = true;
@@ -175,7 +170,7 @@ namespace PhieuKiemDinh.MyForm
                 }
                 lb_Image.Text = imageTemp_check;
                 uc_PictureBox1.imageBox1.Image = null;
-                if (uc_PictureBox1.LoadImage(Global.Webservice + Folder + @"\" + cbb_Batch_Check.Text + "/" + imageTemp_check, imageTemp_check, Settings.Default.ZoomImage)=="Error")
+                if (uc_PictureBox1.LoadImage(Global.Webservice + Folder + @"\" + cbb_Batch_Check.Text + "/" + imageTemp_check, imageTemp_check, Settings.Default.ZoomImage) == "Error")
                 {
                     uc_PictureBox1.imageBox1.Image = Resources.svn_deleted;
                     return "Error";
@@ -185,7 +180,7 @@ namespace PhieuKiemDinh.MyForm
             {
                 lb_Image.Text = imageTemp_check;
                 uc_PictureBox1.imageBox1.Image = null;
-                if (uc_PictureBox1.LoadImage(Global.Webservice + Folder + @"\" + cbb_Batch_Check.Text + "/" + imageTemp_check, imageTemp_check, Settings.Default.ZoomImage)=="Error")
+                if (uc_PictureBox1.LoadImage(Global.Webservice + Folder + @"\" + cbb_Batch_Check.Text + "/" + imageTemp_check, imageTemp_check, Settings.Default.ZoomImage) == "Error")
                 {
                     uc_PictureBox1.imageBox1.Image = Resources.svn_deleted;
                     return "Error";
@@ -199,27 +194,27 @@ namespace PhieuKiemDinh.MyForm
             lb_User1.ForeColor = Color.Black;
             lb_User2.ForeColor = Color.Black;
             var deso = (from w in Global.Db.tbl_DeSos
-                where w.fBatchName == fbatchname && w.IdImage == idimage
-                select new
-                {
-                    w.UserName,
-                    w.TruongSo01,
-                    w.TruongSo03,
-                    w.TruongSo04,
-                    w.TruongSo05,
-                    w.TruongSo06,
-                    w.TruongSo07,
-                    w.TruongSo08,
-                    w.TruongSo08_2,
-                    w.TruongSo09,
-                    w.TruongSo10,
-                    w.TruongSo11,
-                    w.TruongSo12,
-                    w.TruongSo13,
-                    w.TruongSo14,
-                 //   w.FlagError,
-                    w.True
-                }).ToList();
+                        where w.fBatchName == fbatchname && w.IdImage == idimage
+                        select new
+                        {
+                            w.UserName,
+                            w.TruongSo01,
+                            w.TruongSo03,
+                            w.TruongSo04,
+                            w.TruongSo05,
+                            w.TruongSo06,
+                            w.TruongSo07,
+                            w.TruongSo08,
+                            w.TruongSo08_2,
+                            w.TruongSo09,
+                            w.TruongSo10,
+                            w.TruongSo11,
+                            w.TruongSo12,
+                            w.TruongSo13,
+                            w.TruongSo14,
+                            //   w.FlagError,
+                            w.True
+                        }).ToList();
             lb_User1.Text = deso[0].UserName;
             lb_User2.Text = deso[1].UserName;
             if (deso[0].True == 1)
@@ -240,7 +235,7 @@ namespace PhieuKiemDinh.MyForm
             uC_DESO1.txt_TruongSo12.Text = deso[0].TruongSo12;
             uC_DESO1.txt_TruongSo13.Text = deso[0].TruongSo13;
             uC_DESO1.txt_TruongSo14.Text = deso[0].TruongSo14;
-          //  uC_DESO1.txt_FlagError.Text = deso[0].FlagError;
+            //  uC_DESO1.txt_FlagError.Text = deso[0].FlagError;
 
             uC_DESO2.txt_TruongSo01.Text = deso[1].TruongSo01;
             uC_DESO2.txt_TruongSo03.Text = deso[1].TruongSo03;
@@ -256,7 +251,7 @@ namespace PhieuKiemDinh.MyForm
             uC_DESO2.txt_TruongSo12.Text = deso[1].TruongSo12;
             uC_DESO2.txt_TruongSo13.Text = deso[1].TruongSo13;
             uC_DESO2.txt_TruongSo14.Text = deso[1].TruongSo14;
-          //  uC_DESO2.txt_FlagError.Text = deso[1].FlagError;
+            //  uC_DESO2.txt_FlagError.Text = deso[1].FlagError;
 
             Compare_TextBox(uC_DESO1.txt_TruongSo01, uC_DESO2.txt_TruongSo01);
             Compare_TextBox(uC_DESO1.txt_TruongSo03, uC_DESO2.txt_TruongSo03);
@@ -272,7 +267,6 @@ namespace PhieuKiemDinh.MyForm
             Compare_TextBox(uC_DESO1.txt_TruongSo12, uC_DESO2.txt_TruongSo12);
             Compare_TextBox(uC_DESO1.txt_TruongSo13, uC_DESO2.txt_TruongSo13);
             Compare_TextBox(uC_DESO1.txt_TruongSo14, uC_DESO2.txt_TruongSo14);
-            // Compare_TextBox(uC_DESO1.txt_FlagError, uC_DESO2.txt_FlagError);
             if (!Global.listdata13.Contains(uC_DESO1.txt_TruongSo13.Text) && !string.IsNullOrEmpty(uC_DESO1.txt_TruongSo13.Text))
             {
                 uC_DESO1.txt_TruongSo13.BackColor = Color.SkyBlue;
@@ -284,7 +278,7 @@ namespace PhieuKiemDinh.MyForm
             lb_Loi.Text = ((from w in Global.Db.tbl_DeSos where w.fBatchName == Global.StrBatch && w.Dem == 1 select w.IdImage).Count() / 2).ToString() + " Lỗi";
             timer1.Enabled = true;
         }
-        
+
         private void frm_Checker_Load(object sender, EventArgs e)
         {
             splitCheck.SplitterPosition = Settings.Default.PositionSplitCheck;
@@ -296,18 +290,18 @@ namespace PhieuKiemDinh.MyForm
             xtraTabControl1.TabPages.Remove(tp_DeSo1);
             xtraTabControl2.TabPages.Remove(tp_DeSo2);
 
-            if (Global.StrCheck== "CHECKDESO")
+            if (Global.StrCheck == "CHECKDESO")
             {
                 xtraTabControl1.TabPages.Add(tp_DeSo1);
                 xtraTabControl2.TabPages.Add(tp_DeSo2);
                 VisibleButtonSave();
                 uC_DESO1.Changed += UC_DESO1_Changed;
                 uC_DESO2.Changed += Uc_DeSo2_Changed;
-                var soloi = ((from w in Global.Db.tbl_DeSos where w.fBatchName == Global.StrBatch && w.Dem == 1 select w.IdImage).Count()/2).ToString();
+                var soloi = ((from w in Global.Db.tbl_DeSos where w.fBatchName == Global.StrBatch && w.Dem == 1 select w.IdImage).Count() / 2).ToString();
                 lb_Loi.Text = soloi + " Lỗi";
             }
         }
-        
+
         private void Uc_DeSo2_Changed(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(lb_Image.Text))
@@ -349,7 +343,7 @@ namespace PhieuKiemDinh.MyForm
                 LoadBatchMoi();
                 return;
             }
-            if (temp=="Error")
+            if (temp == "Error")
             {
                 MessageBox.Show("Lỗi load hình");
                 VisibleButtonSave();
@@ -400,29 +394,29 @@ namespace PhieuKiemDinh.MyForm
             Global.DbBpo.UpdateTimeLastRequest(Global.Token);
 
             uC_DESO1.txt_TruongSo13_Leave(null, null);
-            if (uC_DESO1.txt_TruongSo13.BackColor == System.Drawing.Color.SkyBlue)
+            if (uC_DESO1.txt_TruongSo13.BackColor == Color.SkyBlue)
             {
                 flagTruong13 = "1";
             }
             else { flagTruong13 = "0"; }
             if (fLagRefresh)
-            Global.Db.SuaVaLuu_tbl_DeSo_New(lb_User1.Text, lb_User2.Text, lb_Image.Text, fbatchRefresh, Global.StrUserName,
-                                            uC_DESO1.txt_TruongSo01.Text,
-                                            uC_DESO1.txt_TruongSo03.Text,
-                                            uC_DESO1.txt_TruongSo04.Text.Replace(",", ""),
-                                            uC_DESO1.txt_TruongSo05.Text,
-                                            uC_DESO1.txt_TruongSo06.Text,
-                                            uC_DESO1.txt_TruongSo07.Text,
-                                            uC_DESO1.txt_TruongSo08_1.Text,
-                                            uC_DESO1.txt_TruongSo08_2.Text,
-                                            uC_DESO1.txt_TruongSo09.Text,
-                                            uC_DESO1.txt_TruongSo10.Text,
-                                            uC_DESO1.txt_TruongSo11.Text.IndexOf('●') >= 0 ? "●" : uC_DESO1.txt_TruongSo11.Text,
-                                            uC_DESO1.txt_TruongSo12.Text,
-                                            uC_DESO1.txt_TruongSo13.Text,
-                                            flagTruong13,
-                                            uC_DESO1.txt_TruongSo14.Text//, uC_DESO1.txt_FlagError.Text
-                                            );
+                Global.Db.SuaVaLuu_tbl_DeSo_New(lb_User1.Text, lb_User2.Text, lb_Image.Text, fbatchRefresh, Global.StrUserName,
+                                                uC_DESO1.txt_TruongSo01.Text,
+                                                uC_DESO1.txt_TruongSo03.Text,
+                                                uC_DESO1.txt_TruongSo04.Text.Replace(",", ""),
+                                                uC_DESO1.txt_TruongSo05.Text,
+                                                uC_DESO1.txt_TruongSo06.Text,
+                                                uC_DESO1.txt_TruongSo07.Text,
+                                                uC_DESO1.txt_TruongSo08_1.Text,
+                                                uC_DESO1.txt_TruongSo08_2.Text,
+                                                uC_DESO1.txt_TruongSo09.Text,
+                                                uC_DESO1.txt_TruongSo10.Text,
+                                                uC_DESO1.txt_TruongSo11.Text.IndexOf('●') >= 0 ? "●" : uC_DESO1.txt_TruongSo11.Text,
+                                                uC_DESO1.txt_TruongSo12.Text,
+                                                uC_DESO1.txt_TruongSo13.Text,
+                                                flagTruong13,
+                                                uC_DESO1.txt_TruongSo14.Text//, uC_DESO1.txt_FlagError.Text
+                                                );
             else
                 Global.Db.SuaVaLuu_tbl_DeSo_New(lb_User1.Text, lb_User2.Text, lb_Image.Text, cbb_Batch_Check.Text, Global.StrUserName,
                                             uC_DESO1.txt_TruongSo01.Text,
@@ -452,7 +446,7 @@ namespace PhieuKiemDinh.MyForm
                 Application.Exit();
             }
             string temp = GetImage_DeSo();
-            if ( temp== "NULL")
+            if (temp == "NULL")
             {
                 uc_PictureBox1.imageBox1.Image = null;
                 MessageBox.Show(@"Batch '" + cbb_Batch_Check.Text + "' đã hoàn thành");
@@ -540,22 +534,22 @@ namespace PhieuKiemDinh.MyForm
             Load_DeSo(Global.StrBatch, lb_Image.Text);
             VisibleButtonSave();
         }
-        
+
         private void Compare_TextBox(TextEdit t1, TextEdit t2)
         {
             //if (!string.IsNullOrEmpty(t1.Text) || !string.IsNullOrEmpty(t2.Text))
-           // {
-                if (t1.Text != t2.Text)
-                {
-                    t1.BackColor = Color.PaleVioletRed;
-                    t2.BackColor = Color.PaleVioletRed;
-                }
-          //  }
-           // else
-           // {
-          //      t1.BackColor = Color.White;
+            // {
+            if (t1.Text != t2.Text)
+            {
+                t1.BackColor = Color.PaleVioletRed;
+                t2.BackColor = Color.PaleVioletRed;
+            }
+            //  }
+            // else
+            // {
+            //      t1.BackColor = Color.White;
             //    t2.BackColor = Color.White;
-           // }
+            // }
         }
         public void CompareRichTextBox(RichTextBox t1, RichTextBox t2)
         {
@@ -589,9 +583,9 @@ namespace PhieuKiemDinh.MyForm
                     t2.SelectionLength = 1;
                     t2.SelectionColor = Color.Red;
                 }
-            } 
+            }
         }
-        
+
         private void lb_fBatchName_Click(object sender, EventArgs e)
         {
             Clipboard.SetText(cbb_Batch_Check.Text);
@@ -650,8 +644,8 @@ namespace PhieuKiemDinh.MyForm
 
         private void btn_CheckLai_Click(object sender, EventArgs e)
         {
-            var temp = (from w in Global.Db.tbl_Images join b in Global.Db.tbl_Batches on w.fBatchName equals b.fBatchName where w.UserNameCheckDeSo == Global.StrUserName && w.ReadImageCheckDeSo == 1 && w.SubmitCheckDeSo == 1 orderby w.DateCheckDeSo descending select new { w.fBatchName, w.IdImage,b.fPathPicture }).FirstOrDefault();
-            if (temp==null)
+            var temp = (from w in Global.Db.tbl_Images join b in Global.Db.tbl_Batches on w.fBatchName equals b.fBatchName where w.UserNameCheckDeSo == Global.StrUserName && w.ReadImageCheckDeSo == 1 && w.SubmitCheckDeSo == 1 orderby w.DateCheckDeSo descending select new { w.fBatchName, w.IdImage, b.fPathPicture }).FirstOrDefault();
+            if (temp == null)
             {
                 MessageBox.Show("Bạn chưa check, vui lòng check hình trước khi check lại");
                 return;

@@ -1,15 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Windows.Forms;
-using DevExpress.XtraEditors;
-using PhieuKiemDinh.MyClass;
 using PhieuKiemDinh.Properties;
 
 namespace PhieuKiemDinh.MyForm
@@ -50,7 +42,6 @@ namespace PhieuKiemDinh.MyForm
             }
             try
             {
-                
                 if (rb_DaNang.Checked)
                 {
                     Settings.Default.Server = "Đà Nẵng";

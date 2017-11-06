@@ -313,7 +313,7 @@
             this.lb_version.Name = "lb_version";
             this.lb_version.Size = new System.Drawing.Size(26, 13);
             this.lb_version.TabIndex = 3;
-            this.lb_version.Text = "1.0.4";
+            this.lb_version.Text = "1.0.0";
             // 
             // pictureBox1
             // 
@@ -339,6 +339,7 @@
             this.Controls.Add(this.groupControl2);
             this.Controls.Add(this.groupControl1);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "frmLogin";

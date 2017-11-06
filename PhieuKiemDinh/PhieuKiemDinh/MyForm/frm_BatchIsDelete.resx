@@ -118,10 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="editorButtonImageOptions3.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="editorButtonImageOptions1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsIAAA7CARUoSoAAAADYSURBVDhPY6AJkAz59F/Gfyscg/hQKfxAO/Lif0mXA//L
+        YQUAAAAJcEhZcwAADsEAAA7BAbiRa+0AAADYSURBVDhPY6AJkAz59F/Gfyscg/hQKfxAO/Lif0mXA//L
         537GwCCDoMrAAJ3PANLo3/ABrNg87cZ/q4wb/x1yb/13Kb7737P83n/t0CNwQ2AuA2sEAZDNMM12BS/B
         ihlkGsBYJ/QoxJAyhCEYLoI5G0UzDADZIDHnorv/PYCGwNShGMCgtQMuIes4C0kCCoCG2GTfhBtClgEw
         eRjG6QUMA0DewYJRXQACQFfgdAExAOQKEAYZAooVqDCJAOgKWe/T5LsCDICGyPlQwRCquETcegkFBhAF

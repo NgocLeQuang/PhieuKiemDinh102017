@@ -213,7 +213,7 @@ namespace MarkingImage_PhieuKiemDinh.MyForm
                         Imagetemp = Image.FromFile(fi.FullName + "");
                         pictureBox1.Height = Imagetemp.Height;
                         pictureBox1.Width = Imagetemp.Width;
-                        pictureBox1.SizeMode = PictureBoxSizeMode.Normal;
+                        //pictureBox1.SizeMode = PictureBoxSizeMode.Normal;
                         pictureBox1.Image = Imagetemp;
                         bmap = null;
                         newmap = null;
@@ -245,7 +245,7 @@ namespace MarkingImage_PhieuKiemDinh.MyForm
                             newmap = bmap.Clone(new Rectangle(0, 0, bmap.Width, bmap.Height), System.Drawing.Imaging.PixelFormat.DontCare);
 
                             g1 = Graphics.FromImage(newmap);
-                            g1.FillRectangle(Brushes.WhiteSmoke, new Rectangle(temp_x1, temp_y1, temp_x2 - temp_x1, temp_y2 - temp_y1));
+                            g1.FillRectangle(Brushes.WhiteSmoke, new RectangleF(temp_x1, temp_y1, temp_x2 - temp_x1, temp_y2 - temp_y1));
                             pictureBox1.Image = null;
                             pictureBox1.Image = newmap;
                         }
@@ -351,7 +351,7 @@ namespace MarkingImage_PhieuKiemDinh.MyForm
                             Imagetemp = Image.FromFile(fi.FullName + "");
                             pictureBox1.Height = Imagetemp.Height;
                             pictureBox1.Width = Imagetemp.Width;
-                            pictureBox1.SizeMode = PictureBoxSizeMode.Normal;
+                            //pictureBox1.SizeMode = PictureBoxSizeMode.Normal;
                             pictureBox1.Image = Imagetemp;
                             bmap = null;
                             newmap = null;
