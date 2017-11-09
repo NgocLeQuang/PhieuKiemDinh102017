@@ -198,6 +198,7 @@
             this.gridColumn1.Caption = "Batch";
             this.gridColumn1.FieldName = "Folder";
             this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
             this.gridColumn1.OptionsColumn.ReadOnly = true;
             this.gridColumn1.Visible = true;
             this.gridColumn1.VisibleIndex = 2;
@@ -213,6 +214,7 @@
             this.BatchIsExists.Caption = "Batch Is Exists";
             this.BatchIsExists.FieldName = "Is_Exists";
             this.BatchIsExists.Name = "BatchIsExists";
+            this.BatchIsExists.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
             this.BatchIsExists.OptionsColumn.ReadOnly = true;
             this.BatchIsExists.Visible = true;
             this.BatchIsExists.VisibleIndex = 3;
@@ -228,6 +230,7 @@
             this.gridColumn2.Caption = "Numbers Image";
             this.gridColumn2.FieldName = "NumberImage";
             this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
             this.gridColumn2.OptionsColumn.ReadOnly = true;
             this.gridColumn2.Visible = true;
             this.gridColumn2.VisibleIndex = 4;
@@ -245,6 +248,7 @@
             this.gridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.gridColumn4.FieldName = "DateCreateFolder";
             this.gridColumn4.Name = "gridColumn4";
+            this.gridColumn4.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
             this.gridColumn4.OptionsColumn.ReadOnly = true;
             this.gridColumn4.Visible = true;
             this.gridColumn4.VisibleIndex = 5;
@@ -262,6 +266,7 @@
             this.gridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.gridColumn3.FieldName = "DateCreateBatch";
             this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
             this.gridColumn3.OptionsColumn.ReadOnly = true;
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 6;

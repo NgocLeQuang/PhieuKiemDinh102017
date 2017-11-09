@@ -96,6 +96,7 @@ namespace PhieuKiemDinh.MyForm
             uC_ShowImage1.uc_DeSo1.txt_TruongSo12.Text = data[0].TruongSo12;
             uC_ShowImage1.uc_DeSo1.txt_TruongSo13.Text = data[0].TruongSo13;
             uC_ShowImage1.uc_DeSo1.txt_TruongSo14.Text = data[0].TruongSo14;
+            uC_ShowImage1.uc_DeSo1.txt_TruongSo04_KeyUp(null, null);
 
             //Load user 1
             uC_ShowImage1.lb_User1.Text = data[1].UserName;
@@ -113,6 +114,7 @@ namespace PhieuKiemDinh.MyForm
             uC_ShowImage1.uc_DeSo2.txt_TruongSo12.Text = data[1].TruongSo12;
             uC_ShowImage1.uc_DeSo2.txt_TruongSo13.Text = data[1].TruongSo13;
             uC_ShowImage1.uc_DeSo2.txt_TruongSo14.Text = data[1].TruongSo14;
+            uC_ShowImage1.uc_DeSo2.txt_TruongSo04_KeyUp(null, null);
 
             //Load user 2
             uC_ShowImage1.lb_User2.Text = data[2].UserName;
@@ -130,6 +132,7 @@ namespace PhieuKiemDinh.MyForm
             uC_ShowImage1.uc_DeSo3.txt_TruongSo12.Text = data[2].TruongSo12;
             uC_ShowImage1.uc_DeSo3.txt_TruongSo13.Text = data[2].TruongSo13;
             uC_ShowImage1.uc_DeSo3.txt_TruongSo14.Text = data[2].TruongSo14;
+            uC_ShowImage1.uc_DeSo3.txt_TruongSo04_KeyUp(null, null);
             SoSanhDoiMau(uC_ShowImage1.uc_DeSo1.txt_TruongSo01, uC_ShowImage1.uc_DeSo2.txt_TruongSo01, uC_ShowImage1.uc_DeSo3.txt_TruongSo01);
             SoSanhDoiMau(uC_ShowImage1.uc_DeSo1.txt_TruongSo03, uC_ShowImage1.uc_DeSo2.txt_TruongSo03, uC_ShowImage1.uc_DeSo3.txt_TruongSo03);
             SoSanhDoiMau(uC_ShowImage1.uc_DeSo1.txt_TruongSo04, uC_ShowImage1.uc_DeSo2.txt_TruongSo04, uC_ShowImage1.uc_DeSo3.txt_TruongSo04);

@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_Main));
             this.tp_DeSo = new DevExpress.XtraTab.XtraTabPage();
             this.uC_DESO1 = new PhieuKiemDinh.MyUserControl.uc_DeSo();
@@ -51,7 +50,7 @@
             this.lb_TongPhieu = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.lb_fBatchName = new DevExpress.XtraEditors.LabelControl();
-            this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
+            this.barManager1 = new DevExpress.XtraBars.BarManager();
             this.bar2 = new DevExpress.XtraBars.Bar();
             this.menu_Menu = new DevExpress.XtraBars.BarSubItem();
             this.btn_Logout = new DevExpress.XtraBars.BarButtonItem();
@@ -63,6 +62,8 @@
             this.btn_TienDo = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
             this.btn_RefreshImageNotInput = new DevExpress.XtraBars.BarButtonItem();
+            this.ckOutSource = new DevExpress.XtraBars.BarEditItem();
+            this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.btn_Check = new DevExpress.XtraBars.BarButtonItem();
             this.barSubItem2 = new DevExpress.XtraBars.BarSubItem();
             this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
@@ -91,8 +92,6 @@
             this.uc_PictureBox1 = new PhieuKiemDinh.MyUserControl.uc_PictureBox();
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.splitMain = new DevExpress.XtraEditors.SplitContainerControl();
-            this.ckOutSource = new DevExpress.XtraBars.BarEditItem();
-            this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.tp_DeSo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
@@ -103,6 +102,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.panel_Top)).BeginInit();
             this.panel_Top.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTrackBar1)).BeginInit();
@@ -110,7 +110,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitMain)).BeginInit();
             this.splitMain.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).BeginInit();
             this.SuspendLayout();
             // 
             // tp_DeSo
@@ -462,6 +461,19 @@
             this.btn_RefreshImageNotInput.Name = "btn_RefreshImageNotInput";
             this.btn_RefreshImageNotInput.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_RefreshImageNotInput_ItemClick);
             // 
+            // ckOutSource
+            // 
+            this.ckOutSource.Caption = "Out Source";
+            this.ckOutSource.Edit = this.repositoryItemCheckEdit1;
+            this.ckOutSource.Id = 33;
+            this.ckOutSource.Name = "ckOutSource";
+            this.ckOutSource.EditValueChanged += new System.EventHandler(this.ckOutSource_EditValueChanged);
+            // 
+            // repositoryItemCheckEdit1
+            // 
+            this.repositoryItemCheckEdit1.AutoHeight = false;
+            this.repositoryItemCheckEdit1.Name = "repositoryItemCheckEdit1";
+            // 
             // btn_Check
             // 
             this.btn_Check.Caption = "Check DESO";
@@ -666,19 +678,6 @@
             this.splitMain.Text = "splitContainerControl1";
             this.splitMain.SplitterPositionChanged += new System.EventHandler(this.splitMain_SplitterPositionChanged);
             // 
-            // ckOutSource
-            // 
-            this.ckOutSource.Caption = "Out Source";
-            this.ckOutSource.Edit = this.repositoryItemCheckEdit1;
-            this.ckOutSource.Id = 33;
-            this.ckOutSource.Name = "ckOutSource";
-            this.ckOutSource.EditValueChanged += new System.EventHandler(this.ckOutSource_EditValueChanged);
-            // 
-            // repositoryItemCheckEdit1
-            // 
-            this.repositoryItemCheckEdit1.AutoHeight = false;
-            this.repositoryItemCheckEdit1.Name = "repositoryItemCheckEdit1";
-            // 
             // frm_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -709,6 +708,7 @@
             this.panel_Top.ResumeLayout(false);
             this.panel_Top.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTrackBar1)).EndInit();
@@ -716,7 +716,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitMain)).EndInit();
             this.splitMain.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

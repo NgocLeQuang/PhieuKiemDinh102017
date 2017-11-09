@@ -724,7 +724,7 @@ namespace PhieuKiemDinh.MyForm
                 Global.Db.Insert_DeSo_New(lb_IdImage.Text, lb_fBatchName.Text, Global.StrUserName,
                        uC_DESO1.txt_TruongSo01.Text,
                        uC_DESO1.txt_TruongSo03.Text,
-                       uC_DESO1.txt_TruongSo04.Text,
+                       uC_DESO1.txt_TruongSo04.Text.Replace(",", ""),
                        uC_DESO1.txt_TruongSo05.Text,
                        uC_DESO1.txt_TruongSo06.Text,
                        uC_DESO1.txt_TruongSo07.Text,

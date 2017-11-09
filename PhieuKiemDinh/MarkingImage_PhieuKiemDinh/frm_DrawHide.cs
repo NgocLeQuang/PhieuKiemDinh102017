@@ -213,12 +213,13 @@ namespace MarkingImage_PhieuKiemDinh.MyForm
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
+            textBox1.Text = Cursor.Position.Y+ "";
+            textBox2.Text = this.Location.Y + (this.Height-35)+ "";
             if (shiftSelecting == true && pictureBox1.Image != null)
             {
-                pictureBox1.Cursor = Cursors.Cross;
-                if (Cursor.Position.Y >= panel1.Location.Y + panel1.Height && panel1.VerticalScroll.Value + (e.Location.Y - (panel1.Location.Y + panel1.Height)) * 2 <= panel1.VerticalScroll.Maximum)
+                if (Cursor.Position.Y >= this.Location.Y + (this.Height - 40) && panel1.VerticalScroll.Value + 30 <= panel1.VerticalScroll.Maximum)
                 {
-                    panel1.VerticalScroll.Value = panel1.VerticalScroll.Value + (Cursor.Position.Y - (panel1.Location.Y + panel1.Height)) * 2;
+                    panel1.VerticalScroll.Value = panel1.VerticalScroll.Value + 30;
                 }
                 if (e.Location.X >= panel1.Location.X + panel1.Width - 20 && panel1.HorizontalScroll.Value + 20 >= panel1.HorizontalScroll.Minimum)
                 {

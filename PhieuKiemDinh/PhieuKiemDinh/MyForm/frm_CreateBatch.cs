@@ -324,6 +324,17 @@ namespace PhieuKiemDinh.MyForm
             new frm_BatchIsDelete().ShowDialog();
         }
 
+        private void gridView1_CellMerge(object sender, CellMergeEventArgs e)
+        {
+            //if (e.Column.FieldName != "Folder_")
+            //    return;
+            //GridView view = sender as GridView;
+            //var val1 = view.GetRowCellValue(e.RowHandle1, e.Column) + "";
+            //var val2 = view.GetRowCellValue(e.RowHandle2, e.Column) + "";
+            //e.Merge = val1 == val2;
+            //e.Handled = true;
+        }
+
         private void frm_CreateBatch_FormClosing(object sender, FormClosingEventArgs e)
         {
             timer1.Enabled = false;

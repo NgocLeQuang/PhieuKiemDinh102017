@@ -648,7 +648,7 @@ namespace PhieuKiemDinh.MyUserControl
             // txt_FlagError.GotFocus += Txt_TruongSo03_GotFocus;
 
         }
-
+        
         private void Txt_TruongSo03_GotFocus(object sender, EventArgs e)
         {
             ((TextEdit)sender).SelectAll();
@@ -670,7 +670,7 @@ namespace PhieuKiemDinh.MyUserControl
             Properties.Settings.Default.Save();
         }
 
-        private void txt_TruongSo04_KeyUp(object sender, KeyEventArgs e)
+        public void txt_TruongSo04_KeyUp(object sender, KeyEventArgs e)
         {
             if(txt_TruongSo04.Text.IndexOf('●')>=0 || txt_TruongSo04.Text.IndexOf('?') >= 0)
             {
@@ -762,14 +762,15 @@ namespace PhieuKiemDinh.MyUserControl
             Properties.Settings.Default.Truong12 = txt_TruongSo12.Text;
             Properties.Settings.Default.Save();
         }
-
+        string truong13_Temp = "";
         public void txt_TruongSo13_Leave(object sender, EventArgs e)
         {
-            if (!Global.listdata13.Contains(txt_TruongSo13.Text) && !string.IsNullOrEmpty(txt_TruongSo13.Text))
+            if (!Global.listdata13.Contains( txt_TruongSo13.Text) && !string.IsNullOrEmpty(txt_TruongSo13.Text))
             {
                 if (txt_TruongSo13.Text[0] == '0')
                 {
-                    if (!Global.listdata13.Contains(txt_TruongSo13.Text.Substring(1, txt_TruongSo13.Text.Length - 1)))
+                    truong13_Temp = txt_TruongSo13.Text.Substring(1, txt_TruongSo13.Text.Length - 1);
+                    if (!Global.listdata13.Contains(truong13_Temp))
                         txt_TruongSo13.BackColor = Color.SkyBlue;
                 }
                 else
@@ -777,6 +778,19 @@ namespace PhieuKiemDinh.MyUserControl
                     txt_TruongSo13.BackColor = Color.SkyBlue;
                 }
             }
+            //if (!Global.listdata13.Exists(x => x == txt_TruongSo13.Text) && !string.IsNullOrEmpty(txt_TruongSo13.Text))
+            //{
+            //    if (txt_TruongSo13.Text[0] == '0')
+            //    {
+            //        truong13_Temp = txt_TruongSo13.Text.Substring(1, txt_TruongSo13.Text.Length - 1);
+            //        if (!Global.listdata13.Exists(x => x == (truong13_Temp)))
+            //            txt_TruongSo13.BackColor = Color.SkyBlue;
+            //    }
+            //    else
+            //    {
+            //        txt_TruongSo13.BackColor = Color.SkyBlue;
+            //    }
+            //}
 
             if (Global.FlagChangeSave == false)
                 return;

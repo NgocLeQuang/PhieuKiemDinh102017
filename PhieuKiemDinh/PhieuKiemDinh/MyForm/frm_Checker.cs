@@ -235,6 +235,7 @@ namespace PhieuKiemDinh.MyForm
             uC_DESO1.txt_TruongSo12.Text = deso[0].TruongSo12;
             uC_DESO1.txt_TruongSo13.Text = deso[0].TruongSo13;
             uC_DESO1.txt_TruongSo14.Text = deso[0].TruongSo14;
+            uC_DESO1.txt_TruongSo04_KeyUp(null, null);
             //  uC_DESO1.txt_FlagError.Text = deso[0].FlagError;
 
             uC_DESO2.txt_TruongSo01.Text = deso[1].TruongSo01;
@@ -251,6 +252,7 @@ namespace PhieuKiemDinh.MyForm
             uC_DESO2.txt_TruongSo12.Text = deso[1].TruongSo12;
             uC_DESO2.txt_TruongSo13.Text = deso[1].TruongSo13;
             uC_DESO2.txt_TruongSo14.Text = deso[1].TruongSo14;
+            uC_DESO2.txt_TruongSo04_KeyUp(null, null);
             //  uC_DESO2.txt_FlagError.Text = deso[1].FlagError;
 
             Compare_TextBox(uC_DESO1.txt_TruongSo01, uC_DESO2.txt_TruongSo01);
@@ -267,14 +269,8 @@ namespace PhieuKiemDinh.MyForm
             Compare_TextBox(uC_DESO1.txt_TruongSo12, uC_DESO2.txt_TruongSo12);
             Compare_TextBox(uC_DESO1.txt_TruongSo13, uC_DESO2.txt_TruongSo13);
             Compare_TextBox(uC_DESO1.txt_TruongSo14, uC_DESO2.txt_TruongSo14);
-            if (!Global.listdata13.Contains(uC_DESO1.txt_TruongSo13.Text) && !string.IsNullOrEmpty(uC_DESO1.txt_TruongSo13.Text))
-            {
-                uC_DESO1.txt_TruongSo13.BackColor = Color.SkyBlue;
-            }
-            if (!Global.listdata13.Contains(uC_DESO2.txt_TruongSo13.Text) && !string.IsNullOrEmpty(uC_DESO2.txt_TruongSo13.Text))
-            {
-                uC_DESO2.txt_TruongSo13.BackColor = Color.SkyBlue;
-            }
+            uC_DESO1.txt_TruongSo13_Leave(null,null);
+            uC_DESO2.txt_TruongSo13_Leave(null, null);
             lb_Loi.Text = ((from w in Global.Db.tbl_DeSos where w.fBatchName == Global.StrBatch && w.Dem == 1 select w.IdImage).Count() / 2).ToString() + " Lỗi";
             timer1.Enabled = true;
         }

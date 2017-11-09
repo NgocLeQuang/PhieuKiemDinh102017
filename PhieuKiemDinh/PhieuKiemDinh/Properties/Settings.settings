@@ -12,7 +12,7 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="ZoomImage" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">53</Value>
+      <Value Profile="(Default)">43</Value>
     </Setting>
     <Setting Name="Check" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
