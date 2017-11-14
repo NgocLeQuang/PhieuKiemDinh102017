@@ -83,7 +83,7 @@ namespace PhieuKiemDinh.MyForm
             }
             //TableToExcel(System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments) + "\\ExportExcel.xlsx");
             dataGridView1.DataSource = null;
-            dataGridView1.DataSource = (from w in Global.Db.ExportExcel_PhieuKiemDinh(cbb_Batch.Text) select w).ToList();
+            dataGridView1.DataSource = (from w in Global.Db.ExportExcel_PhieuKiemDinh_Red13(cbb_Batch.Text) select w).ToList();
             namefileExcel = "";
             App = new Microsoft.Office.Interop.Excel.Application();
             book = App.Workbooks.Open(System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments) + "\\ExportExcel.xlsx", 0, true, 5, "", "", false, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "", true, false, 0, true, false, false);
@@ -99,6 +99,7 @@ namespace PhieuKiemDinh.MyForm
             progressBar1.Minimum = 0;
             ModifyProgressBarColor.SetState(progressBar1, 1);
             h = 2;
+            string red13 = "";
             for (int i = 0; i < dataGridView1.RowCount; i++)
             {
                 string tempImageName = "";
@@ -183,6 +184,12 @@ namespace PhieuKiemDinh.MyForm
                 wrksheet.Cells[h, 11] = dataGridView1[10, i].Value + "";    //Trường 12
                 wrksheet.Cells[h, 12] = dataGridView1[11, i].Value + "";    //Trường 13
                 wrksheet.Cells[h, 13] = dataGridView1[12, i].Value + "";    //Trường 14
+                red13 = "";
+                red13 = dataGridView1[13, i].Value.ToString();
+                if (red13.IndexOf('1') >= 0)
+                {
+                    wrksheet.Cells[h, 12].Interior.ColorIndex = 3;
+                }
                 lb_Complete.Text = (i + 1) + "/" + dataGridView1.RowCount;
                 progressBar1.PerformStep();
                 h++;
@@ -277,5 +284,7 @@ namespace PhieuKiemDinh.MyForm
             wrksheet = (Microsoft.Office.Interop.Excel.Worksheet)book.ActiveSheet;
             backgroundWorker1.RunWorkerAsync();
         }
+      
     }
+
 }
