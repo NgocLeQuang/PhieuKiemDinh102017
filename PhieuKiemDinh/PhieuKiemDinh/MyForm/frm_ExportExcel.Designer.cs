@@ -67,7 +67,6 @@
             this.cbb_Batch.Name = "cbb_Batch";
             this.cbb_Batch.Size = new System.Drawing.Size(385, 26);
             this.cbb_Batch.TabIndex = 1;
-            this.cbb_Batch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbb_Batch_KeyPress);
             // 
             // simpleButton1
             // 

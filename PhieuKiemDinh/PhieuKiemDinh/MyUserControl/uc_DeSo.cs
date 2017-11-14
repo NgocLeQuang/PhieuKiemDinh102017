@@ -204,9 +204,13 @@ namespace PhieuKiemDinh.MyUserControl
 
         private void txt_TruongSo03_EditValueChanged(object sender, EventArgs e)
         {
+            if(((TextEdit)sender).Text.IndexOf('?')>=0)
+            {
+                ((TextEdit)sender).Text = "?";
+            }
             if (!string.IsNullOrEmpty(txt_TruongSo03.Text))
             {
-                if (txt_TruongSo03.Text != "?")
+                if (((TextEdit)sender).Text.IndexOf('?') < 0 && ((TextEdit)sender).Text.IndexOf('●') < 0)
                 {
                     if (int.Parse(txt_TruongSo03.Text) > 3 || int.Parse(txt_TruongSo03.Text) < 1 || txt_TruongSo03.Text.Length > 1)
                     {
@@ -235,7 +239,11 @@ namespace PhieuKiemDinh.MyUserControl
 
         private void txt_TruongSo04_EditValueChanged(object sender, EventArgs e)
         {
-            if (txt_TruongSo04.Text.Length > 8)
+            if (((TextEdit)sender).Text.IndexOf('?') >= 0)
+            {
+                ((TextEdit)sender).Text = "?";
+            }
+            if (txt_TruongSo04.Text.Length > 8 && ((TextEdit)sender).Text.IndexOf('?') < 0 && ((TextEdit)sender).Text.IndexOf('●') < 0)
             {
                 txt_TruongSo04.BackColor = Color.Red;
                 txt_TruongSo04.ForeColor = Color.White;
@@ -250,27 +258,47 @@ namespace PhieuKiemDinh.MyUserControl
 
         private void txt_TruongSo05_EditValueChanged(object sender, EventArgs e)
         {
+            if (((TextEdit)sender).Text.IndexOf('?') >= 0)
+            {
+                ((TextEdit)sender).Text = "?";
+            }
             Changed?.Invoke(sender, e);
         }
 
         private void txt_TruongSo06_EditValueChanged(object sender, EventArgs e)
         {
+            if (((TextEdit)sender).Text.IndexOf('?') >= 0)
+            {
+                ((TextEdit)sender).Text = "?";
+            }
             Changed?.Invoke(sender, e);
         }
 
         private void txt_TruongSo07_EditValueChanged(object sender, EventArgs e)
         {
+            if (((TextEdit)sender).Text.IndexOf('?') >= 0)
+            {
+                ((TextEdit)sender).Text = "?";
+            }
             Changed?.Invoke(sender, e);
         }
 
         private void txt_TruongSo08_EditValueChanged(object sender, EventArgs e)
         {
+            if (((TextEdit)sender).Text.IndexOf('?') >= 0)
+            {
+                ((TextEdit)sender).Text = "?";
+            }
             Changed?.Invoke(sender, e);
         }
 
         private void txt_TruongSo09_EditValueChanged(object sender, EventArgs e)
         {
-            if (txt_TruongSo09.Text.Length > 20)
+            if (((TextEdit)sender).Text.IndexOf('?') >= 0)
+            {
+                ((TextEdit)sender).Text = "?";
+            }
+            if (txt_TruongSo09.Text.Length > 20 && ((TextEdit)sender).Text.IndexOf('?') < 0 && ((TextEdit)sender).Text.IndexOf('●') < 0)
             {
                 txt_TruongSo09.BackColor = Color.Red;
                 txt_TruongSo09.ForeColor = Color.White;
@@ -285,7 +313,11 @@ namespace PhieuKiemDinh.MyUserControl
 
         private void txt_TruongSo10_EditValueChanged(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(txt_TruongSo10.Text) && txt_TruongSo10.Text != "?")
+            if (((TextEdit)sender).Text.IndexOf('?') >= 0)
+            {
+                ((TextEdit)sender).Text = "?";
+            }
+            if (!string.IsNullOrEmpty(txt_TruongSo10.Text) && ((TextEdit)sender).Text.IndexOf('?') < 0 && ((TextEdit)sender).Text.IndexOf('●') < 0)
             {
                 // trường hợp ngoài/*int.Parse(txt_TruongSo10.Text) > 311231 || int.Parse(txt_TruongSo10.Text) < 291001||
                 if (txt_TruongSo10.Text.Length != 6)
@@ -384,6 +416,10 @@ namespace PhieuKiemDinh.MyUserControl
 
         private void txt_TruongSo11_EditValueChanged(object sender, EventArgs e)
         {
+            if (((TextEdit)sender).Text.IndexOf('?') >= 0)
+            {
+                ((TextEdit)sender).Text = "?";
+            }
             Changed?.Invoke(sender, e);
             if (txt_TruongSo11.Text.IndexOf('●') >= 0)
             {
@@ -392,7 +428,14 @@ namespace PhieuKiemDinh.MyUserControl
                 txt_TruongSo11.ForeColor = Color.Black;
                 return;
             }
-            if (!string.IsNullOrEmpty(txt_TruongSo11.Text) && txt_TruongSo11.Text != "?" && txt_TruongSo11.Text != "●")
+            if (txt_TruongSo11.Text.IndexOf('?') >= 0)
+            {
+                txt_TruongSo11.Text = "?";
+                txt_TruongSo11.BackColor = Color.White;
+                txt_TruongSo11.ForeColor = Color.Black;
+                return;
+            }
+            if (!string.IsNullOrEmpty(txt_TruongSo11.Text) && ((TextEdit)sender).Text.IndexOf('?') < 0 && ((TextEdit)sender).Text.IndexOf('●') < 0)
             {
                 if (int.Parse(txt_TruongSo11.Text) > 291231 || int.Parse(txt_TruongSo11.Text) < 291001 || txt_TruongSo10.Text.Length != 6)
                 {
@@ -587,7 +630,11 @@ namespace PhieuKiemDinh.MyUserControl
                  txt_TruongSo12.BackColor = Color.White;
                  txt_TruongSo12.ForeColor = Color.Black;
              }*/
-            if ((txt_TruongSo12.Text.Length > 2|| txt_TruongSo12.Text.Length < 2) && !string.IsNullOrEmpty(txt_TruongSo12.Text) && txt_TruongSo12.Text!="?")
+            if (((TextEdit)sender).Text.IndexOf('?') >= 0)
+            {
+                ((TextEdit)sender).Text = "?";
+            }
+            if ((txt_TruongSo12.Text.Length > 2|| txt_TruongSo12.Text.Length < 2) && !string.IsNullOrEmpty(txt_TruongSo12.Text) && ((TextEdit)sender).Text.IndexOf('?') < 0 && ((TextEdit)sender).Text.IndexOf('●') < 0)
             {
                 txt_TruongSo12.BackColor = Color.Red;
                 txt_TruongSo12.ForeColor = Color.White;
@@ -602,7 +649,11 @@ namespace PhieuKiemDinh.MyUserControl
 
         private void txt_TruongSo13_EditValueChanged(object sender, EventArgs e)
         {
-            if (txt_TruongSo13.Text.Length > 8 && txt_TruongSo13.Text!="?")
+            if (((TextEdit)sender).Text.IndexOf('?') >= 0)
+            {
+                ((TextEdit)sender).Text = "?";
+            }
+            if (txt_TruongSo13.Text.Length > 8 && ((TextEdit)sender).Text.IndexOf('?') < 0 && ((TextEdit)sender).Text.IndexOf('●') < 0)
             {
                 txt_TruongSo13.BackColor = Color.Red;
                 txt_TruongSo13.ForeColor = Color.White;
@@ -617,7 +668,11 @@ namespace PhieuKiemDinh.MyUserControl
 
         private void txt_TruongSo14_EditValueChanged(object sender, EventArgs e)
         {
-            if (txt_TruongSo14.Text.Length > 3)
+            if (((TextEdit)sender).Text.IndexOf('?') >= 0)
+            {
+                ((TextEdit)sender).Text = "?";
+            }
+            if (txt_TruongSo14.Text.Length > 3 && ((TextEdit)sender).Text.IndexOf('?') < 0 && ((TextEdit)sender).Text.IndexOf('●') < 0)
             {
                 txt_TruongSo14.BackColor = Color.Red;
                 txt_TruongSo14.ForeColor = Color.White;
@@ -747,8 +802,25 @@ namespace PhieuKiemDinh.MyUserControl
             Properties.Settings.Default.Save();
         }
 
+        public bool checkTruong09(string truong_09)
+        {
+            foreach (char cItem in txt_TruongSo09.Text)
+            {
+                if(!(Global.duLieuTruong09.Contains(cItem) || Char.IsDigit(cItem) || Char.IsControl(cItem) || (cItem >= 'A' && cItem <= 'Z')))
+                    return true;               
+            }
+            return false;
+        }
+
         private void txt_TruongSo09_Leave(object sender, EventArgs e)
         {
+            //foreach (char cItem in txt_TruongSo09.Text)
+            //{
+            //    if (Global.duLieuTruong09.Contains(cItem)|| Char.IsDigit(cItem) || Char.IsControl(cItem)||(cItem>='A' && cItem<='Z'))
+            //        txt_TruongSo09.BackColor = Color.Green;
+            //    else txt_TruongSo09.BackColor = Color.SkyBlue;
+
+            //}
             if (Global.FlagChangeSave == false)
                 return;
             Properties.Settings.Default.Truong9 = txt_TruongSo09.Text;
@@ -825,5 +897,6 @@ namespace PhieuKiemDinh.MyUserControl
             if (e.KeyCode == Keys.Delete)
                 e.Handled = true;
         }
+      
     }
 }

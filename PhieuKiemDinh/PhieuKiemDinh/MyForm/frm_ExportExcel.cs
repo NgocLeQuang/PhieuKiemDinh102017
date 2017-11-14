@@ -83,7 +83,7 @@ namespace PhieuKiemDinh.MyForm
             }
             //TableToExcel(System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments) + "\\ExportExcel.xlsx");
             dataGridView1.DataSource = null;
-            dataGridView1.DataSource = Global.Db.ExportExcel_PhieuKiemDinh(cbb_Batch.Text);
+            dataGridView1.DataSource = (from w in Global.Db.ExportExcel_PhieuKiemDinh(cbb_Batch.Text) select w).ToList();
             namefileExcel = "";
             App = new Microsoft.Office.Interop.Excel.Application();
             book = App.Workbooks.Open(System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments) + "\\ExportExcel.xlsx", 0, true, 5, "", "", false, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "", true, false, 0, true, false, false);
@@ -115,7 +115,7 @@ namespace PhieuKiemDinh.MyForm
                 //Trường 11
                 string tempTruong11 = "";
                 tempTruong11 = dataGridView1[9, i].Value + "";
-                if (tempTruong11 == "?")
+                if (tempTruong11.IndexOf("?")>=0)
                 {
                     wrksheet.Cells[h, 10] = "?";
                 }
@@ -151,7 +151,7 @@ namespace PhieuKiemDinh.MyForm
                     }
                     else
                     {
-                        wrksheet.Cells[h, 10] = tempTruong11;
+                        wrksheet.Cells[h, 10] = tempTruong11.Substring(2,4);
                     }
                 }
                 else if (tempTruong11.Length < 6)
@@ -270,7 +270,7 @@ namespace PhieuKiemDinh.MyForm
             }
             //TableToExcel(System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments) + "\\ExportExcel.xlsx");
             dataGridView1.DataSource = null;
-            dataGridView1.DataSource = Global.Db.ExportExcel_Error_PhieuKiemDinh(cbb_Batch.Text);
+            dataGridView1.DataSource = (from w in Global.Db.ExportExcel_Error_PhieuKiemDinh_0911(cbb_Batch.Text) select w ).ToList();
             namefileExcel = "_Error";
             App = new Microsoft.Office.Interop.Excel.Application();
             book = App.Workbooks.Open(System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments) + "\\ExportExcel.xlsx", 0, true, 5, "", "", false, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "", true, false, 0, true, false, false);

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 12, 12.875" name="KiemDinh_Data">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 12, 13.75" name="KiemDinh_Data">
   <DataContextMoniker Name="/KiemDinh_DataDataContext" />
   <nestedChildShapes>
     <classShape Id="f7975f83-b715-46e0-8dfe-717fd4ca147a" absoluteBounds="0.75, 0.75, 2, 2.3478011067708335">
@@ -18,18 +18,6 @@
       <DataClassMoniker Name="/KiemDinh_DataDataContext/tbl_DeJP_BackUp" />
       <nestedChildShapes>
         <elementListCompartment Id="aec3aa45-2753-4aa4-9c09-e113f5d868f5" absoluteBounds="0.765, 5.21, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="99c6fa99-0030-4d0e-9a33-6f0d2ecffb25" absoluteBounds="3.75, 4.75, 2, 5.4246240234374987">
-      <DataClassMoniker Name="/KiemDinh_DataDataContext/tbl_DeSo" />
-      <nestedChildShapes>
-        <elementListCompartment Id="c2ef0ade-9fd5-4292-be3d-e00101320b5f" absoluteBounds="3.765, 5.21, 1.9700000000000002, 4.8646240234375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="db513ee4-b286-40bb-9c3d-6c6003f1f738" absoluteBounds="6.75, 0.75, 2, 5.4246240234375">
-      <DataClassMoniker Name="/KiemDinh_DataDataContext/tbl_DeSo_BackUp" />
-      <nestedChildShapes>
-        <elementListCompartment Id="e61194d7-1364-4022-9db4-b7cec089bf06" absoluteBounds="6.765, 1.21, 1.9700000000000002, 4.8646240234375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <classShape Id="02757905-84c4-445b-9b1a-ca02ab4f8dd8" absoluteBounds="6.75, 7.75, 2, 4.8477197265624987">
@@ -66,6 +54,18 @@
       <DataClassMoniker Name="/KiemDinh_DataDataContext/tbl_Database_Truong13" />
       <nestedChildShapes>
         <elementListCompartment Id="236b0bd9-62f1-4269-8d27-04582c15041d" absoluteBounds="1.0150000000000001, 4.085, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="49e97a62-6377-4e40-861e-c47a4ab9bf1d" absoluteBounds="6.375, 0.75, 2, 5.8092268880208326">
+      <DataClassMoniker Name="/KiemDinh_DataDataContext/tbl_DeSo" />
+      <nestedChildShapes>
+        <elementListCompartment Id="668b7c03-0f0d-4246-bfb2-0e293953fd4b" absoluteBounds="6.39, 1.21, 1.9700000000000002, 5.249226888020833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="6a86ccc5-9e7e-4d07-8714-4cfc1388e3ef" absoluteBounds="3.375, 7.75, 2, 5.8092268880208318">
+      <DataClassMoniker Name="/KiemDinh_DataDataContext/tbl_DeSo_BackUp" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b299fe3e-f9c6-431a-ae2e-ecdf52c4d849" absoluteBounds="3.39, 8.21, 1.9700000000000002, 5.249226888020833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

@@ -44,6 +44,7 @@
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.btn_xoabatch = new DevExpress.XtraEditors.SimpleButton();
             this.btn_TaoBatch = new DevExpress.XtraEditors.SimpleButton();
+            this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.btn_Xoa)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -78,6 +79,7 @@
             // 
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn1,
+            this.gridColumn9,
             this.gridColumn2,
             this.gridColumn5,
             this.gridColumn3,
@@ -113,7 +115,7 @@
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.OptionsColumn.ReadOnly = true;
             this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 2;
+            this.gridColumn2.VisibleIndex = 3;
             this.gridColumn2.Width = 202;
             // 
             // gridColumn5
@@ -123,7 +125,7 @@
             this.gridColumn5.Name = "gridColumn5";
             this.gridColumn5.OptionsColumn.ReadOnly = true;
             this.gridColumn5.Visible = true;
-            this.gridColumn5.VisibleIndex = 3;
+            this.gridColumn5.VisibleIndex = 4;
             this.gridColumn5.Width = 141;
             // 
             // gridColumn3
@@ -133,7 +135,7 @@
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.OptionsColumn.ReadOnly = true;
             this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 4;
+            this.gridColumn3.VisibleIndex = 5;
             this.gridColumn3.Width = 110;
             // 
             // gridColumn4
@@ -143,7 +145,7 @@
             this.gridColumn4.Name = "gridColumn4";
             this.gridColumn4.OptionsColumn.ReadOnly = true;
             this.gridColumn4.Visible = true;
-            this.gridColumn4.VisibleIndex = 5;
+            this.gridColumn4.VisibleIndex = 6;
             this.gridColumn4.Width = 95;
             // 
             // gridColumn6
@@ -152,7 +154,7 @@
             this.gridColumn6.FieldName = "ChiaUser";
             this.gridColumn6.Name = "gridColumn6";
             this.gridColumn6.Visible = true;
-            this.gridColumn6.VisibleIndex = 6;
+            this.gridColumn6.VisibleIndex = 7;
             this.gridColumn6.Width = 77;
             // 
             // gridColumn8
@@ -161,7 +163,7 @@
             this.gridColumn8.FieldName = "CongKhaiBatch";
             this.gridColumn8.Name = "gridColumn8";
             this.gridColumn8.Visible = true;
-            this.gridColumn8.VisibleIndex = 7;
+            this.gridColumn8.VisibleIndex = 8;
             this.gridColumn8.Width = 83;
             // 
             // gridColumn7
@@ -170,7 +172,7 @@
             this.gridColumn7.ColumnEdit = this.btn_Xoa;
             this.gridColumn7.Name = "gridColumn7";
             this.gridColumn7.Visible = true;
-            this.gridColumn7.VisibleIndex = 8;
+            this.gridColumn7.VisibleIndex = 9;
             this.gridColumn7.Width = 87;
             // 
             // panelControl1
@@ -206,6 +208,15 @@
             this.btn_TaoBatch.TabIndex = 0;
             this.btn_TaoBatch.Text = "Tạo Batch mới";
             this.btn_TaoBatch.Click += new System.EventHandler(this.btn_TaoBatch_Click);
+            // 
+            // gridColumn9
+            // 
+            this.gridColumn9.Caption = "Folder";
+            this.gridColumn9.FieldName = "fPathPicture";
+            this.gridColumn9.Name = "gridColumn9";
+            this.gridColumn9.OptionsColumn.ReadOnly = true;
+            this.gridColumn9.Visible = true;
+            this.gridColumn9.VisibleIndex = 2;
             // 
             // frm_ManagerBatch
             // 
@@ -245,5 +256,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
         private DevExpress.XtraEditors.SimpleButton btn_xoabatch;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
     }
 }

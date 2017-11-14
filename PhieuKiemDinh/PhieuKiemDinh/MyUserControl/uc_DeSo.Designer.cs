@@ -114,7 +114,7 @@
             this.txt_TruongSo03.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
             this.txt_TruongSo03.Size = new System.Drawing.Size(30, 22);
             this.txt_TruongSo03.TabIndex = 2;
-            this.txt_TruongSo03.EditValueChanged += new System.EventHandler(this.txt_TruongSo03_EditValueChanged);
+            this.txt_TruongSo03.TextChanged += new System.EventHandler(this.txt_TruongSo03_EditValueChanged);
             this.txt_TruongSo03.Leave += new System.EventHandler(this.txt_TruongSo03_Leave);
             // 
             // txt_TruongSo04
@@ -255,6 +255,7 @@
             this.txt_TruongSo13.Name = "txt_TruongSo13";
             this.txt_TruongSo13.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_TruongSo13.Properties.Appearance.Options.UseFont = true;
+            this.txt_TruongSo13.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txt_TruongSo13.Size = new System.Drawing.Size(317, 22);
             this.txt_TruongSo13.TabIndex = 13;
             this.txt_TruongSo13.EditValueChanged += new System.EventHandler(this.txt_TruongSo13_EditValueChanged);

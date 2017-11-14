@@ -215,46 +215,90 @@ namespace PhieuKiemDinh.MyForm
                             //   w.FlagError,
                             w.True
                         }).ToList();
-            lb_User1.Text = deso[0].UserName;
-            lb_User2.Text = deso[1].UserName;
-            if (deso[0].True == 1)
-                lb_User1.ForeColor = Color.Red;
-            if (deso[1].True == 1)
-                lb_User2.ForeColor = Color.Red;
-            uC_DESO1.txt_TruongSo01.Text = deso[0].TruongSo01;
-            uC_DESO1.txt_TruongSo03.Text = deso[0].TruongSo03;
-            uC_DESO1.txt_TruongSo04.Text = deso[0].TruongSo04;
-            uC_DESO1.txt_TruongSo05.Text = deso[0].TruongSo05;
-            uC_DESO1.txt_TruongSo06.Text = deso[0].TruongSo06;
-            uC_DESO1.txt_TruongSo07.Text = deso[0].TruongSo07;
-            uC_DESO1.txt_TruongSo08_1.Text = deso[0].TruongSo08;
-            uC_DESO1.txt_TruongSo08_2.Text = deso[0].TruongSo08_2;
-            uC_DESO1.txt_TruongSo09.Text = deso[0].TruongSo09;
-            uC_DESO1.txt_TruongSo10.Text = deso[0].TruongSo10;
-            uC_DESO1.txt_TruongSo11.Text = deso[0].TruongSo11;
-            uC_DESO1.txt_TruongSo12.Text = deso[0].TruongSo12;
-            uC_DESO1.txt_TruongSo13.Text = deso[0].TruongSo13;
-            uC_DESO1.txt_TruongSo14.Text = deso[0].TruongSo14;
-            uC_DESO1.txt_TruongSo04_KeyUp(null, null);
-            //  uC_DESO1.txt_FlagError.Text = deso[0].FlagError;
+            var result = (from w in Global.DbBpo.tbl_Users where w.Username == deso[0].UserName select w.NotGoodUser).FirstOrDefault();
+            if (result == true)
+            {
+                lb_User1.Text = deso[0].UserName;
+                lb_User2.Text = deso[1].UserName;
+                if (deso[0].True == 1)
+                    lb_User1.ForeColor = Color.Red;
+                if (deso[1].True == 1)
+                    lb_User2.ForeColor = Color.Red;
+                uC_DESO1.txt_TruongSo01.Text = deso[0].TruongSo01;
+                uC_DESO1.txt_TruongSo03.Text = deso[0].TruongSo03;
+                uC_DESO1.txt_TruongSo04.Text = deso[0].TruongSo04;
+                uC_DESO1.txt_TruongSo05.Text = deso[0].TruongSo05;
+                uC_DESO1.txt_TruongSo06.Text = deso[0].TruongSo06;
+                uC_DESO1.txt_TruongSo07.Text = deso[0].TruongSo07;
+                uC_DESO1.txt_TruongSo08_1.Text = deso[0].TruongSo08;
+                uC_DESO1.txt_TruongSo08_2.Text = deso[0].TruongSo08_2;
+                uC_DESO1.txt_TruongSo09.Text = deso[0].TruongSo09;
+                uC_DESO1.txt_TruongSo10.Text = deso[0].TruongSo10;
+                uC_DESO1.txt_TruongSo11.Text = deso[0].TruongSo11;
+                uC_DESO1.txt_TruongSo12.Text = deso[0].TruongSo12;
+                uC_DESO1.txt_TruongSo13.Text = deso[0].TruongSo13;
+                uC_DESO1.txt_TruongSo14.Text = deso[0].TruongSo14;
+                uC_DESO1.txt_TruongSo04_KeyUp(null, null);
+                //  uC_DESO1.txt_FlagError.Text = deso[0].FlagError;
 
-            uC_DESO2.txt_TruongSo01.Text = deso[1].TruongSo01;
-            uC_DESO2.txt_TruongSo03.Text = deso[1].TruongSo03;
-            uC_DESO2.txt_TruongSo04.Text = deso[1].TruongSo04;
-            uC_DESO2.txt_TruongSo05.Text = deso[1].TruongSo05;
-            uC_DESO2.txt_TruongSo06.Text = deso[1].TruongSo06;
-            uC_DESO2.txt_TruongSo07.Text = deso[1].TruongSo07;
-            uC_DESO2.txt_TruongSo08_1.Text = deso[1].TruongSo08;
-            uC_DESO2.txt_TruongSo08_2.Text = deso[1].TruongSo08_2;
-            uC_DESO2.txt_TruongSo09.Text = deso[1].TruongSo09;
-            uC_DESO2.txt_TruongSo10.Text = deso[1].TruongSo10;
-            uC_DESO2.txt_TruongSo11.Text = deso[1].TruongSo11;
-            uC_DESO2.txt_TruongSo12.Text = deso[1].TruongSo12;
-            uC_DESO2.txt_TruongSo13.Text = deso[1].TruongSo13;
-            uC_DESO2.txt_TruongSo14.Text = deso[1].TruongSo14;
-            uC_DESO2.txt_TruongSo04_KeyUp(null, null);
-            //  uC_DESO2.txt_FlagError.Text = deso[1].FlagError;
-
+                uC_DESO2.txt_TruongSo01.Text = deso[1].TruongSo01;
+                uC_DESO2.txt_TruongSo03.Text = deso[1].TruongSo03;
+                uC_DESO2.txt_TruongSo04.Text = deso[1].TruongSo04;
+                uC_DESO2.txt_TruongSo05.Text = deso[1].TruongSo05;
+                uC_DESO2.txt_TruongSo06.Text = deso[1].TruongSo06;
+                uC_DESO2.txt_TruongSo07.Text = deso[1].TruongSo07;
+                uC_DESO2.txt_TruongSo08_1.Text = deso[1].TruongSo08;
+                uC_DESO2.txt_TruongSo08_2.Text = deso[1].TruongSo08_2;
+                uC_DESO2.txt_TruongSo09.Text = deso[1].TruongSo09;
+                uC_DESO2.txt_TruongSo10.Text = deso[1].TruongSo10;
+                uC_DESO2.txt_TruongSo11.Text = deso[1].TruongSo11;
+                uC_DESO2.txt_TruongSo12.Text = deso[1].TruongSo12;
+                uC_DESO2.txt_TruongSo13.Text = deso[1].TruongSo13;
+                uC_DESO2.txt_TruongSo14.Text = deso[1].TruongSo14;
+                uC_DESO2.txt_TruongSo04_KeyUp(null, null);
+                //  uC_DESO2.txt_FlagError.Text = deso[1].FlagError;
+            }
+            else
+            {
+                lb_User1.Text = deso[1].UserName;                
+                if (deso[1].True == 1)
+                    lb_User1.ForeColor = Color.Red;             
+                uC_DESO1.txt_TruongSo01.Text = deso[1].TruongSo01;
+                uC_DESO1.txt_TruongSo03.Text = deso[1].TruongSo03;
+                uC_DESO1.txt_TruongSo04.Text = deso[1].TruongSo04;
+                uC_DESO1.txt_TruongSo05.Text = deso[1].TruongSo05;
+                uC_DESO1.txt_TruongSo06.Text = deso[1].TruongSo06;
+                uC_DESO1.txt_TruongSo07.Text = deso[1].TruongSo07;
+                uC_DESO1.txt_TruongSo08_1.Text = deso[1].TruongSo08;
+                uC_DESO1.txt_TruongSo08_2.Text = deso[1].TruongSo08_2;
+                uC_DESO1.txt_TruongSo09.Text = deso[1].TruongSo09;
+                uC_DESO1.txt_TruongSo10.Text = deso[1].TruongSo10;
+                uC_DESO1.txt_TruongSo11.Text = deso[1].TruongSo11;
+                uC_DESO1.txt_TruongSo12.Text = deso[1].TruongSo12;
+                uC_DESO1.txt_TruongSo13.Text = deso[1].TruongSo13;
+                uC_DESO1.txt_TruongSo14.Text = deso[1].TruongSo14;
+                uC_DESO1.txt_TruongSo04_KeyUp(null, null);
+                //  uC_DESO1.txt_FlagError.Text = deso[0].FlagError;
+                lb_User2.Text = deso[0].UserName;
+                if (deso[0].True == 1)
+                    lb_User2.ForeColor = Color.Red;
+                uC_DESO2.txt_TruongSo01.Text = deso[0].TruongSo01;
+                uC_DESO2.txt_TruongSo03.Text = deso[0].TruongSo03;
+                uC_DESO2.txt_TruongSo04.Text = deso[0].TruongSo04;
+                uC_DESO2.txt_TruongSo05.Text = deso[0].TruongSo05;
+                uC_DESO2.txt_TruongSo06.Text = deso[0].TruongSo06;
+                uC_DESO2.txt_TruongSo07.Text = deso[0].TruongSo07;
+                uC_DESO2.txt_TruongSo08_1.Text = deso[0].TruongSo08;
+                uC_DESO2.txt_TruongSo08_2.Text = deso[0].TruongSo08_2;
+                uC_DESO2.txt_TruongSo09.Text = deso[0].TruongSo09;
+                uC_DESO2.txt_TruongSo10.Text = deso[0].TruongSo10;
+                uC_DESO2.txt_TruongSo11.Text = deso[0].TruongSo11;
+                uC_DESO2.txt_TruongSo12.Text = deso[0].TruongSo12;
+                uC_DESO2.txt_TruongSo13.Text = deso[0].TruongSo13;
+                uC_DESO2.txt_TruongSo14.Text = deso[0].TruongSo14;
+                uC_DESO2.txt_TruongSo04_KeyUp(null, null);
+                //  uC_DESO2.txt_FlagError.Text = deso[1].FlagError;
+            }
             Compare_TextBox(uC_DESO1.txt_TruongSo01, uC_DESO2.txt_TruongSo01);
             Compare_TextBox(uC_DESO1.txt_TruongSo03, uC_DESO2.txt_TruongSo03);
             Compare_TextBox(uC_DESO1.txt_TruongSo04, uC_DESO2.txt_TruongSo04);
@@ -267,10 +311,10 @@ namespace PhieuKiemDinh.MyForm
             Compare_TextBox(uC_DESO1.txt_TruongSo10, uC_DESO2.txt_TruongSo10);
             Compare_TextBox(uC_DESO1.txt_TruongSo11, uC_DESO2.txt_TruongSo11);
             Compare_TextBox(uC_DESO1.txt_TruongSo12, uC_DESO2.txt_TruongSo12);
-            Compare_TextBox(uC_DESO1.txt_TruongSo13, uC_DESO2.txt_TruongSo13);
             Compare_TextBox(uC_DESO1.txt_TruongSo14, uC_DESO2.txt_TruongSo14);
             uC_DESO1.txt_TruongSo13_Leave(null,null);
             uC_DESO2.txt_TruongSo13_Leave(null, null);
+            Compare_TextBox(uC_DESO1.txt_TruongSo13, uC_DESO2.txt_TruongSo13);
             lb_Loi.Text = ((from w in Global.Db.tbl_DeSos where w.fBatchName == Global.StrBatch && w.Dem == 1 select w.IdImage).Count() / 2).ToString() + " Lỗi";
             timer1.Enabled = true;
         }
@@ -384,52 +428,67 @@ namespace PhieuKiemDinh.MyForm
             VisibleButtonSave();
         }
 
-        string flagTruong13 = "";
+        string flagTruong13 = "", flagTruong09 ="",truong11="";
         private void btn_SuaVaLuu_DeSo1_Click(object sender, EventArgs e)
         {
+            truong11 = ""; flagTruong13 = "";
             Global.DbBpo.UpdateTimeLastRequest(Global.Token);
-
             uC_DESO1.txt_TruongSo13_Leave(null, null);
+            //---
             if (uC_DESO1.txt_TruongSo13.BackColor == Color.SkyBlue)
             {
                 flagTruong13 = "1";
             }
             else { flagTruong13 = "0"; }
+            //---
+            if (uC_DESO1.checkTruong09(uC_DESO1.txt_TruongSo09.Text) == true) { flagTruong09 = "1"; }
+            else if(uC_DESO1.checkTruong09(uC_DESO1.txt_TruongSo09.Text) == false) { flagTruong09 = "0"; }
+            //---
+            if (uC_DESO1.txt_TruongSo11.Text.IndexOf('●') >= 0)
+                truong11 = "●";
+            else if (uC_DESO1.txt_TruongSo11.Text.IndexOf('?') >= 0)
+                truong11 = "?";
+            else
+                truong11 = uC_DESO1.txt_TruongSo11.Text;
+            //---
             if (fLagRefresh)
-                Global.Db.SuaVaLuu_tbl_DeSo_New(lb_User1.Text, lb_User2.Text, lb_Image.Text, fbatchRefresh, Global.StrUserName,
+                Global.Db.SuaVaLuu_tbl_DeSo_0911(lb_User1.Text, lb_User2.Text, lb_Image.Text, fbatchRefresh, Global.StrUserName,
                                                 uC_DESO1.txt_TruongSo01.Text,
-                                                uC_DESO1.txt_TruongSo03.Text,
+                                                uC_DESO1.txt_TruongSo03.Text.IndexOf('?') >= 0 ? "?" : uC_DESO1.txt_TruongSo03.Text,
                                                 uC_DESO1.txt_TruongSo04.Text.Replace(",", ""),
                                                 uC_DESO1.txt_TruongSo05.Text,
                                                 uC_DESO1.txt_TruongSo06.Text,
                                                 uC_DESO1.txt_TruongSo07.Text,
                                                 uC_DESO1.txt_TruongSo08_1.Text,
                                                 uC_DESO1.txt_TruongSo08_2.Text,
-                                                uC_DESO1.txt_TruongSo09.Text,
-                                                uC_DESO1.txt_TruongSo10.Text,
-                                                uC_DESO1.txt_TruongSo11.Text.IndexOf('●') >= 0 ? "●" : uC_DESO1.txt_TruongSo11.Text,
-                                                uC_DESO1.txt_TruongSo12.Text,
-                                                uC_DESO1.txt_TruongSo13.Text,
+                                                uC_DESO1.txt_TruongSo09.Text.IndexOf('?') >= 0 ? "?" : uC_DESO1.txt_TruongSo09.Text,
+                                                uC_DESO1.txt_TruongSo10.Text.IndexOf('?') >= 0 ? "?" : uC_DESO1.txt_TruongSo10.Text,
+                                                truong11,
+                                                uC_DESO1.txt_TruongSo12.Text.IndexOf('?') >= 0 ? "?" : uC_DESO1.txt_TruongSo12.Text,
+                                                uC_DESO1.txt_TruongSo13.Text.IndexOf('?') >= 0 ? "?" : uC_DESO1.txt_TruongSo13.Text,
                                                 flagTruong13,
-                                                uC_DESO1.txt_TruongSo14.Text//, uC_DESO1.txt_FlagError.Text
+                                                uC_DESO1.txt_TruongSo14.Text.IndexOf('?') >= 0 ? "?" : uC_DESO1.txt_TruongSo14.Text,
+                                                flagTruong09                                                
+                                                //, uC_DESO1.txt_FlagError.Text
                                                 );
             else
-                Global.Db.SuaVaLuu_tbl_DeSo_New(lb_User1.Text, lb_User2.Text, lb_Image.Text, cbb_Batch_Check.Text, Global.StrUserName,
+                Global.Db.SuaVaLuu_tbl_DeSo_0911(lb_User1.Text, lb_User2.Text, lb_Image.Text, cbb_Batch_Check.Text, Global.StrUserName,
                                             uC_DESO1.txt_TruongSo01.Text,
-                                            uC_DESO1.txt_TruongSo03.Text,
+                                            uC_DESO1.txt_TruongSo03.Text.IndexOf('?') >= 0 ? "?" : uC_DESO1.txt_TruongSo03.Text,
                                             uC_DESO1.txt_TruongSo04.Text.Replace(",", ""),
                                             uC_DESO1.txt_TruongSo05.Text,
                                             uC_DESO1.txt_TruongSo06.Text,
                                             uC_DESO1.txt_TruongSo07.Text,
                                             uC_DESO1.txt_TruongSo08_1.Text,
                                             uC_DESO1.txt_TruongSo08_2.Text,
-                                            uC_DESO1.txt_TruongSo09.Text,
-                                            uC_DESO1.txt_TruongSo10.Text,
-                                            uC_DESO1.txt_TruongSo11.Text.IndexOf('●') >= 0 ? "●" : uC_DESO1.txt_TruongSo11.Text,
-                                            uC_DESO1.txt_TruongSo12.Text,
-                                            uC_DESO1.txt_TruongSo13.Text,
+                                            uC_DESO1.txt_TruongSo09.Text.IndexOf('?') >= 0 ? "?" : uC_DESO1.txt_TruongSo09.Text,
+                                            uC_DESO1.txt_TruongSo10.Text.IndexOf('?') >= 0 ? "?" : uC_DESO1.txt_TruongSo10.Text,
+                                            truong11,
+                                            uC_DESO1.txt_TruongSo12.Text.IndexOf('?') >= 0 ? "?" : uC_DESO1.txt_TruongSo12.Text,
+                                            uC_DESO1.txt_TruongSo13.Text.IndexOf('?') >= 0 ? "?" : uC_DESO1.txt_TruongSo13.Text,
                                             flagTruong13,
-                                            uC_DESO1.txt_TruongSo14.Text//,uC_DESO1.txt_FlagError.Text
+                                            uC_DESO1.txt_TruongSo14.Text.IndexOf('?') >= 0 ? "?" : uC_DESO1.txt_TruongSo14.Text,
+                                            flagTruong09//,uC_DESO1.txt_FlagError.Text
                                             );
             fLagRefresh = false;
             fbatchRefresh = "";
@@ -461,47 +520,68 @@ namespace PhieuKiemDinh.MyForm
 
         private void btn_SuaVaLuu_DeSo2_Click(object sender, EventArgs e)
         {
+            truong11 = ""; flagTruong13 = "";
             Global.DbBpo.UpdateTimeLastRequest(Global.Token);
+            uC_DESO2.txt_TruongSo13_Leave(null, null);
+            //---
             if (uC_DESO2.txt_TruongSo13.BackColor == System.Drawing.Color.SkyBlue)
             {
                 flagTruong13 = "1";
             }
             else { flagTruong13 = "0"; }
+            //----
+            //if (uC_DESO1.checkTruong09(uC_DESO1.txt_TruongSo09.Text) == true) { flagTruong09 = "1"; }
+            //else if (uC_DESO1.checkTruong09(uC_DESO1.txt_TruongSo09.Text) == false)
+            //{ flagTruong09 = "0"; }
+
+            if (uC_DESO2.checkTruong09(uC_DESO2.txt_TruongSo09.Text) == true) { flagTruong09 = "1"; }
+            else if (uC_DESO2.checkTruong09(uC_DESO2.txt_TruongSo09.Text) == false)
+            { flagTruong09 = "0"; }
+            //----
+            if (uC_DESO2.txt_TruongSo11.Text.IndexOf('●') >= 0)
+                truong11 = "●";
+            else if (uC_DESO2.txt_TruongSo11.Text.IndexOf('?') >= 0)
+                truong11 = "?";
+            else
+                truong11 = uC_DESO2.txt_TruongSo11.Text;
+            //---
             if (fLagRefresh)
-                Global.Db.SuaVaLuu_tbl_DeSo_New(lb_User2.Text, lb_User1.Text, lb_Image.Text, fbatchRefresh, Global.StrUserName,
+                Global.Db.SuaVaLuu_tbl_DeSo_0911(lb_User2.Text, lb_User1.Text, lb_Image.Text, fbatchRefresh, Global.StrUserName,
                                             uC_DESO2.txt_TruongSo01.Text,
-                                            uC_DESO2.txt_TruongSo03.Text,
+                                            uC_DESO2.txt_TruongSo03.Text.IndexOf('?') >= 0 ? "?" : uC_DESO2.txt_TruongSo03.Text,
                                             uC_DESO2.txt_TruongSo04.Text.Replace(",", ""),
                                             uC_DESO2.txt_TruongSo05.Text,
                                             uC_DESO2.txt_TruongSo06.Text,
                                             uC_DESO2.txt_TruongSo07.Text,
                                             uC_DESO2.txt_TruongSo08_1.Text,
                                             uC_DESO2.txt_TruongSo08_2.Text,
-                                            uC_DESO2.txt_TruongSo09.Text,
-                                            uC_DESO2.txt_TruongSo10.Text,
-                                            uC_DESO2.txt_TruongSo11.Text.IndexOf('●') >= 0 ? "●" : uC_DESO2.txt_TruongSo11.Text,
-                                            uC_DESO2.txt_TruongSo12.Text,
-                                            uC_DESO2.txt_TruongSo13.Text,
+                                            uC_DESO2.txt_TruongSo09.Text.IndexOf('?') >= 0 ? "?" : uC_DESO2.txt_TruongSo09.Text,
+                                            uC_DESO2.txt_TruongSo10.Text.IndexOf('?') >= 0 ? "?" : uC_DESO2.txt_TruongSo10.Text,
+                                            truong11,
+                                            uC_DESO2.txt_TruongSo12.Text.IndexOf('?') >= 0 ? "?" : uC_DESO2.txt_TruongSo12.Text,
+                                            uC_DESO2.txt_TruongSo13.Text.IndexOf('?') >= 0 ? "?" : uC_DESO2.txt_TruongSo13.Text,
                                             flagTruong13,
-                                            uC_DESO2.txt_TruongSo14.Text//, uC_DESO2.txt_FlagError.Text
+                                            uC_DESO2.txt_TruongSo14.Text.IndexOf('?') >= 0 ? "?" : uC_DESO2.txt_TruongSo14.Text,
+                                            flagTruong09//, uC_DESO2.txt_FlagError.Text
                                             );
             else
-                Global.Db.SuaVaLuu_tbl_DeSo_New(lb_User2.Text, lb_User1.Text, lb_Image.Text, cbb_Batch_Check.Text, Global.StrUserName,
+                Global.Db.SuaVaLuu_tbl_DeSo_0911(lb_User2.Text, lb_User1.Text, lb_Image.Text, cbb_Batch_Check.Text, Global.StrUserName,
                                             uC_DESO2.txt_TruongSo01.Text,
-                                            uC_DESO2.txt_TruongSo03.Text,
+                                            uC_DESO2.txt_TruongSo03.Text.IndexOf('?') >= 0 ? "?" : uC_DESO2.txt_TruongSo03.Text,
                                             uC_DESO2.txt_TruongSo04.Text.Replace(",", ""),
                                             uC_DESO2.txt_TruongSo05.Text,
                                             uC_DESO2.txt_TruongSo06.Text,
                                             uC_DESO2.txt_TruongSo07.Text,
                                             uC_DESO2.txt_TruongSo08_1.Text,
                                             uC_DESO2.txt_TruongSo08_2.Text,
-                                            uC_DESO2.txt_TruongSo09.Text,
-                                            uC_DESO2.txt_TruongSo10.Text,
-                                            uC_DESO2.txt_TruongSo11.Text.IndexOf('●') >= 0 ? "●" : uC_DESO2.txt_TruongSo11.Text,
-                                            uC_DESO2.txt_TruongSo12.Text,
-                                            uC_DESO2.txt_TruongSo13.Text,
+                                            uC_DESO2.txt_TruongSo09.Text.IndexOf('?') >= 0 ? "?" : uC_DESO2.txt_TruongSo09.Text,
+                                            uC_DESO2.txt_TruongSo10.Text.IndexOf('?') >= 0 ? "?" : uC_DESO2.txt_TruongSo10.Text,
+                                            truong11,
+                                            uC_DESO2.txt_TruongSo12.Text.IndexOf('?') >= 0 ? "?" : uC_DESO2.txt_TruongSo12.Text,
+                                            uC_DESO2.txt_TruongSo13.Text.IndexOf('?') >= 0 ? "?" : uC_DESO2.txt_TruongSo13.Text,
                                             flagTruong13,
-                                            uC_DESO2.txt_TruongSo14.Text//,uC_DESO2.txt_FlagError.Text
+                                            uC_DESO2.txt_TruongSo14.Text.IndexOf('?') >= 0 ? "?" : uC_DESO2.txt_TruongSo14.Text,
+                                            flagTruong09//,uC_DESO2.txt_FlagError.Text
                                              );
             fLagRefresh = false;
             fbatchRefresh = "";

@@ -101,12 +101,8 @@ namespace PhieuKiemDinh.MyForm
                     MessageBox.Show("Username rỗng, không thể xóa!");
                 }
             }
-        }
-        
-        private void gridView1_GotFocus(object sender, EventArgs e)
-        {
-            
-        }
+        }   
+     
 
         private void cbb_idrole_KeyPress(object sender, KeyPressEventArgs e)
         {

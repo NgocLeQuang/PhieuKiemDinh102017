@@ -22,7 +22,7 @@ namespace PhieuKiemDinh
         public static string StrIdProject = "PhieuKiemDinh";
         public static string StrCheck = "";
         public static int FreeTime = 0;
-        public static string Version = "1.0.7";
+        public static string Version = "1.1.0";
         public static bool FlagChangeSave = true;
         public static string StrPath = @"\\10.10.10.248\PhieuKiemDinh$";
         public static string Webservice;
@@ -30,7 +30,7 @@ namespace PhieuKiemDinh
         //public static string Webservice = "http://10.10.10.248:8888/phieukiemdinh/";
         public static KiemDinh_DataDataContext Db;
         public static KiemDinh_EntryBPODataContext DbBpo;
-
+        public static string duLieuTruong09 = "改 輸 入 車 ● - _ + / , . ";
         public static string GetToken(string strUserName)
         {
             Random rnd = new Random();

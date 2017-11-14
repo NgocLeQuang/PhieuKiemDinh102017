@@ -437,12 +437,13 @@ namespace PhieuKiemDinh.MyForm
         }
 
         private string token = "", version = "", Image_temp="";
-        string flagTruong13 = "";
+        string flagTruong13 = "", flagTruong09 = "", truong11 = "";
         private void btn_Submit_Click(object sender, EventArgs e)
         {
             token = "";
             version = "";
             Image_temp = "";
+            truong11 = "";
             Global.DbBpo.UpdateTimeLastRequest(Global.Token);
             //Kiểm tra token
             token = (from w in Global.DbBpo.tbl_TokenLogins where w.UserName == Global.StrUserName && w.IDProject == Global.StrIdProject select w.Token).FirstOrDefault();
@@ -576,22 +577,33 @@ namespace PhieuKiemDinh.MyForm
                         flagTruong13 = "1";
                     }
                     else { flagTruong13 = "0"; }
-                    Global.Db.Insert_DeSo_New(lb_IdImage.Text, lb_fBatchName.Text, Global.StrUserName,
+                    if(uC_DESO1.checkTruong09(uC_DESO1.txt_TruongSo09.Text)==true) { flagTruong09 = "1"; }
+                    else if(uC_DESO1.checkTruong09(uC_DESO1.txt_TruongSo09.Text) == false) { flagTruong09 = "0"; }
+                    //---
+                    if (uC_DESO1.txt_TruongSo11.Text.IndexOf('●') >= 0)
+                        truong11 = "●";
+                    else if (uC_DESO1.txt_TruongSo11.Text.IndexOf('?') >= 0)
+                        truong11 = "?";
+                    else
+                        truong11 = uC_DESO1.txt_TruongSo11.Text;
+                    //---
+                    Global.Db.Insert_DeSo_0911(lb_IdImage.Text, lb_fBatchName.Text, Global.StrUserName,
                        uC_DESO1.txt_TruongSo01.Text,
-                       uC_DESO1.txt_TruongSo03.Text,
+                       uC_DESO1.txt_TruongSo03.Text.IndexOf('?') >= 0 ? "?" : uC_DESO1.txt_TruongSo03.Text,
                        uC_DESO1.txt_TruongSo04.Text.Replace(",",""),
                        uC_DESO1.txt_TruongSo05.Text,
                        uC_DESO1.txt_TruongSo06.Text,
                        uC_DESO1.txt_TruongSo07.Text,
                        uC_DESO1.txt_TruongSo08_1.Text,
                        uC_DESO1.txt_TruongSo08_2.Text,
-                       uC_DESO1.txt_TruongSo09.Text,
-                       uC_DESO1.txt_TruongSo10.Text,
-                       uC_DESO1.txt_TruongSo11.Text.IndexOf('●')>=0? "●": uC_DESO1.txt_TruongSo11.Text,
-                       uC_DESO1.txt_TruongSo12.Text,
-                       uC_DESO1.txt_TruongSo13.Text,
+                       uC_DESO1.txt_TruongSo09.Text.IndexOf('?') >= 0 ? "?" : uC_DESO1.txt_TruongSo09.Text,
+                       uC_DESO1.txt_TruongSo10.Text.IndexOf('?') >= 0 ? "?" : uC_DESO1.txt_TruongSo10.Text,
+                       truong11,
+                       uC_DESO1.txt_TruongSo12.Text.IndexOf('?') >= 0 ? "?" : uC_DESO1.txt_TruongSo12.Text,
+                       uC_DESO1.txt_TruongSo13.Text.IndexOf('?') >= 0 ? "?" : uC_DESO1.txt_TruongSo13.Text,
                        flagTruong13,
-                       uC_DESO1.txt_TruongSo14.Text//,
+                       uC_DESO1.txt_TruongSo14.Text.IndexOf('?') >= 0 ? "?" : uC_DESO1.txt_TruongSo14.Text,
+                       flagTruong09                       
                       // uC_DESO1.txt_FlagError.Text
                       );
                     uC_DESO1.ResetData();
@@ -693,6 +705,7 @@ namespace PhieuKiemDinh.MyForm
 
         private void btn_Submit_Logout_Click(object sender, EventArgs e)
         {
+            truong11 = "";
             Global.DbBpo.UpdateTimeLastRequest(Global.Token);
             var token = (from w in Global.DbBpo.tbl_TokenLogins where w.UserName == Global.StrUserName && w.IDProject == Global.StrIdProject select w.Token).FirstOrDefault();
 
@@ -721,22 +734,34 @@ namespace PhieuKiemDinh.MyForm
                     flagTruong13 = "1";
                 }
                 else { flagTruong13 = "0"; }
-                Global.Db.Insert_DeSo_New(lb_IdImage.Text, lb_fBatchName.Text, Global.StrUserName,
+
+                if (uC_DESO1.checkTruong09(uC_DESO1.txt_TruongSo09.Text) == true) { flagTruong09 = "1"; }
+                else if(uC_DESO1.checkTruong09(uC_DESO1.txt_TruongSo09.Text) == false) { flagTruong09 = "0"; }
+                //---
+                if (uC_DESO1.txt_TruongSo11.Text.IndexOf('●') >= 0)
+                    truong11 = "●";
+                else if (uC_DESO1.txt_TruongSo11.Text.IndexOf('?') >= 0)
+                    truong11 = "?";
+                else
+                    truong11 = uC_DESO1.txt_TruongSo11.Text;
+                //---
+                Global.Db.Insert_DeSo_0911(lb_IdImage.Text, lb_fBatchName.Text, Global.StrUserName,
                        uC_DESO1.txt_TruongSo01.Text,
-                       uC_DESO1.txt_TruongSo03.Text,
+                       uC_DESO1.txt_TruongSo03.Text.IndexOf('?') >= 0 ? "?" : uC_DESO1.txt_TruongSo03.Text,
                        uC_DESO1.txt_TruongSo04.Text.Replace(",", ""),
                        uC_DESO1.txt_TruongSo05.Text,
                        uC_DESO1.txt_TruongSo06.Text,
                        uC_DESO1.txt_TruongSo07.Text,
                        uC_DESO1.txt_TruongSo08_1.Text,
                        uC_DESO1.txt_TruongSo08_2.Text,
-                       uC_DESO1.txt_TruongSo09.Text,
-                       uC_DESO1.txt_TruongSo10.Text,
-                       uC_DESO1.txt_TruongSo11.Text.IndexOf('●') >= 0 ? "●" : uC_DESO1.txt_TruongSo11.Text,
-                       uC_DESO1.txt_TruongSo12.Text,
-                       uC_DESO1.txt_TruongSo13.Text,
+                       uC_DESO1.txt_TruongSo09.Text.IndexOf('?') >= 0 ? "?" : uC_DESO1.txt_TruongSo09.Text,
+                       uC_DESO1.txt_TruongSo10.Text.IndexOf('?') >= 0 ? "?" : uC_DESO1.txt_TruongSo10.Text,
+                       truong11,
+                       uC_DESO1.txt_TruongSo12.Text.IndexOf('?') >= 0 ? "?" : uC_DESO1.txt_TruongSo12.Text,
+                       uC_DESO1.txt_TruongSo13.Text.IndexOf('?') >= 0 ? "?" : uC_DESO1.txt_TruongSo13.Text,
                        flagTruong13,
-                       uC_DESO1.txt_TruongSo14.Text//,
+                       uC_DESO1.txt_TruongSo14.Text.IndexOf('?') >= 0 ? "?" : uC_DESO1.txt_TruongSo14.Text,
+                       flagTruong09
                        //uC_DESO1.txt_FlagError.Text
                        );
             }
