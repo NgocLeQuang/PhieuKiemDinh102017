@@ -216,7 +216,7 @@ namespace PhieuKiemDinh.MyForm
                             w.True
                         }).ToList();
             var result = (from w in Global.DbBpo.tbl_Users where w.Username == deso[0].UserName select w.NotGoodUser).FirstOrDefault();
-            if (result == true)
+            if (result == false)
             {
                 lb_User1.Text = deso[0].UserName;
                 lb_User2.Text = deso[1].UserName;
@@ -258,7 +258,7 @@ namespace PhieuKiemDinh.MyForm
                 uC_DESO2.txt_TruongSo04_KeyUp(null, null);
                 //  uC_DESO2.txt_FlagError.Text = deso[1].FlagError;
             }
-            else
+            else if(result == true)
             {
                 lb_User1.Text = deso[1].UserName;                
                 if (deso[1].True == 1)

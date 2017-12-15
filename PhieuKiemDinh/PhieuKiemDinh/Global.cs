@@ -22,7 +22,7 @@ namespace PhieuKiemDinh
         public static string StrIdProject = "PhieuKiemDinh";
         public static string StrCheck = "";
         public static int FreeTime = 0;
-        public static string Version = "1.1.0";
+        public static string Version = "1.1.3";
         public static bool FlagChangeSave = true;
         public static string StrPath = @"\\10.10.10.248\PhieuKiemDinh$";
         public static string Webservice;

@@ -89,7 +89,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(2, 2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(1092, 496);
+            this.dataGridView1.Size = new System.Drawing.Size(1101, 500);
             this.dataGridView1.TabIndex = 3;
             // 
             // panelControl1
@@ -103,14 +103,14 @@
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(1096, 75);
+            this.panelControl1.Size = new System.Drawing.Size(1105, 75);
             this.panelControl1.TabIndex = 4;
             // 
             // lb_Complete
             // 
             this.lb_Complete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lb_Complete.AutoSize = true;
-            this.lb_Complete.Location = new System.Drawing.Point(982, 48);
+            this.lb_Complete.Location = new System.Drawing.Point(991, 48);
             this.lb_Complete.Name = "lb_Complete";
             this.lb_Complete.Size = new System.Drawing.Size(0, 13);
             this.lb_Complete.TabIndex = 4;
@@ -121,7 +121,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.progressBar1.Location = new System.Drawing.Point(23, 42);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(952, 23);
+            this.progressBar1.Size = new System.Drawing.Size(961, 23);
             this.progressBar1.TabIndex = 3;
             // 
             // simpleButton2
@@ -141,7 +141,7 @@
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl2.Location = new System.Drawing.Point(0, 75);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(1096, 500);
+            this.panelControl2.Size = new System.Drawing.Size(1105, 504);
             this.panelControl2.TabIndex = 5;
             // 
             // backgroundWorker1
@@ -153,7 +153,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1096, 575);
+            this.ClientSize = new System.Drawing.Size(1105, 579);
             this.Controls.Add(this.panelControl2);
             this.Controls.Add(this.panelControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
